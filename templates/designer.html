@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% block title %}Cocktail Designer — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container page-container-narrow">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Cocktail Designer</h1>
+      <p class="page-subtitle">Describe a concept or flavor profile and Lloid will design an original recipe.</p>
+    </div>
+    <button class="btn btn-ghost btn-sm" onclick="resetChat()">New conversation</button>
+  </div>
+
+  <div class="chat-container" id="chat-container">
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-message chat-message-assistant">
+        <div class="chat-bubble">
+          <p>Let's create something original. What's your vision? You could describe a flavor profile, a spirit you want to highlight, an occasion, a mood, or an inspiration — I'll design a recipe around what's in the bar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <textarea id="chat-input" class="chat-input"
+                placeholder="e.g. Something smoky and tropical, built around the agricole rum with citrus and a little heat…"
+                rows="1" onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="chat-send" id="chat-send" onclick="sendMessage()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Save banner (appears when Claude outputs a saveable recipe) -->
+  <div class="save-banner" id="save-banner" style="display:none">
+    <div class="save-banner-text">
+      <strong id="save-cocktail-name">Recipe ready to save</strong>
+      <span class="text-dim">Add this cocktail to your database</span>
+    </div>
+    <div class="save-banner-actions">
+      <button class="btn btn-primary" onclick="saveDesignedCocktail()" id="save-btn">Save to Database</button>
+      <a id="view-saved-link" class="btn btn-ghost" style="display:none" href="#">View Recipe</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const ENDPOINT = '/designer/stream';
+let messages = [];
+let isStreaming = false;
+let pendingSave = null;
+
+function handleChatKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 160) + 'px';
+}
+
+function resetChat() {
+  messages = [];
+  pendingSave = null;
+  document.getElementById('save-banner').style.display = 'none';
+  document.getElementById('view-saved-link').style.display = 'none';
+  const container = document.getElementById('chat-messages');
+  container.innerHTML = `
+    <div class="chat-message chat-message-assistant">
+      <div class="chat-bubble">
+        <p>Let's create something original. What's your vision? You could describe a flavor profile, a spirit you want to highlight, an occasion, a mood, or an inspiration — I'll design a recipe around what's in the bar.</p>
+      </div>
+    </div>`;
+}
+
+async function sendMessage() {
+  if (isStreaming) return;
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+
+  appendMessage('user', text);
+  messages.push({ role: 'user', content: text });
+
+  const responseDiv = appendStreamingMessage();
+  isStreaming = true;
+  document.getElementById('chat-send').disabled = true;
+
+  try {
+    const fullText = await streamResponse(ENDPOINT, messages, responseDiv);
+    messages.push({ role: 'assistant', content: fullText });
+    checkForSaveBlock(fullText);
+  } catch (e) {
+    responseDiv.innerHTML = `<em class="text-dim">Error: ${e.message}</em>`;
+  } finally {
+    isStreaming = false;
+    document.getElementById('chat-send').disabled = false;
+    document.getElementById('chat-input').focus();
+  }
+}
+
+function checkForSaveBlock(text) {
+  const match = text.match(/```json\s*([\s\S]*?)\s*```/);
+  if (!match) return;
+  try {
+    const data = JSON.parse(match[1]);
+    if (data.save_cocktail && data.name) {
+      pendingSave = data;
+      document.getElementById('save-cocktail-name').textContent = data.name;
+      document.getElementById('save-banner').style.display = 'flex';
+      document.getElementById('view-saved-link').style.display = 'none';
+    }
+  } catch (e) { /* not valid JSON */ }
+}
+
+async function saveDesignedCocktail() {
+  if (!pendingSave) return;
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
+  try {
+    const res = await fetch('/designer/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(pendingSave),
+    });
+    const data = await res.json();
+    if (data.success) {
+      btn.textContent = 'Saved!';
+      const viewLink = document.getElementById('view-saved-link');
+      viewLink.href = `/cocktails/${data.id}`;
+      viewLink.style.display = 'inline-flex';
+    } else {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
+  } catch (e) {
+    btn.textContent = 'Error — try again';
+    btn.disabled = false;
+  }
+}
+
+function appendMessage(role, text) {
+  const container = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = `chat-message chat-message-${role}`;
+  div.innerHTML = `<div class="chat-bubble">${role === 'user' ? escapeHtml(text) : marked.parse(text)}</div>`;
+  container.appendChild(div);
+  scrollChat();
+}
+
+function appendStreamingMessage() {
+  const container = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'chat-message chat-message-assistant';
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble streaming';
+  bubble.innerHTML = '<span class="typing-cursor"></span>';
+  div.appendChild(bubble);
+  container.appendChild(div);
+  scrollChat();
+  return bubble;
+}
+
+function scrollChat() {
+  const msgs = document.getElementById('chat-messages');
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+{% endblock %}

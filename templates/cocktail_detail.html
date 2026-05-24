@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block title %}{{ cocktail.name }} — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container page-container-narrow">
+  <div class="detail-header">
+    <div class="detail-header-top">
+      <a href="{{ url_for('cocktails') }}" class="back-link">&#8592; Cocktails</a>
+      <div class="detail-actions">
+        <a href="{{ url_for('cocktail_edit', cocktail_id=cocktail.id) }}" class="btn btn-ghost btn-sm">Edit</a>
+        <form method="post" action="{{ url_for('cocktail_delete', cocktail_id=cocktail.id) }}"
+              onsubmit="return confirm('Delete {{ cocktail.name }}?')" style="display:inline">
+          <button type="submit" class="btn btn-ghost btn-sm btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="detail-title-row">
+      <div>
+        <h1 class="detail-title">{{ cocktail.name }}</h1>
+        <div class="detail-meta-row">
+          {% if cocktail.get('category') %}<span class="badge badge-outline">{{ cocktail.category }}</span>{% endif %}
+          {% if cocktail.get('glass') %}<span class="detail-meta-item">{{ cocktail.glass }}</span>{% endif %}
+          {% if cocktail.get('method') %}<span class="detail-meta-item">{{ cocktail.method }}</span>{% endif %}
+          {% if cocktail.get('source') %}<span class="detail-meta-item text-dim">{{ cocktail.source }}</span>{% endif %}
+        </div>
+      </div>
+      {% if can_make %}
+        <div class="makeable-badge makeable-yes">
+          <span class="makeable-icon">&#10003;</span>
+          <span>Can Make</span>
+        </div>
+      {% else %}
+        <div class="makeable-badge makeable-no">
+          <span class="makeable-icon">&#8722;</span>
+          <span>Missing {{ missing | length }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <div class="detail-ingredients">
+      <h2 class="detail-section-title">Ingredients</h2>
+      <ul class="ingredient-list">
+        {% for ing in cocktail.get('ingredients', []) %}
+        <li class="ingredient-item {% if not ing.available %}ingredient-missing{% endif %}">
+          <div class="ingredient-amount">
+            {% if ing.amount %}{{ ing.amount }}{% endif %}
+            {% if ing.unit %}<span class="ingredient-unit">{{ ing.unit }}</span>{% endif %}
+          </div>
+          <div class="ingredient-name">
+            {{ ing.name }}
+            {% if ing.notes %}<span class="ingredient-notes">{{ ing.notes }}</span>{% endif %}
+          </div>
+          <div class="ingredient-status">
+            {% if ing.available %}
+              {% if ing.source == 'pantry' %}
+                <span class="ing-dot ing-dot-pantry" title="Pantry item">&#9679;</span>
+              {% else %}
+                <span class="ing-dot ing-dot-have" title="{{ ing.source }}">&#9679;</span>
+              {% endif %}
+            {% else %}
+              <span class="ing-dot ing-dot-missing" title="Not in inventory">&#9679;</span>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="ingredient-legend">
+        <span class="ing-dot ing-dot-have">&#9679;</span> In inventory
+        <span class="ing-dot ing-dot-pantry" style="margin-left:12px">&#9679;</span> Pantry
+        <span class="ing-dot ing-dot-missing" style="margin-left:12px">&#9679;</span> Missing
+      </div>
+    </div>
+
+    <div class="detail-recipe">
+      {% if cocktail.get('instructions') %}
+      <div class="detail-block">
+        <h2 class="detail-section-title">Method</h2>
+        <p class="detail-instructions">{{ cocktail.instructions }}</p>
+      </div>
+      {% endif %}
+
+      {% if cocktail.get('garnish') %}
+      <div class="detail-block">
+        <h2 class="detail-section-title">Garnish</h2>
+        <p>{{ cocktail.garnish }}</p>
+      </div>
+      {% endif %}
+
+      {% if cocktail.get('notes') %}
+      <div class="detail-block">
+        <h2 class="detail-section-title">Notes</h2>
+        <p class="detail-notes">{{ cocktail.notes }}</p>
+      </div>
+      {% endif %}
+
+      {% if cocktail.get('tags') %}
+      <div class="detail-block">
+        <div class="tag-row">
+          {% for tag in cocktail.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if not can_make and missing %}
+  <div class="missing-alert">
+    <strong>Missing from inventory:</strong> {{ missing | join(', ') }}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

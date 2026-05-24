@@ -1,0 +1,475 @@
+{
+  "cocktails": [
+    {
+      "id": "negroni",
+      "name": "Negroni",
+      "category": "Classic",
+      "glass": "Rocks",
+      "method": "Stirred",
+      "ingredients": [
+        {"name": "Gin", "amount": "1", "unit": "oz", "notes": ""},
+        {"name": "Campari", "amount": "1", "unit": "oz", "notes": ""},
+        {"name": "Sweet Vermouth", "amount": "1", "unit": "oz", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled, about 20–25 seconds. Strain into a rocks glass over a large ice cube.",
+      "garnish": "Orange twist",
+      "source": "Classic",
+      "notes": "",
+      "tags": ["classic", "stirred", "bitter", "aperitivo"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "manhattan",
+      "name": "Manhattan",
+      "category": "Classic",
+      "glass": "Coupe",
+      "method": "Stirred",
+      "ingredients": [
+        {"name": "Rye Whiskey", "amount": "2", "unit": "oz", "notes": ""},
+        {"name": "Sweet Vermouth", "amount": "1", "unit": "oz", "notes": ""},
+        {"name": "Angostura Bitters", "amount": "2", "unit": "dashes", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled, about 30 seconds. Strain into a chilled coupe or Nick & Nora glass.",
+      "garnish": "Brandied cherry or lemon twist",
+      "source": "Classic",
+      "notes": "Bourbon works beautifully here as well.",
+      "tags": ["classic", "stirred", "whiskey"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "old-fashioned",
+      "name": "Old Fashioned",
+      "category": "Classic",
+      "glass": "Rocks",
+      "method": "Built",
+      "ingredients": [
+        {"name": "Bourbon", "amount": "2", "unit": "oz", "notes": ""},
+        {"name": "Rich Demerara Syrup", "amount": "0.25", "unit": "oz", "notes": "or 1 sugar cube"},
+        {"name": "Angostura Bitters", "amount": "2", "unit": "dashes", "notes": ""},
+        {"name": "Orange Bitters", "amount": "1", "unit": "dash", "notes": "optional"}
+      ],
+      "instructions": "Combine syrup and bitters in a rocks glass. Add bourbon and a large ice cube. Stir gently for 10–15 seconds to incorporate and chill.",
+      "garnish": "Orange twist, expressed and placed",
+      "source": "Classic",
+      "notes": "Rye whiskey is an equally valid choice here.",
+      "tags": ["classic", "built", "whiskey"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "daiquiri",
+      "name": "Daiquiri",
+      "category": "Classic",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Rum", "amount": "2", "unit": "oz", "notes": "White or aged"},
+        {"name": "Lime Juice", "amount": "0.75", "unit": "oz", "notes": "Fresh"},
+        {"name": "Simple Syrup", "amount": "0.75", "unit": "oz", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled, about 12–15 seconds. Double-strain into a chilled coupe.",
+      "garnish": "Lime wheel or none",
+      "source": "Classic",
+      "notes": "One of the most versatile cocktails. Try with different rums for different results — overproof Jamaican changes it entirely.",
+      "tags": ["classic", "shaken", "rum", "sour"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "ti-punch",
+      "name": "Ti' Punch",
+      "category": "Classic",
+      "glass": "Rocks",
+      "method": "Built",
+      "ingredients": [
+        {"name": "Rhum Agricole Blanc", "amount": "2", "unit": "oz", "notes": ""},
+        {"name": "Cane Syrup", "amount": "1", "unit": "tsp", "notes": "or to taste"},
+        {"name": "Lime Juice", "amount": "0.5", "unit": "oz", "notes": "Fresh, from one lime disk"}
+      ],
+      "instructions": "Cut a disk of lime peel and squeeze the juice into a small rocks glass. Add the cane syrup, then the rhum. Add a small ice cube or serve at room temperature, as is traditional. Stir briefly.",
+      "garnish": "Lime disk (squeezed into the drink)",
+      "source": "Martinique / Guadeloupe tradition",
+      "notes": "Traditionally built to taste — adjust syrup to preference. The lime disk goes in hull and all.",
+      "tags": ["classic", "built", "rum", "agricole", "tropical"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "paper-plane",
+      "name": "Paper Plane",
+      "category": "Modern Classic",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Bourbon", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Aperol", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Amaro Nonino", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Lemon Juice", "amount": "0.75", "unit": "oz", "notes": "Fresh"}
+      ],
+      "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled. Double-strain into a chilled coupe.",
+      "garnish": "None, or a small lemon twist",
+      "source": "Sam Ross, Milk & Honey, NYC, 2007",
+      "notes": "Equal parts. A perfectly balanced modern classic.",
+      "tags": ["modern classic", "shaken", "amaro", "equal parts", "sour"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "naked-and-famous",
+      "name": "Naked and Famous",
+      "category": "Modern Classic",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Mezcal", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Yellow Chartreuse", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Aperol", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Lemon Juice", "amount": "0.75", "unit": "oz", "notes": "Fresh"}
+      ],
+      "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled. Double-strain into a chilled coupe.",
+      "garnish": "None",
+      "source": "Phil Ward, Death & Co., NYC, 2011",
+      "notes": "A Paper Plane riff with mezcal smoke and herbaceous depth from the Chartreuse.",
+      "tags": ["modern classic", "shaken", "mezcal", "equal parts", "agave"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "last-word",
+      "name": "Last Word",
+      "category": "Classic",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Gin", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Green Chartreuse", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Maraschino", "amount": "0.75", "unit": "oz", "notes": "Luxardo"},
+        {"name": "Lime Juice", "amount": "0.75", "unit": "oz", "notes": "Fresh"}
+      ],
+      "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled. Double-strain into a chilled coupe.",
+      "garnish": "None, or lime twist",
+      "source": "Detroit Athletic Club, 1920s",
+      "notes": "The classic uses Green Chartreuse. Substitute Yellow Chartreuse for a gentler, more citrus-forward version.",
+      "tags": ["classic", "shaken", "gin", "equal parts"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "black-manhattan",
+      "name": "Black Manhattan",
+      "category": "Modern Classic",
+      "glass": "Coupe",
+      "method": "Stirred",
+      "ingredients": [
+        {"name": "Rye Whiskey", "amount": "2", "unit": "oz", "notes": ""},
+        {"name": "Amaro Averna", "amount": "1", "unit": "oz", "notes": ""},
+        {"name": "Angostura Bitters", "amount": "1", "unit": "dash", "notes": ""},
+        {"name": "Orange Bitters", "amount": "1", "unit": "dash", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled, about 30 seconds. Strain into a chilled coupe or Nick & Nora glass.",
+      "garnish": "Brandied cherry or orange twist",
+      "source": "Ted Kilgore, 2005",
+      "notes": "Averna replaces vermouth, giving a richer, more bitter-herbal profile.",
+      "tags": ["modern classic", "stirred", "whiskey", "amaro"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "white-negroni",
+      "name": "White Negroni",
+      "category": "Modern Classic",
+      "glass": "Rocks",
+      "method": "Stirred",
+      "ingredients": [
+        {"name": "Gin", "amount": "1.5", "unit": "oz", "notes": ""},
+        {"name": "Lillet Blanc", "amount": "1", "unit": "oz", "notes": ""},
+        {"name": "Suze", "amount": "0.5", "unit": "oz", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled. Strain into a rocks glass over a large ice cube.",
+      "garnish": "Lemon twist",
+      "source": "Wayne Collins, 2001",
+      "notes": "A lighter, more floral take on the Negroni. The Suze brings bittering gentian without the color.",
+      "tags": ["modern classic", "stirred", "gin", "aperitivo"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "jungle-bird",
+      "name": "Jungle Bird",
+      "category": "Tiki",
+      "glass": "Rocks",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Rum", "amount": "1.5", "unit": "oz", "notes": "Aged Jamaican preferred"},
+        {"name": "Campari", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Pineapple Juice", "amount": "1.5", "unit": "oz", "notes": "Fresh if possible"},
+        {"name": "Lime Juice", "amount": "0.5", "unit": "oz", "notes": "Fresh"},
+        {"name": "Simple Syrup", "amount": "0.5", "unit": "oz", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a shaker with ice. Shake until well-chilled. Strain into a rocks glass over crushed or cracked ice.",
+      "garnish": "Pineapple wedge and leaf, or dried pineapple",
+      "source": "Jeffrey Ong, Kuala Lumpur Hilton, 1978",
+      "notes": "One of the great tiki drinks. Smith & Cross is a particularly excellent choice here.",
+      "tags": ["tiki", "shaken", "rum", "tropical"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "toronto",
+      "name": "Toronto",
+      "category": "Classic",
+      "glass": "Coupe",
+      "method": "Stirred",
+      "ingredients": [
+        {"name": "Rye Whiskey", "amount": "2", "unit": "oz", "notes": ""},
+        {"name": "Fernet-Branca", "amount": "0.25", "unit": "oz", "notes": ""},
+        {"name": "Simple Syrup", "amount": "0.25", "unit": "oz", "notes": ""},
+        {"name": "Angostura Bitters", "amount": "1", "unit": "dash", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled. Strain into a chilled coupe.",
+      "garnish": "Orange twist",
+      "source": "Robert Vermeire, Cocktails: How to Mix Them, 1922",
+      "notes": "The small amount of Fernet adds menthol complexity without dominating.",
+      "tags": ["classic", "stirred", "whiskey", "amaro"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "bamboo",
+      "name": "Bamboo",
+      "category": "Classic",
+      "glass": "Nick & Nora",
+      "method": "Stirred",
+      "ingredients": [
+        {"name": "Amontillado Sherry", "amount": "1.5", "unit": "oz", "notes": ""},
+        {"name": "Dry Vermouth", "amount": "1.5", "unit": "oz", "notes": ""},
+        {"name": "Orange Bitters", "amount": "2", "unit": "dashes", "notes": ""},
+        {"name": "Angostura Bitters", "amount": "1", "unit": "dash", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a mixing glass with ice. Stir until very well-chilled, about 40 seconds. Strain into a chilled Nick & Nora or coupe.",
+      "garnish": "Lemon twist",
+      "source": "Louis Eppinger, Grand Hotel, Yokohama, 1890s",
+      "notes": "One of the great low-ABV cocktails. The combination of sherry and dry vermouth is remarkably satisfying.",
+      "tags": ["classic", "stirred", "low-abv", "sherry", "wine-based"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "adonis",
+      "name": "Adonis",
+      "category": "Classic",
+      "glass": "Nick & Nora",
+      "method": "Stirred",
+      "ingredients": [
+        {"name": "Sweet Vermouth", "amount": "1.5", "unit": "oz", "notes": ""},
+        {"name": "Amontillado Sherry", "amount": "1.5", "unit": "oz", "notes": ""},
+        {"name": "Orange Bitters", "amount": "2", "unit": "dashes", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled. Strain into a chilled Nick & Nora or coupe.",
+      "garnish": "Orange twist",
+      "source": "Classic, 1884",
+      "notes": "A low-ABV sibling of the Bamboo. Nutty and deeply flavorful.",
+      "tags": ["classic", "stirred", "low-abv", "sherry", "wine-based"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "tommys-margarita",
+      "name": "Tommy's Margarita",
+      "category": "Modern Classic",
+      "glass": "Rocks",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Tequila", "amount": "2", "unit": "oz", "notes": "Blanco"},
+        {"name": "Lime Juice", "amount": "1", "unit": "oz", "notes": "Fresh"},
+        {"name": "Agave Syrup", "amount": "0.5", "unit": "oz", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously. Strain into a rocks glass over ice. Salt rim optional.",
+      "garnish": "Lime wheel, salt rim optional",
+      "source": "Julio Bermejo, Tommy's Mexican Restaurant, San Francisco, 1990s",
+      "notes": "Replacing triple sec with agave syrup lets the tequila shine. A cleaner, more agave-forward margarita.",
+      "tags": ["modern classic", "shaken", "tequila", "agave", "sour"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "margarita",
+      "name": "Margarita",
+      "category": "Classic",
+      "glass": "Rocks",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Tequila", "amount": "2", "unit": "oz", "notes": "Blanco"},
+        {"name": "Dry Curaçao", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Lime Juice", "amount": "0.75", "unit": "oz", "notes": "Fresh"},
+        {"name": "Salt", "amount": "1", "unit": "pinch", "notes": "Rim or added"}
+      ],
+      "instructions": "Salt half the rim of a rocks glass if desired. Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled. Strain over fresh ice.",
+      "garnish": "Lime wheel, salt rim",
+      "source": "Classic",
+      "notes": "Grand Marnier or Dry Curaçao both work well here.",
+      "tags": ["classic", "shaken", "tequila", "agave", "sour"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "oaxacan-old-fashioned",
+      "name": "Oaxacan Old Fashioned",
+      "category": "Modern Classic",
+      "glass": "Rocks",
+      "method": "Stirred",
+      "ingredients": [
+        {"name": "Tequila", "amount": "1.5", "unit": "oz", "notes": "Reposado or Blanco"},
+        {"name": "Mezcal", "amount": "0.5", "unit": "oz", "notes": ""},
+        {"name": "Agave Syrup", "amount": "0.25", "unit": "oz", "notes": ""},
+        {"name": "Mole Bitters", "amount": "2", "unit": "dashes", "notes": ""},
+        {"name": "Angostura Bitters", "amount": "1", "unit": "dash", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a rocks glass with a large ice cube. Stir gently for 15–20 seconds.",
+      "garnish": "Orange twist, flamed",
+      "source": "Phil Ward, Death & Co., NYC, 2007",
+      "notes": "The drink that brought mezcal to the cocktail mainstream. The mole bitters echo the agave's earthiness.",
+      "tags": ["modern classic", "stirred", "mezcal", "agave", "old fashioned riff"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "bijou",
+      "name": "Bijou",
+      "category": "Classic",
+      "glass": "Nick & Nora",
+      "method": "Stirred",
+      "ingredients": [
+        {"name": "Gin", "amount": "1", "unit": "oz", "notes": ""},
+        {"name": "Yellow Chartreuse", "amount": "1", "unit": "oz", "notes": ""},
+        {"name": "Sweet Vermouth", "amount": "1", "unit": "oz", "notes": ""},
+        {"name": "Orange Bitters", "amount": "1", "unit": "dash", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled. Strain into a chilled Nick & Nora or coupe.",
+      "garnish": "Cherry and lemon twist",
+      "source": "Harry Johnson, Bartenders' Manual, 1900",
+      "notes": "Bijou means 'jewel' in French — gin (diamond), chartreuse (emerald), vermouth (ruby). A rich, complex three-way balance.",
+      "tags": ["classic", "stirred", "gin", "herbal"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "dark-and-stormy",
+      "name": "Dark & Stormy",
+      "category": "Classic",
+      "glass": "Highball",
+      "method": "Built",
+      "ingredients": [
+        {"name": "Aged Rum", "amount": "2", "unit": "oz", "notes": "Dark Bermudian style preferred"},
+        {"name": "Ginger Beer", "amount": "4", "unit": "oz", "notes": ""},
+        {"name": "Lime Juice", "amount": "0.5", "unit": "oz", "notes": "Fresh"}
+      ],
+      "instructions": "Fill a highball glass with ice. Add lime juice. Pour in ginger beer, then float the rum on top by pouring over the back of a spoon.",
+      "garnish": "Lime wedge",
+      "source": "Bermuda, early 20th century",
+      "notes": "Gosling's Black Seal is the trademarked version. Doorly's 8 or Smith & Cross also work beautifully.",
+      "tags": ["classic", "built", "rum", "highball", "refreshing"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "rum-old-fashioned",
+      "name": "Rum Old Fashioned",
+      "category": "Classic",
+      "glass": "Rocks",
+      "method": "Stirred",
+      "ingredients": [
+        {"name": "Aged Rum", "amount": "2", "unit": "oz", "notes": ""},
+        {"name": "Rich Demerara Syrup", "amount": "0.25", "unit": "oz", "notes": ""},
+        {"name": "Angostura Bitters", "amount": "2", "unit": "dashes", "notes": ""},
+        {"name": "Orange Bitters", "amount": "1", "unit": "dash", "notes": ""}
+      ],
+      "instructions": "Combine all ingredients in a rocks glass with a large ice cube. Stir gently for 15–20 seconds to chill and slightly dilute.",
+      "garnish": "Orange twist",
+      "source": "Classic variation",
+      "notes": "A great way to explore aged rum. Doorly's 8 or Smith & Cross are excellent choices.",
+      "tags": ["classic", "stirred", "rum", "old fashioned riff"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "corpse-reviver-2",
+      "name": "Corpse Reviver No. 2",
+      "category": "Classic",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Gin", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Lillet Blanc", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Dry Curaçao", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Lemon Juice", "amount": "0.75", "unit": "oz", "notes": "Fresh"},
+        {"name": "Absinthe Rinse", "amount": "1", "unit": "rinse", "notes": ""}
+      ],
+      "instructions": "Rinse a chilled coupe with absinthe and discard the excess. Combine remaining ingredients in a shaker with ice. Shake until well-chilled. Double-strain into the rinsed coupe.",
+      "garnish": "Lemon twist or brandied cherry",
+      "source": "Harry Craddock, The Savoy Cocktail Book, 1930",
+      "notes": "Famously noted to 'unrevive the corpse again if taken in excessive quantities.'",
+      "tags": ["classic", "shaken", "gin", "equal parts"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "pisco-sour",
+      "name": "Pisco Sour",
+      "category": "Classic",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Pisco", "amount": "2", "unit": "oz", "notes": ""},
+        {"name": "Lime Juice", "amount": "0.75", "unit": "oz", "notes": "Fresh"},
+        {"name": "Simple Syrup", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Egg White", "amount": "1", "unit": "oz", "notes": "about half an egg white"}
+      ],
+      "instructions": "Dry shake all ingredients without ice for 15 seconds to emulsify the egg white. Add ice and shake vigorously for another 15 seconds. Double-strain into a chilled coupe.",
+      "garnish": "3 drops Angostura Bitters on the foam",
+      "source": "Lima, Peru, early 20th century",
+      "notes": "The Peruvian national cocktail. The pisco's floral grape character shines through the frothy texture.",
+      "tags": ["classic", "shaken", "pisco", "sour", "egg white"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "cynar-sour",
+      "name": "Cynar Sour",
+      "category": "Modern Classic",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Rye Whiskey", "amount": "1.5", "unit": "oz", "notes": ""},
+        {"name": "Cynar", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Lemon Juice", "amount": "0.75", "unit": "oz", "notes": "Fresh"},
+        {"name": "Simple Syrup", "amount": "0.25", "unit": "oz", "notes": ""},
+        {"name": "Egg White", "amount": "1", "unit": "oz", "notes": "optional, for froth"}
+      ],
+      "instructions": "If using egg white, dry shake first without ice for 10 seconds. Add ice and shake vigorously. Double-strain into a chilled coupe.",
+      "garnish": "Orange twist or a few drops of Angostura on the foam",
+      "source": "Contemporary",
+      "notes": "The artichoke bitterness of Cynar pairs exceptionally well with rye. A thoughtful, complex sour.",
+      "tags": ["modern classic", "shaken", "whiskey", "amaro", "sour"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "trinidad-sour",
+      "name": "Trinidad Sour",
+      "category": "Modern Classic",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Angostura Bitters", "amount": "1", "unit": "oz", "notes": "Yes, a full ounce"},
+        {"name": "Rye Whiskey", "amount": "0.5", "unit": "oz", "notes": ""},
+        {"name": "Orgeat", "amount": "1", "unit": "oz", "notes": ""},
+        {"name": "Lemon Juice", "amount": "0.75", "unit": "oz", "notes": "Fresh"}
+      ],
+      "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled. Double-strain into a chilled coupe.",
+      "garnish": "None, or lemon twist",
+      "source": "Giuseppe Gonzalez, 2008",
+      "notes": "The cocktail that proved bitters could be a base spirit. The full ounce of Angostura is correct — it becomes velvety and spiced with the orgeat.",
+      "tags": ["modern classic", "shaken", "bitters", "whiskey", "sour"],
+      "created_at": "2024-01-01"
+    },
+    {
+      "id": "penicillin",
+      "name": "Penicillin",
+      "category": "Modern Classic",
+      "glass": "Rocks",
+      "method": "Shaken",
+      "ingredients": [
+        {"name": "Blended Scotch", "amount": "2", "unit": "oz", "notes": ""},
+        {"name": "Lemon Juice", "amount": "0.75", "unit": "oz", "notes": "Fresh"},
+        {"name": "Honey-Ginger Syrup", "amount": "0.75", "unit": "oz", "notes": ""},
+        {"name": "Islay Scotch", "amount": "0.25", "unit": "oz", "notes": "Float"}
+      ],
+      "instructions": "Combine blended Scotch, lemon juice, and honey-ginger syrup in a shaker with ice. Shake until well-chilled. Strain over a large ice cube in a rocks glass. Float the peated Islay Scotch over the top.",
+      "garnish": "Candied ginger on a pick",
+      "source": "Sam Ross, Milk & Honey, NYC, 2005",
+      "notes": "One of the most important cocktails of the 21st century. Requires Scotch whisky not currently in the inventory.",
+      "tags": ["modern classic", "shaken", "scotch", "whisky", "sour"],
+      "created_at": "2024-01-01"
+    }
+  ]
+}

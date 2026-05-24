@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block title %}Inventory — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Inventory</h1>
+      <p class="page-subtitle">{{ bottles | length }} bottles</p>
+    </div>
+    <button class="btn btn-primary" onclick="openAddModal()">+ Add Bottle</button>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" id="inv-search" class="filter-input" placeholder="Search bottles…" oninput="filterInventory()">
+    <select id="inv-category" class="filter-select" onchange="filterInventory()">
+      <option value="">All categories</option>
+      {% for cat in categories %}
+        <option value="{{ cat }}">{{ cat }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="data-table" id="inv-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Style</th>
+          <th>Origin</th>
+          <th>ABV</th>
+          <th>Use</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for bottle in bottles %}
+        <tr class="bottle-row" data-index="{{ loop.index0 }}"
+            data-name="{{ bottle.Name | lower }}"
+            data-category="{{ bottle.Category }}">
+          <td class="td-name">
+            <span class="display-val">{{ bottle.Name }}</span>
+            <input class="edit-input" type="text" name="Name" value="{{ bottle.Name }}">
+          </td>
+          <td>
+            <span class="display-val">{{ bottle.Category }}</span>
+            <input class="edit-input" type="text" name="Category" value="{{ bottle.Category }}">
+          </td>
+          <td>
+            <span class="display-val text-dim">{{ bottle.Style }}</span>
+            <input class="edit-input" type="text" name="Style" value="{{ bottle.Style }}">
+          </td>
+          <td>
+            <span class="display-val text-dim">{{ bottle.Origin }}</span>
+            <input class="edit-input" type="text" name="Origin" value="{{ bottle.Origin }}">
+          </td>
+          <td>
+            <span class="display-val text-dim">{{ bottle.ABV }}</span>
+            <input class="edit-input" type="text" name="ABV" value="{{ bottle.ABV }}">
+          </td>
+          <td>
+            <span class="display-val">
+              {% if bottle.Use == 'Neat Only' %}
+                <span class="badge badge-dim">Neat Only</span>
+              {% else %}
+                <span class="badge badge-green">Cocktail</span>
+              {% endif %}
+            </span>
+            <select class="edit-input" name="Use">
+              <option {% if bottle.Use == 'Cocktail' %}selected{% endif %}>Cocktail</option>
+              <option {% if bottle.Use == 'Neat Only' %}selected{% endif %}>Neat Only</option>
+            </select>
+          </td>
+          <td class="td-actions">
+            <div class="action-btns display-val">
+              <button class="btn-icon" onclick="editRow(this)" title="Edit">&#9998;</button>
+              <form method="post" action="{{ url_for('inventory_delete') }}" class="inline-form"
+                    onsubmit="return confirm('Remove {{ bottle.Name }}?')">
+                <input type="hidden" name="index" value="{{ loop.index0 }}">
+                <input type="hidden" name="Name" value="{{ bottle.Name }}">
+                <button type="submit" class="btn-icon btn-icon-danger" title="Delete">&#10005;</button>
+              </form>
+            </div>
+            <div class="edit-btns" style="display:none">
+              <button class="btn btn-sm btn-primary" onclick="saveRow(this)">Save</button>
+              <button class="btn btn-sm btn-ghost" onclick="cancelEdit(this)">Cancel</button>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="empty-filtered" id="inv-empty" style="display:none">No bottles match your search.</p>
+</div>
+
+<!-- Add Bottle Modal -->
+<div class="modal-overlay" id="add-modal" style="display:none" onclick="closeModalIfBg(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title">Add Bottle</h2>
+      <button class="modal-close" onclick="closeAddModal()">&#10005;</button>
+    </div>
+    <form method="post" action="{{ url_for('inventory_add') }}" class="modal-form">
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label class="form-label">Name *</label>
+          <input type="text" name="Name" class="form-input" required placeholder="e.g. Hendrick's Gin">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <input type="text" name="Category" class="form-input" placeholder="e.g. Other Spirit">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Style</label>
+          <input type="text" name="Style" class="form-input" placeholder="e.g. Gin">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Origin</label>
+          <input type="text" name="Origin" class="form-input" placeholder="e.g. Scotland">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Age</label>
+          <input type="text" name="Age" class="form-input" placeholder="e.g. NAS, 12yr">
+        </div>
+        <div class="form-group">
+          <label class="form-label">ABV</label>
+          <input type="text" name="ABV" class="form-input" placeholder="e.g. 44%">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Producer</label>
+          <input type="text" name="Producer" class="form-input" placeholder="e.g. William Grant">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Use</label>
+          <select name="Use" class="form-input">
+            <option>Cocktail</option>
+            <option>Neat Only</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" onclick="closeAddModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Add to Inventory</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function openAddModal() {
+  document.getElementById('add-modal').style.display = 'flex';
+}
+function closeAddModal() {
+  document.getElementById('add-modal').style.display = 'none';
+}
+function closeModalIfBg(e) {
+  if (e.target === e.currentTarget) closeAddModal();
+}
+</script>
+{% endblock %}

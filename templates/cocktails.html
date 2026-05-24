@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Cocktails — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Cocktails</h1>
+      <p class="page-subtitle" id="cocktail-count-label">{{ cocktails | length }} recipes</p>
+    </div>
+    <a href="{{ url_for('cocktail_new') }}" class="btn btn-primary">+ New Cocktail</a>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" id="cq-search" class="filter-input" placeholder="Search cocktails or ingredients…" oninput="filterCocktails()">
+    <select id="cq-category" class="filter-select" onchange="filterCocktails()">
+      <option value="">All categories</option>
+      {% for cat in categories %}
+        <option value="{{ cat }}" {% if request.args.get('category') == cat %}selected{% endif %}>{{ cat }}</option>
+      {% endfor %}
+    </select>
+    <button id="cq-makeable-btn" class="filter-toggle" onclick="toggleMakeable()"
+            title="Show only cocktails you can make now">
+      Can Make
+    </button>
+  </div>
+
+  <div class="cocktail-grid" id="cocktail-grid">
+    {% for c in cocktails %}
+    <a href="{{ url_for('cocktail_detail', cocktail_id=c.id) }}"
+       class="cocktail-card"
+       data-name="{{ c.name | lower }}"
+       data-category="{{ c.get('category', '') }}"
+       data-makeable="{{ 'true' if c.can_make else 'false' }}"
+       data-tags="{{ c.get('tags', []) | join(' ') | lower }}"
+       data-ingredients="{{ c.get('ingredients', []) | map(attribute='name') | join(' ') | lower }}">
+      <div class="cocktail-card-top">
+        <span class="cocktail-card-category">{{ c.get('category', '') }}</span>
+        {% if c.can_make %}
+          <span class="badge badge-green">Can make</span>
+        {% else %}
+          <span class="badge badge-dim" title="Missing: {{ c.missing | join(', ') }}">
+            &#8722; {{ c.missing | length }} item{% if c.missing | length != 1 %}s{% endif %}
+          </span>
+        {% endif %}
+      </div>
+      <h3 class="cocktail-card-name">{{ c.name }}</h3>
+      <p class="cocktail-card-ings">
+        {{ c.get('ingredients', [])[:3] | map(attribute='name') | join(', ') }}{% if c.get('ingredients', []) | length > 3 %}&hellip;{% endif %}
+      </p>
+      <div class="cocktail-card-meta">
+        <span>{{ c.get('glass', '') }}</span>
+        <span>{{ c.get('method', '') }}</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <p class="empty-filtered" id="cq-empty" style="display:none">No cocktails match your search.</p>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Apply URL filter on load
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('filter') === 'makeable') {
+    document.addEventListener('DOMContentLoaded', () => {
+      toggleMakeable();
+    });
+  }
+  if (urlParams.get('category')) {
+    document.getElementById('cq-category').value = urlParams.get('category');
+  }
+</script>
+{% endblock %}

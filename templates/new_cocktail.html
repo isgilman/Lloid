@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% block title %}{% if cocktail %}Edit {{ cocktail.name }}{% else %}New Cocktail{% endif %} — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container page-container-narrow">
+  <div class="page-header">
+    <div>
+      <a href="{{ url_for('cocktails') }}" class="back-link">&#8592; Cocktails</a>
+      <h1 class="page-title" style="margin-top:8px">
+        {% if cocktail %}Edit {{ cocktail.name }}{% else %}New Cocktail{% endif %}
+      </h1>
+    </div>
+  </div>
+
+  <form method="post" class="cocktail-form" id="cocktail-form">
+    <div class="form-section">
+      <h2 class="form-section-title">Details</h2>
+      <div class="form-grid-2">
+        <div class="form-group form-col-span-2">
+          <label class="form-label">Name *</label>
+          <input type="text" name="name" class="form-input form-input-lg" required
+                 value="{{ cocktail.name if cocktail else prefill.get('name', '') }}"
+                 placeholder="Cocktail name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <input type="text" name="category" class="form-input" list="category-list"
+                 value="{{ cocktail.category if cocktail else prefill.get('category', '') }}"
+                 placeholder="e.g. Classic, Modern Classic, Original">
+          <datalist id="category-list">
+            <option>Classic</option>
+            <option>Modern Classic</option>
+            <option>Original</option>
+            <option>Tiki</option>
+            <option>Low-ABV</option>
+            <option>Variation</option>
+          </datalist>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Source / Origin</label>
+          <input type="text" name="source" class="form-input"
+                 value="{{ cocktail.source if cocktail else prefill.get('source', '') }}"
+                 placeholder="e.g. Sam Ross, 2007">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Glass</label>
+          <input type="text" name="glass" class="form-input" list="glass-list"
+                 value="{{ cocktail.glass if cocktail else prefill.get('glass', '') }}"
+                 placeholder="e.g. Coupe, Rocks, Highball">
+          <datalist id="glass-list">
+            <option>Coupe</option>
+            <option>Rocks</option>
+            <option>Highball</option>
+            <option>Nick & Nora</option>
+            <option>Flute</option>
+            <option>Mule Mug</option>
+            <option>Snifter</option>
+            <option>Collins</option>
+          </datalist>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Method</label>
+          <input type="text" name="method" class="form-input" list="method-list"
+                 value="{{ cocktail.method if cocktail else prefill.get('method', '') }}"
+                 placeholder="e.g. Stirred, Shaken, Built">
+          <datalist id="method-list">
+            <option>Stirred</option>
+            <option>Shaken</option>
+            <option>Built</option>
+            <option>Flash-blended</option>
+            <option>Blended</option>
+            <option>Thrown</option>
+          </datalist>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2 class="form-section-title">Ingredients</h2>
+      <div id="ingredients-list">
+        {% set ing_list = cocktail.ingredients if cocktail else prefill.get('ingredients', []) %}
+        {% if ing_list %}
+          {% for ing in ing_list %}
+          <div class="ingredient-row" data-index="{{ loop.index0 }}">
+            <input type="text" name="ingredient_amount" class="form-input ing-amount"
+                   value="{{ ing.amount }}" placeholder="2">
+            <input type="text" name="ingredient_unit" class="form-input ing-unit"
+                   value="{{ ing.unit }}" placeholder="oz" list="unit-list">
+            <input type="text" name="ingredient_name" class="form-input ing-name"
+                   value="{{ ing.name }}" placeholder="Ingredient name" required>
+            <input type="text" name="ingredient_notes" class="form-input ing-notes"
+                   value="{{ ing.notes }}" placeholder="Notes (optional)">
+            <button type="button" class="btn-icon btn-icon-danger" onclick="removeIngredient(this)" title="Remove">&#10005;</button>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="ingredient-row" data-index="0">
+            <input type="text" name="ingredient_amount" class="form-input ing-amount" placeholder="2">
+            <input type="text" name="ingredient_unit" class="form-input ing-unit" placeholder="oz" list="unit-list">
+            <input type="text" name="ingredient_name" class="form-input ing-name" placeholder="Ingredient name">
+            <input type="text" name="ingredient_notes" class="form-input ing-notes" placeholder="Notes (optional)">
+            <button type="button" class="btn-icon btn-icon-danger" onclick="removeIngredient(this)" title="Remove">&#10005;</button>
+          </div>
+        {% endif %}
+      </div>
+      <datalist id="unit-list">
+        <option>oz</option>
+        <option>ml</option>
+        <option>dashes</option>
+        <option>dash</option>
+        <option>tsp</option>
+        <option>tbsp</option>
+        <option>rinse</option>
+        <option>barspoon</option>
+        <option>drop</option>
+      </datalist>
+      <button type="button" class="btn btn-ghost btn-sm" onclick="addIngredient()" style="margin-top:8px">
+        + Add Ingredient
+      </button>
+    </div>
+
+    <div class="form-section">
+      <h2 class="form-section-title">Method & Notes</h2>
+      <div class="form-group">
+        <label class="form-label">Instructions</label>
+        <textarea name="instructions" class="form-input form-textarea" rows="4"
+                  placeholder="Preparation method…">{{ cocktail.instructions if cocktail else prefill.get('instructions', '') }}</textarea>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label class="form-label">Garnish</label>
+          <input type="text" name="garnish" class="form-input"
+                 value="{{ cocktail.garnish if cocktail else prefill.get('garnish', '') }}"
+                 placeholder="e.g. Orange twist">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tags <span class="form-hint">(comma separated)</span></label>
+          <input type="text" name="tags" class="form-input"
+                 value="{{ (cocktail.tags | join(', ')) if cocktail else (prefill.get('tags', []) | join(', ')) }}"
+                 placeholder="e.g. classic, stirred, bitter">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes</label>
+        <textarea name="notes" class="form-input form-textarea" rows="2"
+                  placeholder="Personal notes, variations, tips…">{{ cocktail.notes if cocktail else prefill.get('notes', '') }}</textarea>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <a href="{{ url_for('cocktails') }}" class="btn btn-ghost">Cancel</a>
+      <button type="submit" class="btn btn-primary">
+        {% if cocktail %}Save Changes{% else %}Add to Database{% endif %}
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let ingCount = document.querySelectorAll('.ingredient-row').length;
+
+function addIngredient() {
+  const list = document.getElementById('ingredients-list');
+  const row = document.createElement('div');
+  row.className = 'ingredient-row';
+  row.dataset.index = ingCount++;
+  row.innerHTML = `
+    <input type="text" name="ingredient_amount" class="form-input ing-amount" placeholder="2">
+    <input type="text" name="ingredient_unit" class="form-input ing-unit" placeholder="oz" list="unit-list">
+    <input type="text" name="ingredient_name" class="form-input ing-name" placeholder="Ingredient name">
+    <input type="text" name="ingredient_notes" class="form-input ing-notes" placeholder="Notes (optional)">
+    <button type="button" class="btn-icon btn-icon-danger" onclick="removeIngredient(this)" title="Remove">&#10005;</button>
+  `;
+  list.appendChild(row);
+  row.querySelector('.ing-amount').focus();
+}
+
+function removeIngredient(btn) {
+  const rows = document.querySelectorAll('.ingredient-row');
+  if (rows.length > 1) {
+    btn.closest('.ingredient-row').remove();
+  }
+}
+</script>
+{% endblock %}

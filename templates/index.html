@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}Lloid — Home Bar{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <div class="home-header">
+    <h1 class="home-title">Lloid</h1>
+    <p class="home-subtitle">Your home bar, organized.</p>
+  </div>
+
+  <div class="stats-row">
+    <a href="{{ url_for('inventory') }}" class="stat-card">
+      <span class="stat-number">{{ bottle_count }}</span>
+      <span class="stat-label">Bottles</span>
+    </a>
+    <a href="{{ url_for('cocktails') }}" class="stat-card">
+      <span class="stat-number">{{ cocktail_count }}</span>
+      <span class="stat-label">Cocktails</span>
+    </a>
+    <a href="{{ url_for('cocktails') }}?filter=makeable" class="stat-card stat-card-accent">
+      <span class="stat-number">{{ makeable_count }}</span>
+      <span class="stat-label">Can Make Now</span>
+    </a>
+  </div>
+
+  <div class="home-grid">
+    <section class="home-section">
+      <div class="section-header">
+        <h2 class="section-title">By Category</h2>
+        <a href="{{ url_for('inventory') }}" class="section-link">View all</a>
+      </div>
+      <div class="category-list">
+        {% for cat, count in categories | dictsort %}
+        <div class="category-row">
+          <span class="category-name">{{ cat }}</span>
+          <span class="category-count">{{ count }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="section-header">
+        <h2 class="section-title">Recent Cocktails</h2>
+        <a href="{{ url_for('cocktails') }}" class="section-link">View all</a>
+      </div>
+      {% if recent_cocktails %}
+        <div class="recent-list">
+          {% for c in recent_cocktails %}
+          <a href="{{ url_for('cocktail_detail', cocktail_id=c.id) }}" class="recent-item">
+            <div class="recent-info">
+              <span class="recent-name">{{ c.name }}</span>
+              <span class="recent-meta">{{ c.get('category', '') }}</span>
+            </div>
+            {% if c.can_make %}
+              <span class="badge badge-green">Can make</span>
+            {% else %}
+              <span class="badge badge-dim">Missing items</span>
+            {% endif %}
+          </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty-state">No cocktails yet. <a href="{{ url_for('cocktail_new') }}">Add one.</a></p>
+      {% endif %}
+    </section>
+  </div>
+
+  <div class="home-actions">
+    <a href="{{ url_for('finder') }}" class="action-card">
+      <div class="action-icon">&#9788;</div>
+      <div class="action-text">
+        <strong>Cocktail Finder</strong>
+        <span>Tell me what you're in the mood for</span>
+      </div>
+    </a>
+    <a href="{{ url_for('designer') }}" class="action-card">
+      <div class="action-icon">&#10022;</div>
+      <div class="action-text">
+        <strong>Cocktail Designer</strong>
+        <span>Create something original with your bar</span>
+      </div>
+    </a>
+    <a href="{{ url_for('cocktail_new') }}" class="action-card">
+      <div class="action-icon">+</div>
+      <div class="action-text">
+        <strong>Add Cocktail</strong>
+        <span>Add a recipe to the database</span>
+      </div>
+    </a>
+  </div>
+</div>
+{% endblock %}
