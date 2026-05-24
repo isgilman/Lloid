@@ -2,94 +2,94 @@ Name,Category,Style,Origin,Age,ABV,Producer,Use
 Por Siempre Sotol,Agave Spirit,Sotol,Mexico,Unaged,40%,Por Siempre,Cocktail
 Vago Elote Mezcal,Agave Spirit,Mezcal,Mexico,Unaged,50%,Vago,Cocktail
 Tequila Ocho Plata,Agave Spirit,Blanco tequila,Mexico,Unaged,40%,Tequila Ocho,Cocktail
-Amaro Sfumato Rabarbaro,Amaro / Aperitif,Rabarbaro Amaro,Italy,NAS,23%,Cappelletti,Cocktail
-Distillates Quintal Bitter,Amaro / Aperitif,Herbal Bitter,Chile,NAS,,Distillates Quintal,Cocktail
-Suze,Amaro / Aperitif,Gentian Aperitif,France,NAS,15%,Pernod Ricard,Cocktail
-Lo-Fi Gentian Amaro,Amaro / Aperitif,Gentian Amaro,USA,NAS,17%,Lo-Fi Aperitifs,Cocktail
-Fernet-Branca,Amaro / Aperitif,Fernet,Italy,NAS,39%,Fratelli Branca,Cocktail
+Amaro Sfumato Rabarbaro,Amaro / Aperitif,Rabarbaro Amaro,Italy,NAS,20%,Cappelletti,Cocktail
+Bitter Quintal Digestivo,Amaro / Aperitif,Herbal Bitter,Chile,NAS,30%,Destilados Quintal,Cocktail
+Suze,Amaro / Aperitif,Gentian Aperitif,France,NAS,20%,Pernod Ricard,Cocktail
+Lo-Fi Gentian Amaro,Amaro / Aperitif,Gentian Amaro,USA,NAS,18%,Lo-Fi Aperitifs,Cocktail
+Fernet Branca,Amaro / Aperitif,Fernet,Italy,NAS,39%,Fratelli Branca,Cocktail
 Branca Menta,Amaro / Aperitif,Fernet,Italy,NAS,28%,Fratelli Branca,Cocktail
 Campari,Amaro / Aperitif,Bitter Aperitif,Italy,NAS,24%,Campari Group,Cocktail
 Bruto Americano,Amaro / Aperitif,Bitter Aperitif,USA,NAS,24%,St. George Spirits,Cocktail
 Aperol,Amaro / Aperitif,Bitter Aperitif,Italy,NAS,11%,Campari Group,Cocktail
 Cynar,Amaro / Aperitif,Artichoke Amaro,Italy,NAS,16.5%,Campari Group,Cocktail
 Amaro Averna,Amaro / Aperitif,Amaro Siciliano,Italy,NAS,29%,Averna,Cocktail
-China China,Amaro / Aperitif,Amaro,USA,NAS,,Homemade,Cocktail
-Amaro Sibilla,Amaro / Aperitif,Amaro,Italy,NAS,35%,Varnelli,Cocktail
+China-China,Amaro / Aperitif,Amaro,USA,NAS,40%,Bigallet,Cocktail
+Amaro Sibilla,Amaro / Aperitif,Amaro,Italy,NAS,34%,Varnelli,Cocktail
 Amaro Nonino Quintessentia,Amaro / Aperitif,Amaro,Italy,NAS,35%,Nonino,Cocktail
 Amaro di Angostura,Amaro / Aperitif,Amaro,Trinidad,NAS,35%,Angostura,Cocktail
-Amaro dell'Etna,Amaro / Aperitif,Amaro,Italy,NAS,32%,Distilleria dell'Etna,Cocktail
-Amaro dell'Erborista,Amaro / Aperitif,Amaro,Italy,NAS,35%,Varnelli,Cocktail
+Amaro dell'Etna,Amaro / Aperitif,Amaro,Italy,NAS,29%,Distilleria dell'Etna,Cocktail
+Amaro dell'Erborista,Amaro / Aperitif,Amaro,Italy,NAS,21%,Varnelli,Cocktail
 Lillet Rosé,Aromatized Wine,Aperitif Wine,France,NAS,17%,Lillet,Cocktail
 Lillet Blanc,Aromatized Wine,Aperitif Wine,France,NAS,17%,Lillet,Cocktail
-Apple Brandy,Brandy,Apple Brandy,USA,NAS,,,Cocktail
-Quinta de la Rosa White Porto,Fortified Wine,White Port,Portugal,NAS,19.5%,Quinta de la Rosa,Cocktail
-Dow's Fine Tawny Porto,Fortified Wine,Tawny Port,Portugal,NAS,20%,Dow's,Cocktail
-Valdespino El Candado PX,Fortified Wine,Pedro Ximénez Sherry,Spain,NAS,17%,Valdespino,Cocktail
+Apple Brandy,Brandy,Apple Brandy,Michigan,NAS,45%,Uncle John’s Cider Mill,Cocktail
+Quinta de la Rosa White Porto,Fortified Wine,White Port,Portugal,2,19.5%,Quinta de la Rosa,Cocktail
+Dow's Fine Tawny Porto,Fortified Wine,Tawny Port,Portugal,3,19%,Dow's,Cocktail
+Valdespino El Candado PX,Fortified Wine,Pedro Ximénez Sherry,Spain,NAS,18%,Valdespino,Cocktail
 Lombardo Marsala Fine IP Ambra Dry,Fortified Wine,Marsala,Italy,NAS,17%,Lombardo,Cocktail
-Henriques & Henriques Madeira,Fortified Wine,Madeira,Portugal,5yr,19%,Henriques & Henriques,Cocktail
-Lustau Amontillado Los Arcos,Fortified Wine,Amontillado Sherry,Spain,NAS,17%,Lustau,Cocktail
+Henriques & Henriques Madeira,Fortified Wine,Madeira,Portugal,5,19%,Henriques & Henriques,Cocktail
+Lustau Amontillado Los Arcos,Fortified Wine,Amontillado Sherry,Spain,NAS,19%,Lustau,Cocktail
 Combier Liqueur de Violette,Liqueur,Violet Liqueur,France,NAS,25%,Combier,Cocktail
-Zirbenz Stone Pine,Liqueur,Pine Liqueur,Austria,NAS,40%,Zirbenz,Cocktail
+Zirbenz Stone Pine Liqueur,Liqueur,Pine Liqueur,Austria,NAS,40%,Zirbenz,Cocktail
 Grand Marnier,Liqueur,Orange Liqueur,France,NAS,40%,Campari Group,Cocktail
-Dry Curaçao,Liqueur,Orange Liqueur,France,NAS,40%,,Cocktail
-Green Melon Liqueur,Liqueur,Melon Liqueur,,NAS,21%,,Cocktail
-Artonic Melon,Liqueur,Melon Liqueur,France,NAS,20%,Artonic,Cocktail
+Dry Curaçao,Liqueur,Curaçao,France,NAS,40%,Maison Ferrand,Cocktail
+Midori Melon,Liqueur,Melon Liqueur,Japan,NAS,20%,,Cocktail
+Artonic Melon,Liqueur,Melon Liqueur,France,NAS,12%,Artonic,Cocktail
 Luxardo Maraschino,Liqueur,Maraschino,Italy,NAS,32%,Luxardo,Cocktail
-Limoncello,Liqueur,Limoncello,USA,Unaged,,Homemade,Cocktail
+Limoncello,Liqueur,Limoncello,USA,Unaged,40%,Homemade,Cocktail
 Yellow Chartreuse,Liqueur,Herbal Liqueur,France,NAS,40%,Chartreuse,Cocktail
 Licor 43,Liqueur,Herbal Liqueur,Spain,NAS,31%,Diego Zamora,Cocktail
 Galliano L'Autentico,Liqueur,Herbal Liqueur,Italy,NAS,42.3%,Galliano,Cocktail
 Bénédictine D.O.M.,Liqueur,Herbal Liqueur,France,NAS,40%,Bénédictine,Cocktail
-Chartreuse Elixir 1605,Liqueur,Herbal Elixir,France,NAS,69%,Chartreuse,Cocktail
+Chartreuse Elixir 1605,Liqueur,Herbal Liqueur,France,NAS,69%,Chartreuse,Cocktail
 Domaine de Canton,Liqueur,Ginger Liqueur,France,NAS,28%,Domaine de Canton,Cocktail
-Eastern Pilot Génépi Hercea,Liqueur,Génépi,USA,NAS,40%,Eastern Pilot,Cocktail
+Eastern Kille Genepy L’epicca,Liqueur,Herbal Liqueur,Michigan,NAS,50%,Eastern Kille,Cocktail
 Chinola Passion Fruit,Liqueur,Fruit Liqueur,Dominican Republic,NAS,20%,Chinola,Cocktail
-Pimm's No. 1,Liqueur,Fruit Cup,England,NAS,25%,Pimm's,Cocktail
-St-Germain,Liqueur,Elderflower Liqueur,France,NAS,20%,Bacardi,Cocktail
+Pimm's No. 1,Amaro / Aperitif,Amaro,England,NAS,25%,Pimm's,Cocktail
+St. Germain,Liqueur,Herbal Liqueur,France,NAS,20%,Bacardi,Cocktail
 Mathilde Crème de Cassis,Liqueur,Crème de Cassis,France,NAS,16%,Mathilde,Cocktail
 Sathenay Crème de Banane,Liqueur,Crème de Banane,France,NAS,25%,Sathenay,Cocktail
-Nixta,Liqueur,Corn Liqueur,Mexico,NAS,16%,Nixta,Cocktail
+Nixta Licor de Elote,Liqueur,Corn Liqueur,Mexico,NAS,30%,Nixta,Cocktail
 Tempus Fugit Crème de Moka,Liqueur,Coffee Liqueur,Switzerland,NAS,28%,Tempus Fugit,Cocktail
-Yuzu Liqueur,Liqueur,Citrus Liqueur,Japan,NAS,14%,,Cocktail
+Yuzu Dry Curaçao,Liqueur,Curaçao,France,NAS,40%,Maison Ferrand,Cocktail
 Cacao Liqueur,Liqueur,Cacao Liqueur,,NAS,,,Cocktail
 Rothman & Winter Orchard Apricot,Liqueur,Apricot Liqueur,Austria,NAS,22%,Rothman & Winter,Cocktail
-Tempus Fugit Crème de Noyaux,Liqueur,Almond/Stone Fruit Liqueur,Switzerland,NAS,30%,Tempus Fugit,Cocktail
+Tempus Fugit Crème de Noyaux,Liqueur,Stone Fruit Liqueur,Switzerland,NAS,30%,Tempus Fugit,Cocktail
 St. Elizabeth Allspice Dram,Liqueur,Allspice Dram,Jamaica,NAS,22.5%,St. Elizabeth,Cocktail
-Cheoum Cheoreom,Other,Soju,South Korea,NAS,16.9%,Lotte Chilsung,Cocktail
-Reyka Vodka,Other Spirit,Vodka,Iceland,NAS,40%,Reyka,Cocktail
-Caravedo Pisco,Other Spirit,Pisco,Peru,Unaged,41%,Caravedo,Cocktail
-Hendrick's Gin,Other Spirit,Gin,Scotland,Unaged,44%,William Grant & Sons,Cocktail
-Maxime Trijol Cognac VS,Other Spirit,Cognac,France,VS,40%,Maxime Trijol,Cocktail
+Cheoum Cheoreom,Soju,Soju,South Korea,NAS,16.9%,Lotte Chilsung,Cocktail
+Reyka Vodka,Vodka,Vodka,Iceland,NAS,40%,Reyka,Cocktail
+Caravedo Pisco,Eau de Vie,Pisco,Peru,Unaged,41%,Caravedo,Cocktail
+Hendrick's Gin,Gin,New Western,Scotland,Unaged,44%,William Grant & Sons,Cocktail
+Maxime Trijol Cognac VS,Brandy,Cognac,France,VS,40%,Maxime Trijol,Cocktail
 Seoul Night,Other Spirit,Cane Spirit,South Korea,Unaged,25%,Seoul Night,Cocktail
-Christian Drouin Calvados Sélection,Other Spirit,Calvados,France,NAS,40%,Christian Drouin,Cocktail
-Linie Aquavit,Other Spirit,Aquavit,Norway,NAS,41.5%,Arcus,Cocktail
+Christian Drouin Calvados Sélection,Brandy,Calvados,France,NAS,40%,Christian Drouin,Cocktail
+Linie Aquavit,Aquavit,Aquavit,Norway,NAS,41.5%,Arcus,Cocktail
 Saint James Rhum Vieux Agricole,Rum,Rhum Agricole Vieux,Martinique,NAS,42%,Saint James,Cocktail
 Père Labat 59,Rum,Rhum Agricole Blanc,Guadeloupe (Marie-Galante),Unaged,59%,Distillerie Bielle,Cocktail
-TSO'OK Oaxacan Mountain Rum,Rum,Pot stilled cane juice rum,Mexico,Unaged,49%,Alambique Serrano,Cocktail
-Wray & Nephew White Overproof,Rum,Overproof rum,Jamaica,Unaged,63%,J. Wray & Nephew,Cocktail
-Worthy Park 109,Rum,Overproof rum,Jamaica,NAS,54.5%,Worthy Park Estate,Cocktail
-Rum Fire,Rum,Overproof rum,Jamaica,Unaged,63%,Hampden Estate,Cocktail
-Hamilton 151 Demerara Overproof,Rum,Overproof,Guyana,NAS,75.5%,Ed Hamilton,Cocktail
+TSO'OK Oaxacan Mountain Rum,Rum,Aguardiente de Caña,Mexico,Unaged,49%,Alambique Serrano,Cocktail
+Wray & Nephew White Overproof,Rum,Unaged Overproof,Jamaica,Unaged,63%,J. Wray & Nephew,Cocktail
+Worthy Park 109,Rum,Aged,Jamaica,NAS,54.5%,Worthy Park Estate,Cocktail
+Rum Fire,Rum,Unaged Overproof,Jamaica,Unaged,63%,Hampden Estate,Cocktail
+Hamilton 151 Demerara Overproof,Rum,Aged Overproof,Guyana,NAS,75.5%,Ed Hamilton,Cocktail
 Clairin Pignon,Rum,Clairin,Haiti,Unaged,50%,Distillerie Malas Auguste,Cocktail
 Ypioca Reserva Cachaça,Rum,Cachaça,Brazil,NAS,38%,Ypioca,Cocktail
 Avofogo Cachaça Bar Strength,Rum,Cachaça,Brazil,Unaged,46%,Avofogo,Cocktail
 Batavia-Arrack van Oosten,Rum,Batavia Arrack,Indonesia,NAS,48%,Van Oosten,Cocktail
-Turquoise Bay Amber Rum,Rum,Aged rum,Mauritius,NAS,40%,Odevie,Cocktail
-The Real McCoy 3,Rum,Aged rum,Barbados,3,40%,Foursquare,Cocktail
-Smith & Cross,Rum,Aged rum,Jamaica,NAS,57%,Smith & Cross,Cocktail
-Maggie's Farm 50/50 Dark,Rum,Aged rum,USA,NAS,40%,Maggie's Farm,Cocktail
-Havana Club Especial,Rum,Aged rum,Cuba,NAS,40%,Havana Club,Cocktail
-Doorly's 8,Rum,Aged rum,Barbados,8,40%,Foursquare,Cocktail
-Anacaona Gran Reserva,Rum,Aged rum,Dominican Republic,NAS,40%,Odevie,Cocktail
-Rhum Barbancourt 3 Stars,Rum,Aged Rhum,Haiti,4,43%,Barbancourt,Cocktail
-Savanna HERR,Rum,,Réunion,NAS,,Savanna,Neat Only
-Mhoba Habitation Velier,Rum,,South Africa,NAS,,Mhoba,Neat Only
+Turquoise Bay Amber Rum,Rum,Lightly Aged,Mauritius,NAS,40%,Odevie,Cocktail
+The Real McCoy 3,Rum,Lightly Aged,Barbados,3,40%,Foursquare,Cocktail
+Smith & Cross,Rum,Aged,Jamaica,NAS,57%,Smith & Cross,Cocktail
+Maggie's Farm 50/50 Dark,Rum,Aged,USA,NAS,40%,Maggie's Farm,Cocktail
+Havana Club Especial,Rum,Lightly Aged,Cuba,NAS,40%,Havana Club,Cocktail
+Doorly's 8,Rum,Aged,Barbados,8,40%,Foursquare,Cocktail
+Anacaona Gran Reserva,Rum,Lightly Aged,Dominican Republic,NAS,40%,Odevie,Cocktail
+Rhum Barbancourt 3 Stars,Rum,Lightly Aged,Haiti,4,43%,Barbancourt,Cocktail
+Savanna HERR Habitation Velier,Rum,Unaged Pot Still,Réunion,NAS,62%,Savanna,Neat Only
+Mhoba Habitation Velier,Rum,Unaged Pot Still,South Africa,NAS,62%,Mhoba,Neat Only
 Dolin Rouge,Vermouth,Sweet Vermouth,France,NAS,16%,Dolin,Cocktail
 Dolin Dry,Vermouth,Dry Vermouth,France,NAS,17.5%,Dolin,Cocktail
 Dolin Blanc,Vermouth,Blanc Vermouth,France,NAS,17.5%,Dolin,Cocktail
-Stellum Rye,Whiskey,Straight rye,USA,NAS,57%,Barrell Craft Spirits,Cocktail
-Elijah Craig Straight Rye,Whiskey,Straight rye,USA,NAS,47%,Heaven Hill,Cocktail
-Old Forester 100,Whiskey,Straight bourbon,USA,NAS,50%,Brown-Forman,Cocktail
-Suntory Toki,Whiskey,Japanese lended,Japan,NAS,43%,Suntory,Cocktail
-Jameson,Whiskey,Irish blended,Ireland,NAS,40%,Irish Distillers,Cocktail
-Sesame Oil-Washed Rye,Whiskey,Fat-washed rye,USA,NAS,,Homemade,Cocktail
+Stellum Rye,Whiskey,Straight Rye,USA,NAS,57%,Barrell Craft Spirits,Cocktail
+Elijah Craig Straight Rye,Whiskey,Straight Rye,USA,NAS,47%,Heaven Hill,Cocktail
+Old Forester 1,Whiskey,Straight Bourbon,USA,NAS,50%,Brown-Forman,Cocktail
+Suntory Toki,Whiskey,Japanese Blended,Japan,NAS,43%,Suntory,Cocktail
+Jameson,Whiskey,Irish Dlended,Ireland,NAS,40%,Irish Distillers,Cocktail
+Sesame Oil-Washed Rye,Whiskey,Fat-washed Rye,USA,NAS,,Homemade,Cocktail

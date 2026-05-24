@@ -93,7 +93,7 @@ CATEGORY_MAP = {
     'maraschino': ['maraschino'],
     'maraschino liqueur': ['maraschino'],
     'yellow chartreuse': ['herbal liqueur'],
-    'green chartreuse': [],  # Not in this bar; empty list blocks generic 'chartreuse' match
+    'green chartreuse': ['herbal liqueur'],
     'chartreuse': ['herbal liqueur', 'herbal elixir'],
     'elderflower liqueur': ['elderflower liqueur'],
     'st-germain': ['elderflower liqueur'],
@@ -569,4 +569,4 @@ def designer_save():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000, threaded=True)
+    app.run(debug=True, host='0.0.0.0', port=5001, threaded=True)
