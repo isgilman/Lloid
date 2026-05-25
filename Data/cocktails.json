@@ -1431,7 +1431,7 @@
       "created_at": "2026-05-24"
     },
     {
-      "name": "Tideline",
+      "name": "Bitter Apple",
       "category": "Original",
       "glass": "Rocks Glass",
       "method": "Shaken",
@@ -1487,6 +1487,7 @@
         "digestif",
         "house infusion"
       ],
+      "premium": false,
       "id": "tideline",
       "created_at": "2026-05-24"
     },
@@ -9185,66 +9186,67 @@
       "created_at": "2026-05-25"
     },
     {
-      "id": "forbidden-dance",
       "name": "Forbidden Dance",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
       "glass": "Tiki mug",
       "method": "",
       "ingredients": [
         {
-          "amount": "¼",
-          "unit": "oz",
           "name": "Vanilla Syrup",
-          "notes": ""
-        },
-        {
           "amount": "¼",
           "unit": "oz",
-          "name": "John D. Taylor's Velvet Falernum",
           "notes": ""
         },
         {
-          "amount": "¾",
+          "name": "Falernum",
+          "amount": "¼",
           "unit": "oz",
+          "notes": ""
+        },
+        {
           "name": "lime juice",
+          "amount": "¾",
+          "unit": "oz",
           "notes": ""
         },
         {
-          "amount": "¾",
-          "unit": "oz",
           "name": "pineapple juice",
-          "notes": ""
-        },
-        {
           "amount": "¾",
           "unit": "oz",
-          "name": "Orgeat",
           "notes": ""
         },
         {
+          "name": "Orgeat",
+          "amount": "¾",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amontillado sherry",
           "amount": "½",
           "unit": "oz",
-          "name": "Lustau Los Arcos amontillado sherry",
           "notes": ""
         },
         {
-          "amount": "1",
-          "unit": "oz",
           "name": "Bols genever",
+          "amount": "1",
+          "unit": "oz",
           "notes": ""
         },
         {
+          "name": "Krogstad aquavit",
           "amount": "1",
           "unit": "oz",
-          "name": "Krogstad aquavit",
           "notes": ""
         }
       ],
-      "garnish": "Mint plouche, Grated nutmeg",
       "instructions": "Combine all the ingredients except the mint and nutmeg in a cocktail tin. Fill a tiki mug with crushed ice. Add three 1¼ inch ice cubes to the tin cover and whip. Strain the cocktail into the tiki mug and top with additional crushed ice. Garnish with the mint plouche and grated nutmeg.",
+      "garnish": "Mint plouche, Grated nutmeg",
+      "source": "The NoMad Cocktail Book",
       "notes": "Creator: Wally Suarez",
       "tags": [],
+      "premium": false,
+      "id": "forbidden-dance",
       "created_at": "2026-05-25"
     },
     {

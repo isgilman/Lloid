@@ -85,7 +85,7 @@
       "name": "House Orange Bitters",
       "description": "house-made bitters",
       "recipe": "",
-      "in_stock": false,
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
@@ -101,7 +101,7 @@
       "name": "Passionfruit Syrup",
       "description": "house-made syrup",
       "recipe": "1:1 passionfruit purée to 2:1 simple syrup by volume",
-      "in_stock": false,
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
@@ -125,7 +125,7 @@
       "name": "Coconut Syrup",
       "description": "house-made syrup",
       "recipe": "2:1 simple syrup made with equal parts coconut water and water; toast unsweetened coconut flakes, steep, strain",
-      "in_stock": false,
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
@@ -253,7 +253,7 @@
       "name": "Spiced Tomato Water",
       "description": "house-made preparation",
       "recipe": "Strained juice of ripe tomatoes with salt, white pepper, celery seed and hot sauce; chill overnight",
-      "in_stock": false,
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
@@ -261,7 +261,7 @@
       "name": "Rhubarb Shrub",
       "description": "house-made shrub",
       "recipe": "Rhubarb, sugar, and red wine vinegar macerated together; strain after 48 hours",
-      "in_stock": false,
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
@@ -269,7 +269,7 @@
       "name": "Cassia Cinnamon Syrup",
       "description": "house-made syrup",
       "recipe": "2:1 simple syrup infused with cassia cinnamon sticks; steep 24 hours",
-      "in_stock": false,
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
@@ -285,7 +285,7 @@
       "name": "Sarsaparilla Tincture",
       "description": "house-made tincture",
       "recipe": "Dried sarsaparilla root steeped in high-proof neutral spirit for 2 weeks; strain and dilute to taste",
-      "in_stock": false,
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
@@ -309,7 +309,7 @@
       "name": "Grapefruit Oleo Saccharum",
       "description": "house-made oleo saccharum",
       "recipe": "Grapefruit peels packed with sugar; macerate 1–2 hours until syrupy, strain peels",
-      "in_stock": false,
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
