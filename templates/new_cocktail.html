@@ -12,43 +12,95 @@
     </div>
   </div>
 
+  {# Compute current state from either an existing cocktail or a prefill dict #}
+  {% set cur_tags     = (cocktail.tags     if cocktail else prefill.get('tags', []))     | map('lower') | list %}
+  {% set cur_creator  = (cocktail.creator  if cocktail else prefill.get('creator', ''))  %}
+  {% set cur_year     = (cocktail.year     if cocktail else prefill.get('year', ''))     %}
+  {% set cur_source   = (cocktail.source   if cocktail else prefill.get('source', ''))   %}
+
+  {# Tags that are NOT one of the curated style chips → shown in free-text field #}
+  {% set extra_tags = [] %}
+  {% for t in cur_tags %}{% if t not in style_tag_values %}{% set _ = extra_tags.append(t) %}{% endif %}{% endfor %}
+
   <form method="post" class="cocktail-form" id="cocktail-form">
+
+    <!-- ── Details ──────────────────────────────────────────────────────── -->
     <div class="form-section">
       <h2 class="form-section-title">Details</h2>
       <div class="form-grid-2">
+
+        <!-- Name -->
         <div class="form-group form-col-span-2">
           <label class="form-label">Name *</label>
           <input type="text" name="name" class="form-input form-input-lg" required
                  value="{{ cocktail.name if cocktail else prefill.get('name', '') }}"
                  placeholder="Cocktail name">
         </div>
+
+        <!-- Category chip picker (multi-select) -->
+        <div class="form-group form-col-span-2">
+          <label class="form-label">
+            Categories
+            <span class="form-hint">— select all that apply</span>
+          </label>
+          <div class="form-chip-picker">
+            {% for tag in style_tags %}
+            <label class="form-chip {% if tag.value in cur_tags %}active{% endif %}">
+              <input type="checkbox" name="category_tags" value="{{ tag.value }}"
+                     {% if tag.value in cur_tags %}checked{% endif %}
+                     onchange="this.closest('.form-chip').classList.toggle('active', this.checked)">
+              {{ tag.label }}
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Creator -->
         <div class="form-group">
-          <label class="form-label">Category</label>
-          <input type="text" name="category" class="form-input" list="category-list"
-                 value="{{ cocktail.category if cocktail else prefill.get('category', '') }}"
-                 placeholder="e.g. Classic, Modern Classic, Original">
-          <datalist id="category-list">
-            <option>Classic</option>
-            <option>Modern Classic</option>
-            <option>Original</option>
-            <option>Tiki</option>
-            <option>Low-ABV</option>
-            <option>Variation</option>
+          <label class="form-label">Creator <span class="form-hint">— person who invented this recipe</span></label>
+          <input type="text" name="creator" class="form-input" list="creator-list"
+                 value="{{ cur_creator }}"
+                 placeholder="e.g. Phil Ward">
+          <datalist id="creator-list">
+            {% for c in known_creators %}
+            <option value="{{ c }}">
+            {% endfor %}
           </datalist>
         </div>
+
+        <!-- Year -->
         <div class="form-group">
-          <label class="form-label">Source / Origin</label>
-          <input type="text" name="source" class="form-input"
-                 value="{{ cocktail.source if cocktail else prefill.get('source', '') }}"
-                 placeholder="e.g. Sam Ross, 2007">
+          <label class="form-label">Year Created <span class="form-hint">— optional</span></label>
+          <input type="number" name="year" class="form-input"
+                 value="{{ cur_year }}" min="1800" max="2099"
+                 placeholder="e.g. 2009">
         </div>
-        <div class="form-group form-col-span-2">
+
+        <!-- Source / Origin -->
+        <div class="form-group">
+          <label class="form-label">Source / Origin <span class="form-hint">— book or bar</span></label>
+          <input type="text" name="source" class="form-input" list="source-list"
+                 value="{{ cur_source }}"
+                 placeholder="e.g. Death &amp; Co., Originals">
+          <datalist id="source-list">
+            {% for s in known_sources %}
+            <option value="{{ s }}">
+            {% endfor %}
+          </datalist>
+        </div>
+
+        <!-- Premium -->
+        <div class="form-group" style="display:flex;align-items:flex-end;padding-bottom:4px">
           <label class="form-checkbox-label">
             <input type="checkbox" name="premium" class="form-checkbox"
                    {% if cocktail and cocktail.get('premium') %}checked{% endif %}>
-            <span>Premium cocktail <span class="form-hint">— reserved spirits (marked "Premium Cocktail") will count toward this recipe's makeability</span></span>
+            <span>Premium cocktail
+              <span class="form-hint">— reserved spirits (marked "Premium Cocktail") count toward makeability</span>
+            </span>
           </label>
         </div>
+
+        <!-- Glass -->
         <div class="form-group">
           <label class="form-label">Glass</label>
           <input type="text" name="glass" class="form-input" list="glass-list"
@@ -58,13 +110,17 @@
             <option>Coupe</option>
             <option>Rocks</option>
             <option>Highball</option>
-            <option>Nick & Nora</option>
+            <option>Nick &amp; Nora</option>
             <option>Flute</option>
             <option>Mule Mug</option>
             <option>Snifter</option>
             <option>Collins</option>
+            <option>Tiki</option>
+            <option>Punch Cup</option>
           </datalist>
         </div>
+
+        <!-- Method -->
         <div class="form-group">
           <label class="form-label">Method</label>
           <input type="text" name="method" class="form-input" list="method-list"
@@ -77,11 +133,14 @@
             <option>Flash-blended</option>
             <option>Blended</option>
             <option>Thrown</option>
+            <option>Swizzled</option>
           </datalist>
         </div>
+
       </div>
     </div>
 
+    <!-- ── Ingredients ──────────────────────────────────────────────────── -->
     <div class="form-section">
       <h2 class="form-section-title">Ingredients</h2>
       <div id="ingredients-list">
@@ -120,14 +179,17 @@
         <option>rinse</option>
         <option>barspoon</option>
         <option>drop</option>
+        <option>part</option>
+        <option>whole</option>
       </datalist>
       <button type="button" class="btn btn-ghost btn-sm" onclick="addIngredient()" style="margin-top:8px">
         + Add Ingredient
       </button>
     </div>
 
+    <!-- ── Method & Notes ───────────────────────────────────────────────── -->
     <div class="form-section">
-      <h2 class="form-section-title">Method & Notes</h2>
+      <h2 class="form-section-title">Method &amp; Notes</h2>
       <div class="form-group">
         <label class="form-label">Instructions</label>
         <textarea name="instructions" class="form-input form-textarea" rows="4"
@@ -141,10 +203,13 @@
                  placeholder="e.g. Orange twist">
         </div>
         <div class="form-group">
-          <label class="form-label">Tags <span class="form-hint">(comma separated)</span></label>
-          <input type="text" name="tags" class="form-input"
-                 value="{{ (cocktail.tags | join(', ')) if cocktail else (prefill.get('tags', []) | join(', ')) }}"
-                 placeholder="e.g. classic, stirred, bitter">
+          <label class="form-label">
+            Additional Tags
+            <span class="form-hint">— comma separated, e.g. stirred, rum, bitter</span>
+          </label>
+          <input type="text" name="extra_tags" class="form-input"
+                 value="{{ extra_tags | join(', ') }}"
+                 placeholder="stirred, rum, bitter…">
         </div>
       </div>
       <div class="form-group">
@@ -186,9 +251,7 @@ function addIngredient() {
 
 function removeIngredient(btn) {
   const rows = document.querySelectorAll('.ingredient-row');
-  if (rows.length > 1) {
-    btn.closest('.ingredient-row').remove();
-  }
+  if (rows.length > 1) btn.closest('.ingredient-row').remove();
 }
 </script>
 {% endblock %}

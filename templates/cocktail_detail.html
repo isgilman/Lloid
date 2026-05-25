@@ -19,7 +19,18 @@
       <div>
         <h1 class="detail-title">{{ cocktail.name }}</h1>
         <div class="detail-meta-row">
-          {% if cocktail.get('category') %}<span class="badge badge-outline">{{ cocktail.category }}</span>{% endif %}
+          {# Show each style-category tag as its own badge.
+             Falls back to the legacy category string if no style tags exist. #}
+          {% set ns = namespace(showed_cat=false) %}
+          {% for tag in cocktail.get('tags', []) %}
+            {% if tag in style_tag_values %}
+              <span class="badge badge-outline">{{ tag | title }}</span>
+              {% set ns.showed_cat = true %}
+            {% endif %}
+          {% endfor %}
+          {% if not ns.showed_cat and cocktail.get('category') %}
+            <span class="badge badge-outline">{{ cocktail.category }}</span>
+          {% endif %}
           {% if cocktail.get('glass') %}<span class="detail-meta-item">{{ cocktail.glass }}</span>{% endif %}
           {% if cocktail.get('method') %}<span class="detail-meta-item">{{ cocktail.method }}</span>{% endif %}
           {% if cocktail.get('source') %}<span class="detail-meta-item text-dim">{{ cocktail.source }}</span>{% endif %}

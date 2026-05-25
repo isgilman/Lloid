@@ -466,6 +466,37 @@ h1, h2, h3 {
   padding-top: 8px;
 }
 
+/* Category chip picker (form version) */
+.form-chip-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.form-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-sec);
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+.form-chip:hover {
+  border-color: var(--border-light);
+  color: var(--text);
+  background: rgba(255,255,255,.04);
+}
+.form-chip input[type="checkbox"] { display: none; }
+.form-chip.active {
+  border-color: rgba(184,145,42,.55);
+  color: var(--accent-light);
+  background: rgba(184,145,42,.1);
+}
+
 /* Ingredient form rows */
 .ingredient-row {
   display: grid;

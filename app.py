@@ -24,6 +24,26 @@ PANTRY_FILE    = DATA_DIR / 'pantry.json'
 
 INVENTORY_FIELDS = ['Name', 'Category', 'Style', 'Origin', 'Age', 'ABV', 'Producer', 'Use']
 
+# Curated style/type categories shown in filter chips and the new/edit cocktail form.
+# Each tuple is (tag_value_stored_in_tags_array, display_label).
+STYLE_TAG_DEFS = [
+    ('classic',        'Classic'),
+    ('modern classic', 'Modern Classic'),
+    ('tiki',           'Tiki'),
+    ('sour',           'Sour'),
+    ('swizzle',        'Swizzle'),
+    ('julep',          'Julep'),
+    ('sling',          'Sling'),
+    ('fizz',           'Fizz'),
+    ('flip',           'Flip'),
+    ('daiquiri',       'Daiquiri'),
+    ('punch',          'Punch'),
+    ('cobbler',        'Cobbler'),
+    ('non-alcoholic',  'Non-Alcoholic'),
+    ('low-abv',        'Low-ABV'),
+]
+STYLE_TAG_VALUES = {v for v, _ in STYLE_TAG_DEFS}
+
 # Default pantry used only to bootstrap pantry.json if it doesn't exist
 DEFAULT_PANTRY_STANDARD = [
     'absinthe', 'absinthe rinse', 'agave nectar', 'agave syrup',
@@ -318,20 +338,38 @@ def cocktail_from_form():
                 'unit': units[i].strip() if i < len(units) else '',
                 'notes': notes_list[i].strip() if i < len(notes_list) else '',
             })
-    tags_raw = request.form.get('tags', '')
-    tags = [t.strip() for t in tags_raw.split(',') if t.strip()]
+
+    # Category chips (multi-select checkboxes) → stored as tags
+    category_tags = [t.strip().lower() for t in request.form.getlist('category_tags') if t.strip()]
+
+    # Free-text extra tags (comma-separated)
+    extra_tags = [t.strip().lower() for t in request.form.get('extra_tags', '').split(',') if t.strip()]
+
+    # Merge: category tags first, then extra; deduplicate preserving order
+    seen = set()
+    all_tags = []
+    for t in category_tags + extra_tags:
+        if t not in seen:
+            seen.add(t)
+            all_tags.append(t)
+
+    creator = request.form.get('creator', '').strip()
+    year    = request.form.get('year', '').strip()
+
     return {
-        'name': request.form.get('name', '').strip(),
-        'category': request.form.get('category', '').strip(),
-        'glass': request.form.get('glass', '').strip(),
-        'method': request.form.get('method', '').strip(),
-        'ingredients': ingredients,
+        'name':         request.form.get('name', '').strip(),
+        'category':     category_tags[0] if category_tags else '',  # kept for legacy display
+        'glass':        request.form.get('glass', '').strip(),
+        'method':       request.form.get('method', '').strip(),
+        'ingredients':  ingredients,
         'instructions': request.form.get('instructions', '').strip(),
-        'garnish': request.form.get('garnish', '').strip(),
-        'source': request.form.get('source', '').strip(),
-        'notes': request.form.get('notes', '').strip(),
-        'tags': tags,
-        'premium': request.form.get('premium') == 'on',
+        'garnish':      request.form.get('garnish', '').strip(),
+        'source':       request.form.get('source', '').strip(),
+        'notes':        request.form.get('notes', '').strip(),
+        'tags':         all_tags,
+        'premium':      request.form.get('premium') == 'on',
+        'creator':      creator,
+        'year':         year,
     }
 
 
@@ -509,23 +547,6 @@ def cocktails():
 
     sources = sorted(set(c.get('source', '') for c in all_cocktails if c.get('source')))
 
-    # Curated style/type tags to offer as filter chips, in display order.
-    # 'tiki' also matches the legacy 'tropical' tag.
-    STYLE_TAG_DEFS = [
-        ('classic',       'Classic'),
-        ('modern classic','Modern Classic'),
-        ('tiki',          'Tiki'),
-        ('sour',          'Sour'),
-        ('swizzle',       'Swizzle'),
-        ('julep',         'Julep'),
-        ('sling',         'Sling'),
-        ('fizz',          'Fizz'),
-        ('flip',          'Flip'),
-        ('daiquiri',      'Daiquiri'),
-        ('punch',         'Punch'),
-        ('cobbler',       'Cobbler'),
-        ('non-alcoholic', 'Non-Alcoholic'),
-    ]
     present_tags = set()
     for c in all_cocktails:
         present_tags.update(t.lower() for t in c.get('tags', []))
@@ -542,6 +563,21 @@ def cocktails():
                            sources=sources,
                            style_tags=style_tags,
                            creators=creators)
+
+
+def _form_context():
+    """Shared context for new/edit cocktail forms."""
+    all_cocktails = load_cocktails()
+    style_tags = [{'value': v, 'label': l} for v, l in STYLE_TAG_DEFS]
+    known_creators = sorted(
+        {c['creator'] for c in all_cocktails if c.get('creator')},
+        key=lambda n: n.split()[-1]
+    )
+    known_sources = sorted({c['source'] for c in all_cocktails if c.get('source')})
+    return dict(style_tags=style_tags,
+                style_tag_values=STYLE_TAG_VALUES,
+                known_creators=known_creators,
+                known_sources=known_sources)
 
 
 # Define /new before /<cocktail_id> to avoid routing conflict
@@ -562,7 +598,8 @@ def cocktail_new():
             prefill = json.loads(request.args['prefill'])
         except Exception:
             pass
-    return render_template('new_cocktail.html', cocktail=None, prefill=prefill)
+    return render_template('new_cocktail.html', cocktail=None, prefill=prefill,
+                           **_form_context())
 
 
 @app.route('/cocktails/<cocktail_id>')
@@ -581,7 +618,8 @@ def cocktail_detail(cocktail_id):
         ing['available'] = ok
         ing['source'] = source
     return render_template('cocktail_detail.html',
-                           cocktail=cocktail, can_make=can_make, missing=missing)
+                           cocktail=cocktail, can_make=can_make, missing=missing,
+                           style_tag_values=STYLE_TAG_VALUES)
 
 
 @app.route('/cocktails/<cocktail_id>/edit', methods=['GET', 'POST'])
@@ -598,7 +636,8 @@ def cocktail_edit(cocktail_id):
         save_cocktails(cocktails)
         flash(f"'{updated['name']}' updated.", 'success')
         return redirect(url_for('cocktail_detail', cocktail_id=cocktail_id))
-    return render_template('new_cocktail.html', cocktail=cocktails[idx], prefill={})
+    return render_template('new_cocktail.html', cocktail=cocktails[idx], prefill={},
+                           **_form_context())
 
 
 @app.route('/cocktails/<cocktail_id>/delete', methods=['POST'])
