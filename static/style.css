@@ -1378,6 +1378,128 @@ select.edit-input { padding: 5px 8px; }
   font-size: 13.5px;
 }
 
+/* ── Personalised badge ──────────────────────────────────────────────────── */
+
+.personalized-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(160, 130, 255, 0.10);
+  color: #a082ff;
+  border: 1px solid rgba(160, 130, 255, 0.25);
+  white-space: nowrap;
+}
+
+/* ── Version history ─────────────────────────────────────────────────────── */
+
+.history-section {
+  margin-top: 32px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.history-toggle {
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-dim);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+.history-toggle::-webkit-details-marker { display: none; }
+.history-toggle::before {
+  content: '▶';
+  font-size: 10px;
+  transition: transform 0.15s ease;
+}
+details[open] .history-toggle::before { transform: rotate(90deg); }
+
+.history-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.history-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  gap: 12px;
+}
+
+.history-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.history-action {
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+.history-action-create  { background: rgba(76,184,134,0.12); color: #4cb886; }
+.history-action-update  { background: rgba(200,170,80,0.12);  color: #c8aa50; }
+.history-action-delete  { background: rgba(200,100,100,0.12); color: #c86464; }
+
+.history-date  { color: var(--text-dim); font-size: 12.5px; }
+.history-note  { color: var(--text-dim); font-size: 12px; font-style: italic; }
+
+/* ── Deleted recipes page ────────────────────────────────────────────────── */
+
+.deleted-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.deleted-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  gap: 16px;
+}
+
+.deleted-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.deleted-name  { font-weight: 600; font-size: 15px; }
+.deleted-date  { font-size: 12.5px; }
+.deleted-source { font-size: 12.5px; }
+
+/* ── Page footer link ────────────────────────────────────────────────────── */
+
+.page-footer-link {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 13px;
+}
+
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .nav-inner { padding: 0 20px; gap: 20px; }

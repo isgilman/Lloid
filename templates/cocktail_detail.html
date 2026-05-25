@@ -41,17 +41,25 @@
           {% endif %}
         </div>
       </div>
-      {% if can_make %}
-        <div class="makeable-badge makeable-yes">
-          <span class="makeable-icon">&#10003;</span>
-          <span>Can Make</span>
-        </div>
-      {% else %}
-        <div class="makeable-badge makeable-no">
-          <span class="makeable-icon">&#8722;</span>
-          <span>Missing {{ missing | length }}</span>
-        </div>
-      {% endif %}
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+        {% if can_make %}
+          <div class="makeable-badge makeable-yes">
+            <span class="makeable-icon">&#10003;</span>
+            <span>Can Make</span>
+          </div>
+        {% else %}
+          <div class="makeable-badge makeable-no">
+            <span class="makeable-icon">&#8722;</span>
+            <span>Missing {{ missing | length }}</span>
+          </div>
+        {% endif %}
+        {% if cocktail.is_local %}
+          <div class="personalized-badge" title="This is your personalised version — it won't be overwritten by syncing from shared recipes">
+            <span>&#9998;</span>
+            <span>Personalised</span>
+          </div>
+        {% endif %}
+      </div>
     </div>
   </div>
 
@@ -128,6 +136,29 @@
   <div class="missing-alert">
     <strong>Missing from inventory:</strong> {{ missing | join(', ') }}
   </div>
+  {% endif %}
+
+  {% if history %}
+  <details class="history-section">
+    <summary class="history-toggle">Version history ({{ history | length }})</summary>
+    <div class="history-list">
+      {% for h in history %}
+      <div class="history-entry">
+        <div class="history-meta">
+          <span class="history-action history-action-{{ h.action }}">{{ h.action | title }}</span>
+          <span class="history-date">{{ h.saved_at[:10] }}</span>
+          {% if h.note %}<span class="history-note">{{ h.note }}</span>{% endif %}
+        </div>
+        <form method="post"
+              action="{{ url_for('cocktail_restore', cocktail_id=cocktail.id, history_id=h.history_id) }}"
+              onsubmit="return confirm('Restore {{ cocktail.name }} to this version?')"
+              style="display:inline">
+          <button type="submit" class="btn btn-ghost btn-sm">Restore</button>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+  </details>
   {% endif %}
 </div>
 {% endblock %}

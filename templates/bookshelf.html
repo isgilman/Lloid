@@ -79,6 +79,23 @@
     font-weight: 600;
     color: var(--text);
   }
+  .pdf-toolbar-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .pdf-open-link {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-sec);
+    font-size: 13px;
+    padding: 6px 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition), color var(--transition);
+  }
+  .pdf-open-link:hover { background: rgba(255,255,255,.06); color: var(--text); }
   .pdf-close {
     background: none;
     border: 1px solid var(--border);
@@ -145,7 +162,10 @@
 <div class="pdf-overlay" id="pdf-overlay">
   <div class="pdf-toolbar">
     <span class="pdf-toolbar-title" id="pdf-overlay-title"></span>
-    <button class="pdf-close" onclick="closePdf()">Close ✕</button>
+    <div class="pdf-toolbar-actions">
+      <a id="pdf-open-tab" href="" target="_blank" rel="noopener" class="pdf-open-link">Open in tab ↗</a>
+      <button class="pdf-close" onclick="closePdf()">Close ✕</button>
+    </div>
   </div>
   <div class="pdf-frame-wrap">
     <iframe id="pdf-frame" src="" title="PDF viewer"></iframe>
@@ -155,9 +175,21 @@
 
 {% block scripts %}
 <script>
+  // iOS and most mobile browsers don't render PDFs in iframes.
+  // Detect touch/mobile and fall back to opening in a new tab.
+  function isMobileDevice() {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+        || (navigator.maxTouchPoints > 1 && window.innerWidth < 1024);
+  }
+
   function openPdf(url, title) {
+    if (isMobileDevice()) {
+      window.open(url, '_blank', 'noopener');
+      return;
+    }
     document.getElementById('pdf-frame').src = url;
     document.getElementById('pdf-overlay-title').textContent = title;
+    document.getElementById('pdf-open-tab').href = url;
     document.getElementById('pdf-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }

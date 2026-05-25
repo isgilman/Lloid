@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Deleted Recipes — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container page-container-narrow">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Deleted Recipes</h1>
+      <p class="page-subtitle">{{ deleted | length }} recipe{% if deleted | length != 1 %}s{% endif %} removed</p>
+    </div>
+    <a href="{{ url_for('cocktails') }}" class="btn btn-ghost btn-sm">&#8592; Back to Cocktails</a>
+  </div>
+
+  {% if deleted %}
+  <div class="deleted-list">
+    {% for d in deleted %}
+    <div class="deleted-entry">
+      <div class="deleted-info">
+        <span class="deleted-name">{{ d.name }}</span>
+        <span class="deleted-date text-dim">Deleted {{ d.saved_at[:10] }}</span>
+        {% if d.data.get('source') %}
+          <span class="deleted-source text-dim">{{ d.data.source }}</span>
+        {% endif %}
+      </div>
+      <form method="post"
+            action="{{ url_for('cocktail_restore', cocktail_id=d.cocktail_id, history_id=d.history_id) }}"
+            onsubmit="return confirm('Restore {{ d.name }}?')">
+        <button type="submit" class="btn btn-ghost btn-sm">Restore</button>
+      </form>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty-state text-dim">No deleted recipes found.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -8,7 +8,13 @@
       <h1 class="page-title">Cocktails</h1>
       <p class="page-subtitle" id="cocktail-count-label">{{ cocktails | length }} recipes</p>
     </div>
-    <a href="{{ url_for('cocktail_new') }}" class="btn btn-primary">+ New Cocktail</a>
+    <div style="display:flex;gap:8px;align-items:center">
+      <form method="post" action="{{ url_for('cocktails_sync') }}"
+            onsubmit="return confirm('Sync recipes from cocktails.json?\n\nPersonalised recipes will not be overwritten.')">
+        <button type="submit" class="btn btn-ghost btn-sm" title="Pull updates from cocktails.json — personalised recipes are protected">&#8635; Sync</button>
+      </form>
+      <a href="{{ url_for('cocktail_new') }}" class="btn btn-primary">+ New Cocktail</a>
+    </div>
   </div>
 
   <!-- Filter bar -->
@@ -126,6 +132,10 @@
   </div>
 
   <p class="empty-filtered" id="cq-empty" style="display:none">No cocktails match your filters.</p>
+
+  <p class="page-footer-link">
+    <a href="{{ url_for('cocktails_deleted') }}" class="text-dim">View deleted recipes</a>
+  </p>
 </div>
 {% endblock %}
 

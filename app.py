@@ -7,6 +7,7 @@ import random
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
+import db as _db
 from flask import (Flask, render_template, request, jsonify, redirect,
                    url_for, Response, stream_with_context, flash)
 from dotenv import load_dotenv
@@ -16,6 +17,9 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'lloid-dev-key-change-in-production')
+
+# Bootstrap SQLite DB on startup (no-op if already initialised)
+_db.init_db()
 
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / 'Data'
@@ -380,7 +384,7 @@ def cocktail_from_form():
 def index():
     inventory = load_inventory()
     pantry = load_pantry()
-    cocktails = load_cocktails()
+    cocktails = _db.get_cocktails()
     makeable = sum(1 for c in cocktails if get_makeable_status(c, inventory, pantry)[0])
     by_cat = {}
     for b in inventory:
@@ -542,7 +546,7 @@ def pantry_specialty_delete():
 def cocktails():
     inventory = load_inventory()
     pantry = load_pantry()
-    all_cocktails = load_cocktails()
+    all_cocktails = _db.get_cocktails()
     for c in all_cocktails:
         c['can_make'], c['missing'] = get_makeable_status(c, inventory, pantry)
 
@@ -571,7 +575,7 @@ def cocktails():
 
 def _form_context():
     """Shared context for new/edit cocktail forms."""
-    all_cocktails = load_cocktails()
+    all_cocktails = _db.get_cocktails()
     style_tags = [{'value': v, 'label': l} for v, l in STYLE_TAG_DEFS]
     known_creators = sorted(
         {c['creator'] for c in all_cocktails if c.get('creator')},
@@ -589,11 +593,10 @@ def _form_context():
 def cocktail_new():
     if request.method == 'POST':
         cocktail = cocktail_from_form()
-        cocktails = load_cocktails()
-        cocktail['id'] = unique_id(cocktail['name'], {c['id'] for c in cocktails})
+        existing_ids = {c['id'] for c in _db.get_cocktails()}
+        cocktail['id'] = unique_id(cocktail['name'], existing_ids)
         cocktail['created_at'] = datetime.now().strftime('%Y-%m-%d')
-        cocktails.append(cocktail)
-        save_cocktails(cocktails)
+        _db.save_cocktail(cocktail, is_local=True)
         flash(f"'{cocktail['name']}' added to the database.", 'success')
         return redirect(url_for('cocktail_detail', cocktail_id=cocktail['id']))
     prefill = {}
@@ -610,8 +613,7 @@ def cocktail_new():
 def cocktail_detail(cocktail_id):
     inventory = load_inventory()
     pantry = load_pantry()
-    cocktails = load_cocktails()
-    cocktail = next((c for c in cocktails if c['id'] == cocktail_id), None)
+    cocktail = _db.get_cocktail(cocktail_id)
     if not cocktail:
         flash('Cocktail not found.', 'error')
         return redirect(url_for('cocktails'))
@@ -621,37 +623,67 @@ def cocktail_detail(cocktail_id):
         ok, source = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
         ing['available'] = ok
         ing['source'] = source
+    history = _db.get_history(cocktail_id, limit=10)
     return render_template('cocktail_detail.html',
                            cocktail=cocktail, can_make=can_make, missing=missing,
-                           style_tag_values=STYLE_TAG_VALUES)
+                           style_tag_values=STYLE_TAG_VALUES, history=history)
 
 
 @app.route('/cocktails/<cocktail_id>/edit', methods=['GET', 'POST'])
 def cocktail_edit(cocktail_id):
-    cocktails = load_cocktails()
-    idx = next((i for i, c in enumerate(cocktails) if c['id'] == cocktail_id), None)
-    if idx is None:
+    existing = _db.get_cocktail(cocktail_id)
+    if not existing:
         return redirect(url_for('cocktails'))
     if request.method == 'POST':
         updated = cocktail_from_form()
         updated['id'] = cocktail_id
-        updated['created_at'] = cocktails[idx].get('created_at', datetime.now().strftime('%Y-%m-%d'))
-        cocktails[idx] = updated
-        save_cocktails(cocktails)
+        updated['created_at'] = existing.get('created_at', datetime.now().strftime('%Y-%m-%d'))
+        _db.save_cocktail(updated, is_local=True)
         flash(f"'{updated['name']}' updated.", 'success')
         return redirect(url_for('cocktail_detail', cocktail_id=cocktail_id))
-    return render_template('new_cocktail.html', cocktail=cocktails[idx], prefill={},
+    return render_template('new_cocktail.html', cocktail=existing, prefill={},
                            **_form_context())
 
 
 @app.route('/cocktails/<cocktail_id>/delete', methods=['POST'])
 def cocktail_delete(cocktail_id):
-    cocktails = load_cocktails()
-    cocktail = next((c for c in cocktails if c['id'] == cocktail_id), None)
+    cocktail = _db.get_cocktail(cocktail_id)
     name = cocktail.get('name', '') if cocktail else ''
-    cocktails = [c for c in cocktails if c['id'] != cocktail_id]
-    save_cocktails(cocktails)
+    _db.delete_cocktail(cocktail_id)
     flash(f"'{name}' removed.", 'success')
+    return redirect(url_for('cocktails'))
+
+
+@app.route('/cocktails/sync', methods=['POST'])
+def cocktails_sync():
+    """Pull updates from cocktails.json into the DB, skipping personalised recipes."""
+    if not COCKTAILS_FILE.exists():
+        flash('cocktails.json not found — nothing to sync.', 'error')
+        return redirect(url_for('cocktails'))
+    with open(COCKTAILS_FILE, encoding='utf-8') as f:
+        raw = json.load(f).get('cocktails', [])
+    stats = _db.import_cocktails(raw, overwrite_shared=True)
+    flash(
+        f"Sync complete — {stats['added']} added, {stats['updated']} updated, "
+        f"{stats['skipped']} skipped (personalised).",
+        'success'
+    )
+    return redirect(url_for('cocktails'))
+
+
+@app.route('/cocktails/deleted')
+def cocktails_deleted():
+    deleted = _db.get_deleted_cocktails()
+    return render_template('cocktails_deleted.html', deleted=deleted)
+
+
+@app.route('/cocktails/<cocktail_id>/restore/<int:history_id>', methods=['POST'])
+def cocktail_restore(cocktail_id, history_id):
+    cocktail = _db.restore_version(history_id)
+    if cocktail:
+        flash(f"'{cocktail['name']}' restored to a previous version.", 'success')
+        return redirect(url_for('cocktail_detail', cocktail_id=cocktail_id))
+    flash('Could not restore that version.', 'error')
     return redirect(url_for('cocktails'))
 
 
@@ -770,7 +802,7 @@ def ask_stream():
 ```"""
 
     if mode == 'find':
-        cocktails = load_cocktails()
+        cocktails = _db.get_cocktails()
         cocktail_lines = []
         for c in cocktails:
             can_make, missing = get_makeable_status(c, inventory, pantry)
@@ -800,7 +832,7 @@ Guidelines:
         return stream_claude(system, messages, max_tokens=1024)
 
     elif mode == 'riff':
-        cocktails = load_cocktails()
+        cocktails = _db.get_cocktails()
         db_lines = [f"- {c['name']}: {', '.join(i['name'] for i in c.get('ingredients', []))}"
                     for c in cocktails]
         system = f"""You are Lloid, a creative bartender. Your task: take an existing cocktail \
@@ -861,12 +893,11 @@ def ask_save():
     cocktail_data = request.get_json()
     if not cocktail_data or not cocktail_data.get('name'):
         return jsonify({'success': False, 'error': 'Invalid cocktail data'}), 400
-    cocktails = load_cocktails()
     cocktail_data.pop('save_cocktail', None)
-    cocktail_data['id'] = unique_id(cocktail_data['name'], {c['id'] for c in cocktails})
+    existing_ids = {c['id'] for c in _db.get_cocktails()}
+    cocktail_data['id'] = unique_id(cocktail_data['name'], existing_ids)
     cocktail_data['created_at'] = datetime.now().strftime('%Y-%m-%d')
-    cocktails.append(cocktail_data)
-    save_cocktails(cocktails)
+    _db.save_cocktail(cocktail_data, is_local=True)
     return jsonify({'success': True, 'id': cocktail_data['id']})
 
 

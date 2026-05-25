@@ -15,25 +15,25 @@
     <div class="nav-inner">
       <a href="{{ url_for('index') }}" class="nav-logo">Lloid</a>
       <div class="nav-links">
+        <a href="{{ url_for('cocktails') }}"
+           class="nav-link {% if request.endpoint in ['cocktails', 'cocktail_detail', 'cocktail_new', 'cocktail_edit'] %}active{% endif %}">
+          Cocktails
+        </a>
+        <a href="{{ url_for('ask') }}"
+           class="nav-link nav-ai {% if request.endpoint in ['ask', 'ask_stream', 'ask_save'] %}active{% endif %}">
+          Ask Lloid <span class="ai-tag">AI</span>
+        </a>
         <a href="{{ url_for('inventory') }}"
            class="nav-link {% if request.endpoint == 'inventory' %}active{% endif %}">
-          Inventory
+          Bottles
         </a>
         <a href="{{ url_for('pantry') }}"
            class="nav-link {% if request.endpoint in ['pantry'] %}active{% endif %}">
           Pantry
         </a>
-        <a href="{{ url_for('cocktails') }}"
-           class="nav-link {% if request.endpoint in ['cocktails', 'cocktail_detail', 'cocktail_new', 'cocktail_edit'] %}active{% endif %}">
-          Cocktails
-        </a>
         <a href="{{ url_for('bookshelf') }}"
            class="nav-link {% if request.endpoint == 'bookshelf' %}active{% endif %}">
           Bookshelf
-        </a>
-        <a href="{{ url_for('ask') }}"
-           class="nav-link nav-ai {% if request.endpoint in ['ask', 'ask_stream', 'ask_save'] %}active{% endif %}">
-          Ask Lloid <span class="ai-tag">AI</span>
         </a>
       </div>
     </div>
