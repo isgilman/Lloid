@@ -155,34 +155,76 @@ function toggleMakeable() {
   filterCocktails();
 }
 
+function toggleFilterPanel() {
+  const panel = document.getElementById('filter-panel');
+  if (!panel) return;
+  const open = panel.style.display === 'none' || panel.style.display === '';
+  panel.style.display = open ? 'block' : 'none';
+  document.getElementById('cq-filter-btn')?.classList.toggle('panel-open', open);
+}
+
+function clearFilters() {
+  document.querySelectorAll('[name="cq-tag"],[name="cq-source"],[name="cq-creator"]')
+    .forEach(el => { el.checked = false; });
+  filterCocktails();
+}
+
+function _removeFilter(type, value) {
+  const nameMap = { tag: 'cq-tag', source: 'cq-source', creator: 'cq-creator' };
+  const cb = document.querySelector(`[name="${nameMap[type]}"][value="${CSS.escape(value)}"]`);
+  if (cb) { cb.checked = false; filterCocktails(); }
+}
+
 function filterCocktails() {
-  const query  = (document.getElementById('cq-search')?.value || '').toLowerCase();
-  const source = (document.getElementById('cq-source')?.value || '');
-  const cards  = document.querySelectorAll('.cocktail-card');
-  let visible  = 0;
+  const query = (document.getElementById('cq-search')?.value || '').toLowerCase();
+
+  const selectedTags     = [...document.querySelectorAll('[name="cq-tag"]:checked')].map(el => el.value);
+  const selectedSources  = [...document.querySelectorAll('[name="cq-source"]:checked')].map(el => el.value);
+  const selectedCreators = [...document.querySelectorAll('[name="cq-creator"]:checked')].map(el => el.value);
+
+  const cards = document.querySelectorAll('.cocktail-card');
+  let visible = 0;
 
   cards.forEach(card => {
-    const name       = (card.dataset.name || '');
-    const cardSource = (card.dataset.source || '');
-    const makeable   = card.dataset.makeable === 'true';
-    const tags       = (card.dataset.tags || '');
-    const ings       = (card.dataset.ingredients || '');
+    const name        = card.dataset.name || '';
+    const cardTagsArr = (card.dataset.tags || '').split('|').filter(Boolean);
+    const cardTagsStr = card.dataset.tags || '';   // for substring text search
+    const cardSource  = card.dataset.source || '';
+    const cardCreator = (card.dataset.creator || '').toLowerCase();
+    const makeable    = card.dataset.makeable === 'true';
+    const ings        = card.dataset.ingredients || '';
 
-    const matchQuery  = !query
+    // Text search (name + tags + ingredients + creator)
+    const matchQuery = !query
       || name.includes(query)
-      || tags.includes(query)
-      || ings.includes(query);
-    const matchSource = !source || cardSource === source;
-    const matchMake   = !makeableOnly || makeable;
+      || cardTagsStr.includes(query)
+      || ings.includes(query)
+      || cardCreator.includes(query);
 
-    const show = matchQuery && matchSource && matchMake;
+    // Tag filter: card must have ≥1 of the selected tags
+    // 'tiki' also matches the legacy 'tropical' tag
+    const matchTags = selectedTags.length === 0 || selectedTags.some(st =>
+      st === 'tiki'
+        ? cardTagsArr.includes('tiki') || cardTagsArr.includes('tropical')
+        : cardTagsArr.includes(st)
+    );
+
+    // Source filter: card must match ≥1 selected source
+    const matchSource = selectedSources.length === 0 || selectedSources.includes(cardSource);
+
+    // Creator filter: card must match ≥1 selected creator (exact)
+    const matchCreator = selectedCreators.length === 0
+      || selectedCreators.some(cr => cr.toLowerCase() === cardCreator);
+
+    // Can Make toggle
+    const matchMake = !makeableOnly || makeable;
+
+    const show = matchQuery && matchTags && matchSource && matchCreator && matchMake;
     card.style.display = show ? '' : 'none';
     if (show) visible++;
   });
 
-  const empty = document.getElementById('cq-empty');
-  if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
-
+  // Count label
   const label = document.getElementById('cocktail-count-label');
   if (label) {
     const total = cards.length;
@@ -190,6 +232,48 @@ function filterCocktails() {
       ? `${total} recipe${total !== 1 ? 's' : ''}`
       : `${visible} of ${total} recipes`;
   }
+
+  const empty = document.getElementById('cq-empty');
+  if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+
+  // Sync chip visual active state
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    const cb = chip.querySelector('input[type="checkbox"]');
+    chip.classList.toggle('active', !!cb?.checked);
+  });
+
+  // Filter count badge
+  const totalActive = selectedTags.length + selectedSources.length + selectedCreators.length;
+  const badge = document.getElementById('cq-filter-count');
+  if (badge) {
+    badge.textContent = totalActive;
+    badge.style.display = totalActive > 0 ? 'inline-flex' : 'none';
+  }
+  document.getElementById('cq-filter-btn')?.classList.toggle('active', totalActive > 0);
+
+  // Active filter chips below the panel
+  _renderActiveFilterChips(selectedTags, selectedSources, selectedCreators);
+}
+
+function _renderActiveFilterChips(tags, sources, creators) {
+  const container = document.getElementById('active-filters');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const all = [
+    ...tags.map(v     => ({ type: 'tag',     value: v, label: v })),
+    ...sources.map(v  => ({ type: 'source',  value: v, label: v })),
+    ...creators.map(v => ({ type: 'creator', value: v, label: v })),
+  ];
+
+  all.forEach(({ type, value, label }) => {
+    const chip = document.createElement('span');
+    chip.className = 'active-filter-chip';
+    // escape value for safe inline onclick
+    const safe = value.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    chip.innerHTML = `${label} <button aria-label="Remove filter" onclick="_removeFilter('${type}','${safe}')">&#215;</button>`;
+    container.appendChild(chip);
+  });
 }
 
 /* ── Toast ────────────────────────────────────────────────────────────────── */
@@ -239,9 +323,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (params.get('filter') === 'makeable' && !makeableOnly) {
       toggleMakeable();
     }
-    if (params.get('source')) {
-      const sel = document.getElementById('cq-source');
-      if (sel) { sel.value = params.get('source'); filterCocktails(); }
+    // Backward-compat: ?source=... pre-checks the matching source checkbox
+    const srcParam = params.get('source');
+    if (srcParam) {
+      const cb = document.querySelector(`[name="cq-source"][value="${srcParam}"]`);
+      if (cb) {
+        cb.checked = true;
+        const panel = document.getElementById('filter-panel');
+        if (panel) panel.style.display = 'block';
+        filterCocktails();
+      }
+    } else {
+      // Run filter once to populate count label correctly on load
+      filterCocktails();
     }
   }
 

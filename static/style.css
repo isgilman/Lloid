@@ -284,6 +284,119 @@ h1, h2, h3 {
 }
 .filter-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
 .filter-toggle.active { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+.filter-toggle.panel-open { border-color: var(--border-light); }
+
+/* Filter count badge inside the Filters button */
+.filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #111;
+  border-radius: 100px;
+  font-size: 10.5px;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* Expandable filter panel */
+.filter-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 4px 20px 16px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  padding: 14px 0 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.filter-group:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+.filter-group-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-dim);
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 13px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-sec);
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+.filter-chip:hover {
+  border-color: var(--border-light);
+  color: var(--text);
+  background: rgba(255,255,255,.04);
+}
+.filter-chip input[type="checkbox"] { display: none; }
+.filter-chip.active {
+  border-color: rgba(184,145,42,.55);
+  color: var(--accent-light);
+  background: rgba(184,145,42,.1);
+}
+
+.filter-panel-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  margin-top: 14px;
+}
+
+/* Active filter chips shown below the panel */
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.active-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 13px;
+  border-radius: 100px;
+  background: rgba(184,145,42,.1);
+  border: 1px solid rgba(184,145,42,.3);
+  color: var(--accent-light);
+  font-size: 12.5px;
+}
+.active-filter-chip button {
+  background: none;
+  border: none;
+  color: inherit;
+  opacity: 0.65;
+  cursor: pointer;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1;
+}
+.active-filter-chip button:hover { opacity: 1; }
 
 .empty-filtered {
   text-align: center;
@@ -612,6 +725,12 @@ select.edit-input { padding: 5px 8px; }
   color: var(--text-dim);
   margin-top: auto;
 }
+.cocktail-card-creator {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  font-style: italic;
+  margin: 0;
+}
 
 /* ── Cocktail detail ──────────────────────────────────────────────────────── */
 .detail-header {
@@ -646,6 +765,7 @@ select.edit-input { padding: 5px 8px; }
   margin-top: 10px;
 }
 .detail-meta-item { font-size: 13px; color: var(--text-sec); }
+.detail-creator { font-style: italic; color: var(--text-dim); }
 
 .makeable-badge {
   display: flex;

@@ -11,20 +11,70 @@
     <a href="{{ url_for('cocktail_new') }}" class="btn btn-primary">+ New Cocktail</a>
   </div>
 
+  <!-- Filter bar -->
   <div class="filter-bar">
-    <input type="text" id="cq-search" class="filter-input" placeholder="Search cocktails or ingredients…" oninput="filterCocktails()">
-    <select id="cq-source" class="filter-select" onchange="filterCocktails()">
-      <option value="">All sources</option>
-      {% for src in sources %}
-        <option value="{{ src }}" {% if request.args.get('source') == src %}selected{% endif %}>{{ src }}</option>
-      {% endfor %}
-    </select>
+    <input type="text" id="cq-search" class="filter-input"
+           placeholder="Search cocktails, ingredients, or creators…"
+           oninput="filterCocktails()">
+    <button id="cq-filter-btn" class="filter-toggle" onclick="toggleFilterPanel()">
+      Filters<span id="cq-filter-count" class="filter-count" style="display:none">0</span>
+    </button>
     <button id="cq-makeable-btn" class="filter-toggle" onclick="toggleMakeable()"
             title="Show only cocktails you can make now">
       Can Make
     </button>
   </div>
 
+  <!-- Expandable filter panel -->
+  <div id="filter-panel" class="filter-panel" style="display:none">
+
+    <div class="filter-group">
+      <div class="filter-group-label">Style &amp; Type</div>
+      <div class="filter-chips">
+        {% for tag in style_tags %}
+        <label class="filter-chip">
+          <input type="checkbox" name="cq-tag" value="{{ tag.value }}" onchange="filterCocktails()">
+          {{ tag.label }}
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-label">Source</div>
+      <div class="filter-chips">
+        {% for src in sources %}
+        <label class="filter-chip">
+          <input type="checkbox" name="cq-source" value="{{ src }}" onchange="filterCocktails()">
+          {{ src }}
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if creators %}
+    <div class="filter-group">
+      <div class="filter-group-label">Creator</div>
+      <div class="filter-chips">
+        {% for creator in creators %}
+        <label class="filter-chip">
+          <input type="checkbox" name="cq-creator" value="{{ creator }}" onchange="filterCocktails()">
+          {{ creator }}
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="filter-panel-footer">
+      <button class="btn btn-ghost btn-sm" onclick="clearFilters()">Clear all filters</button>
+    </div>
+  </div>
+
+  <!-- Active filter chips -->
+  <div id="active-filters" class="active-filters"></div>
+
+  <!-- Cocktail grid -->
   <div class="cocktail-grid" id="cocktail-grid">
     {% for c in cocktails %}
     <a href="{{ url_for('cocktail_detail', cocktail_id=c.id) }}"
@@ -32,11 +82,12 @@
        data-name="{{ c.name | lower }}"
        data-source="{{ c.get('source', '') }}"
        data-makeable="{{ 'true' if c.can_make else 'false' }}"
-       data-tags="{{ c.get('tags', []) | join(' ') | lower }}"
+       data-tags="{{ c.get('tags', []) | join('|') | lower }}"
+       data-creator="{{ c.get('creator', '') }}"
        data-ingredients="{{ c.get('ingredients', []) | map(attribute='name') | join(' ') | lower }}">
       <div class="cocktail-card-top">
         <span class="cocktail-card-category">
-          {{ c.get('category', '') }}{% if c.get('premium') %} <span class="premium-dot" title="Premium cocktail">✦</span>{% endif %}
+          {{ c.get('source', '') }}{% if c.get('premium') %} <span class="premium-dot" title="Premium cocktail">✦</span>{% endif %}
         </span>
         {% if c.can_make %}
           <span class="badge badge-green">Can make</span>
@@ -54,28 +105,29 @@
         <span>{{ c.get('glass', '') }}</span>
         <span>{{ c.get('method', '') }}</span>
       </div>
+      {% if c.get('creator') %}
+      <p class="cocktail-card-creator">{{ c.creator }}{% if c.get('year') %}, {{ c.year }}{% endif %}</p>
+      {% endif %}
     </a>
     {% endfor %}
   </div>
 
-  <p class="empty-filtered" id="cq-empty" style="display:none">No cocktails match your search.</p>
+  <p class="empty-filtered" id="cq-empty" style="display:none">No cocktails match your filters.</p>
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-  // Apply URL filter on load
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('filter') === 'makeable') {
-    document.addEventListener('DOMContentLoaded', () => {
-      toggleMakeable();
-    });
-  }
-  if (urlParams.get('source')) {
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('cq-source').value = urlParams.get('source');
-      filterCocktails();
-    });
-  }
+  // Pre-check checkboxes from URL params (backward compat)
+  (function () {
+    const p = new URLSearchParams(window.location.search);
+    // ?source=Death+%26+Co.
+    const src = p.get('source');
+    if (src) {
+      const cb = document.querySelector(`[name="cq-source"][value="${CSS.escape ? src : src}"]`);
+      if (cb) { cb.checked = true; document.getElementById('filter-panel').style.display = 'block'; }
+    }
+    // ?filter=makeable handled in app.js DOMContentLoaded
+  })();
 </script>
 {% endblock %}

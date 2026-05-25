@@ -23,6 +23,11 @@
           {% if cocktail.get('glass') %}<span class="detail-meta-item">{{ cocktail.glass }}</span>{% endif %}
           {% if cocktail.get('method') %}<span class="detail-meta-item">{{ cocktail.method }}</span>{% endif %}
           {% if cocktail.get('source') %}<span class="detail-meta-item text-dim">{{ cocktail.source }}</span>{% endif %}
+          {% if cocktail.get('creator') %}
+            <span class="detail-meta-item detail-creator">
+              By {{ cocktail.creator }}{% if cocktail.get('year') %}, {{ cocktail.year }}{% endif %}
+            </span>
+          {% endif %}
         </div>
       </div>
       {% if can_make %}

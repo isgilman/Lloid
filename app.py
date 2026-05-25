@@ -3,6 +3,7 @@ import csv
 import json
 import uuid
 import re
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 from flask import (Flask, render_template, request, jsonify, redirect,
@@ -505,8 +506,42 @@ def cocktails():
     all_cocktails = load_cocktails()
     for c in all_cocktails:
         c['can_make'], c['missing'] = get_makeable_status(c, inventory, pantry)
+
     sources = sorted(set(c.get('source', '') for c in all_cocktails if c.get('source')))
-    return render_template('cocktails.html', cocktails=all_cocktails, sources=sources)
+
+    # Curated style/type tags to offer as filter chips, in display order.
+    # 'tiki' also matches the legacy 'tropical' tag.
+    STYLE_TAG_DEFS = [
+        ('classic',       'Classic'),
+        ('modern classic','Modern Classic'),
+        ('tiki',          'Tiki'),
+        ('sour',          'Sour'),
+        ('swizzle',       'Swizzle'),
+        ('julep',         'Julep'),
+        ('sling',         'Sling'),
+        ('fizz',          'Fizz'),
+        ('flip',          'Flip'),
+        ('daiquiri',      'Daiquiri'),
+        ('punch',         'Punch'),
+        ('cobbler',       'Cobbler'),
+        ('non-alcoholic', 'Non-Alcoholic'),
+    ]
+    present_tags = set()
+    for c in all_cocktails:
+        present_tags.update(t.lower() for t in c.get('tags', []))
+    if 'tropical' in present_tags:   # tiki filter covers tropical too
+        present_tags.add('tiki')
+    style_tags = [{'value': v, 'label': l} for v, l in STYLE_TAG_DEFS if v in present_tags]
+
+    # Unique creators sorted by last name (all from Death & Co.)
+    creator_counts = Counter(c.get('creator', '') for c in all_cocktails if c.get('creator'))
+    creators = sorted(creator_counts.keys(), key=lambda n: n.split()[-1] if n else '')
+
+    return render_template('cocktails.html',
+                           cocktails=all_cocktails,
+                           sources=sources,
+                           style_tags=style_tags,
+                           creators=creators)
 
 
 # Define /new before /<cocktail_id> to avoid routing conflict
