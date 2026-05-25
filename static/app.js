@@ -156,26 +156,26 @@ function toggleMakeable() {
 }
 
 function filterCocktails() {
-  const query = (document.getElementById('cq-search')?.value || '').toLowerCase();
-  const cat   = (document.getElementById('cq-category')?.value || '');
-  const cards = document.querySelectorAll('.cocktail-card');
-  let visible = 0;
+  const query  = (document.getElementById('cq-search')?.value || '').toLowerCase();
+  const source = (document.getElementById('cq-source')?.value || '');
+  const cards  = document.querySelectorAll('.cocktail-card');
+  let visible  = 0;
 
   cards.forEach(card => {
-    const name     = (card.dataset.name || '');
-    const cardCat  = (card.dataset.category || '');
-    const makeable = card.dataset.makeable === 'true';
-    const tags     = (card.dataset.tags || '');
-    const ings     = (card.dataset.ingredients || '');
+    const name       = (card.dataset.name || '');
+    const cardSource = (card.dataset.source || '');
+    const makeable   = card.dataset.makeable === 'true';
+    const tags       = (card.dataset.tags || '');
+    const ings       = (card.dataset.ingredients || '');
 
-    const matchQuery = !query
+    const matchQuery  = !query
       || name.includes(query)
       || tags.includes(query)
       || ings.includes(query);
-    const matchCat  = !cat || cardCat === cat;
-    const matchMake = !makeableOnly || makeable;
+    const matchSource = !source || cardSource === source;
+    const matchMake   = !makeableOnly || makeable;
 
-    const show = matchQuery && matchCat && matchMake;
+    const show = matchQuery && matchSource && matchMake;
     card.style.display = show ? '' : 'none';
     if (show) visible++;
   });
@@ -239,10 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (params.get('filter') === 'makeable' && !makeableOnly) {
       toggleMakeable();
     }
-    if (params.get('category')) {
-      const sel = document.getElementById('cq-category');
-      if (sel) sel.value = params.get('category');
-      filterCocktails();
+    if (params.get('source')) {
+      const sel = document.getElementById('cq-source');
+      if (sel) { sel.value = params.get('source'); filterCocktails(); }
     }
   }
 

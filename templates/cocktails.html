@@ -13,10 +13,10 @@
 
   <div class="filter-bar">
     <input type="text" id="cq-search" class="filter-input" placeholder="Search cocktails or ingredients…" oninput="filterCocktails()">
-    <select id="cq-category" class="filter-select" onchange="filterCocktails()">
-      <option value="">All categories</option>
-      {% for cat in categories %}
-        <option value="{{ cat }}" {% if request.args.get('category') == cat %}selected{% endif %}>{{ cat }}</option>
+    <select id="cq-source" class="filter-select" onchange="filterCocktails()">
+      <option value="">All sources</option>
+      {% for src in sources %}
+        <option value="{{ src }}" {% if request.args.get('source') == src %}selected{% endif %}>{{ src }}</option>
       {% endfor %}
     </select>
     <button id="cq-makeable-btn" class="filter-toggle" onclick="toggleMakeable()"
@@ -30,7 +30,7 @@
     <a href="{{ url_for('cocktail_detail', cocktail_id=c.id) }}"
        class="cocktail-card"
        data-name="{{ c.name | lower }}"
-       data-category="{{ c.get('category', '') }}"
+       data-source="{{ c.get('source', '') }}"
        data-makeable="{{ 'true' if c.can_make else 'false' }}"
        data-tags="{{ c.get('tags', []) | join(' ') | lower }}"
        data-ingredients="{{ c.get('ingredients', []) | map(attribute='name') | join(' ') | lower }}">
@@ -71,8 +71,11 @@
       toggleMakeable();
     });
   }
-  if (urlParams.get('category')) {
-    document.getElementById('cq-category').value = urlParams.get('category');
+  if (urlParams.get('source')) {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('cq-source').value = urlParams.get('source');
+      filterCocktails();
+    });
   }
 </script>
 {% endblock %}

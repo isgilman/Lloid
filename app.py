@@ -505,8 +505,8 @@ def cocktails():
     all_cocktails = load_cocktails()
     for c in all_cocktails:
         c['can_make'], c['missing'] = get_makeable_status(c, inventory, pantry)
-    cats = sorted(set(c.get('category', '') for c in all_cocktails if c.get('category')))
-    return render_template('cocktails.html', cocktails=all_cocktails, categories=cats)
+    sources = sorted(set(c.get('source', '') for c in all_cocktails if c.get('source')))
+    return render_template('cocktails.html', cocktails=all_cocktails, sources=sources)
 
 
 # Define /new before /<cocktail_id> to avoid routing conflict
