@@ -1594,26 +1594,31 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
 }
 
 @media (max-width: 600px) {
-  /* Two-row nav: logo on row 1, links centered on row 2 */
+  /* Logo left column spanning full height; links wrap in right column */
   .navbar { height: auto; }
   .nav-inner {
-    flex-wrap: wrap;
-    padding: 10px 12px 6px;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    padding: 8px 12px;
     gap: 0;
   }
   .nav-logo {
-    width: 100%;
-    padding-bottom: 4px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0 14px 0 0;
+    border-right: 1px solid var(--border);
   }
   .nav-links {
-    width: 100%;
-    margin-left: 0;
-    justify-content: center;
+    flex: 1;
+    margin-left: 10px;
     flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
     gap: 2px;
-    padding-bottom: 4px;
+    padding: 4px 0;
   }
-  .nav-link { padding: 5px 9px; font-size: 12px; }
+  .nav-link { padding: 5px 8px; font-size: 12px; }
   .home-title { font-size: 48px; }
   .stats-row { grid-template-columns: 1fr; }
   .detail-title { font-size: 32px; }
