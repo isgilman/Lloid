@@ -3,6 +3,7 @@ import csv
 import json
 import uuid
 import re
+import random
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -545,6 +546,9 @@ def cocktails():
     for c in all_cocktails:
         c['can_make'], c['missing'] = get_makeable_status(c, inventory, pantry)
 
+    # Default display order is random; client-side sort button handles A→Z
+    random.shuffle(all_cocktails)
+
     sources = sorted(set(c.get('source', '') for c in all_cocktails if c.get('source')))
 
     present_tags = set()
@@ -703,6 +707,15 @@ BOOKS = [
         'description': 'The complete cocktail program from the NoMad Hotel\'s celebrated bar, '
                        'including original recipes and classics reimagined.',
         'authors':     'Leo Robitschek',
+    },
+    {
+        'title':       'Brokedown Palace',
+        'subtitle':    'I Need a Miracle',
+        'source':      'Brokedown Palace',
+        'filename':    'brokedown-palace.pdf',
+        'description': 'A personal cocktail book — originals created, adapted, and lovingly '
+                       'recreated from memorable drinks over the years.',
+        'authors':     'Ian Gilman',
     },
 ]
 

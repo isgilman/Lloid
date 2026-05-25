@@ -144,6 +144,32 @@ function filterInventory() {
   if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
 }
 
+/* ── Cocktails: sort ─────────────────────────────────────────────────────── */
+
+let _savedOrder = null;   // null = currently in random/default order
+
+function toggleSort() {
+  const grid = document.getElementById('cocktail-grid');
+  if (!grid) return;
+  const btn = document.getElementById('cq-sort-btn');
+
+  if (_savedOrder === null) {
+    // Switch to A→Z: save current DOM order, then sort all cards by name
+    const cards = [...grid.querySelectorAll('.cocktail-card')];
+    _savedOrder = cards;
+    cards
+      .slice()
+      .sort((a, b) => (a.dataset.name || '').localeCompare(b.dataset.name || ''))
+      .forEach(c => grid.appendChild(c));
+    if (btn) { btn.classList.add('active'); btn.textContent = 'A → Z ✓'; }
+  } else {
+    // Restore random order
+    _savedOrder.forEach(c => grid.appendChild(c));
+    _savedOrder = null;
+    if (btn) { btn.classList.remove('active'); btn.textContent = 'A → Z'; }
+  }
+}
+
 /* ── Cocktails: filter & search ──────────────────────────────────────────── */
 
 let makeableOnly = false;
