@@ -100,7 +100,7 @@
       "id": "passionfruit-syrup",
       "name": "Passionfruit Syrup",
       "description": "house-made syrup",
-      "recipe": "1:1 passionfruit purée to 2:1 simple syrup by volume",
+      "recipe": "1:1 passionfruit purée to 2:1 simple syrup by volume; strain through coffee filter to clarify",
       "in_stock": true,
       "created_at": "2026-05-25"
     },
@@ -123,8 +123,8 @@
     {
       "id": "coconut-syrup",
       "name": "Coconut Syrup",
-      "description": "house-made syrup",
-      "recipe": "2:1 simple syrup made with equal parts coconut water and water; toast unsweetened coconut flakes, steep, strain",
+      "description": "a light coconut syrup",
+      "recipe": "1:1 coconut water to cane sugar (or coconut sugar) (v/m)",
       "in_stock": true,
       "created_at": "2026-05-25"
     },
@@ -156,7 +156,7 @@
       "id": "ceylon-cinnamon-syrup",
       "name": "Ceylon Cinnamon Syrup",
       "description": "house-made syrup",
-      "recipe": "2:1 simple syrup infused with Ceylon cinnamon sticks; steep 24 hours",
+      "recipe": "1:1 simple syrup infused with Ceylon cinnamon sticks; steep 24 hours",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -268,7 +268,7 @@
       "id": "cassia-cinnamon-syrup",
       "name": "Cassia Cinnamon Syrup",
       "description": "house-made syrup",
-      "recipe": "2:1 simple syrup infused with cassia cinnamon sticks; steep 24 hours",
+      "recipe": "1:1 turbinado syrup infused with cassia cinnamon sticks; steep 24 hours",
       "in_stock": true,
       "created_at": "2026-05-25"
     },
@@ -308,7 +308,7 @@
       "id": "grapefruit-oleo-saccharum",
       "name": "Grapefruit Oleo Saccharum",
       "description": "house-made oleo saccharum",
-      "recipe": "Grapefruit peels packed with sugar; macerate 1–2 hours until syrupy, strain peels",
+      "recipe": "Macerate equal mass grapefruit peels and cane sugar; let sit at room temperature, shaking occasionally, until sugar is completely dissolved' strain through nut milk bag or coffee filter to clarify",
       "in_stock": true,
       "created_at": "2026-05-25"
     },
@@ -318,6 +318,22 @@
       "description": "house-made preparation",
       "recipe": "Reduced roasted chicken stock; roast chicken bones, simmer with aromatics 4–6 hours, reduce to glaze consistency",
       "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "banana-oleo-saccharum",
+      "name": "Banana oleo saccharum",
+      "description": "a rich banana syrup",
+      "recipe": "Macerate equal mass banana peels and cane sugar; let sit at room temperature, shaking occasionally, until sugar is completely dissolved' strain through nut milk bag or coffee filter to clarify",
+      "in_stock": true,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "lime-oleo-saccharum",
+      "name": "Lime oleo saccharum",
+      "description": "a rich lime syrup",
+      "recipe": "Macerate equal mass lime peels and cane sugar; let sit at room temperature, shaking occasionally, until sugar is completely dissolved' strain through nut milk bag or coffee filter to clarify",
+      "in_stock": true,
       "created_at": "2026-05-25"
     }
   ]
