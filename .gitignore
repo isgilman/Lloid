@@ -219,3 +219,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Book PDFs (large files, not tracked in git)
+static/books/

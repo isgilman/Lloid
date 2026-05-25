@@ -609,6 +609,42 @@ def stream_claude(system, messages, max_tokens=2048):
     )
 
 
+# ── Routes: Bookshelf ─────────────────────────────────────────────────────────
+
+BOOKS = [
+    {
+        'title':       'Death & Co',
+        'subtitle':    'Modern Classic Cocktails',
+        'source':      'Death & Co.',
+        'filename':    'death-and-co.pdf',
+        'description': 'The definitive guide to Death & Co, the celebrated New York cocktail bar. '
+                       'Features hundreds of original recipes spanning the bar\'s history from 2006.',
+        'authors':     'David Kaplan, Nick Fauchald, Alex Day',
+    },
+    {
+        'title':       'The NoMad Cocktail Book',
+        'subtitle':    '',
+        'source':      'NoMad Bar',
+        'filename':    'nomad-bar.pdf',
+        'description': 'The complete cocktail program from the NoMad Hotel\'s celebrated bar, '
+                       'including original recipes and classics reimagined.',
+        'authors':     'Leo Robitschek',
+    },
+]
+
+@app.route('/bookshelf')
+def bookshelf():
+    import os
+    books_dir = os.path.join(app.static_folder, 'books')
+    books = []
+    for b in BOOKS:
+        path = os.path.join(books_dir, b['filename'])
+        b = dict(b)
+        b['available'] = os.path.exists(path)
+        books.append(b)
+    return render_template('bookshelf.html', books=books)
+
+
 # ── Routes: Ask Lloid ─────────────────────────────────────────────────────────
 
 @app.route('/ask')
