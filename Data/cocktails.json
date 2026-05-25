@@ -159,7 +159,7 @@
     },
     {
       "name": "Ti' Punch",
-      "category": "Classic",
+      "category": "Tiki",
       "glass": "Rocks",
       "method": "Built",
       "ingredients": [
@@ -330,7 +330,8 @@
         "classic",
         "shaken",
         "gin",
-        "equal parts"
+        "equal parts",
+        "sour"
       ],
       "created_at": "2024-01-01"
     },
@@ -462,7 +463,8 @@
         "tiki",
         "shaken",
         "rum",
-        "tropical"
+        "tropical",
+        "classic"
       ],
       "created_at": "2024-01-01"
     },
@@ -630,7 +632,8 @@
         "shaken",
         "tequila",
         "agave",
-        "sour"
+        "sour",
+        "classic"
       ],
       "created_at": "2024-01-01"
     },
@@ -903,7 +906,8 @@
         "classic",
         "shaken",
         "gin",
-        "equal parts"
+        "equal parts",
+        "sour"
       ],
       "created_at": "2024-01-01"
     },
@@ -4008,7 +4012,8 @@
         "rum",
         "grassy",
         "savory",
-        "shaken"
+        "shaken",
+        "sour"
       ],
       "created_at": "2026-05-24"
     },
@@ -4783,7 +4788,8 @@
         "cassis",
         "highball",
         "shaken",
-        "refreshing"
+        "refreshing",
+        "classic"
       ],
       "created_at": "2026-05-24"
     },
@@ -5496,7 +5502,8 @@
         "watermelon",
         "fruity",
         "shaken",
-        "refreshing"
+        "refreshing",
+        "sour"
       ],
       "created_at": "2026-05-24"
     },
@@ -8229,7 +8236,9 @@
       "garnish": "",
       "instructions": "Combine all the ingredients except the egg white in a cocktail tin. Add the egg white to the tin cover and dry shake to emulsify the egg white into the cocktail. Fill the tin with ice cover again and shake vigorously. Strain the cocktail into the coupe.",
       "notes": "Creator: Lacy Hawkins",
-      "tags": [],
+      "tags": [
+        "sour"
+      ],
       "created_at": "2026-05-25"
     },
     {
@@ -10619,7 +10628,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Fill the tin with 1¼ inch ice cubes. Cover and shake. Strain the cocktail into a chilled coupe.",
       "notes": "Creator: Leo Robitschek",
       "tags": [
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ],
       "created_at": "2026-05-25"
     },
@@ -11531,7 +11541,9 @@
       "garnish": "",
       "instructions": "Combine all the ingredients in a cocktail tin. Place a 2 inch ice cube in a double rocks glass. Fill the tin with ice cover and shake. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Leo Robitschek",
-      "tags": [],
+      "tags": [
+        "sour"
+      ],
       "created_at": "2026-05-25"
     },
     {
@@ -12779,7 +12791,9 @@
       "garnish": "",
       "instructions": "In a cocktail tin muddle the strawberry then add all the remaining ingredients. Place a 2 inch ice cube in a double rocks glass. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Leo Robitschek",
-      "tags": [],
+      "tags": [
+        "sour"
+      ],
       "created_at": "2026-05-25"
     },
     {
@@ -14978,7 +14992,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Seal and dry shake to emulsify the egg white into the cocktail. Carefully open the tin and fill with 1¼ inch ice cubes. Seal it again and shake vigorously. Strain the cocktail into a chilled coupe using a hawthorne strainer and a fine tea strainer. Once the egg white settles use a Japanese bitters dasher to carefully dot the Angostura bitters around the rim of the glass. Use a cocktail pick to connect the dots into a half circle.",
       "notes": "",
       "tags": [
-        "classic"
+        "classic",
+        "sour"
       ],
       "created_at": "2026-05-25"
     },
@@ -15013,7 +15028,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Seal and dry shake to emulsify the egg white into the cocktail. Carefully open the tin and fill with 1¼ inch ice cubes. Seal it again and shake vigorously. Strain the cocktail into a chilled coupe using a hawthorne strainer and a fine tea strainer. Once the egg white settles use a Japanese bitters dasher to carefully dot the Peychaud's bitters around the rim of the glass. Use a cocktail pick to connect the dots into a half circle.",
       "notes": "",
       "tags": [
-        "classic"
+        "classic",
+        "sour"
       ],
       "created_at": "2026-05-25"
     },
@@ -15395,7 +15411,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the Peychaud's bitters. Cover and dry shake vigorously. Then fill the tin with ice cover and shake again. Strain the cocktail into a coupe. Once the egg white settles use a Japanese bitters dasher to carefully add several drops of Peychaud's bitters around the rim of the glass. Use a cocktail pick to connect the dots of bitters into a half circle.",
       "notes": "",
       "tags": [
-        "classic"
+        "classic",
+        "sour"
       ],
       "created_at": "2026-05-25"
     },
@@ -15484,7 +15501,8 @@
       "notes": "",
       "tags": [
         "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ],
       "created_at": "2026-05-25"
     },
@@ -15908,7 +15926,8 @@
       "notes": "",
       "tags": [
         "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ],
       "created_at": "2026-05-25"
     },
@@ -16167,7 +16186,8 @@
       "instructions": "Combine all the ingredients except the pineapple fronds in a cocktail tin. Place a 2 inch ice cube in a double rocks glass. Fill the cocktail tin with ice. Cover and shake. Strain the cocktail into the double rocks glass. Garnish with the pineapple fronds placed along the back of the glass.",
       "notes": "",
       "tags": [
-        "classic"
+        "classic",
+        "tiki"
       ],
       "created_at": "2026-05-25"
     },
@@ -16232,7 +16252,8 @@
       "instructions": "Combine all the ingredients except the mint in a cocktail tin. Fill a tiki mug with crushed ice. Add three 1¼ inch ice cubes to the tin cover and whip. Strain the cocktail into the tiki mug and top with additional crushed ice. Garnish with the mint plouche.",
       "notes": "",
       "tags": [
-        "classic"
+        "classic",
+        "tiki"
       ],
       "created_at": "2026-05-25"
     },
@@ -16717,7 +16738,8 @@
       "instructions": "Combine all the ingredients except the pineapple fronds and bitters in a cocktail tin. Fill a Belgian glass with crushed ice. Add three 1¼ inch ice cubes to the tin cover and whip. Strain the cocktail into the Belgian glass and top with additional crushed ice. Garnish with the pineapple fronds inserted in a fan shape along the back of the glass and then the bitters.",
       "notes": "",
       "tags": [
-        "classic"
+        "classic",
+        "tiki"
       ],
       "created_at": "2026-05-25"
     },
@@ -16765,7 +16787,8 @@
       "notes": "",
       "tags": [
         "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ],
       "created_at": "2026-05-25"
     },
@@ -16938,7 +16961,8 @@
       "instructions": "Squeeze the lime wedges into a jigger and then fill the jigger with lime juice to get a heavy ¼ ounce. In a cocktail tin combine the lime juice lime rinds and remaining ingredients except the garnishes. Fill a snifter with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the snifter and top with additional crushed ice. Garnish with the orange wheel and pineapple fronds.",
       "notes": "",
       "tags": [
-        "classic"
+        "classic",
+        "tiki"
       ],
       "created_at": "2026-05-25"
     },
@@ -17039,7 +17063,8 @@
       "notes": "",
       "tags": [
         "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ],
       "created_at": "2026-05-25"
     },
@@ -17163,7 +17188,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a skull glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip vigorously. Strain the cocktail into the skull glass using a hawthorne strainer and top with additional crushed ice. Insert two straws into the glass. From the front center of the skull garnish with a lime wheel lemon wheel and orange half wheel on each side going toward the back. Place the pineapple top in the center back side of the skull.",
       "notes": "",
       "tags": [
-        "classic"
+        "classic",
+        "tiki"
       ],
       "created_at": "2026-05-25"
     },
@@ -17263,7 +17289,8 @@
       "instructions": "In a cocktail tin muddle the lime wedges. Strain the lime juice into a jigger to measure ¼ ounce and then pour the juice back into the tin discarding the rest. Add the cardamom pods to the tin and lightly muddle. Add the remaining ingredients except the club soda and beet juice. Fill a highball glass with crushed ice. Add three 1¼ inch cubes to the tin. Cover and shake. Add the club soda to the tin. Strain the cocktail into the highball glass. Add more crushed ice to the glass and float the beet juice on top.",
       "notes": "Creator: Matthew Hunter and Pietro Collina",
       "tags": [
-        "non-alcoholic"
+        "non-alcoholic",
+        "sour"
       ],
       "created_at": "2026-05-25"
     },
@@ -17988,7 +18015,8 @@
       "instructions": "Stir all the ingredients over ice, then strain into a rocks glass. Garnish with the lemon twist.",
       "created_at": "2026-05-25",
       "tags": [
-        "classic"
+        "classic",
+        "sour"
       ]
     },
     {
@@ -18019,7 +18047,8 @@
       "instructions": "Shake all the ingredients with ice, then strain into a coupe. Garnish with the",
       "created_at": "2026-05-25",
       "tags": [
-        "classic"
+        "classic",
+        "sour"
       ]
     },
     {
@@ -18320,7 +18349,8 @@
       "instructions": "Shake all the ingredients with ice, then strain into a coupe. Garnish with the lime wedge.",
       "created_at": "2026-05-25",
       "tags": [
-        "classic"
+        "classic",
+        "sour"
       ]
     },
     {
@@ -18469,7 +18499,8 @@
       "instructions": "Dry shake all the ingredients (except the club soda), then shake again with ice. Double strain into a fizz glass and top with club soda. No garnish.",
       "created_at": "2026-05-25",
       "tags": [
-        "classic"
+        "classic",
+        "sour"
       ]
     },
     {
@@ -18957,7 +18988,8 @@
       "instructions": "Short shake all the ingredients with 3 ice cubes, then strain into a highball glass filled with ice cubes. Garnish with the pineapple and cherry flag.",
       "created_at": "2026-05-25",
       "tags": [
-        "classic"
+        "classic",
+        "sour"
       ]
     },
     {
@@ -19203,7 +19235,6 @@
       "creator": "Alex Day",
       "year": "2008",
       "tags": [
-        "classic",
         "fizz"
       ]
     },
@@ -19234,7 +19265,6 @@
       "creator": "Joaquin Simo",
       "year": "2009",
       "tags": [
-        "classic",
         "sling"
       ]
     },
@@ -19270,9 +19300,7 @@
       "created_at": "2026-05-25",
       "creator": "Tyson Buhler",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "frisco-club",
@@ -19303,9 +19331,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "gin-hound",
@@ -19333,9 +19359,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "good-humor",
@@ -19375,9 +19399,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "gypsy-eyes",
@@ -19411,9 +19433,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "kew-gardens-cooler",
@@ -19438,9 +19458,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "mortal-enemy",
@@ -19474,9 +19492,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "muddled-mission",
@@ -19504,9 +19520,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "overhead-smash",
@@ -19553,7 +19567,6 @@
       "creator": "Joaquin Simo",
       "year": "2011",
       "tags": [
-        "classic",
         "smash"
       ]
     },
@@ -19589,9 +19602,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "pink-flag",
@@ -19625,9 +19636,7 @@
       "created_at": "2026-05-25",
       "creator": "Eryn Reece",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "queen-palm",
@@ -19664,9 +19673,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "ramble",
@@ -19694,9 +19701,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "rigadoon",
@@ -19727,9 +19732,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "the-risk-pool",
@@ -19760,9 +19763,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "strange-brew",
@@ -19793,9 +19794,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sunset-gun",
@@ -19826,9 +19825,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "tenement-yard",
@@ -19856,9 +19853,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "tom-bomb",
@@ -19886,9 +19881,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "waterloo-sunset",
@@ -19925,9 +19918,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "botany-of-desire",
@@ -19961,9 +19952,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cynartown",
@@ -19988,9 +19977,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "dick-brautigan",
@@ -20018,9 +20005,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "european-union",
@@ -20051,9 +20036,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "gonzalez",
@@ -20081,9 +20064,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "hostage-situation",
@@ -20117,9 +20098,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "howlin-at-the-moon",
@@ -20150,9 +20129,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "imperial-march",
@@ -20183,9 +20160,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "jesper-lind",
@@ -20216,9 +20191,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "the-joy-division",
@@ -20246,9 +20219,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "key-party",
@@ -20276,9 +20247,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "le-bateleur",
@@ -20309,9 +20278,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "le-subtil",
@@ -20336,9 +20303,7 @@
       "created_at": "2026-05-25",
       "creator": "Toby Cecchini",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "light-and-day",
@@ -20369,9 +20334,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "lucino-s-delight",
@@ -20399,9 +20362,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2007",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "mainland",
@@ -20429,9 +20390,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "may-fair",
@@ -20468,9 +20427,7 @@
       "created_at": "2026-05-25",
       "creator": "Eryn Reece",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "mexigin-martini",
@@ -20498,9 +20455,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "the-monroe",
@@ -20534,9 +20489,7 @@
       "created_at": "2026-05-25",
       "creator": "Scott Teague",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "moon-cocktail",
@@ -20567,9 +20520,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "night-watch",
@@ -20600,9 +20551,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sentimental-journey",
@@ -20627,9 +20576,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "summer-shack",
@@ -20663,9 +20610,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sure-shot",
@@ -20699,9 +20644,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "wooden-ship",
@@ -20732,9 +20675,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "yeomen-warder",
@@ -20762,9 +20703,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "18th-century",
@@ -20792,9 +20731,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "booya-cachaga",
@@ -20828,9 +20765,7 @@
       "created_at": "2026-05-25",
       "creator": "Scott Teague",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "caribbean-shrub",
@@ -20858,9 +20793,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "company-buck",
@@ -20895,7 +20828,6 @@
       "creator": "Phil Ward",
       "year": "2007",
       "tags": [
-        "classic",
         "buck"
       ]
     },
@@ -20931,9 +20863,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "get-lucky",
@@ -20955,9 +20885,7 @@
       "created_at": "2026-05-25",
       "creator": "Scott Teague",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "the-gift-shop",
@@ -20991,9 +20919,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "the-great-pretender",
@@ -21024,9 +20950,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "the-green-mile",
@@ -21060,9 +20984,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "julius-orange",
@@ -21096,9 +21018,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "kerala",
@@ -21135,9 +21055,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "koko-b-ware",
@@ -21177,9 +21095,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "patois-punch",
@@ -21214,7 +21130,6 @@
       "creator": "Joaquin Simo",
       "year": "2009",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -21250,9 +21165,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2010",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sea-83",
@@ -21280,9 +21193,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "seersucker",
@@ -21307,9 +21218,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sling-of-aphrodite",
@@ -21341,7 +21250,6 @@
       "creator": "Joaquin Simo",
       "year": "2009",
       "tags": [
-        "classic",
         "sling"
       ]
     },
@@ -21383,9 +21291,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "angies-secret",
@@ -21410,9 +21316,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "arrack-strap",
@@ -21449,9 +21353,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "bumboo",
@@ -21485,9 +21387,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cobra-verde",
@@ -21515,9 +21415,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cortado",
@@ -21554,9 +21452,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "eagleeye-cherry",
@@ -21617,9 +21513,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "east-india-trading-co",
@@ -21647,9 +21541,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "hadleys-tears",
@@ -21683,9 +21575,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "hispaniola",
@@ -21713,9 +21603,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "howl-on-the-hill",
@@ -21743,9 +21631,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "midnight-mass",
@@ -21773,9 +21659,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "old-ironsides",
@@ -21806,9 +21690,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "passing-aden",
@@ -21839,9 +21721,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "pina-colada-deconstruction",
@@ -21873,7 +21753,7 @@
       "creator": "Joaquin Simo",
       "year": "2008",
       "tags": [
-        "classic"
+        "tiki"
       ]
     },
     {
@@ -21905,9 +21785,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "rock-paper-scissors",
@@ -21944,9 +21822,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "velvet-warhol",
@@ -21974,9 +21850,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "aka-cobbler",
@@ -22046,9 +21920,7 @@
       "created_at": "2026-05-25",
       "creator": "Jason Littrell",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "camp-council",
@@ -22079,9 +21951,7 @@
       "created_at": "2026-05-25",
       "creator": "Jason Littrell",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "chingon",
@@ -22112,9 +21982,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cinder",
@@ -22148,9 +22016,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cinnamon-girl",
@@ -22187,9 +22053,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "dhalgren",
@@ -22220,9 +22084,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "dos-besitos",
@@ -22256,9 +22118,7 @@
       "created_at": "2026-05-25",
       "creator": "Scott Teague",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "el-companero",
@@ -22298,9 +22158,7 @@
       "created_at": "2026-05-25",
       "creator": "Jason Littrell",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "espadin-queen",
@@ -22337,9 +22195,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "flor-de-jalisco",
@@ -22367,9 +22223,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "fresa-brava",
@@ -22397,9 +22251,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "gilda-cocktail",
@@ -22427,9 +22279,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "glandula-del-mono",
@@ -22460,9 +22310,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "golden-beautiful",
@@ -22496,9 +22344,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "head-spin",
@@ -22526,9 +22372,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "insandiaby",
@@ -22556,9 +22400,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "la-valentina",
@@ -22592,9 +22434,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "los-amargos",
@@ -22625,9 +22465,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "pinche-chivo",
@@ -22658,9 +22496,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "short-rib",
@@ -22688,9 +22524,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "silver-monk",
@@ -22727,9 +22561,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2007",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "single-origin",
@@ -22760,9 +22592,7 @@
       "created_at": "2026-05-25",
       "creator": "Tyson Buhler",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "smoked-horchata",
@@ -22793,9 +22623,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "southern-exposure",
@@ -22829,9 +22657,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "spicy-paloma",
@@ -22862,9 +22688,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "st-matilda",
@@ -22892,9 +22716,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2007",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "tommy-and-the-rondels",
@@ -22934,9 +22756,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "ty-cobbler",
@@ -22965,7 +22785,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "cobbler"
       ]
     },
@@ -23001,9 +22820,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "alta-california",
@@ -23109,9 +22926,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "dale-cooper",
@@ -23142,9 +22957,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "green-and-red",
@@ -23169,9 +22982,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "imaginary-grace",
@@ -23208,9 +23019,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "last-train-to-oaxaca",
@@ -23238,9 +23047,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "nittygritty",
@@ -23277,9 +23084,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "perfect-crime",
@@ -23310,9 +23115,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "prima-china",
@@ -23343,9 +23146,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cherry-tomato",
@@ -23379,9 +23180,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "saramago",
@@ -23415,9 +23214,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sergio-leone",
@@ -23445,9 +23242,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "shattered-glasser",
@@ -23484,9 +23279,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "spaghetti-western",
@@ -23514,9 +23307,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "spanish-caravan",
@@ -23550,9 +23341,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "te-amo",
@@ -23589,9 +23378,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "terrible-love",
@@ -23613,9 +23400,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "vipera",
@@ -23640,9 +23425,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "yama-blanca",
@@ -23670,9 +23453,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "isth-century",
@@ -23700,9 +23481,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "banks-of-islay",
@@ -23730,9 +23509,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "blazing-saddles",
@@ -23763,9 +23540,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "blown-rose",
@@ -23796,9 +23571,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "blue-run-sling",
@@ -23833,7 +23606,6 @@
       "creator": "Joaquin Simo",
       "year": "2009",
       "tags": [
-        "classic",
         "sling"
       ]
     },
@@ -23863,9 +23635,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "crane-kick",
@@ -23899,9 +23669,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "dangerous-liaisons",
@@ -23932,9 +23700,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "deadpan-fix",
@@ -23969,7 +23735,6 @@
       "creator": "Jessica Gonzalez",
       "year": "2011",
       "tags": [
-        "classic",
         "fix"
       ]
     },
@@ -24008,9 +23773,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "double-fillup",
@@ -24041,9 +23804,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "eye-of-the-torino",
@@ -24089,9 +23850,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "fix-me-up",
@@ -24129,7 +23888,6 @@
       "creator": "Thomas Waugh",
       "year": "2009",
       "tags": [
-        "classic",
         "fix"
       ]
     },
@@ -24162,9 +23920,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "honshu-punch",
@@ -24202,7 +23958,6 @@
       "creator": "Thomas Waugh",
       "year": "2009",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -24235,9 +23990,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "monongahela-mule",
@@ -24266,7 +24019,6 @@
       "creator": "Phil Ward",
       "year": "2007",
       "tags": [
-        "classic",
         "buck"
       ]
     },
@@ -24290,9 +24042,7 @@
       "created_at": "2026-05-25",
       "creator": "Eryn Reece",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "paddy-melt",
@@ -24320,9 +24070,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "petes-word",
@@ -24350,9 +24098,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "scotch-lady",
@@ -24386,9 +24132,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "straw-dog",
@@ -24419,9 +24163,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "swearengen-sling",
@@ -24453,7 +24195,6 @@
       "creator": "Brian Miller",
       "year": "2009",
       "tags": [
-        "classic",
         "sling"
       ]
     },
@@ -24492,9 +24233,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "vampire-blues",
@@ -24528,9 +24267,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "vejk-sling",
@@ -24565,7 +24302,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "sling"
       ]
     },
@@ -24604,9 +24340,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "whirling-tiger",
@@ -24634,9 +24368,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "bale",
@@ -24723,9 +24455,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "buffalo-soldier",
@@ -24747,9 +24477,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "carroll-gardens",
@@ -24780,9 +24508,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "coffee-and-cigarettes",
@@ -24810,9 +24536,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cure-for-pain",
@@ -24846,9 +24570,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "the-dangerous-summer",
@@ -24879,9 +24601,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "faithful-scotsman",
@@ -24912,9 +24632,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "four-in-hand",
@@ -24948,9 +24666,7 @@
       "created_at": "2026-05-25",
       "creator": "Scott Teague",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "la-dolce-vita",
@@ -24975,9 +24691,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "la-viaa",
@@ -25005,9 +24719,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "scotch-dram",
@@ -25035,9 +24747,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "shruffs-end",
@@ -25065,9 +24775,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "st-columbus-rill",
@@ -25095,9 +24803,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sweet-and-vicious",
@@ -25128,9 +24834,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "tea-in-the-sahara",
@@ -25155,9 +24859,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "trembling-bell",
@@ -25191,9 +24893,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "wicked-kiss",
@@ -25224,9 +24924,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2007",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "banana-cognac",
@@ -25328,9 +25026,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "ginger-snap",
@@ -25364,9 +25060,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "golden-gate",
@@ -25397,9 +25091,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "heartshaped-box",
@@ -25433,9 +25125,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "ho-pollo",
@@ -25469,9 +25159,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "jokers-wild",
@@ -25508,9 +25196,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "little-birdy",
@@ -25541,9 +25227,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "little-miss-annabelle",
@@ -25577,9 +25261,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "maggie-smith",
@@ -25607,9 +25289,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "morning-buzz",
@@ -25646,9 +25326,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "mucho-picchu",
@@ -25679,9 +25357,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "peachy-pachacut",
@@ -25715,9 +25391,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "poire-mans-cobbler",
@@ -25743,7 +25417,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "cobbler"
       ]
     },
@@ -25780,7 +25453,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "sling"
       ]
     },
@@ -25817,7 +25489,7 @@
       "creator": "Joaquin Simo",
       "year": "2009",
       "tags": [
-        "classic"
+        "sour"
       ]
     },
     {
@@ -25852,9 +25524,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "black-magic",
@@ -25947,9 +25617,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "jarnac-shrub",
@@ -25977,9 +25645,7 @@
       "created_at": "2026-05-25",
       "creator": "Toby Cecchini",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "legend",
@@ -26007,9 +25673,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "les-verts-monts",
@@ -26049,9 +25713,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "lilywhacker",
@@ -26079,9 +25741,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "little-sparrow",
@@ -26109,9 +25769,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "martica",
@@ -26142,9 +25800,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2007",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "night-owl",
@@ -26172,9 +25828,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sades-taboo",
@@ -26202,9 +25856,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sidewinder",
@@ -26238,9 +25890,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "soul-clench",
@@ -26271,9 +25921,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sweet-hereafter",
@@ -26307,9 +25955,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "widows-laurel",
@@ -26340,9 +25986,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "the-bittenbender",
@@ -26367,9 +26011,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "bitter-french",
@@ -26403,9 +26045,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "boomin-granny",
@@ -26436,9 +26076,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "calva-dorsa-royale",
@@ -26466,9 +26104,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cider-house-rules",
@@ -26505,9 +26141,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "dark-n-bubbly",
@@ -26535,9 +26169,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "dick-and-jane",
@@ -26571,9 +26203,7 @@
       "created_at": "2026-05-25",
       "creator": "Toby Cecchini",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "doc-daneeka-royale",
@@ -26607,9 +26237,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "dragon-lily",
@@ -26637,9 +26265,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "drunken-skull",
@@ -26673,9 +26299,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "elder-fashion-royale",
@@ -26703,9 +26327,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "fair-lady",
@@ -26736,9 +26358,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "fancy-holland-royale",
@@ -26769,9 +26389,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "flaquita",
@@ -26808,9 +26426,7 @@
       "created_at": "2026-05-25",
       "creator": "Jessica Gonzalez",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "green-flash",
@@ -26841,9 +26457,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "irish-seelbach",
@@ -26874,9 +26488,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "iron-chancellor",
@@ -26901,9 +26513,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "jane-rose",
@@ -26934,9 +26544,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "julien-sorel",
@@ -26970,9 +26578,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "lilys-cartel",
@@ -27006,9 +26612,7 @@
       "created_at": "2026-05-25",
       "creator": "Eryn Reece",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "live-free-or-die",
@@ -27039,9 +26643,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "mig-royale",
@@ -27072,9 +26674,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2007",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "miss-behavin",
@@ -27105,9 +26705,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "morfeo",
@@ -27138,9 +26736,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "north-by-northwest",
@@ -27171,9 +26767,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "pillow-talk",
@@ -27207,9 +26801,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "radio-days",
@@ -27243,9 +26835,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "run-for-the-roses",
@@ -27276,9 +26866,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "seda-de-naranja",
@@ -27306,9 +26894,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2007",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "south-sider",
@@ -27339,9 +26925,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "susie-q",
@@ -27378,9 +26962,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "trapeze",
@@ -27411,9 +26993,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cafe-sandinista",
@@ -27447,9 +27027,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cyrano-de-bergerac",
@@ -27483,9 +27061,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "derby-girl",
@@ -27516,9 +27092,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "fair-fault",
@@ -27543,9 +27117,7 @@
       "created_at": "2026-05-25",
       "creator": "Tyson Buhler",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "have-at-it",
@@ -27582,9 +27154,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "melancholy-summer",
@@ -27621,9 +27191,7 @@
       "created_at": "2026-05-25",
       "creator": "Eryn Reece",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "midnight-mountain",
@@ -27651,9 +27219,7 @@
       "created_at": "2026-05-25",
       "creator": "Brad Farran",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "schumans-alley",
@@ -27690,9 +27256,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "shoots-and-ladders",
@@ -27720,9 +27284,7 @@
       "created_at": "2026-05-25",
       "creator": "Eryn Reece",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "stringer-bell",
@@ -27759,9 +27321,7 @@
       "created_at": "2026-05-25",
       "creator": "Tyson Buhler",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "arrack-punch",
@@ -27796,7 +27356,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -27833,7 +27392,6 @@
       "creator": "Alex Day",
       "year": "2009",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -27867,7 +27425,6 @@
       "creator": "Jason Littrell",
       "year": "2009",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -27898,7 +27455,6 @@
       "creator": "Jessica Gonzalez",
       "year": "2011",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -27938,7 +27494,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -27977,9 +27532,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "evil-dead-punch",
@@ -28029,7 +27582,6 @@
       "creator": "Brad Farran",
       "year": "2012",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28075,7 +27627,6 @@
       "creator": "Brian Miller",
       "year": "2009",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28108,9 +27659,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "killdevil-punch",
@@ -28148,7 +27697,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28191,7 +27739,6 @@
       "creator": "Thomas Waugh",
       "year": "2009",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28225,7 +27772,6 @@
       "creator": "Joaquin Simo",
       "year": "2009",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28265,7 +27811,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28302,7 +27847,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28345,7 +27889,6 @@
       "creator": "Tyson Buhler",
       "year": "2013",
       "tags": [
-        "classic",
         "punch",
         "built"
       ]
@@ -28395,7 +27938,6 @@
       "creator": "Jessica Gonzalez",
       "year": "2011",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28429,7 +27971,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28466,7 +28007,6 @@
       "creator": "Alex Day",
       "year": "2009",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28509,7 +28049,6 @@
       "creator": "Jessica Gonzalez",
       "year": "2009",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28549,7 +28088,6 @@
       "creator": "Joaquin Simo",
       "year": "2009",
       "tags": [
-        "classic",
         "punch"
       ]
     },
@@ -28577,7 +28115,6 @@
       "creator": "Alex Day",
       "year": "2009",
       "tags": [
-        "classic",
         "julep"
       ]
     },
@@ -28602,7 +28139,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "julep"
       ]
     },
@@ -28639,7 +28175,6 @@
       "creator": "Joaquin Simo",
       "year": "2009",
       "tags": [
-        "classic",
         "julep"
       ]
     },
@@ -28670,7 +28205,6 @@
       "creator": "Brian Miller",
       "year": "2008",
       "tags": [
-        "classic",
         "julep",
         "swizzle"
       ]
@@ -28696,7 +28230,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "julep"
       ]
     },
@@ -28727,7 +28260,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "julep"
       ]
     },
@@ -28761,7 +28293,6 @@
       "creator": "Jessica Gonzalez",
       "year": "2009",
       "tags": [
-        "classic",
         "julep"
       ]
     },
@@ -28789,7 +28320,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "julep"
       ]
     },
@@ -28820,7 +28350,6 @@
       "creator": "Brian Miller",
       "year": "2009",
       "tags": [
-        "classic",
         "julep",
         "swizzle"
       ]
@@ -28858,7 +28387,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "fizz"
       ]
     },
@@ -28901,7 +28429,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "fizz"
       ]
     },
@@ -28935,7 +28462,6 @@
       "creator": "Brian Miller",
       "year": "2008",
       "tags": [
-        "classic",
         "flip"
       ]
     },
@@ -28974,9 +28500,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "le-gigot-flip",
@@ -29005,7 +28529,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "flip"
       ]
     },
@@ -29041,9 +28564,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "pit-stop-flip",
@@ -29075,7 +28596,6 @@
       "creator": "Alex Day",
       "year": "2008",
       "tags": [
-        "classic",
         "flip"
       ]
     },
@@ -29108,9 +28628,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "saturday-morning-flip",
@@ -29145,7 +28663,6 @@
       "creator": "Joaquin Simo",
       "year": "2008",
       "tags": [
-        "classic",
         "flip"
       ]
     },
@@ -29182,7 +28699,6 @@
       "creator": "Brian Miller",
       "year": "2008",
       "tags": [
-        "classic",
         "fizz"
       ]
     },
@@ -29213,7 +28729,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29244,7 +28759,6 @@
       "creator": "Brian Miller",
       "year": "2008",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29281,7 +28795,6 @@
       "creator": "Jessica Gonzalez",
       "year": "2011",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29318,7 +28831,6 @@
       "creator": "Alex Day",
       "year": "2008",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29357,9 +28869,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "dolly-dagger",
@@ -29391,7 +28901,6 @@
       "creator": "Alex Day",
       "year": "2009",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29428,7 +28937,6 @@
       "creator": "Thomas Waugh",
       "year": "2009",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29465,7 +28973,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29493,7 +29000,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29523,9 +29029,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "park-life-swizzle",
@@ -29560,7 +29064,6 @@
       "creator": "Thomas Waugh",
       "year": "2009",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29591,7 +29094,6 @@
       "creator": "Brian Miller",
       "year": "2009",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29628,7 +29130,6 @@
       "creator": "Thomas Waugh",
       "year": "2009",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29665,7 +29166,6 @@
       "creator": "Joaquin Simo",
       "year": "2009",
       "tags": [
-        "classic",
         "swizzle"
       ]
     },
@@ -29699,7 +29199,6 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
         "sling"
       ]
     },
@@ -29735,9 +29234,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "electric-koolaid-acid-test",
@@ -29774,9 +29271,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "little-kingdom",
@@ -29798,9 +29293,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "stgermain-redux",
@@ -29825,9 +29318,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "great-northern",
@@ -29923,9 +29414,7 @@
       "created_at": "2026-05-25",
       "creator": "Eryn Reece",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "slap-n-pickle",
@@ -29959,9 +29448,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "alembic",
@@ -29989,9 +29476,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "bay-city-roller",
@@ -30016,9 +29501,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "cooper-union",
@@ -30049,9 +29532,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "creole-saz",
@@ -30085,9 +29566,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "enemy-lines",
@@ -30121,9 +29600,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "guns-and-rose",
@@ -30154,9 +29631,7 @@
       "created_at": "2026-05-25",
       "creator": "Scott Teague",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "hallyday",
@@ -30190,9 +29665,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "latin-quarter",
@@ -30229,9 +29702,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "saz-who",
@@ -30268,9 +29739,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "baltasar-and-blimunda",
@@ -30298,9 +29767,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "failsafe",
@@ -30325,9 +29792,7 @@
       "created_at": "2026-05-25",
       "creator": "Scott Teague",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "house-of-payne",
@@ -30352,9 +29817,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "kingston-negroni",
@@ -30379,9 +29842,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "mananita",
@@ -30406,9 +29867,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "range-life",
@@ -30436,9 +29895,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "uno-dos-tres",
@@ -30469,9 +29926,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "the-vanderbilt",
@@ -30496,9 +29951,7 @@
       "created_at": "2026-05-25",
       "creator": "Scott Teague",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "angus-daiquiri",
@@ -30530,8 +29983,8 @@
       "creator": "Phil Ward",
       "year": "2012",
       "tags": [
-        "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ]
     },
     {
@@ -30563,9 +30016,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "autumn-daiquiri",
@@ -30600,8 +30051,8 @@
       "creator": "Joaquin Simo",
       "year": "2008",
       "tags": [
-        "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ]
     },
     {
@@ -30631,8 +30082,8 @@
       "creator": "Brian Miller",
       "year": "2008",
       "tags": [
-        "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ]
     },
     {
@@ -30662,8 +30113,8 @@
       "creator": "Alex Day",
       "year": "2008",
       "tags": [
-        "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ]
     },
     {
@@ -30704,9 +30155,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "dwb",
@@ -30734,9 +30183,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "granny-s-daiquiri",
@@ -30762,8 +30209,8 @@
       "creator": "Phil Ward",
       "year": "2008",
       "tags": [
-        "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ]
     },
     {
@@ -30793,8 +30240,8 @@
       "creator": "Tyson Buhler",
       "year": "2013",
       "tags": [
-        "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ]
     },
     {
@@ -30818,8 +30265,8 @@
       "creator": "Phil Ward",
       "year": "2007",
       "tags": [
-        "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ]
     },
     {
@@ -30849,8 +30296,8 @@
       "creator": "Joaquin Simo",
       "year": "2008",
       "tags": [
-        "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ]
     },
     {
@@ -30892,8 +30339,8 @@
       "creator": "Joaquin Simo",
       "year": "2011",
       "tags": [
-        "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ]
     },
     {
@@ -30926,8 +30373,8 @@
       "creator": "Joaquin Simo",
       "year": "2011",
       "tags": [
-        "classic",
-        "daiquiri"
+        "daiquiri",
+        "sour"
       ]
     },
     {
@@ -30956,9 +30403,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sunset-at-gowanus",
@@ -30983,9 +30428,7 @@
       "created_at": "2026-05-25",
       "creator": "Alex Day",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "take-two",
@@ -31016,9 +30459,7 @@
       "created_at": "2026-05-25",
       "creator": "Tyson Buhler",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "the-black-prince",
@@ -31046,9 +30487,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "daisy-buchanan",
@@ -31076,9 +30515,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "drunken-dodo",
@@ -31106,9 +30543,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "ingenue",
@@ -31133,9 +30568,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "mi-amaro",
@@ -31163,9 +30596,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "navigator",
@@ -31196,9 +30627,7 @@
       "created_at": "2026-05-25",
       "creator": "Tyson Buhler",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "orkney-chapel",
@@ -31229,9 +30658,7 @@
       "created_at": "2026-05-25",
       "creator": "Jason Littrell",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "pisco-in",
@@ -31280,9 +30707,7 @@
       "created_at": "2026-05-25",
       "creator": "Jason Littrell",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "red-ant",
@@ -31316,9 +30741,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "sforzando",
@@ -31349,9 +30772,7 @@
       "created_at": "2026-05-25",
       "creator": "Eryn Reece",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "st-james-infirmary",
@@ -31379,9 +30800,7 @@
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "stolen-huffy",
@@ -31415,9 +30834,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "conference",
@@ -31454,9 +30871,7 @@
       "created_at": "2026-05-25",
       "creator": "Brian Miller",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "death-from-above",
@@ -31493,9 +30908,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2011",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "elder-fashion",
@@ -31520,9 +30933,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2007",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "headstone",
@@ -31550,9 +30961,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "jekyll-and-hyde",
@@ -31586,9 +30995,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "la-conferencia",
@@ -31625,9 +31032,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "north-garden",
@@ -31658,9 +31063,7 @@
       "created_at": "2026-05-25",
       "creator": "Jason Littrell",
       "year": "2009",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "oaxaca-oldfashioned",
@@ -31688,9 +31091,7 @@
       "created_at": "2026-05-25",
       "creator": "Phil Ward",
       "year": "2008",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "tea-time-at-guillermo-s",
@@ -31727,9 +31128,7 @@
       "created_at": "2026-05-25",
       "creator": "Jillian Vose",
       "year": "2013",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     },
     {
       "id": "tiki-tiki-tom-tom",
@@ -31760,9 +31159,7 @@
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
       "year": "2012",
-      "tags": [
-        "classic"
-      ]
+      "tags": []
     }
   ]
 }

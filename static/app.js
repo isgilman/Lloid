@@ -201,18 +201,19 @@ function filterCocktails() {
       || ings.includes(query)
       || cardCreator.includes(query);
 
-    // Tag filter: card must have ≥1 of the selected tags
-    // 'tiki' also matches the legacy 'tropical' tag
-    const matchTags = selectedTags.length === 0 || selectedTags.some(st =>
+    // Tag filter: card must have ALL selected tags (AND within dimension).
+    // 'tiki' also matches the legacy 'tropical' tag.
+    const matchTags = selectedTags.length === 0 || selectedTags.every(st =>
       st === 'tiki'
         ? cardTagsArr.includes('tiki') || cardTagsArr.includes('tropical')
         : cardTagsArr.includes(st)
     );
 
-    // Source filter: card must match ≥1 selected source
+    // Source filter: card must match ≥1 selected source (OR — a cocktail only
+    // belongs to one source, so AND would always empty across sources).
     const matchSource = selectedSources.length === 0 || selectedSources.includes(cardSource);
 
-    // Creator filter: card must match ≥1 selected creator (exact)
+    // Creator filter: OR — show cocktails by any of the selected creators.
     const matchCreator = selectedCreators.length === 0
       || selectedCreators.some(cr => cr.toLowerCase() === cardCreator);
 

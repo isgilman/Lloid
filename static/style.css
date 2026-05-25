@@ -327,6 +327,18 @@ h1, h2, h3 {
   text-transform: uppercase;
   letter-spacing: 0.09em;
   color: var(--text-dim);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.filter-group-hint {
+  font-size: 10px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-dim);
+  opacity: 0.6;
+  font-style: italic;
 }
 
 .filter-chips {

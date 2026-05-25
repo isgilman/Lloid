@@ -29,7 +29,10 @@
   <div id="filter-panel" class="filter-panel" style="display:none">
 
     <div class="filter-group">
-      <div class="filter-group-label">Style &amp; Type</div>
+      <div class="filter-group-label">
+        Category
+        <span class="filter-group-hint">select multiple to narrow</span>
+      </div>
       <div class="filter-chips">
         {% for tag in style_tags %}
         <label class="filter-chip">
@@ -41,7 +44,10 @@
     </div>
 
     <div class="filter-group">
-      <div class="filter-group-label">Source</div>
+      <div class="filter-group-label">
+        Source
+        <span class="filter-group-hint">select multiple to broaden</span>
+      </div>
       <div class="filter-chips">
         {% for src in sources %}
         <label class="filter-chip">
@@ -54,7 +60,10 @@
 
     {% if creators %}
     <div class="filter-group">
-      <div class="filter-group-label">Creator</div>
+      <div class="filter-group-label">
+        Creator
+        <span class="filter-group-hint">select multiple to broaden</span>
+      </div>
       <div class="filter-chips">
         {% for creator in creators %}
         <label class="filter-chip">
