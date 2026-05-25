@@ -79,6 +79,246 @@
       "recipe": "",
       "in_stock": true,
       "created_at": "2026-05-24"
+    },
+    {
+      "id": "house-orange-bitters",
+      "name": "House Orange Bitters",
+      "description": "house-made bitters",
+      "recipe": "",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "vanilla-syrup",
+      "name": "Vanilla Syrup",
+      "description": "house-made syrup",
+      "recipe": "2:1 simple syrup (by weight) with 2 split vanilla beans; steep 24 hours",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "passionfruit-syrup",
+      "name": "Passionfruit Syrup",
+      "description": "house-made syrup",
+      "recipe": "1:1 passionfruit purée to 2:1 simple syrup by volume",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "cold-brew-coffee-concentrate",
+      "name": "Cold Brew Coffee Concentrate",
+      "description": "house-made concentrate",
+      "recipe": "Coarsely ground coffee steeped in cold water 1:4 (coffee:water) for 18–24 hours; strain through cheesecloth",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "spicy-ginger-syrup",
+      "name": "Spicy Ginger Syrup",
+      "description": "house-made syrup",
+      "recipe": "Fresh ginger, juiced; combine with 2:1 simple syrup 1:1 by volume",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "coconut-syrup",
+      "name": "Coconut Syrup",
+      "description": "house-made syrup",
+      "recipe": "2:1 simple syrup made with equal parts coconut water and water; toast unsweetened coconut flakes, steep, strain",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "ginger-lime-syrup",
+      "name": "Ginger Lime Syrup",
+      "description": "house-made syrup",
+      "recipe": "Combine ginger juice, fresh lime juice and 2:1 simple syrup 1:1:2 by volume",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "tellicherry-black-pepper-syrup",
+      "name": "Tellicherry Black Pepper Syrup",
+      "description": "house-made syrup",
+      "recipe": "2:1 simple syrup infused with cracked Tellicherry peppercorns; steep 30 min",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "jalape-o-infused-agave-syrup",
+      "name": "Jalapeño Infused Agave Syrup",
+      "description": "house-made syrup",
+      "recipe": "Agave nectar thinned 1:1 with water; steep sliced jalapeños 10–20 min to taste",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "ceylon-cinnamon-syrup",
+      "name": "Ceylon Cinnamon Syrup",
+      "description": "house-made syrup",
+      "recipe": "2:1 simple syrup infused with Ceylon cinnamon sticks; steep 24 hours",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "coffee-infused-dry-vermouth",
+      "name": "Coffee Infused Dry Vermouth",
+      "description": "house-made infused spirit",
+      "recipe": "Dry vermouth cold-infused with coarsely ground coffee for 10–12 hours; strain",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "pineapple-gomme",
+      "name": "Pineapple Gomme",
+      "description": "house-made syrup",
+      "recipe": "2:1 simple syrup with gum arabic (2 tbsp per cup); blend with fresh pineapple juice 1:1",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "brown-butter-falernum",
+      "name": "Brown Butter Falernum",
+      "description": "house-made infused liqueur",
+      "recipe": "House falernum fat-washed with brown butter; see The NoMad Cocktail Book recipe",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "jalape-o-infused-tequila",
+      "name": "Jalapeño Infused Tequila",
+      "description": "house-made infused spirit",
+      "recipe": "Blanco tequila with sliced jalapeños (seeds in for heat); taste after 15 min, strain when desired spice level reached",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "cranberry-syrup",
+      "name": "Cranberry Syrup",
+      "description": "house-made syrup",
+      "recipe": "2:1 simple syrup simmered with fresh cranberries until jammy; strain",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "coffee-infused-angostura-bitters",
+      "name": "Coffee Infused Angostura Bitters",
+      "description": "house-made bitters",
+      "recipe": "Angostura bitters cold-infused with coarsely ground coffee for 4–6 hours; strain",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "kabocha-squash-syrup",
+      "name": "Kabocha Squash Syrup",
+      "description": "house-made syrup",
+      "recipe": "Roasted kabocha squash purée blended with 1:1 simple syrup, cinnamon, nutmeg, and allspice; strain",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "corn-syrup",
+      "name": "Corn Syrup",
+      "description": "house-made syrup",
+      "recipe": "2:1 simple syrup made by simmering dried corn in water; strain and sweeten",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "fig-leaf-syrup",
+      "name": "Fig Leaf Syrup",
+      "description": "house-made syrup",
+      "recipe": "2:1 simple syrup infused with fresh fig leaves; steep 24 hours, strain",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "green-tea-yogurt-syrup",
+      "name": "Green Tea Yogurt Syrup",
+      "description": "house-made syrup",
+      "recipe": "Strained full-fat yogurt sweetened with green tea–infused 2:1 simple syrup",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "thai-bird-chile-infused-aperol",
+      "name": "Thai Bird Chile–Infused Aperol",
+      "description": "house-made infused spirit",
+      "recipe": "Aperol with sliced Thai bird chiles; steep 15–30 min to taste, strain",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "spiced-tomato-water",
+      "name": "Spiced Tomato Water",
+      "description": "house-made preparation",
+      "recipe": "Strained juice of ripe tomatoes with salt, white pepper, celery seed and hot sauce; chill overnight",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "rhubarb-shrub",
+      "name": "Rhubarb Shrub",
+      "description": "house-made shrub",
+      "recipe": "Rhubarb, sugar, and red wine vinegar macerated together; strain after 48 hours",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "cassia-cinnamon-syrup",
+      "name": "Cassia Cinnamon Syrup",
+      "description": "house-made syrup",
+      "recipe": "2:1 simple syrup infused with cassia cinnamon sticks; steep 24 hours",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "chai-infused-cocchi-vermouth-di-torino",
+      "name": "Chai Infused Cocchi Vermouth di Torino",
+      "description": "house-made infused spirit",
+      "recipe": "Cocchi Vermouth di Torino cold-infused with chai spices (cardamom, ginger, black pepper, cinnamon, clove) for 12 hours; strain",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "sarsaparilla-tincture",
+      "name": "Sarsaparilla Tincture",
+      "description": "house-made tincture",
+      "recipe": "Dried sarsaparilla root steeped in high-proof neutral spirit for 2 weeks; strain and dilute to taste",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "basil-fennel-syrup",
+      "name": "Basil Fennel Syrup",
+      "description": "house-made syrup",
+      "recipe": "2:1 simple syrup steeped with fresh basil leaves and fennel fronds; strain after 30 min",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "banana-oloroso",
+      "name": "Banana Oloroso",
+      "description": "house-made infused spirit",
+      "recipe": "Oloroso sherry infused with ripe, sliced bananas for 24–48 hours; strain. Makes 1 bottle per 2 bananas per 750ml sherry",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "grapefruit-oleo-saccharum",
+      "name": "Grapefruit Oleo Saccharum",
+      "description": "house-made oleo saccharum",
+      "recipe": "Grapefruit peels packed with sugar; macerate 1–2 hours until syrupy, strain peels",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "chicken-jus",
+      "name": "Chicken Jus",
+      "description": "house-made preparation",
+      "recipe": "Reduced roasted chicken stock; roast chicken bones, simmer with aromatics 4–6 hours, reduce to glaze consistency",
+      "in_stock": false,
+      "created_at": "2026-05-25"
     }
   ]
 }
