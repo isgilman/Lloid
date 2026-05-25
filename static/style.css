@@ -1,25 +1,25 @@
 /* ── Variables ────────────────────────────────────────────────────────────── */
 :root {
-  --bg:           #2c001e;   /* Ubuntu dark aubergine */
-  --surface:      #38002a;
-  --card:         #460034;
-  --card-hover:   #52003e;
-  --border:       #6a1e50;
-  --border-light: #7e2860;
-  --accent:       #b8912a;
-  --accent-light: #cda84a;
-  --accent-bg:    rgba(184,145,42,.10);
-  --accent-bg2:   rgba(184,145,42,.18);
-  --text:         #f0e8ee;
-  --text-sec:     #b490a8;
-  --text-dim:     #7a4868;
+  --bg:           #0d0d0d;
+  --surface:      #181818;
+  --card:         #212121;
+  --card-hover:   #2a2a2a;
+  --border:       #303030;
+  --border-light: #3d3d3d;
+  --accent:       #77216f;   /* Ubuntu mid-aubergine */
+  --accent-light: #9b4a93;
+  --accent-bg:    rgba(119,33,111,.10);
+  --accent-bg2:   rgba(119,33,111,.20);
+  --text:         #f2f2f2;
+  --text-sec:     #999999;
+  --text-dim:     #555555;
   --green:        #4cb886;
-  --green-bg:     rgba(76,184,134,.12);
-  --red:          #d07070;
-  --red-bg:       rgba(208,112,112,.12);
+  --green-bg:     rgba(76,184,134,.10);
+  --red:          #c86464;
+  --red-bg:       rgba(200,100,100,.10);
   --radius:       6px;
   --radius-lg:    10px;
-  --shadow:       0 4px 28px rgba(0,0,0,.55);
+  --shadow:       0 4px 24px rgba(0,0,0,.5);
   --transition:   0.18s ease;
 }
 
@@ -183,7 +183,7 @@ h1, h2, h3 {
 }
 .btn-primary {
   background: var(--accent);
-  color: #1a0012;
+  color: #0d0d0d;
   border-color: var(--accent);
 }
 .btn-primary:hover { background: var(--accent-light); border-color: var(--accent-light); }
@@ -265,7 +265,7 @@ h1, h2, h3 {
 .filter-input::placeholder { color: var(--text-dim); }
 .filter-input:focus, .filter-select:focus { border-color: var(--border-light); }
 .filter-select { appearance: none; padding-right: 30px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a4868' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
   cursor: pointer;
@@ -911,7 +911,7 @@ select.edit-input { padding: 5px 8px; }
   border-radius: 50%;
   background: var(--accent);
   border: none;
-  color: #1a0012;
+  color: #0d0d0d;
   display: flex;
   align-items: center;
   justify-content: center;
