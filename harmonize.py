@@ -699,6 +699,61 @@ def title_case_ingredient(s: str) -> str:
     return ' '.join(result)
 
 
+
+# ── Saline auto-injection ──────────────────────────────────────────────────────
+
+# Keys identifying citrus juice ingredients that warrant saline
+_CITRUS_JUICE_KEYS = ('lemon juice', 'lime juice', 'grapefruit juice')
+
+_FRAC_VALUES = {
+    '½': 0.5,    # ½
+    '¼': 0.25,   # ¼
+    '¾': 0.75,   # ¾
+    '⅓': 1/3,    # ⅓
+    '⅔': 2/3,    # ⅔
+}
+
+
+def _parse_oz(amount_str: str, unit_str: str) -> float:
+    """Return numeric oz value of an ingredient amount, or 0.0 if not in oz."""
+    unit = unit_str.lower().strip()
+    if unit not in ('oz', 'ounce', 'ounces', ''):
+        return 0.0
+    s = amount_str.strip()
+    if not s:
+        return 0.0
+    val = 0.0
+    for ch, fv in _FRAC_VALUES.items():
+        if ch in s:
+            s = s.replace(ch, '').strip()
+            val += fv
+    if s:
+        try:
+            val += float(s.split('/')[0]) / float(s.split('/')[1]) if '/' in s else float(s)
+        except (ValueError, ZeroDivisionError):
+            return 0.0
+    return val
+
+
+def _add_saline_if_needed(cocktail: dict) -> bool:
+    """Add 5 drops of Saline Solution if the cocktail has >=0.5 oz citrus juice
+    and no saline ingredient is already present.  Returns True if added."""
+    ings = cocktail.get('ingredients', [])
+    # Already has saline?
+    if any('saline' in ing.get('name', '').lower() for ing in ings):
+        return False
+    # Sum citrus juice
+    total_oz = sum(
+        _parse_oz(ing.get('amount', ''), ing.get('unit', ''))
+        for ing in ings
+        if any(k in ing.get('name', '').lower() for k in _CITRUS_JUICE_KEYS)
+    )
+    if total_oz >= 0.5:
+        ings.append({'name': 'Saline Solution', 'amount': '5', 'unit': 'drops', 'notes': ''})
+        return True
+    return False
+
+
 # ── Main transformation ────────────────────────────────────────────────────────
 
 def harmonise_ingredient(ing: dict, source: str) -> None:
@@ -746,6 +801,9 @@ def harmonise(cocktails: list) -> list:
                 changed += 1
             total_ings += 1
     print(f'Ingredients changed: {changed} / {total_ings}')
+
+    saline_added = sum(1 for c in cocktails if _add_saline_if_needed(c))
+    print(f'Saline added to:    {saline_added} cocktails')
     return cocktails
 
 

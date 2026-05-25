@@ -500,7 +500,7 @@ h1, h2, h3 {
 /* Ingredient form rows */
 .ingredient-row {
   display: grid;
-  grid-template-columns: 70px 60px 1fr 140px 32px;
+  grid-template-columns: 20px 70px 60px 1fr 140px 32px;
   gap: 8px;
   align-items: center;
   margin-bottom: 8px;
@@ -509,6 +509,24 @@ h1, h2, h3 {
 .ing-unit    {}
 .ing-name    {}
 .ing-notes   {}
+
+.drag-handle {
+  cursor: grab;
+  color: var(--text-dim);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  letter-spacing: -2px;
+  transition: color var(--transition);
+}
+.drag-handle:hover  { color: var(--text-sec); }
+.drag-handle:active { cursor: grabbing; }
+
+.ingredient-row.dragging  { opacity: 0.4; }
+.ingredient-row.drag-over { outline: 2px solid var(--accent-light); border-radius: var(--radius); }
+
 
 /* ── Table ────────────────────────────────────────────────────────────────── */
 .table-wrapper {
@@ -1587,7 +1605,7 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   .detail-body { grid-template-columns: 1fr; }
   .form-grid-2 { grid-template-columns: 1fr; }
   .form-col-span-2 { grid-column: span 1; }
-  .ingredient-row { grid-template-columns: 60px 56px 1fr 28px; }
+  .ingredient-row { grid-template-columns: 20px 60px 56px 1fr 28px; }
   .ing-notes { display: none; }
   .mode-selector { grid-template-columns: 1fr; }
   .specialty-grid { grid-template-columns: 1fr; }

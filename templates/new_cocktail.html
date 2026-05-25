@@ -147,7 +147,8 @@
         {% set ing_list = cocktail.ingredients if cocktail else prefill.get('ingredients', []) %}
         {% if ing_list %}
           {% for ing in ing_list %}
-          <div class="ingredient-row" data-index="{{ loop.index0 }}">
+          <div class="ingredient-row" data-index="{{ loop.index0 }}" draggable="true">
+            <span class="drag-handle" title="Drag to reorder">&#8942;&#8942;</span>
             <input type="text" name="ingredient_amount" class="form-input ing-amount"
                    value="{{ ing.amount }}" placeholder="2">
             <input type="text" name="ingredient_unit" class="form-input ing-unit"
@@ -160,7 +161,8 @@
           </div>
           {% endfor %}
         {% else %}
-          <div class="ingredient-row" data-index="0">
+          <div class="ingredient-row" data-index="0" draggable="true">
+            <span class="drag-handle" title="Drag to reorder">&#8942;&#8942;</span>
             <input type="text" name="ingredient_amount" class="form-input ing-amount" placeholder="2">
             <input type="text" name="ingredient_unit" class="form-input ing-unit" placeholder="oz" list="unit-list">
             <input type="text" name="ingredient_name" class="form-input ing-name" placeholder="Ingredient name">
@@ -232,6 +234,58 @@
 {% block scripts %}
 <script>
 let ingCount = document.querySelectorAll('.ingredient-row').length;
+let _dragSrc = null;
+
+function _setupDragRow(row) {
+  row.setAttribute('draggable', 'true');
+  row.addEventListener('dragstart', function(e) {
+    // Prevent drag when clicking an input or button directly
+    const tag = e.target.tagName.toLowerCase();
+    if (tag === 'input' || tag === 'button' || tag === 'select' || tag === 'textarea') {
+      e.preventDefault();
+      return;
+    }
+    _dragSrc = row;
+    row.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  row.addEventListener('dragend', function() {
+    row.classList.remove('dragging');
+    document.querySelectorAll('.ingredient-row').forEach(function(r) {
+      r.classList.remove('drag-over');
+    });
+    _dragSrc = null;
+  });
+  row.addEventListener('dragover', function(e) {
+    if (!_dragSrc || _dragSrc === row) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    document.querySelectorAll('.ingredient-row').forEach(function(r) {
+      r.classList.remove('drag-over');
+    });
+    row.classList.add('drag-over');
+  });
+  row.addEventListener('dragleave', function() {
+    row.classList.remove('drag-over');
+  });
+  row.addEventListener('drop', function(e) {
+    e.preventDefault();
+    row.classList.remove('drag-over');
+    if (!_dragSrc || _dragSrc === row) return;
+    const list = document.getElementById('ingredients-list');
+    const rows = Array.from(list.querySelectorAll('.ingredient-row'));
+    const srcIdx = rows.indexOf(_dragSrc);
+    const tgtIdx = rows.indexOf(row);
+    if (srcIdx < tgtIdx) {
+      list.insertBefore(_dragSrc, row.nextSibling);
+    } else {
+      list.insertBefore(_dragSrc, row);
+    }
+  });
+}
+
+// Wire up drag on all rows present at page load
+document.querySelectorAll('.ingredient-row').forEach(function(r) { _setupDragRow(r); });
 
 function addIngredient() {
   const list = document.getElementById('ingredients-list');
@@ -239,6 +293,7 @@ function addIngredient() {
   row.className = 'ingredient-row';
   row.dataset.index = ingCount++;
   row.innerHTML = `
+    <span class="drag-handle" title="Drag to reorder">&#8942;&#8942;</span>
     <input type="text" name="ingredient_amount" class="form-input ing-amount" placeholder="2">
     <input type="text" name="ingredient_unit" class="form-input ing-unit" placeholder="oz" list="unit-list">
     <input type="text" name="ingredient_name" class="form-input ing-name" placeholder="Ingredient name">
@@ -246,6 +301,7 @@ function addIngredient() {
     <button type="button" class="btn-icon btn-icon-danger" onclick="removeIngredient(this)" title="Remove">&#10005;</button>
   `;
   list.appendChild(row);
+  _setupDragRow(row);
   row.querySelector('.ing-amount').focus();
 }
 
