@@ -28,7 +28,7 @@
       ],
       "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled, about 20–25 seconds. Strain into a rocks glass over a large ice cube.",
       "garnish": "Orange twist",
-      "source": "Classic",
+      "source": "Classics",
       "notes": "",
       "tags": [
         "classic",
@@ -66,7 +66,7 @@
       ],
       "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled, about 30 seconds. Strain into a chilled coupe or Nick & Nora glass.",
       "garnish": "Brandied cherry or lemon twist",
-      "source": "Classic",
+      "source": "Classics",
       "notes": "Bourbon works beautifully here as well.",
       "tags": [
         "classic",
@@ -109,7 +109,7 @@
       ],
       "instructions": "Combine syrup and bitters in a rocks glass. Add bourbon and a large ice cube. Stir gently for 10–15 seconds to incorporate and chill.",
       "garnish": "Orange twist, expressed and placed",
-      "source": "Classic",
+      "source": "Classics",
       "notes": "Rye whiskey is an equally valid choice here.",
       "tags": [
         "classic",
@@ -145,7 +145,7 @@
       ],
       "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled, about 12–15 seconds. Double-strain into a chilled coupe.",
       "garnish": "Lime wheel or none",
-      "source": "Classic",
+      "source": "Classics",
       "notes": "One of the most versatile cocktails. Try with different rums for different results — overproof Jamaican changes it entirely.",
       "tags": [
         "classic",
@@ -184,7 +184,7 @@
       ],
       "instructions": "Cut a disk of lime peel and squeeze the juice into a small rocks glass. Add the cane syrup, then the rhum. Add a small ice cube or serve at room temperature, as is traditional. Stir briefly.",
       "garnish": "Lime disk (squeezed into the drink)",
-      "source": "Martinique / Guadeloupe tradition",
+      "source": "Classics",
       "notes": "Traditionally built to taste — adjust syrup to preference. The lime disk goes in hull and all.",
       "tags": [
         "classic",
@@ -196,7 +196,6 @@
       "created_at": "2024-01-01"
     },
     {
-      "id": "paper-plane",
       "name": "Paper Plane",
       "category": "Modern Classic",
       "glass": "Coupe",
@@ -229,7 +228,7 @@
       ],
       "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled. Double-strain into a chilled coupe.",
       "garnish": "None, or a small lemon twist",
-      "source": "Sam Ross, Milk & Honey, NYC, 2007",
+      "source": "Originals",
       "notes": "Equal parts. A perfectly balanced modern classic.",
       "tags": [
         "modern classic",
@@ -238,6 +237,8 @@
         "equal parts",
         "sour"
       ],
+      "premium": false,
+      "id": "paper-plane",
       "created_at": "2024-01-01"
     },
     {
@@ -274,7 +275,7 @@
       ],
       "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled. Double-strain into a chilled coupe.",
       "garnish": "None",
-      "source": "Phil Ward, Death & Co., NYC, 2011",
+      "source": "Death & Co.",
       "notes": "A Paper Plane riff with mezcal smoke and herbaceous depth from the Chartreuse.",
       "tags": [
         "modern classic",
@@ -319,7 +320,7 @@
       ],
       "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled. Double-strain into a chilled coupe.",
       "garnish": "None, or lime twist",
-      "source": "Detroit Athletic Club, 1920s",
+      "source": "Classics",
       "notes": "The classic uses Green Chartreuse. Substitute Yellow Chartreuse for a gentler, more citrus-forward version.",
       "tags": [
         "classic",
@@ -363,7 +364,7 @@
       ],
       "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled, about 30 seconds. Strain into a chilled coupe or Nick & Nora glass.",
       "garnish": "Brandied cherry or orange twist",
-      "source": "Ted Kilgore, 2005",
+      "source": "Originals",
       "notes": "Averna replaces vermouth, giving a richer, more bitter-herbal profile.",
       "tags": [
         "modern classic",
@@ -401,7 +402,7 @@
       ],
       "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled. Strain into a rocks glass over a large ice cube.",
       "garnish": "Lemon twist",
-      "source": "Wayne Collins, 2001",
+      "source": "Originals",
       "notes": "A lighter, more floral take on the Negroni. The Suze brings bittering gentian without the color.",
       "tags": [
         "modern classic",
@@ -451,7 +452,7 @@
       ],
       "instructions": "Combine all ingredients in a shaker with ice. Shake until well-chilled. Strain into a rocks glass over crushed or cracked ice.",
       "garnish": "Pineapple wedge and leaf, or dried pineapple",
-      "source": "Jeffrey Ong, Kuala Lumpur Hilton, 1978",
+      "source": "Classics",
       "notes": "One of the great tiki drinks. Smith & Cross is a particularly excellent choice here.",
       "tags": [
         "tiki",
@@ -494,7 +495,7 @@
       ],
       "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled. Strain into a chilled coupe.",
       "garnish": "Orange twist",
-      "source": "Robert Vermeire, Cocktails: How to Mix Them, 1922",
+      "source": "Classics",
       "notes": "The small amount of Fernet adds menthol complexity without dominating.",
       "tags": [
         "classic",
@@ -539,7 +540,7 @@
       ],
       "instructions": "Combine all ingredients in a mixing glass with ice. Stir until very well-chilled, about 40 seconds. Strain into a chilled Nick & Nora or coupe.",
       "garnish": "Lemon twist",
-      "source": "Louis Eppinger, Grand Hotel, Yokohama, 1890s",
+      "source": "Classics",
       "notes": "One of the great low-ABV cocktails. The combination of sherry and dry vermouth is remarkably satisfying.",
       "tags": [
         "classic",
@@ -551,7 +552,6 @@
       "created_at": "2024-01-01"
     },
     {
-      "id": "adonis",
       "name": "Adonis",
       "category": "Classic",
       "glass": "Nick & Nora",
@@ -578,7 +578,7 @@
       ],
       "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled. Strain into a chilled Nick & Nora or coupe.",
       "garnish": "Orange twist",
-      "source": "Classic, 1884",
+      "source": "Classics",
       "notes": "A low-ABV sibling of the Bamboo. Nutty and deeply flavorful.",
       "tags": [
         "classic",
@@ -587,6 +587,8 @@
         "sherry",
         "wine-based"
       ],
+      "premium": false,
+      "id": "adonis",
       "created_at": "2024-01-01"
     },
     {
@@ -617,7 +619,7 @@
       ],
       "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously. Strain into a rocks glass over ice. Salt rim optional.",
       "garnish": "Lime wheel, salt rim optional",
-      "source": "Julio Bermejo, Tommy's Mexican Restaurant, San Francisco, 1990s",
+      "source": "Classics",
       "notes": "Replacing triple sec with agave syrup lets the tequila shine. A cleaner, more agave-forward margarita.",
       "tags": [
         "modern classic",
@@ -662,7 +664,7 @@
       ],
       "instructions": "Salt half the rim of a rocks glass if desired. Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled. Strain over fresh ice.",
       "garnish": "Lime wheel, salt rim",
-      "source": "Classic",
+      "source": "Classics",
       "notes": "Grand Marnier or Dry Curaçao both work well here.",
       "tags": [
         "classic",
@@ -713,7 +715,7 @@
       ],
       "instructions": "Combine all ingredients in a rocks glass with a large ice cube. Stir gently for 15–20 seconds.",
       "garnish": "Orange twist, flamed",
-      "source": "Phil Ward, Death & Co., NYC, 2007",
+      "source": "Death & Co.",
       "notes": "The drink that brought mezcal to the cocktail mainstream. The mole bitters echo the agave's earthiness.",
       "tags": [
         "modern classic",
@@ -758,7 +760,7 @@
       ],
       "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well-chilled. Strain into a chilled Nick & Nora or coupe.",
       "garnish": "Cherry and lemon twist",
-      "source": "Harry Johnson, Bartenders' Manual, 1900",
+      "source": "Classics",
       "notes": "Bijou means 'jewel' in French — gin (diamond), chartreuse (emerald), vermouth (ruby). A rich, complex three-way balance.",
       "tags": [
         "classic",
@@ -796,7 +798,7 @@
       ],
       "instructions": "Fill a highball glass with ice. Add lime juice. Pour in ginger beer, then float the rum on top by pouring over the back of a spoon.",
       "garnish": "Lime wedge",
-      "source": "Bermuda, early 20th century",
+      "source": "Classics",
       "notes": "Gosling's Black Seal is the trademarked version. Doorly's 8 or Smith & Cross also work beautifully.",
       "tags": [
         "classic",
@@ -841,7 +843,7 @@
       ],
       "instructions": "Combine all ingredients in a rocks glass with a large ice cube. Stir gently for 15–20 seconds to chill and slightly dilute.",
       "garnish": "Orange twist",
-      "source": "Classic variation",
+      "source": "Classics",
       "notes": "A great way to explore aged rum. Doorly's 8 or Smith & Cross are excellent choices.",
       "tags": [
         "classic",
@@ -891,7 +893,7 @@
       ],
       "instructions": "Rinse a chilled coupe with absinthe and discard the excess. Combine remaining ingredients in a shaker with ice. Shake until well-chilled. Double-strain into the rinsed coupe.",
       "garnish": "Lemon twist or brandied cherry",
-      "source": "Harry Craddock, The Savoy Cocktail Book, 1930",
+      "source": "Classics",
       "notes": "Famously noted to 'unrevive the corpse again if taken in excessive quantities.'",
       "tags": [
         "classic",
@@ -935,7 +937,7 @@
       ],
       "instructions": "Dry shake all ingredients without ice for 15 seconds to emulsify the egg white. Add ice and shake vigorously for another 15 seconds. Double-strain into a chilled coupe.",
       "garnish": "3 drops Angostura Bitters on the foam",
-      "source": "Lima, Peru, early 20th century",
+      "source": "Classics",
       "notes": "The Peruvian national cocktail. The pisco's floral grape character shines through the frothy texture.",
       "tags": [
         "classic",
@@ -986,7 +988,7 @@
       ],
       "instructions": "If using egg white, dry shake first without ice for 10 seconds. Add ice and shake vigorously. Double-strain into a chilled coupe.",
       "garnish": "Orange twist or a few drops of Angostura on the foam",
-      "source": "Contemporary",
+      "source": "Originals",
       "notes": "The artichoke bitterness of Cynar pairs exceptionally well with rye. A thoughtful, complex sour.",
       "tags": [
         "modern classic",
@@ -1031,7 +1033,7 @@
       ],
       "instructions": "Combine all ingredients in a shaker with ice. Shake vigorously until well-chilled. Double-strain into a chilled coupe.",
       "garnish": "None, or lemon twist",
-      "source": "Giuseppe Gonzalez, 2008",
+      "source": "Originals",
       "notes": "The cocktail that proved bitters could be a base spirit. The full ounce of Angostura is correct — it becomes velvety and spiced with the orgeat.",
       "tags": [
         "modern classic",
@@ -1043,7 +1045,6 @@
       "created_at": "2024-01-01"
     },
     {
-      "id": "penicillin",
       "name": "Penicillin",
       "category": "Modern Classic",
       "glass": "Rocks",
@@ -1076,7 +1077,7 @@
       ],
       "instructions": "Combine blended Scotch, lemon juice, and honey-ginger syrup in a shaker with ice. Shake until well-chilled. Strain over a large ice cube in a rocks glass. Float the peated Islay Scotch over the top.",
       "garnish": "Candied ginger on a pick",
-      "source": "Sam Ross, Milk & Honey, NYC, 2005",
+      "source": "Originals",
       "notes": "One of the most important cocktails of the 21st century. Requires Scotch whisky not currently in the inventory.",
       "tags": [
         "modern classic",
@@ -1085,6 +1086,8 @@
         "whisky",
         "sour"
       ],
+      "premium": false,
+      "id": "penicillin",
       "created_at": "2024-01-01"
     },
     {
@@ -1144,7 +1147,8 @@
       ],
       "notes": "Variation: swap Tequila Ocho Plata for Caravedo Pisco for a softer, more floral profile. Add egg white for a silkier texture.",
       "id": "the-gilded-veil",
-      "created_at": "2026-05-24"
+      "created_at": "2026-05-24",
+      "source": "Originals"
     },
     {
       "id": "southern-cross",
@@ -1198,7 +1202,7 @@
       ],
       "instructions": "Shake all ingredients except Aperol over pebble or crushed ice. Open pour into a footed pilsner glass. Float Aperol on top.",
       "garnish": "Mint sprig",
-      "source": "",
+      "source": "Originals",
       "notes": "",
       "tags": [
         "original",
@@ -1261,7 +1265,7 @@
       ],
       "instructions": "Add all ingredients to a mixing glass and stir with ice to chill. Strain into a double rocks glass over a large ice cube.",
       "garnish": "Orange twist",
-      "source": "Robby Dow, Bespoke, Wilmington, North Carolina",
+      "source": "Originals",
       "notes": "Recipe from Imbibe Magazine. Original calls for Punt e Mes; substituted Dolin Rouge. Original calls for aged and overproof Jamaican rum; using Doorly's 8 and Smith & Cross respectively.",
       "tags": [
         "negroni",
@@ -1318,7 +1322,7 @@
       ],
       "instructions": "Flash blend ingredients with pebble or crusshed ice.\r\n\r\nOpen pour into a large rocks, Mai Tai, or snifter (16 oz ideally).\r\n\r\nTop with more ice.\r\n\r\nGarnish with mint and citrus wheel; float aged overproof rum on top (optional).",
       "garnish": "Mint sprig, citrus wheel, overproof float",
-      "source": "Trader Vic, Oakland, CA",
+      "source": "Classics",
       "notes": "",
       "tags": [
         "classic",
@@ -1373,7 +1377,8 @@
       ],
       "notes": "Simple syrup omitted — Chinola provides sufficient sweetness. If the drink reads too sweet, nudge lime up to 0.875–1 oz. A splash of Nixta Licor de Elote or 2 dashes Angostura bitters are interesting variations.",
       "id": "the-tropic-meridian",
-      "created_at": "2026-05-24"
+      "created_at": "2026-05-24",
+      "source": "Originals"
     },
     {
       "name": "Muck & Cacao",
@@ -1414,7 +1419,7 @@
       ],
       "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well chilled and properly diluted. Strain over a large cube in a rocks glass. Express an orange peel over the surface and discard.",
       "garnish": "Expressed orange peel, discarded",
-      "source": "",
+      "source": "Originals",
       "notes": "Developed with Aficionados Grand Arôme from Le Galion Distillery as the canonical spirit. All three Grand Arôme bottles in inventory are worthy expressions of this recipe, each bringing distinct character. Spiced molasses syrup recipe: 1 cup hot water, 3/4 cup sugar, 1/4 cup blackstrap molasses, 2 cloves, 3 allspice berries, 1 cinnamon stick, pinch nutmeg, 1 star anise — simmer 10 minutes, fine strain, refrigerate up to 3 weeks.",
       "tags": [
         "original",
@@ -1475,7 +1480,7 @@
       ],
       "instructions": "Combine all ingredients in a shaker with ice. Shake and strain over cracked ice in a rocks glass. Express a lemon peel over the surface and lay it in.",
       "garnish": "Dehydrated apple wheel",
-      "source": "",
+      "source": "Originals",
       "notes": "Maple shrub: equal parts maple syrup and apple cider vinegar by volume.\r\n\r\nBuilt around a house-infused Amaro dell'Erborista (cacao nib, kombu, allspice, black cardamom). Bénédictine and the amaro carry residual sweetness.\r\n\r\nVariation: swap Bénédictine for 0.25 oz Yellow Chartreuse for a more botanical, grassy profile.",
       "tags": [
         "original",
@@ -3813,7 +3818,7 @@
       ],
       "instructions": "Wet shake or flash blend all ingredients over small ice. Open pour into a sling glass and top with pebble ice.",
       "garnish": "Three pineapple fronds",
-      "source": "Port of Call, Mystic, CT",
+      "source": "Originals",
       "notes": "Suggested: Dakabend Oaxacan Pot Still Rum, Paranubes Oaxacan Aguardiente de Caña, Dolin Génépy le Chamois, Hendrick's Gin.",
       "tags": [
         "tiki",
@@ -3877,7 +3882,7 @@
       ],
       "instructions": "Wet shake all ingredients and strain into an oversized double rocks or Mai Tai glass. Top with pebble ice, add banana leaf and straw, then pack with pebble ice to form a small dome. Grate nutmeg on top.",
       "garnish": "Banana leaf, freshly grated nutmeg",
-      "source": "u/weeklytiki, Reddit",
+      "source": "Originals",
       "notes": "High proof, big banana. Suggested: Tempus Fugit Crème de Banane, Old Overholt BIB Rye, Worthy Park Overproof.",
       "tags": [
         "tiki",
@@ -4040,7 +4045,7 @@
       ],
       "instructions": "Flash blend all ingredients over small ice and open pour into a collins glass. Fill with pebble ice and garnish with mint and orange wheel.",
       "garnish": "Mint sprig, half orange wheel",
-      "source": "Bar Bonna, Brooklyn, NYC",
+      "source": "Originals",
       "notes": "A Fernet-ified piña colada. Coconut syrup: blend equal masses coconut milk and cane syrup. Suggested: Fernet Branca, Smith & Cross, Hampden HLCF Classic.",
       "tags": [
         "tiki",
@@ -4168,7 +4173,7 @@
       ],
       "instructions": "Flash blend all ingredients (except float) over small ice and open pour into a hurricane glass. Top with pebble ice and garnish with the banana leaf. Float the remaining 151 on top.",
       "garnish": "Banana leaf, 0.5 oz aged 151 rum float",
-      "source": "Refined remix of the Tech N9ne standard",
+      "source": "Originals",
       "notes": "Suggested: Maggie's Farm Falernum, Havana Club 3 Años, Hamilton Demerara 151.",
       "tags": [
         "tiki",
@@ -4462,7 +4467,7 @@
       ],
       "instructions": "Flash blend all ingredients over small ice and open pour into tiki mug. Fill with pebble ice and garnish with the mint sprig. Place the lime half on top and fill with 151. Light the 151 and express some citrus twists over the flame.",
       "garnish": "Aged 151 rum (in lime half, flamed), scored and hollowed lime half, citrus twists, mint sprig",
-      "source": "Ray Sakover",
+      "source": "Originals",
       "notes": "The kitchen sink and then some. Banana blend: blend equal parts by mass banana liqueur with overripe banana fruit and strain through a nut milk bag. Suggested: Père Labat 59° Rhum Agricole, Appleton 8yr, Hamilton Demerara 86 & 151, Buffalo Trace.",
       "tags": [
         "tiki",
@@ -4655,7 +4660,7 @@
       ],
       "instructions": "Wet shake all ingredients and open pour into a Mai Tai or double rocks glass. Fill with pebble ice. Garnish with the mint and lime wheel. Dash some Underberg on top and stick it into the ice to garnish.",
       "garnish": "Mint sprig, lime wheel, Underberg",
-      "source": "Attaboy, NYC",
+      "source": "Originals",
       "notes": "A bitter Mai Tai. Suggested: Pierre Ferrand Dry Curaçao, Smith & Cross Traditional Jamaican Rum.",
       "tags": [
         "tiki",
@@ -4708,7 +4713,7 @@
       ],
       "instructions": "Stir all ingredients over ice and strain into a rocks glass with a large cube.",
       "garnish": "None",
-      "source": "Port of Call, Mystic, CT",
+      "source": "Originals",
       "notes": "A rich, umami-forward stirred drink. Suggested: Pineapple-infused Doctor Bird Rum.",
       "tags": [
         "rum",
@@ -4754,7 +4759,7 @@
       ],
       "instructions": "Wet shake all ingredients and open pour into a collins glass filled with cracked ice. Top with ginger beer and gently stir to incorporate. Garnish with the lime wheel.",
       "garnish": "Ginger beer (to top), lime wheel",
-      "source": "Trader Vic",
+      "source": "Classics",
       "notes": "A fruity tequila cooler. Suggested: Combier Liqueur de Cassis, Arette Reposado Tequila.",
       "tags": [
         "tequila",
@@ -4817,7 +4822,7 @@
       ],
       "instructions": "Wet shake all ingredients and strain into a chilled Nick & Nora glass. Garnish with the pineapple wedge.",
       "garnish": "Small pineapple wedge",
-      "source": "Demi Natoli",
+      "source": "Originals",
       "notes": "A riff removed from a Hotel Nacional. Suggested: Tempus Fugit Crème de Banane, Havana Club 3 Años, Pineapple-infused Doctor Bird Rum.",
       "tags": [
         "tiki",
@@ -5345,7 +5350,7 @@
       ],
       "instructions": "Flash blend all ingredients over a few small ice cubes. Open pour into a tiki mug and fill with pebble ice. Garnish with mint and dash some Peychaud's on top.",
       "garnish": "Peychaud's bitters (dashed on top), mint sprig",
-      "source": "Minimalist Tiki",
+      "source": "Originals",
       "notes": "A Mai Tai meets a Chartreuse Swizzle. Suggested: Maggie's Farm Falernum, Père Labat 59° Rhum Agricole.",
       "tags": [
         "tiki",
@@ -5404,7 +5409,7 @@
       ],
       "instructions": "Wet shake all ingredients and strain into a chilled Nick & Nora. Express lemon twist and discard. No garnish.",
       "garnish": "None (express and discard lemon twist)",
-      "source": "Cocktail Virgin",
+      "source": "Originals",
       "notes": "An herbal rye sour. Suggested: Cappelletti Amaro Sfumato Rabarbaro, Michter's US*1 Single Barrel Rye, Wild Turkey 101 Rye.",
       "tags": [
         "whiskey",
@@ -5643,7 +5648,7 @@
       ],
       "instructions": "Wet shake all ingredients and open pour into a Mai Tai or double rocks glass. Top with pebble ice and garnish with mint.",
       "garnish": "Mint sprig",
-      "source": "SubtleTiki",
+      "source": "Originals",
       "notes": "A tropical concoction of banana and fernet. Suggested: Tempus Fugit Crème de Banane, Fernet Branca, Smith & Cross.",
       "tags": [
         "tiki",
@@ -5709,7 +5714,6 @@
       "created_at": "2026-05-24"
     },
     {
-      "id": "queen-jane-approximately",
       "name": "Queen Jane Approximately",
       "category": "Brokedown Palace",
       "glass": "Nick & Nora",
@@ -5772,7 +5776,7 @@
       ],
       "instructions": "Rinse a chilled Nick & Nora glass with Green Chartreuse and discard. Use grapefruit twist to wet the outside rim and rim with toasted fennel salt. Muddle grapes in a shaker, add ice and remaining ingredients, and shake. Strain into the glass.",
       "garnish": "Grapefruit twist, toasted fennel salt rim",
-      "source": "Death & Co., NYC (Gypsy Wedding adaptation)",
+      "source": "Original",
       "notes": "A rum adaptation of Gypsy Wedding. Suggested: Maggie's Farm Falernum, Linie Aquavit, Père Labat 59° Rhum Agricole.",
       "tags": [
         "rum",
@@ -5783,6 +5787,8 @@
         "herbal",
         "shaken"
       ],
+      "premium": false,
+      "id": "queen-jane-approximately",
       "created_at": "2026-05-24"
     },
     {
@@ -5819,7 +5825,7 @@
       ],
       "instructions": "Stir all ingredients over ice and strain into a double rocks glass over a large cube. Use a zester to score a lime and cut a particularly nice looking wedge to garnish.",
       "garnish": "Scored lime wedge",
-      "source": "Gonçalo de Sousa Mounteiro, Berlin",
+      "source": "Originals",
       "notes": "A funky falernum sour. Suggested: Maggie's Farm Falernum, Smith & Cross.",
       "tags": [
         "rum",
@@ -5882,7 +5888,7 @@
       ],
       "instructions": "Wet shake all ingredients and strain into a chilled coupe. Float dehydrated lime wheel on top.",
       "garnish": "Dehydrated lime wheel",
-      "source": "Queen Mary Tavern, Chicago",
+      "source": "Originals",
       "notes": "Funky, herbal, expensive — worth it. Served-down version: 1 barspoon each crème de cacao and lime punch syrup; 1-2 dashes allspice dram.",
       "tags": [
         "rum",
@@ -5958,7 +5964,7 @@
       ],
       "instructions": "Wet shake all ingredients over small ice and open pour into a tiki mug. Top with pebble ice and garnish with mint and lime wheel.",
       "garnish": "Lime wheel, mint sprig",
-      "source": "Cocktail Virgin",
+      "source": "Originals",
       "notes": "Pineapple, rhubarb, and rum. Suggested: Cappelletti Amaro Sfumato Rabarbaro, Smith & Cross, Hamilton Demerara 86.",
       "tags": [
         "tiki",
@@ -6023,7 +6029,7 @@
       ],
       "instructions": "Wet shake all ingredients and strain into a chilled coupe. Garnish with the lime wheel.",
       "garnish": "Lime wheel",
-      "source": "Orestes Cruz",
+      "source": "Originals",
       "notes": "A rhubarb-ed Hemingway daiquiri. Suggested: Cappelletti Amaro Sfumato Rabarbaro, Havana Club 3 Años.",
       "tags": [
         "rum",
@@ -6087,7 +6093,7 @@
       ],
       "instructions": "Wet shake all ingredients and open pour into a collins glass. Fill with ice and top with soda. Garnish with the orange wheel.",
       "garnish": "Soda water (to top), orange wheel",
-      "source": "Cocktailarium",
+      "source": "Originals",
       "notes": "A long drink with gin, Campari, and pineapple. Suggested: Hendrick's Gin.",
       "tags": [
         "gin",
@@ -6209,7 +6215,7 @@
       ],
       "instructions": "Sprinkle sugar on an orange wedge and blowtorch until caramelized. Flash blend all ingredients with a few small ice cubes until you can no longer hear them. Open pour into a small collins glass and garnish with the caramelized orange wedge.",
       "garnish": "Caramelized orange wedge",
-      "source": "Fanny Chu, Donna, Brooklyn",
+      "source": "Originals",
       "notes": "A funky Garibaldi variation. Suggested: Tempus Fugit Crème de Banane, Smith & Cross.",
       "tags": [
         "tiki",
@@ -6274,7 +6280,7 @@
       ],
       "instructions": "Flash blend all ingredients (except 151) over a few small ice and open pour into a sling glass. Fill with pebble ice and garnish with the mint and citrus wheel. Float 151 on top.",
       "garnish": "Mint sprig, dehydrated citrus wheel, 0.75 oz aged 151 rum float",
-      "source": "False Idol, San Diego",
+      "source": "Originals",
       "notes": "Fruity, funky, bittersweet. Suggested: Wray & Nephew White Overproof, Amaro Montenegro, Hamilton Demerara 151.",
       "tags": [
         "tiki",
@@ -6339,7 +6345,7 @@
       ],
       "instructions": "Wet shake all ingredients over small ice and open pour into a double rocks glass. Fill with pebble ice and garnish with the mint.",
       "garnish": "Mint sprig",
-      "source": "Sam Miller",
+      "source": "Originals",
       "notes": "Baking spices and honey with Cynar and rum. Suggested: Appleton Estate 8 Year Reserve.",
       "tags": [
         "rum",
@@ -6440,7 +6446,7 @@
       ],
       "instructions": "Flash blend all ingredients over a few small ice and open pour into a tiki mug. Fill with pebble ice and garnish with the mint and citrus wheel.",
       "garnish": "Mint sprig, citrus wheel, brandied cherry",
-      "source": "Zac Overman, Brooklyn",
+      "source": "Originals",
       "notes": "Half your bar in a glass. Suggested: Maggie's Farm Falernum, Wray & Nephew White Overproof, Hamilton Demerara 86 & 151, The Real McCoy 5yr.",
       "tags": [
         "tiki",
@@ -6458,7 +6464,7 @@
       "id": "8th-wonder",
       "name": "8th Wonder",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -6503,7 +6509,7 @@
       "id": "angelo-and-rocco",
       "name": "Angelo and Rocco",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -6554,7 +6560,7 @@
       "id": "anthora",
       "name": "Anthora",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -6605,7 +6611,7 @@
       "id": "banana-stand",
       "name": "Banana Stand",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -6656,7 +6662,7 @@
       "id": "broken-spanish",
       "name": "Broken Spanish",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -6695,7 +6701,7 @@
       "id": "bullingdon-club-cup",
       "name": "Bullingdon Club Cup",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -6758,7 +6764,7 @@
       "id": "cardinale",
       "name": "Cardinale",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -6815,7 +6821,7 @@
       "id": "clip-joint-cup",
       "name": "Clip Joint Cup",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -6872,7 +6878,7 @@
       "id": "common-thread",
       "name": "Common Thread",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -6941,7 +6947,7 @@
       "id": "cortez",
       "name": "Cortez",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -6986,7 +6992,7 @@
       "id": "cup-of-joe",
       "name": "Cup of Joe",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -7043,7 +7049,7 @@
       "id": "danger-haus",
       "name": "Danger Haus",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -7088,7 +7094,7 @@
       "id": "folklore",
       "name": "Folklore",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -7139,7 +7145,7 @@
       "id": "fresa-y-cervesa",
       "name": "Fresa y Cervesa",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -7184,7 +7190,7 @@
       "id": "haymarket",
       "name": "Haymarket",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -7223,7 +7229,7 @@
       "id": "hot-broth",
       "name": "Hot Broth",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Mug",
       "method": "Built",
       "ingredients": [
@@ -7262,7 +7268,7 @@
       "id": "howie-in-the-jungle",
       "name": "Howie in the Jungle",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -7313,7 +7319,7 @@
       "id": "into-the-woods",
       "name": "Into the Woods",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -7352,7 +7358,7 @@
       "id": "jane-stanley",
       "name": "Jane Stanley",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -7385,7 +7391,7 @@
       "id": "joe-danger",
       "name": "Joe Danger",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -7442,7 +7448,7 @@
       "id": "ma-cherie",
       "name": "Ma Cherie",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -7499,7 +7505,7 @@
       "id": "midnight-bramble",
       "name": "Midnight Bramble",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "",
       "ingredients": [
@@ -7538,7 +7544,7 @@
       "id": "monferrato",
       "name": "Monferrato",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Flute",
       "method": "Stirred",
       "ingredients": [
@@ -7583,7 +7589,7 @@
       "id": "on-the-vine",
       "name": "On the Vine",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -7634,7 +7640,7 @@
       "id": "seoul-mate",
       "name": "Seoul Mate",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -7679,7 +7685,7 @@
       "id": "shiitake-dirty-to-me",
       "name": "Shiitake Dirty to Me",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -7724,7 +7730,7 @@
       "id": "shuttlecock",
       "name": "Shuttlecock",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -7787,7 +7793,7 @@
       "id": "sippy-cup",
       "name": "Sippy Cup",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -7838,7 +7844,7 @@
       "id": "summer-of-yes",
       "name": "Summer of Yes",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -7883,7 +7889,7 @@
       "id": "superbas",
       "name": "Superbas",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -7928,7 +7934,7 @@
       "id": "velvet-cobbler",
       "name": "Velvet Cobbler",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -7961,7 +7967,7 @@
       "id": "all-betz-are-off",
       "name": "All Betz Are Off",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -7994,7 +8000,7 @@
       "id": "amelia",
       "name": "Amelia",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -8051,7 +8057,7 @@
       "id": "argyle",
       "name": "Argyle",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -8096,7 +8102,7 @@
       "id": "avo",
       "name": "Avo",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -8153,7 +8159,7 @@
       "id": "beekeeper",
       "name": "Beekeeper",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -8204,7 +8210,7 @@
       "id": "berry-dangerous-fix",
       "name": "Berry Dangerous Fix",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "",
       "ingredients": [
@@ -8249,7 +8255,7 @@
       "id": "black-dahlia",
       "name": "Black Dahlia",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Nick & Nora",
       "method": "Stirred",
       "ingredients": [
@@ -8294,7 +8300,7 @@
       "id": "block-party",
       "name": "Block Party",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -8357,7 +8363,7 @@
       "id": "bohemia",
       "name": "Bohemia",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -8396,7 +8402,7 @@
       "id": "bread-and-butternut",
       "name": "Bread and Butternut",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -8459,7 +8465,7 @@
       "id": "chi-chi-swizzle",
       "name": "Chi Chi Swizzle",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -8516,7 +8522,7 @@
       "id": "choked-up",
       "name": "Choked Up",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -8567,7 +8573,7 @@
       "id": "coq-tail-1",
       "name": "Coq Tail 1",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -8630,7 +8636,7 @@
       "id": "coq-tail-2",
       "name": "Coq Tail 2",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -8687,7 +8693,7 @@
       "id": "coq-tail-3",
       "name": "Coq Tail 3",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -8726,7 +8732,7 @@
       "id": "deli-slang",
       "name": "Deli Slang",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -8771,7 +8777,7 @@
       "id": "dewin-it",
       "name": "Dewin' It",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -8822,7 +8828,7 @@
       "id": "dr-feelgood",
       "name": "Dr. Feelgood",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -8879,7 +8885,7 @@
       "id": "dr-walnut",
       "name": "Dr. Walnut",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -8930,7 +8936,7 @@
       "id": "el-rey",
       "name": "El Rey",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -8975,7 +8981,7 @@
       "id": "el-tucan",
       "name": "El Tucan",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -9032,7 +9038,7 @@
       "id": "english-heat",
       "name": "English Heat",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -9077,7 +9083,7 @@
       "id": "far-from-the-tree",
       "name": "Far From the Tree",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -9128,7 +9134,7 @@
       "id": "fig-and-thistle",
       "name": "Fig and Thistle",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -9232,7 +9238,7 @@
       ],
       "instructions": "Combine all the ingredients except the mint and nutmeg in a cocktail tin. Fill a tiki mug with crushed ice. Add three 1¼ inch ice cubes to the tin cover and whip. Strain the cocktail into the tiki mug and top with additional crushed ice. Garnish with the mint plouche and grated nutmeg.",
       "garnish": "Mint plouche, Grated nutmeg",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "notes": "Creator: Wally Suarez",
       "tags": [],
       "premium": false,
@@ -9243,7 +9249,7 @@
       "id": "the-gilsey",
       "name": "The Gilsey",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -9294,7 +9300,7 @@
       "id": "golden-ticket",
       "name": "Golden Ticket",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -9351,7 +9357,7 @@
       "id": "green-streets",
       "name": "Green Streets",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -9384,7 +9390,7 @@
       "id": "hearsay",
       "name": "Hearsay",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Nick & Nora",
       "method": "Stirred",
       "ingredients": [
@@ -9435,7 +9441,7 @@
       "id": "honey-oat",
       "name": "Honey Oat",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -9492,7 +9498,7 @@
       "id": "hot-lips",
       "name": "Hot Lips",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Single rocks",
       "method": "Stirred",
       "ingredients": [
@@ -9537,7 +9543,7 @@
       "id": "island-time",
       "name": "Island Time",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -9606,7 +9612,7 @@
       "id": "jitney",
       "name": "Jitney",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -9651,7 +9657,7 @@
       "id": "koala-pear",
       "name": "Koala Pear",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -9702,7 +9708,7 @@
       "id": "loisaida-avenue",
       "name": "Loisaida Avenue",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Nick & Nora",
       "method": "Shaken",
       "ingredients": [
@@ -9747,7 +9753,7 @@
       "id": "longfellow",
       "name": "Longfellow",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Black highball by St×lzle",
       "method": "Shaken",
       "ingredients": [
@@ -9828,7 +9834,7 @@
       "id": "lowrider",
       "name": "Lowrider",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -9891,7 +9897,7 @@
       "id": "mad-gnome",
       "name": "Mad Gnome",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Copper gnome or double rocks",
       "method": "Shaken",
       "ingredients": [
@@ -9948,7 +9954,7 @@
       "id": "maize-runner",
       "name": "Maize Runner",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -9999,7 +10005,7 @@
       "id": "mother-s-little-helper",
       "name": "Mother's Little Helper",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -10050,7 +10056,7 @@
       "id": "needle-and-thread",
       "name": "Needle and Thread",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -10095,7 +10101,7 @@
       "id": "nod-to-nothing",
       "name": "Nod to Nothing",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "",
       "ingredients": [
@@ -10152,7 +10158,7 @@
       "id": "old-ranhofer",
       "name": "Old Ranhofer",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -10185,7 +10191,7 @@
       "id": "paint-it-black",
       "name": "Paint It Black",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -10242,7 +10248,7 @@
       "id": "panamericano",
       "name": "Panamericano",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -10275,7 +10281,7 @@
       "id": "paris-is-burning-nomad",
       "name": "Paris is Burning",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -10326,7 +10332,7 @@
       "id": "petticoat",
       "name": "Petticoat",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -10371,7 +10377,7 @@
       "id": "piedmont-fizz",
       "name": "Piedmont Fizz",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -10422,7 +10428,7 @@
       "id": "rainbow-road",
       "name": "Rainbow Road",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -10473,7 +10479,7 @@
       "id": "red-light",
       "name": "Red Light",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -10536,7 +10542,7 @@
       "id": "red-pepper-passionfruit-daiquiri",
       "name": "Red Pepper–passionfruit Daiquiri",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -10587,7 +10593,7 @@
       "id": "rue-barbare",
       "name": "Rue Barbare",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -10650,7 +10656,7 @@
       "id": "runyon-canyon",
       "name": "Runyon Canyon",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Belgium",
       "method": "",
       "ingredients": [
@@ -10707,7 +10713,7 @@
       "id": "sakura-maru",
       "name": "Sakura Maru",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -10758,7 +10764,7 @@
       "id": "scarlet-knight",
       "name": "Scarlet Knight",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -10803,7 +10809,7 @@
       "id": "sergeant-pepper",
       "name": "Sergeant Pepper",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -10860,7 +10866,7 @@
       "id": "shirley-heights",
       "name": "Shirley Heights",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Belgium",
       "method": "",
       "ingredients": [
@@ -10917,7 +10923,7 @@
       "id": "south-park-sling",
       "name": "South Park Sling",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -10986,7 +10992,7 @@
       "id": "summer-jamz",
       "name": "Summer Jamz",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "",
       "ingredients": [
@@ -11037,7 +11043,7 @@
       "id": "tit-for-tat",
       "name": "Tit for Tat",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "",
       "ingredients": [
@@ -11088,7 +11094,7 @@
       "id": "vasa",
       "name": "Vasa",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -11151,7 +11157,7 @@
       "id": "v-o-c",
       "name": "V. O. C.",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -11196,7 +11202,7 @@
       "id": "walter-gibson",
       "name": "Walter Gibson",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Nick & Nora",
       "method": "Stirred",
       "ingredients": [
@@ -11259,7 +11265,7 @@
       "id": "whey-to-go",
       "name": "Whey to Go",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -11322,7 +11328,7 @@
       "id": "1903",
       "name": "1903",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -11367,7 +11373,7 @@
       "id": "baudouine",
       "name": "Baudouine",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -11424,7 +11430,7 @@
       "id": "beau-four",
       "name": "Beau Four",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -11457,7 +11463,7 @@
       "id": "bee-lavender",
       "name": "Bee Lavender",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -11496,7 +11502,7 @@
       "id": "birch-tree",
       "name": "Birch Tree",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Nick & Nora",
       "method": "Stirred",
       "ingredients": [
@@ -11547,7 +11553,7 @@
       "id": "bitches-brew",
       "name": "Bitches Brew",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -11586,7 +11592,7 @@
       "id": "blistered-in-the-sun",
       "name": "Blistered in the Sun",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -11643,7 +11649,7 @@
       "id": "broadway",
       "name": "Broadway",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -11694,7 +11700,7 @@
       "id": "brown-sugar",
       "name": "Brown Sugar",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -11739,7 +11745,7 @@
       "id": "the-brunswick",
       "name": "The Brunswick",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -11796,7 +11802,7 @@
       "id": "caf-con-leche",
       "name": "Café Con Leche",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -11847,7 +11853,7 @@
       "id": "cameo",
       "name": "Cameo",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Single rocks",
       "method": "Stirred",
       "ingredients": [
@@ -11898,7 +11904,7 @@
       "id": "charlie-watts",
       "name": "Charlie Watts",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -11961,7 +11967,7 @@
       "id": "ciampino",
       "name": "Ciampino",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Mug",
       "method": "Shaken",
       "ingredients": [
@@ -12012,7 +12018,7 @@
       "id": "crooked-kilt",
       "name": "Crooked Kilt",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -12057,7 +12063,7 @@
       "id": "dark-horse",
       "name": "Dark Horse",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -12102,7 +12108,7 @@
       "id": "detox-retox",
       "name": "Detox Retox",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -12159,7 +12165,7 @@
       "id": "dos-gardenias-para-ti",
       "name": "Dos Gardenias Para Ti",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -12210,7 +12216,7 @@
       "id": "doyers-street",
       "name": "Doyers Street",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -12255,7 +12261,7 @@
       "id": "dr-kananga",
       "name": "Dr. Kananga",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Belgium",
       "method": "",
       "ingredients": [
@@ -12318,7 +12324,7 @@
       "id": "el-tigre-nomad",
       "name": "El Tigre",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -12375,7 +12381,7 @@
       "id": "en-maison",
       "name": "En Maison",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -12420,7 +12426,7 @@
       "id": "five-families-frank",
       "name": "Five Families Frank",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -12465,7 +12471,7 @@
       "id": "fortune-teller",
       "name": "Fortune Teller",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -12504,7 +12510,7 @@
       "id": "forty-thieves",
       "name": "Forty Thieves",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -12561,7 +12567,7 @@
       "id": "foxtrot",
       "name": "Foxtrot",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -12624,7 +12630,7 @@
       "id": "gentlemen-s-exchange",
       "name": "Gentlemen's Exchange",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -12681,7 +12687,7 @@
       "id": "gimme-a-beet",
       "name": "Gimme a Beet",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -12744,7 +12750,7 @@
       "id": "hair-trigger",
       "name": "Hair Trigger",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -12789,7 +12795,7 @@
       "id": "jive-turkey",
       "name": "Jive Turkey",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -12840,7 +12846,7 @@
       "id": "king-s-arms",
       "name": "King's Arms",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Single rocks",
       "method": "Stirred",
       "ingredients": [
@@ -12885,7 +12891,7 @@
       "id": "kingsman",
       "name": "Kingsman",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -12936,7 +12942,7 @@
       "id": "little-dragon",
       "name": "Little Dragon",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -12987,7 +12993,7 @@
       "id": "little-red-rooster",
       "name": "Little Red Rooster",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -13032,7 +13038,7 @@
       "id": "madame-laveau",
       "name": "Madame Laveau",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -13083,7 +13089,7 @@
       "id": "madison-park-smash",
       "name": "Madison Park Smash",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "",
       "ingredients": [
@@ -13128,7 +13134,7 @@
       "id": "manhattan-milk-punch",
       "name": "Manhattan Milk Punch",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -13191,7 +13197,7 @@
       "id": "massapeequa",
       "name": "Massapeequa",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -13242,7 +13248,7 @@
       "id": "matchlock",
       "name": "Matchlock",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Snifter",
       "method": "",
       "ingredients": [
@@ -13323,7 +13329,7 @@
       "id": "miles-ahead",
       "name": "Miles Ahead",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -13392,7 +13398,7 @@
       "id": "mott-and-mulberry",
       "name": "Mott and Mulberry",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -13431,7 +13437,7 @@
       "id": "mynah-bird",
       "name": "Mynah Bird",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -13482,7 +13488,7 @@
       "id": "old-alhambra",
       "name": "Old Alhambra",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -13521,7 +13527,7 @@
       "id": "original-sin",
       "name": "Original Sin",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -13554,7 +13560,7 @@
       "id": "pandan-express",
       "name": "Pandan Express",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -13623,7 +13629,7 @@
       "id": "pico-and-robinson",
       "name": "Pico and Robinson",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -13674,7 +13680,7 @@
       "id": "purple-dragon",
       "name": "Purple Dragon",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -13731,7 +13737,7 @@
       "id": "repossession",
       "name": "Repossession",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -13776,7 +13782,7 @@
       "id": "ringo",
       "name": "Ringo",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -13851,7 +13857,7 @@
       "id": "riptide",
       "name": "Riptide",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Snifter",
       "method": "",
       "ingredients": [
@@ -13920,7 +13926,7 @@
       "id": "rock-and-a-hard-place",
       "name": "Rock and a Hard Place",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Nick & Nora",
       "method": "Stirred",
       "ingredients": [
@@ -13971,7 +13977,7 @@
       "id": "the-roots",
       "name": "The Roots",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -14022,7 +14028,7 @@
       "id": "satan-s-circus",
       "name": "Satan's Circus",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -14061,7 +14067,7 @@
       "id": "scotch-dumpling",
       "name": "Scotch Dumpling",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -14106,7 +14112,7 @@
       "id": "smoking-jacket",
       "name": "Smoking Jacket",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Nick & Nora",
       "method": "Stirred",
       "ingredients": [
@@ -14151,7 +14157,7 @@
       "id": "sons-of-liberty",
       "name": "Sons of Liberty",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -14196,7 +14202,7 @@
       "id": "spiced-carrot-colada-cold",
       "name": "Spiced Carrot Colada Cold",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -14253,7 +14259,7 @@
       "id": "spiced-carrot-colada-hot",
       "name": "Spiced Carrot Colada Hot",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Mug",
       "method": "Built",
       "ingredients": [
@@ -14310,7 +14316,7 @@
       "id": "spring-sting",
       "name": "Spring Sting",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Nick & Nora",
       "method": "Stirred",
       "ingredients": [
@@ -14361,7 +14367,7 @@
       "id": "start-me-up",
       "name": "Start Me Up",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -14418,7 +14424,7 @@
       "id": "taxi-dancer",
       "name": "Taxi Dancer",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -14475,7 +14481,7 @@
       "id": "thick-as-thieves",
       "name": "Thick as Thieves",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -14550,7 +14556,7 @@
       "id": "tinseltown-rebellion",
       "name": "Tinseltown Rebellion",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -14613,7 +14619,7 @@
       "id": "tivoli",
       "name": "Tivoli",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -14664,7 +14670,7 @@
       "id": "topanga",
       "name": "Topanga",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -14709,7 +14715,7 @@
       "id": "vagabond",
       "name": "Vagabond",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Single rocks",
       "method": "Stirred",
       "ingredients": [
@@ -14748,7 +14754,7 @@
       "id": "wheeler-and-wilson",
       "name": "Wheeler and Wilson",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -14793,7 +14799,7 @@
       "id": "wit-the-coco",
       "name": "Wit the Coco",
       "category": "The NoMad",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -14844,7 +14850,7 @@
       "id": "adonis-nomad",
       "name": "Adonis",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -14889,7 +14895,7 @@
       "id": "amaretto-sour",
       "name": "Amaretto Sour",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -14934,7 +14940,7 @@
       "id": "aperol-sour",
       "name": "Aperol Sour",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -14967,7 +14973,7 @@
       "id": "badminton-cup",
       "name": "Badminton Cup",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -15024,7 +15030,7 @@
       "id": "bamboo-nomad",
       "name": "Bamboo",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -15069,7 +15075,7 @@
       "id": "bijou-nomad",
       "name": "Bijou",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -15108,7 +15114,7 @@
       "id": "bijou-reserve",
       "name": "Bijou Reserve",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -15147,7 +15153,7 @@
       "id": "blinker",
       "name": "Blinker",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -15192,7 +15198,7 @@
       "id": "blue-hawaiian",
       "name": "Blue Hawaiian",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Pilsner",
       "method": "",
       "ingredients": [
@@ -15243,7 +15249,7 @@
       "id": "brandy-crusta",
       "name": "Brandy Crusta",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Flute",
       "method": "",
       "ingredients": [
@@ -15294,7 +15300,7 @@
       "id": "clover-club",
       "name": "Clover Club",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -15333,7 +15339,7 @@
       "id": "creole-contentment",
       "name": "Creole Contentment",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Nick & Nora",
       "method": "Stirred",
       "ingredients": [
@@ -15384,7 +15390,7 @@
       "id": "daiquiri-nomad",
       "name": "Daiquiri",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -15417,7 +15423,7 @@
       "id": "demerara-dry-float",
       "name": "Demerara Dry Float",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Explosion vessel",
       "method": "",
       "ingredients": [
@@ -15462,7 +15468,7 @@
       "id": "diplomat",
       "name": "Diplomat",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -15501,7 +15507,7 @@
       "id": "don-t-give-up-the-ship",
       "name": "Don't Give up the Ship",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -15540,7 +15546,7 @@
       "id": "egg-nog",
       "name": "Egg Nog",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Festive mug",
       "method": "",
       "ingredients": [
@@ -15615,7 +15621,7 @@
       "id": "el-presidente",
       "name": "El Presidente",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -15654,7 +15660,7 @@
       "id": "fourth-degree",
       "name": "Fourth Degree",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -15693,7 +15699,7 @@
       "id": "grasshopper-nomad",
       "name": "Grasshopper",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Nick & Nora",
       "method": "Shaken",
       "ingredients": [
@@ -15732,7 +15738,7 @@
       "id": "green-beast",
       "name": "Green Beast",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -15771,7 +15777,7 @@
       "id": "hemingway-daiquiri",
       "name": "Hemingway Daiquiri",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -15822,7 +15828,7 @@
       "id": "honi-honi",
       "name": "Honi Honi",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Belgium",
       "method": "",
       "ingredients": [
@@ -15873,7 +15879,7 @@
       "id": "huntsman",
       "name": "Huntsman",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -15918,7 +15924,7 @@
       "id": "improved-whiskey-cocktail-reserve",
       "name": "Improved Whiskey Cocktail Reserve",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -15975,7 +15981,7 @@
       "id": "jack-rose",
       "name": "Jack Rose",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -16020,7 +16026,7 @@
       "id": "jungle-bird-nomad",
       "name": "Jungle Bird",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -16071,7 +16077,7 @@
       "id": "mai-tai-nomad",
       "name": "Mai Tai",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Tiki mug",
       "method": "",
       "ingredients": [
@@ -16134,7 +16140,7 @@
       "id": "martinez",
       "name": "Martinez",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -16173,7 +16179,7 @@
       "id": "mint-julep",
       "name": "Mint Julep",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Julep cup",
       "method": "",
       "ingredients": [
@@ -16206,7 +16212,7 @@
       "id": "montauk",
       "name": "Montauk",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -16251,7 +16257,7 @@
       "id": "morning-glory-fizz",
       "name": "Morning Glory Fizz",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -16290,7 +16296,7 @@
       "id": "new-york-sour",
       "name": "New York Sour",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -16329,7 +16335,7 @@
       "id": "paloma-nomad",
       "name": "Paloma",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -16386,7 +16392,7 @@
       "id": "penicillin-nomad",
       "name": "Penicillin",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Shaken",
       "ingredients": [
@@ -16431,7 +16437,7 @@
       "id": "philadelphia-fish-house-punch",
       "name": "Philadelphia Fish House Punch",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -16494,7 +16500,7 @@
       "id": "pimm-s-cup",
       "name": "Pimm's Cup",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -16545,7 +16551,7 @@
       "id": "pi-a-colada",
       "name": "Piña Colada",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Belgian",
       "method": "",
       "ingredients": [
@@ -16596,7 +16602,7 @@
       "id": "pineapple-daiquiri",
       "name": "Pineapple Daiquiri",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -16641,7 +16647,7 @@
       "id": "pineapple-julep",
       "name": "Pineapple Julep",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Julep cup",
       "method": "",
       "ingredients": [
@@ -16722,7 +16728,7 @@
       "id": "sherry-cobbler",
       "name": "Sherry Cobbler",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -16755,7 +16761,7 @@
       "id": "sherry-painkiller",
       "name": "Sherry Painkiller",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Snifter",
       "method": "",
       "ingredients": [
@@ -16806,7 +16812,7 @@
       "id": "up-to-date",
       "name": "Up to Date",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Stirred",
       "ingredients": [
@@ -16857,7 +16863,7 @@
       "id": "vasquez-daiquiri",
       "name": "Vasquez Daiquiri",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -16902,7 +16908,7 @@
       "id": "ward-8",
       "name": "Ward 8",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -16941,7 +16947,7 @@
       "id": "zombie-for-two",
       "name": "Zombie for Two",
       "category": "Classic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Skull or 16 to 18 ounce tiki mug",
       "method": "",
       "ingredients": [
@@ -17022,7 +17028,7 @@
       "id": "basil-fennel-soda",
       "name": "Basil Fennel Soda",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17061,7 +17067,7 @@
       "id": "beet-up",
       "name": "Beet Up",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17118,7 +17124,7 @@
       "id": "cease-and-desist",
       "name": "Cease and Desist",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17163,7 +17169,7 @@
       "id": "devlin-s-delight",
       "name": "Devlin's Delight",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Single rocks",
       "method": "Shaken",
       "ingredients": [
@@ -17196,7 +17202,7 @@
       "id": "devocion-tonic",
       "name": "Devocion Tonic",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17241,7 +17247,7 @@
       "id": "gingered-ale",
       "name": "Gingered Ale",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17280,7 +17286,7 @@
       "id": "gotham-parksider",
       "name": "Gotham Parksider",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Single rocks",
       "method": "Shaken",
       "ingredients": [
@@ -17313,7 +17319,7 @@
       "id": "guidara-s-sober-manhattan",
       "name": "Guidara's Sober Manhattan",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Rocks",
       "method": "Stirred",
       "ingredients": [
@@ -17358,7 +17364,7 @@
       "id": "la-pi-a",
       "name": "La Piña",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17397,7 +17403,7 @@
       "id": "ocha",
       "name": "Ocha",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17436,7 +17442,7 @@
       "id": "paradise-city",
       "name": "Paradise City",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17487,7 +17493,7 @@
       "id": "peter-piper",
       "name": "Peter Piper",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "",
       "ingredients": [
@@ -17538,7 +17544,7 @@
       "id": "polka-man",
       "name": "Polka Man",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17595,7 +17601,7 @@
       "id": "spring-and-tonic",
       "name": "Spring and Tonic",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17640,7 +17646,7 @@
       "id": "up-the-alley",
       "name": "Up the Alley",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Coupe",
       "method": "Shaken",
       "ingredients": [
@@ -17679,7 +17685,7 @@
       "id": "yuzu-arnold-palmer",
       "name": "Yuzu Arnold Palmer",
       "category": "Non-Alcoholic",
-      "source": "The NoMad Cocktail Book",
+      "source": "NoMad Bar",
       "glass": "Highball",
       "method": "Shaken",
       "ingredients": [
@@ -17724,7 +17730,7 @@
       "id": "grand-street",
       "name": "Grand Street",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -17752,7 +17758,7 @@
       "id": "20th-century",
       "name": "20th Century",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -17777,7 +17783,7 @@
       "id": "aviation",
       "name": "Aviation",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Rocks",
       "ingredients": [
@@ -17805,7 +17811,7 @@
       "id": "bee-s-knees",
       "name": "Bee's Knees",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -17833,7 +17839,7 @@
       "id": "blood-and-sand",
       "name": "Blood And Sand",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Martini",
       "ingredients": [
@@ -17858,7 +17864,7 @@
       "id": "bobby-burns",
       "name": "Bobby Burns",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -17880,7 +17886,7 @@
       "id": "boulevardier",
       "name": "Boulevardier",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -17905,7 +17911,7 @@
       "id": "brooklyn",
       "name": "Brooklyn",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -17930,7 +17936,7 @@
       "id": "brown-derby",
       "name": "Brown Derby",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -17955,7 +17961,7 @@
       "id": "caipibinga",
       "name": "Caipibinga",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -17983,7 +17989,7 @@
       "id": "champs-lys-es",
       "name": "Champs-Élysées",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -18014,7 +18020,7 @@
       "id": "charleston-cocktail",
       "name": "Charleston Cocktail",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -18054,7 +18060,7 @@
       "id": "cobra-s-fang",
       "name": "Cobra's Fang",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -18082,7 +18088,7 @@
       "id": "corpse-reviver-2-dc",
       "name": "Corpse Reviver #2",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -18104,7 +18110,7 @@
       "id": "diamondback",
       "name": "Diamondback",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -18129,7 +18135,7 @@
       "id": "fancyfree",
       "name": "Fancy-Free",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -18154,7 +18160,7 @@
       "id": "fitzgerald",
       "name": "Fitzgerald",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -18185,7 +18191,7 @@
       "id": "flamenco",
       "name": "Flamenco",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -18210,7 +18216,7 @@
       "id": "gimlet",
       "name": "Gimlet",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Fizz Glass",
       "ingredients": [
@@ -18238,7 +18244,7 @@
       "id": "hankypanky",
       "name": "Hanky-Panky",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -18260,7 +18266,7 @@
       "id": "honeysuckle",
       "name": "Honeysuckle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -18288,7 +18294,7 @@
       "id": "la-rosita",
       "name": "La Rosita",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -18313,7 +18319,7 @@
       "id": "mexican-firing-squad",
       "name": "Mexican Firing Squad",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -18338,7 +18344,7 @@
       "id": "mojito",
       "name": "Mojito",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -18363,7 +18369,7 @@
       "id": "oldfashioned",
       "name": "Old-Fashioned",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Nick & Nora",
       "ingredients": [
@@ -18385,7 +18391,7 @@
       "id": "pendennis-club-cocktail",
       "name": "Pendennis Club Cocktail",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -18419,7 +18425,7 @@
       "id": "pingpong-cocktail",
       "name": "Ping-Pong Cocktail",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Rocks",
       "ingredients": [
@@ -18450,7 +18456,7 @@
       "id": "port-au-prince",
       "name": "Port Au Prince",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -18475,7 +18481,7 @@
       "id": "queens-park-swizzle",
       "name": "Queen'S Park Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -18509,7 +18515,7 @@
       "id": "remember-the-maine",
       "name": "Remember The Maine",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -18528,7 +18534,7 @@
       "id": "rob-roy",
       "name": "Rob Roy",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Julep Tin",
       "ingredients": [
@@ -18565,7 +18571,7 @@
       "id": "rusty-nail",
       "name": "Rusty Nail",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -18584,7 +18590,7 @@
       "id": "sazerac",
       "name": "Sazerac",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -18618,7 +18624,7 @@
       "id": "scofflaw",
       "name": "Scofflaw",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -18640,7 +18646,7 @@
       "id": "sidecar",
       "name": "Sidecar",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -18677,7 +18683,7 @@
       "id": "singapore-sling",
       "name": "Singapore Sling",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -18699,7 +18705,7 @@
       "id": "stinger",
       "name": "Stinger",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -18718,7 +18724,7 @@
       "id": "tailspin",
       "name": "Tailspin",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -18746,7 +18752,7 @@
       "id": "ti-punch-dc",
       "name": "Ti Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -18771,7 +18777,7 @@
       "id": "vieux-carre",
       "name": "Vieux Carre",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -18799,7 +18805,7 @@
       "id": "anjou-mama",
       "name": "Anjou Mama",
       "category": "Gin",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Nick & Nora",
       "ingredients": [
@@ -18835,7 +18841,7 @@
       "id": "bella-luna",
       "name": "Bella Luna",
       "category": "Gin",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Port Glass",
       "ingredients": [
@@ -18865,7 +18871,7 @@
       "id": "cadiz-collins",
       "name": "Cadiz Collins",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -18901,7 +18907,7 @@
       "id": "city-of-gold-sling",
       "name": "City Of Gold Sling",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -18928,7 +18934,7 @@
       "id": "the-commandant",
       "name": "The Commandant",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coconut Mug",
       "ingredients": [
@@ -18961,7 +18967,7 @@
       "id": "frisco-club",
       "name": "Frisco Club",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -18991,7 +18997,7 @@
       "id": "gin-hound",
       "name": "Gin Hound",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -19018,7 +19024,7 @@
       "id": "good-humor",
       "name": "Good Humor",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -19057,7 +19063,7 @@
       "id": "gypsy-eyes",
       "name": "Gypsy Eyes",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19090,7 +19096,7 @@
       "id": "kew-gardens-cooler",
       "name": "Kew Gardens Cooler",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -19114,7 +19120,7 @@
       "id": "mortal-enemy",
       "name": "Mortal Enemy",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Nick & Nora",
       "ingredients": [
@@ -19147,7 +19153,7 @@
       "id": "muddled-mission",
       "name": "Muddled Mission",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -19174,7 +19180,7 @@
       "id": "overhead-smash",
       "name": "Overhead Smash",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -19219,7 +19225,7 @@
       "id": "pink-elephant",
       "name": "Pink Elephant",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -19252,7 +19258,7 @@
       "id": "pink-flag",
       "name": "Pink Flag",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -19285,7 +19291,7 @@
       "id": "queen-palm",
       "name": "Queen Palm",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -19321,7 +19327,7 @@
       "id": "ramble",
       "name": "Ramble",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -19348,7 +19354,7 @@
       "id": "rigadoon",
       "name": "Rigadoon",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -19378,7 +19384,7 @@
       "id": "the-risk-pool",
       "name": "The Risk Pool",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -19408,7 +19414,7 @@
       "id": "strange-brew",
       "name": "Strange Brew",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -19438,7 +19444,7 @@
       "id": "sunset-gun",
       "name": "Sunset Gun",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -19468,7 +19474,7 @@
       "id": "tenement-yard",
       "name": "Tenement Yard",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -19495,7 +19501,7 @@
       "id": "tom-bomb",
       "name": "Tom Bomb",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -19522,7 +19528,7 @@
       "id": "waterloo-sunset",
       "name": "Waterloo Sunset",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -19558,7 +19564,7 @@
       "id": "botany-of-desire",
       "name": "Botany Of Desire",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Nick & Nora",
       "ingredients": [
@@ -19591,7 +19597,7 @@
       "id": "cynartown",
       "name": "Cynartown",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19615,7 +19621,7 @@
       "id": "dick-brautigan",
       "name": "Dick Brautigan",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19642,7 +19648,7 @@
       "id": "european-union",
       "name": "European Union",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19672,7 +19678,7 @@
       "id": "gonzalez",
       "name": "Gonzalez",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19699,7 +19705,7 @@
       "id": "hostage-situation",
       "name": "Hostage Situation",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -19732,7 +19738,7 @@
       "id": "howlin-at-the-moon",
       "name": "Howlin At The Moon",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -19762,7 +19768,7 @@
       "id": "imperial-march",
       "name": "Imperial March",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Fizz Glass",
       "ingredients": [
@@ -19792,7 +19798,7 @@
       "id": "jesper-lind",
       "name": "Jesper Lind",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19822,7 +19828,7 @@
       "id": "the-joy-division",
       "name": "The Joy Division",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19849,7 +19855,7 @@
       "id": "key-party",
       "name": "Key Party",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19876,7 +19882,7 @@
       "id": "le-bateleur",
       "name": "Le Bateleur",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19906,7 +19912,7 @@
       "id": "le-subtil",
       "name": "Le Subtil",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -19930,7 +19936,7 @@
       "id": "light-and-day",
       "name": "Light And Day",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19960,7 +19966,7 @@
       "id": "lucino-s-delight",
       "name": "Lucino's Delight",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -19987,7 +19993,7 @@
       "id": "mainland",
       "name": "Mainland",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -20014,7 +20020,7 @@
       "id": "may-fair",
       "name": "May Fair",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -20050,7 +20056,7 @@
       "id": "mexigin-martini",
       "name": "Mexi-Gin Martini",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -20077,7 +20083,7 @@
       "id": "the-monroe",
       "name": "The Monroe",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -20110,7 +20116,7 @@
       "id": "moon-cocktail",
       "name": "Moon Cocktail",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -20140,7 +20146,7 @@
       "id": "night-watch",
       "name": "Night Watch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -20170,7 +20176,7 @@
       "id": "sentimental-journey",
       "name": "Sentimental Journey",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -20194,7 +20200,7 @@
       "id": "summer-shack",
       "name": "Summer Shack",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -20227,7 +20233,7 @@
       "id": "sure-shot",
       "name": "Sure Shot",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -20260,7 +20266,7 @@
       "id": "wooden-ship",
       "name": "Wooden Ship",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Rocks",
       "ingredients": [
@@ -20290,7 +20296,7 @@
       "id": "yeomen-warder",
       "name": "Yeomen Warder",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -20317,7 +20323,7 @@
       "id": "18th-century",
       "name": "18Th Century",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -20344,7 +20350,7 @@
       "id": "booya-cachaga",
       "name": "Boo-Ya Cachaga",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -20377,7 +20383,7 @@
       "id": "caribbean-shrub",
       "name": "Caribbean Shrub",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -20404,7 +20410,7 @@
       "id": "company-buck",
       "name": "Company Buck",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -20437,7 +20443,7 @@
       "id": "flor-de-jerez",
       "name": "Flor De Jerez",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -20470,7 +20476,7 @@
       "id": "get-lucky",
       "name": "Get Lucky",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -20491,7 +20497,7 @@
       "id": "the-gift-shop",
       "name": "The Gift Shop",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -20524,7 +20530,7 @@
       "id": "the-great-pretender",
       "name": "The Great Pretender",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -20554,7 +20560,7 @@
       "id": "the-green-mile",
       "name": "The Green Mile",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -20587,7 +20593,7 @@
       "id": "julius-orange",
       "name": "Julius Orange",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -20620,7 +20626,7 @@
       "id": "kerala",
       "name": "Kerala",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -20656,7 +20662,7 @@
       "id": "koko-b-ware",
       "name": "Koko B. Ware",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coconut Mug",
       "ingredients": [
@@ -20695,7 +20701,7 @@
       "id": "patois-punch",
       "name": "Patois Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -20728,7 +20734,7 @@
       "id": "pelees-blood",
       "name": "Pelee'S Blood",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -20761,7 +20767,7 @@
       "id": "sea-83",
       "name": "Sea 83",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -20788,7 +20794,7 @@
       "id": "seersucker",
       "name": "Seersucker",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -20812,7 +20818,7 @@
       "id": "sling-of-aphrodite",
       "name": "Sling Of Aphrodite",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -20842,7 +20848,7 @@
       "id": "amityville",
       "name": "Amityville",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Nick & Nora",
       "ingredients": [
@@ -20881,7 +20887,7 @@
       "id": "angies-secret",
       "name": "Angie'S Secret",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -20905,7 +20911,7 @@
       "id": "arrack-strap",
       "name": "Arrack Strap",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -20941,7 +20947,7 @@
       "id": "bumboo",
       "name": "Bumboo",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Fizz Glass",
       "ingredients": [
@@ -20974,7 +20980,7 @@
       "id": "cobra-verde",
       "name": "Cobra Verde",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -21001,7 +21007,7 @@
       "id": "cortado",
       "name": "Cortado",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -21037,7 +21043,7 @@
       "id": "eagleeye-cherry",
       "name": "Eagle-Eye Cherry",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Port Glass",
       "ingredients": [
@@ -21097,7 +21103,7 @@
       "id": "east-india-trading-co",
       "name": "East India Trading Co",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -21124,7 +21130,7 @@
       "id": "hadleys-tears",
       "name": "Hadley'S Tears",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -21157,7 +21163,7 @@
       "id": "hispaniola",
       "name": "Hispaniola",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -21184,7 +21190,7 @@
       "id": "howl-on-the-hill",
       "name": "Howl On The Hill",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -21211,7 +21217,7 @@
       "id": "midnight-mass",
       "name": "Midnight Mass",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -21238,7 +21244,7 @@
       "id": "old-ironsides",
       "name": "Old Ironsides",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -21268,7 +21274,7 @@
       "id": "passing-aden",
       "name": "Passing Aden",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -21298,7 +21304,7 @@
       "id": "pina-colada-deconstruction",
       "name": "Pina Colada Deconstruction",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -21328,7 +21334,7 @@
       "id": "puerto-rican-racer",
       "name": "Puerto Rican Racer",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -21358,7 +21364,7 @@
       "id": "rock-paper-scissors",
       "name": "Rock. Paper Scissors",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Martini",
       "ingredients": [
@@ -21394,7 +21400,7 @@
       "id": "velvet-warhol",
       "name": "Velvet Warhol",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -21421,7 +21427,7 @@
       "id": "aka-cobbler",
       "name": "Aka Cobbler",
       "category": "Agave",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -21460,7 +21466,7 @@
       "id": "almond-brother",
       "name": "Almond Brother",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -21487,7 +21493,7 @@
       "id": "camp-council",
       "name": "Camp Council",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -21517,7 +21523,7 @@
       "id": "chingon",
       "name": "Chingon",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -21547,7 +21553,7 @@
       "id": "cinder",
       "name": "Cinder",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -21580,7 +21586,7 @@
       "id": "cinnamon-girl",
       "name": "Cinnamon Girl",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -21616,7 +21622,7 @@
       "id": "dhalgren",
       "name": "Dhalgren",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -21646,7 +21652,7 @@
       "id": "dos-besitos",
       "name": "Dos Besitos",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -21679,7 +21685,7 @@
       "id": "el-companero",
       "name": "El Companero",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -21718,7 +21724,7 @@
       "id": "espadin-queen",
       "name": "Espadin Queen",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -21754,7 +21760,7 @@
       "id": "flor-de-jalisco",
       "name": "Flor De Jalisco",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -21781,7 +21787,7 @@
       "id": "fresa-brava",
       "name": "Fresa Brava",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -21808,7 +21814,7 @@
       "id": "gilda-cocktail",
       "name": "Gilda Cocktail",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -21835,7 +21841,7 @@
       "id": "glandula-del-mono",
       "name": "Glandula Del Mono",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -21865,7 +21871,7 @@
       "id": "golden-beautiful",
       "name": "Golden Beautiful",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Snifter",
       "ingredients": [
@@ -21898,7 +21904,7 @@
       "id": "head-spin",
       "name": "Head Spin",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -21925,7 +21931,7 @@
       "id": "insandiaby",
       "name": "In-Sandiaby",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -21952,7 +21958,7 @@
       "id": "la-valentina",
       "name": "La Valentina",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -21985,7 +21991,7 @@
       "id": "los-amargos",
       "name": "Los Amargos",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -22015,7 +22021,7 @@
       "id": "pinche-chivo",
       "name": "Pinche Chivo",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -22045,7 +22051,7 @@
       "id": "short-rib",
       "name": "Short Rib",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -22072,7 +22078,7 @@
       "id": "silver-monk",
       "name": "Silver Monk",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -22108,7 +22114,7 @@
       "id": "single-origin",
       "name": "Single Origin",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -22138,7 +22144,7 @@
       "id": "smoked-horchata",
       "name": "Smoked Horchata",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -22168,7 +22174,7 @@
       "id": "southern-exposure",
       "name": "Southern Exposure",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -22201,7 +22207,7 @@
       "id": "spicy-paloma",
       "name": "Spicy Paloma",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -22231,7 +22237,7 @@
       "id": "st-matilda",
       "name": "St. Matilda",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -22258,7 +22264,7 @@
       "id": "tommy-and-the-rondels",
       "name": "Tommy And The Ron-Dels",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "",
       "ingredients": [
@@ -22297,7 +22303,7 @@
       "id": "ty-cobbler",
       "name": "Ty Cobbler",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -22324,7 +22330,7 @@
       "id": "village-10-village",
       "name": "Village 10 Village",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -22357,7 +22363,7 @@
       "id": "alta-california",
       "name": "Alta California",
       "category": "Agave",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22384,7 +22390,7 @@
       "id": "augie-march",
       "name": "Augie March",
       "category": "Agave",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22408,7 +22414,7 @@
       "id": "broken-oath",
       "name": "Broken Oath",
       "category": "Agave",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -22432,7 +22438,7 @@
       "id": "coralillo",
       "name": "Coralillo",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22459,7 +22465,7 @@
       "id": "dale-cooper",
       "name": "Dale Cooper",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Martini",
       "ingredients": [
@@ -22489,7 +22495,7 @@
       "id": "green-and-red",
       "name": "Green And Red",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -22513,7 +22519,7 @@
       "id": "imaginary-grace",
       "name": "Imaginary Grace",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22549,7 +22555,7 @@
       "id": "last-train-to-oaxaca",
       "name": "Last Train To Oaxaca",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22576,7 +22582,7 @@
       "id": "nittygritty",
       "name": "Nitty-Gritty",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22612,7 +22618,7 @@
       "id": "perfect-crime",
       "name": "Perfect Crime",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -22642,7 +22648,7 @@
       "id": "prima-china",
       "name": "Prima China",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22672,7 +22678,7 @@
       "id": "cherry-tomato",
       "name": "Cherry Tomato",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Nick & Nora",
       "ingredients": [
@@ -22705,7 +22711,7 @@
       "id": "saramago",
       "name": "Saramago",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22738,7 +22744,7 @@
       "id": "sergio-leone",
       "name": "Sergio Leone",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22765,7 +22771,7 @@
       "id": "shattered-glasser",
       "name": "Shattered Glasser",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22801,7 +22807,7 @@
       "id": "spaghetti-western",
       "name": "Spaghetti Western",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -22828,7 +22834,7 @@
       "id": "spanish-caravan",
       "name": "Spanish Caravan",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22861,7 +22867,7 @@
       "id": "te-amo",
       "name": "Te Amo",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Martini",
       "ingredients": [
@@ -22897,7 +22903,7 @@
       "id": "terrible-love",
       "name": "Terrible Love",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -22918,7 +22924,7 @@
       "id": "vipera",
       "name": "Vipera",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22942,7 +22948,7 @@
       "id": "yama-blanca",
       "name": "Yama Blanca",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -22969,7 +22975,7 @@
       "id": "isth-century",
       "name": "Isth Century",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -22996,7 +23002,7 @@
       "id": "banks-of-islay",
       "name": "Banks Of Islay",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -23023,7 +23029,7 @@
       "id": "blazing-saddles",
       "name": "Blazing Saddles",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -23053,7 +23059,7 @@
       "id": "blown-rose",
       "name": "Blown Rose",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -23083,7 +23089,7 @@
       "id": "blue-run-sling",
       "name": "Blue Run Sling",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -23116,7 +23122,7 @@
       "id": "castle-to-castle",
       "name": "Castle To Castle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -23143,7 +23149,7 @@
       "id": "crane-kick",
       "name": "Crane Kick",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -23176,7 +23182,7 @@
       "id": "dangerous-liaisons",
       "name": "Dangerous Liaisons",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -23206,7 +23212,7 @@
       "id": "deadpan-fix",
       "name": "Deadpan Fix",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -23239,7 +23245,7 @@
       "id": "docs-dram",
       "name": "Doc'S Dram",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -23275,7 +23281,7 @@
       "id": "double-fillup",
       "name": "Double Fill-Up",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -23305,7 +23311,7 @@
       "id": "eye-of-the-torino",
       "name": "Eye Of The Torino",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coconut Mug",
       "ingredients": [
@@ -23350,7 +23356,7 @@
       "id": "fix-me-up",
       "name": "Fix Me Up",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Snifter",
       "ingredients": [
@@ -23386,7 +23392,7 @@
       "id": "grouse-rampant",
       "name": "Grouse Rampant",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -23416,7 +23422,7 @@
       "id": "honshu-punch",
       "name": "Honshu Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Snifter",
       "ingredients": [
@@ -23452,7 +23458,7 @@
       "id": "little-engine",
       "name": "Little Engine",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -23482,7 +23488,7 @@
       "id": "monongahela-mule",
       "name": "Monongahela Mule",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -23509,7 +23515,7 @@
       "id": "mrs-doyle",
       "name": "Mrs. Doyle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -23530,7 +23536,7 @@
       "id": "paddy-melt",
       "name": "Paddy Melt",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Fizz Glass",
       "ingredients": [
@@ -23557,7 +23563,7 @@
       "id": "petes-word",
       "name": "Pete'S Word",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -23584,7 +23590,7 @@
       "id": "scotch-lady",
       "name": "Scotch Lady",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -23617,7 +23623,7 @@
       "id": "straw-dog",
       "name": "Straw Dog",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -23647,7 +23653,7 @@
       "id": "swearengen-sling",
       "name": "Swearengen Sling",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -23677,7 +23683,7 @@
       "id": "sweep-the-leg",
       "name": "Sweep The Leg",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -23713,7 +23719,7 @@
       "id": "vampire-blues",
       "name": "Vampire Blues",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -23746,7 +23752,7 @@
       "id": "vejk-sling",
       "name": "Vejk Sling",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -23779,7 +23785,7 @@
       "id": "warehouse",
       "name": "Warehouse",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -23815,7 +23821,7 @@
       "id": "whirling-tiger",
       "name": "Whirling Tiger",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -23842,7 +23848,7 @@
       "id": "bale",
       "name": "Bale",
       "category": "Whiskey",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -23872,7 +23878,7 @@
       "id": "bella-cohen",
       "name": "Bella Cohen",
       "category": "Whiskey",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -23902,7 +23908,7 @@
       "id": "black-market-manhattan",
       "name": "Black Market Manhattan",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -23926,7 +23932,7 @@
       "id": "buffalo-soldier",
       "name": "Buffalo Soldier",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -23947,7 +23953,7 @@
       "id": "carroll-gardens",
       "name": "Carroll Gardens",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -23977,7 +23983,7 @@
       "id": "coffee-and-cigarettes",
       "name": "Coffee And Cigarettes",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Martini",
       "ingredients": [
@@ -24004,7 +24010,7 @@
       "id": "cure-for-pain",
       "name": "Cure For Pain",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -24037,7 +24043,7 @@
       "id": "the-dangerous-summer",
       "name": "The Dangerous Summer",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Martini",
       "ingredients": [
@@ -24067,7 +24073,7 @@
       "id": "faithful-scotsman",
       "name": "Faithful Scotsman",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -24097,7 +24103,7 @@
       "id": "four-in-hand",
       "name": "Four In Hand",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Rocks",
       "ingredients": [
@@ -24130,7 +24136,7 @@
       "id": "la-dolce-vita",
       "name": "La Dolce Vita",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -24154,7 +24160,7 @@
       "id": "la-viaa",
       "name": "La Viaa",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -24181,7 +24187,7 @@
       "id": "scotch-dram",
       "name": "Scotch Dram",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -24208,7 +24214,7 @@
       "id": "shruffs-end",
       "name": "Shruff'S End",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -24235,7 +24241,7 @@
       "id": "st-columbus-rill",
       "name": "St. Columbus Rill",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -24262,7 +24268,7 @@
       "id": "sweet-and-vicious",
       "name": "Sweet And Vicious",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -24292,7 +24298,7 @@
       "id": "tea-in-the-sahara",
       "name": "Tea In The Sahara",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -24316,7 +24322,7 @@
       "id": "trembling-bell",
       "name": "Trembling Bell",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -24349,7 +24355,7 @@
       "id": "wicked-kiss",
       "name": "Wicked Kiss",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -24379,7 +24385,7 @@
       "id": "banana-cognac",
       "name": "Banana Cognac",
       "category": "Brandy",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -24415,7 +24421,7 @@
       "id": "dont-sit-under-the-apple-tree",
       "name": "Don'T Sit Under The Apple Tree",
       "category": "Brandy",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -24445,7 +24451,7 @@
       "id": "enchanted-orchard",
       "name": "Enchanted Orchard",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -24478,7 +24484,7 @@
       "id": "ginger-snap",
       "name": "Ginger Snap",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -24511,7 +24517,7 @@
       "id": "golden-gate",
       "name": "Golden Gate",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -24541,7 +24547,7 @@
       "id": "heartshaped-box",
       "name": "Heart-Shaped Box",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -24574,7 +24580,7 @@
       "id": "ho-pollo",
       "name": "Ho Pollo",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -24607,7 +24613,7 @@
       "id": "jokers-wild",
       "name": "Joker'S Wild",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -24643,7 +24649,7 @@
       "id": "little-birdy",
       "name": "Little Birdy",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -24673,7 +24679,7 @@
       "id": "little-miss-annabelle",
       "name": "Little Miss Annabelle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -24706,7 +24712,7 @@
       "id": "maggie-smith",
       "name": "Maggie Smith",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -24733,7 +24739,7 @@
       "id": "morning-buzz",
       "name": "Morning Buzz",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Fizz Glass",
       "ingredients": [
@@ -24769,7 +24775,7 @@
       "id": "mucho-picchu",
       "name": "Mucho Picchu",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -24799,7 +24805,7 @@
       "id": "peachy-pachacut",
       "name": "Peachy Pachacut",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Snifter",
       "ingredients": [
@@ -24832,7 +24838,7 @@
       "id": "poire-mans-cobbler",
       "name": "Poire Man'S Cobbler",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -24856,7 +24862,7 @@
       "id": "sloe-scobeyville-sling",
       "name": "Sloe Scobeyville Sling",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -24889,7 +24895,7 @@
       "id": "solera-sidecar",
       "name": "Solera Sidecar",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -24922,7 +24928,7 @@
       "id": "stick-the-landing",
       "name": "Stick The Landing",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -24955,7 +24961,7 @@
       "id": "black-magic",
       "name": "Black Magic",
       "category": "Brandy",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -24988,7 +24994,7 @@
       "id": "black-market-brandy",
       "name": "Black Market Brandy",
       "category": "Brandy",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -25018,7 +25024,7 @@
       "id": "castle-of-cordoba",
       "name": "Castle Of Cordoba",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -25045,7 +25051,7 @@
       "id": "jarnac-shrub",
       "name": "Jarnac Shrub",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -25072,7 +25078,7 @@
       "id": "legend",
       "name": "Legend",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -25099,7 +25105,7 @@
       "id": "les-verts-monts",
       "name": "Les Verts Monts",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Nick & Nora",
       "ingredients": [
@@ -25138,7 +25144,7 @@
       "id": "lilywhacker",
       "name": "Lilywhacker",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -25165,7 +25171,7 @@
       "id": "little-sparrow",
       "name": "Little Sparrow",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -25192,7 +25198,7 @@
       "id": "martica",
       "name": "Martica",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -25222,7 +25228,7 @@
       "id": "night-owl",
       "name": "Night Owl",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -25249,7 +25255,7 @@
       "id": "sades-taboo",
       "name": "Sade'S Taboo",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -25276,7 +25282,7 @@
       "id": "sidewinder",
       "name": "Sidewinder",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -25309,7 +25315,7 @@
       "id": "soul-clench",
       "name": "Soul Clench",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -25339,7 +25345,7 @@
       "id": "sweet-hereafter",
       "name": "Sweet Hereafter",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -25372,7 +25378,7 @@
       "id": "widows-laurel",
       "name": "Widow'S Laurel",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -25402,7 +25408,7 @@
       "id": "the-bittenbender",
       "name": "The Bittenbender",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -25426,7 +25432,7 @@
       "id": "bitter-french",
       "name": "Bitter French",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -25459,7 +25465,7 @@
       "id": "boomin-granny",
       "name": "Boomin Granny",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -25489,7 +25495,7 @@
       "id": "calva-dorsa-royale",
       "name": "Calva Dorsa Royale",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -25516,7 +25522,7 @@
       "id": "cider-house-rules",
       "name": "Cider House Rules",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Flute",
       "ingredients": [
@@ -25552,7 +25558,7 @@
       "id": "dark-n-bubbly",
       "name": "Dark N Bubbly",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -25579,7 +25585,7 @@
       "id": "dick-and-jane",
       "name": "Dick And Jane",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -25612,7 +25618,7 @@
       "id": "doc-daneeka-royale",
       "name": "Doc Daneeka Royale",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -25645,7 +25651,7 @@
       "id": "dragon-lily",
       "name": "Dragon Lily",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Flute",
       "ingredients": [
@@ -25672,7 +25678,7 @@
       "id": "drunken-skull",
       "name": "Drunken Skull",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -25705,7 +25711,7 @@
       "id": "elder-fashion-royale",
       "name": "Elder Fashion Royale",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Flute",
       "ingredients": [
@@ -25732,7 +25738,7 @@
       "id": "fair-lady",
       "name": "Fair Lady",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -25762,7 +25768,7 @@
       "id": "fancy-holland-royale",
       "name": "Fancy Holland Royale",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Flute",
       "ingredients": [
@@ -25792,7 +25798,7 @@
       "id": "flaquita",
       "name": "Flaquita",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -25828,7 +25834,7 @@
       "id": "green-flash",
       "name": "Green Flash",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -25858,7 +25864,7 @@
       "id": "irish-seelbach",
       "name": "Irish Seelbach",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Flute",
       "ingredients": [
@@ -25888,7 +25894,7 @@
       "id": "iron-chancellor",
       "name": "Iron Chancellor",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Flute",
       "ingredients": [
@@ -25912,7 +25918,7 @@
       "id": "jane-rose",
       "name": "Jane Rose",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -25942,7 +25948,7 @@
       "id": "julien-sorel",
       "name": "Julien Sorel",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -25975,7 +25981,7 @@
       "id": "lilys-cartel",
       "name": "Lily'S Cartel",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -26008,7 +26014,7 @@
       "id": "live-free-or-die",
       "name": "Live Free Or Die",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -26038,7 +26044,7 @@
       "id": "mig-royale",
       "name": "Mig Royale",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -26068,7 +26074,7 @@
       "id": "miss-behavin",
       "name": "Miss. Behavin'",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Flute",
       "ingredients": [
@@ -26098,7 +26104,7 @@
       "id": "morfeo",
       "name": "Morfeo",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -26128,7 +26134,7 @@
       "id": "north-by-northwest",
       "name": "North By Northwest",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -26158,7 +26164,7 @@
       "id": "pillow-talk",
       "name": "Pillow Talk",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -26191,7 +26197,7 @@
       "id": "radio-days",
       "name": "Radio Days",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -26224,7 +26230,7 @@
       "id": "run-for-the-roses",
       "name": "Run For The Roses",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -26254,7 +26260,7 @@
       "id": "seda-de-naranja",
       "name": "Seda De Naranja",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -26281,7 +26287,7 @@
       "id": "south-sider",
       "name": "South Sider",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -26311,7 +26317,7 @@
       "id": "susie-q",
       "name": "Susie Q",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Flute",
       "ingredients": [
@@ -26347,7 +26353,7 @@
       "id": "trapeze",
       "name": "Trapeze",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Flute",
       "ingredients": [
@@ -26377,7 +26383,7 @@
       "id": "cafe-sandinista",
       "name": "Cafe Sandinista",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -26410,7 +26416,7 @@
       "id": "cyrano-de-bergerac",
       "name": "Cyrano De Bergerac",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Nick & Nora",
       "ingredients": [
@@ -26443,7 +26449,7 @@
       "id": "derby-girl",
       "name": "Derby Girl",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Julep Tin",
       "ingredients": [
@@ -26473,7 +26479,7 @@
       "id": "fair-fault",
       "name": "Fair Fault",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -26497,7 +26503,7 @@
       "id": "have-at-it",
       "name": "Have At It",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -26533,7 +26539,7 @@
       "id": "melancholy-summer",
       "name": "Melancholy Summer",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -26569,7 +26575,7 @@
       "id": "midnight-mountain",
       "name": "Midnight Mountain",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -26596,7 +26602,7 @@
       "id": "schumans-alley",
       "name": "Schuman'S Alley",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Nick & Nora",
       "ingredients": [
@@ -26632,7 +26638,7 @@
       "id": "shoots-and-ladders",
       "name": "Shoots And Ladders",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Rocks",
       "ingredients": [
@@ -26659,7 +26665,7 @@
       "id": "stringer-bell",
       "name": "Stringer Bell",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -26695,7 +26701,7 @@
       "id": "arrack-punch",
       "name": "Arrack Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -26728,7 +26734,7 @@
       "id": "billingsley-punch",
       "name": "Billingsley Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -26761,7 +26767,7 @@
       "id": "bloodhound-punch",
       "name": "Bloodhound Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -26791,7 +26797,7 @@
       "id": "bookhouse-boys-punch",
       "name": "Bookhouse Boys Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -26818,7 +26824,7 @@
       "id": "drunken-punch",
       "name": "Drunken Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -26854,7 +26860,7 @@
       "id": "east-river-underground",
       "name": "East River Underground",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -26890,7 +26896,7 @@
       "id": "evil-dead-punch",
       "name": "Evil Dead Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -26938,7 +26944,7 @@
       "id": "hoist-the-colours-punch",
       "name": "Hoist The Colours Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -26980,7 +26986,7 @@
       "id": "jersey-lightning",
       "name": "Jersey Lightning",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -27010,7 +27016,7 @@
       "id": "killdevil-punch",
       "name": "Kill-Devil Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -27046,7 +27052,7 @@
       "id": "la-fee-noir-punch",
       "name": "La Fee Noir Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -27085,7 +27091,7 @@
       "id": "lust-for-life-punch",
       "name": "Lust For Life Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -27115,7 +27121,7 @@
       "id": "mothers-ruin-punch",
       "name": "Mother'S Ruin Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -27151,7 +27157,7 @@
       "id": "nuts-and-sherry-punch",
       "name": "Nuts And Sherry Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -27184,7 +27190,7 @@
       "id": "pfive-punch",
       "name": "P-Five Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Build",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -27223,7 +27229,7 @@
       "id": "picadecrop-punch",
       "name": "Pic-A-De-Crop Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -27268,7 +27274,7 @@
       "id": "pisco-punch",
       "name": "Pisco Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -27298,7 +27304,7 @@
       "id": "porfirian-punch",
       "name": "Porfirian Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -27331,7 +27337,7 @@
       "id": "rugby-punch",
       "name": "Rugby Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -27370,7 +27376,7 @@
       "id": "valley-of-kings-punch",
       "name": "Valley Of Kings Punch",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Punch Bowl",
       "ingredients": [
@@ -27406,7 +27412,7 @@
       "id": "aperitivo-julep",
       "name": "Aperitivo Julep",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Julep Tin",
       "ingredients": [
@@ -27430,7 +27436,7 @@
       "id": "chamomile-julep",
       "name": "Chamomile Julep",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Julep Tin",
       "ingredients": [
@@ -27451,7 +27457,7 @@
       "id": "double-barrel-julep",
       "name": "Double-Barrel Julep",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Julep Tin",
       "ingredients": [
@@ -27484,7 +27490,7 @@
       "id": "just-another-julep",
       "name": "Just Another Julep",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Swizzle",
       "glass": "Julep Tin",
       "ingredients": [
@@ -27511,7 +27517,7 @@
       "id": "maple-julep",
       "name": "Maple Julep",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Julep Tin",
       "ingredients": [
@@ -27532,7 +27538,7 @@
       "id": "notquitegeorgia-julep",
       "name": "Not-Quite-Georgia Julep",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Julep Tin",
       "ingredients": [
@@ -27559,7 +27565,7 @@
       "id": "racketeer-julep",
       "name": "Racketeer Julep",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Julep Tin",
       "ingredients": [
@@ -27589,7 +27595,7 @@
       "id": "smoked-julep",
       "name": "Smoked Julep",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Julep Tin",
       "ingredients": [
@@ -27613,7 +27619,7 @@
       "id": "tihuatanejo-julep",
       "name": "Tihuatanejo Julep",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Swizzle",
       "glass": "Julep Tin",
       "ingredients": [
@@ -27640,7 +27646,7 @@
       "id": "celine-fizz",
       "name": "Celine Fizz",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Fizz Glass",
       "ingredients": [
@@ -27673,7 +27679,7 @@
       "id": "chinese-fizz",
       "name": "Chinese Fizz",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Fizz Glass",
       "ingredients": [
@@ -27712,7 +27718,7 @@
       "id": "jack-sparrow-flip",
       "name": "Jack Sparrow Flip",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Fizz Glass",
       "ingredients": [
@@ -27742,7 +27748,7 @@
       "id": "jelly-roll-morton",
       "name": "Jelly Roll Morton",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -27778,7 +27784,7 @@
       "id": "le-gigot-flip",
       "name": "Le Gigot Flip",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -27805,7 +27811,7 @@
       "id": "pearls-before-swine",
       "name": "Pearls Before Swine",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -27838,7 +27844,7 @@
       "id": "pit-stop-flip",
       "name": "Pit Stop Flip",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -27868,7 +27874,7 @@
       "id": "raisin-burn",
       "name": "Raisin Burn",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -27898,7 +27904,7 @@
       "id": "saturday-morning-flip",
       "name": "Saturday Morning Flip",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -27931,7 +27937,7 @@
       "id": "sleepy-hollow-fizz",
       "name": "Sleepy Hollow Fizz",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Fizz Glass",
       "ingredients": [
@@ -27964,7 +27970,7 @@
       "id": "6th-street-swizzle",
       "name": "6th Street Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Swizzle",
       "glass": "Pilsner",
       "ingredients": [
@@ -27991,7 +27997,7 @@
       "id": "bourbonnais-swizzle",
       "name": "Bourbonnais Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -28018,7 +28024,7 @@
       "id": "cirque-swizzle",
       "name": "Cirque Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -28051,7 +28057,7 @@
       "id": "coffey-park-swizzle",
       "name": "Coffey Park Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Swizzle",
       "glass": "Pilsner",
       "ingredients": [
@@ -28084,7 +28090,7 @@
       "id": "dj-flamethrower",
       "name": "DJ Flamethrower",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -28120,7 +28126,7 @@
       "id": "dolly-dagger",
       "name": "Dolly Dagger",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Swizzle",
       "glass": "Pilsner",
       "ingredients": [
@@ -28150,7 +28156,7 @@
       "id": "dolores-park-swizzle",
       "name": "Dolores Park Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -28183,7 +28189,7 @@
       "id": "hyde-park-swizzle",
       "name": "Hyde Park Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "",
       "ingredients": [
@@ -28216,7 +28222,7 @@
       "id": "jalisco-swizzle",
       "name": "Jalisco Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -28240,7 +28246,7 @@
       "id": "myra-breckinridge",
       "name": "Myra Breckinridge",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -28267,7 +28273,7 @@
       "id": "park-life-swizzle",
       "name": "Park Life Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -28300,7 +28306,7 @@
       "id": "robert-johnson-swizzle",
       "name": "Robert Johnson Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -28327,7 +28333,7 @@
       "id": "sangria-swizzle",
       "name": "Sangria Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Swizzle",
       "glass": "Pilsner",
       "ingredients": [
@@ -28360,7 +28366,7 @@
       "id": "snake-hips-swizzle",
       "name": "Snake Hips Swizzle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -28393,7 +28399,7 @@
       "id": "black-market-sling",
       "name": "Black Market Sling",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Highball",
       "ingredients": [
@@ -28423,7 +28429,7 @@
       "id": "coin-toss",
       "name": "Coin Toss",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -28456,7 +28462,7 @@
       "id": "electric-koolaid-acid-test",
       "name": "Electric Kool-Aid Acid Test",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Pilsner",
       "ingredients": [
@@ -28492,7 +28498,7 @@
       "id": "little-kingdom",
       "name": "Little Kingdom",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -28513,7 +28519,7 @@
       "id": "stgermain-redux",
       "name": "St-Germain Redux",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -28537,7 +28543,7 @@
       "id": "great-northern",
       "name": "Great Northern",
       "category": "Aquavit",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -28567,7 +28573,7 @@
       "id": "one-one-one",
       "name": "One One One",
       "category": "Aquavit",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -28594,7 +28600,7 @@
       "id": "over-and-out",
       "name": "Over And Out",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -28630,7 +28636,7 @@
       "id": "slap-n-pickle",
       "name": "Slap 'N Pickle",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -28663,7 +28669,7 @@
       "id": "alembic",
       "name": "Alembic",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -28690,7 +28696,7 @@
       "id": "bay-city-roller",
       "name": "Bay City Roller",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -28714,7 +28720,7 @@
       "id": "cooper-union",
       "name": "Cooper Union",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -28744,7 +28750,7 @@
       "id": "creole-saz",
       "name": "Creole Saz",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -28777,7 +28783,7 @@
       "id": "enemy-lines",
       "name": "Enemy Lines",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Rocks",
       "ingredients": [
@@ -28810,7 +28816,7 @@
       "id": "guns-and-rose",
       "name": "Guns And Rose",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Rocks",
       "ingredients": [
@@ -28840,7 +28846,7 @@
       "id": "hallyday",
       "name": "Hallyday",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -28873,7 +28879,7 @@
       "id": "latin-quarter",
       "name": "Latin Quarter",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -28909,7 +28915,7 @@
       "id": "saz-who",
       "name": "Saz Who",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -28945,7 +28951,7 @@
       "id": "baltasar-and-blimunda",
       "name": "Baltasar And Blimunda",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -28972,7 +28978,7 @@
       "id": "failsafe",
       "name": "Fail-Safe",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -28996,7 +29002,7 @@
       "id": "house-of-payne",
       "name": "House Of Payne",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -29020,7 +29026,7 @@
       "id": "kingston-negroni",
       "name": "Kingston Negroni",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -29044,7 +29050,7 @@
       "id": "mananita",
       "name": "Mananita",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -29068,7 +29074,7 @@
       "id": "range-life",
       "name": "Range Life",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -29095,7 +29101,7 @@
       "id": "uno-dos-tres",
       "name": "Uno, Dos, Tres",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -29125,7 +29131,7 @@
       "id": "the-vanderbilt",
       "name": "The Vanderbilt",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -29149,7 +29155,7 @@
       "id": "angus-daiquiri",
       "name": "Angus Daiquiri",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29179,7 +29185,7 @@
       "id": "arrackuibi",
       "name": "Arrackuibi",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29209,7 +29215,7 @@
       "id": "autumn-daiquiri",
       "name": "Autumn Daiquiri",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29242,7 +29248,7 @@
       "id": "benjamin-barker-daiquiri",
       "name": "Benjamin Barker Daiquiri",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29269,7 +29275,7 @@
       "id": "boukman-daiquiri",
       "name": "Boukman Daiquiri",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29296,7 +29302,7 @@
       "id": "dal-dai-my-darling",
       "name": "Dal Dai My Darling",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -29335,7 +29341,7 @@
       "id": "dwb",
       "name": "D.W.B",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29362,7 +29368,7 @@
       "id": "granny-s-daiquiri",
       "name": "Granny's Daiquiri",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29386,7 +29392,7 @@
       "id": "javanese-daiquiri",
       "name": "Javanese Daiquiri",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -29413,7 +29419,7 @@
       "id": "jovencourt-daiquiri",
       "name": "Jovencourt Daiquiri",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -29434,7 +29440,7 @@
       "id": "la-bomba-daiquiri",
       "name": "La Bomba Daiquiri",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29461,7 +29467,7 @@
       "id": "linbaba-daiquiri",
       "name": "Linbaba Daiquiri",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29500,7 +29506,7 @@
       "id": "meridian-daiquiri",
       "name": "Meridian Daiquiri",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Double Rocks",
       "ingredients": [
@@ -29530,7 +29536,7 @@
       "id": "mosquito-coast",
       "name": "Mosquito Coast",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29557,7 +29563,7 @@
       "id": "sunset-at-gowanus",
       "name": "Sunset At Gowanus",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -29581,7 +29587,7 @@
       "id": "take-two",
       "name": "Take Two",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
@@ -29611,7 +29617,7 @@
       "id": "the-black-prince",
       "name": "The Black Prince",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -29638,7 +29644,7 @@
       "id": "daisy-buchanan",
       "name": "Daisy Buchanan",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -29665,7 +29671,7 @@
       "id": "drunken-dodo",
       "name": "Drunken Dodo",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -29692,7 +29698,7 @@
       "id": "ingenue",
       "name": "Ingenue",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -29716,7 +29722,7 @@
       "id": "mi-amaro",
       "name": "Mi Amaro",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -29743,7 +29749,7 @@
       "id": "navigator",
       "name": "Navigator",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -29773,7 +29779,7 @@
       "id": "orkney-chapel",
       "name": "Orkney Chapel",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -29803,7 +29809,7 @@
       "id": "pisco-in",
       "name": "Pisco In",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Martini",
       "ingredients": [
@@ -29851,7 +29857,7 @@
       "id": "red-ant",
       "name": "Red Ant",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Martini",
       "ingredients": [
@@ -29884,7 +29890,7 @@
       "id": "sforzando",
       "name": "Sforzando",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -29914,7 +29920,7 @@
       "id": "st-james-infirmary",
       "name": "St. James Infirmary",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -29941,7 +29947,7 @@
       "id": "stolen-huffy",
       "name": "Stolen Huffy",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Nick & Nora",
       "ingredients": [
@@ -29974,7 +29980,7 @@
       "id": "conference",
       "name": "Conference",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -30010,7 +30016,7 @@
       "id": "death-from-above",
       "name": "Death From Above",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -30046,7 +30052,7 @@
       "id": "elder-fashion",
       "name": "Elder Fashion",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -30070,7 +30076,7 @@
       "id": "headstone",
       "name": "Headstone",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -30097,7 +30103,7 @@
       "id": "jekyll-and-hyde",
       "name": "Jekyll And Hyde",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -30130,7 +30136,7 @@
       "id": "la-conferencia",
       "name": "La Conferencia",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
@@ -30166,7 +30172,7 @@
       "id": "north-garden",
       "name": "North Garden",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -30196,7 +30202,7 @@
       "id": "oaxaca-oldfashioned",
       "name": "Oaxaca Old-Fashioned",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
@@ -30223,7 +30229,7 @@
       "id": "tea-time-at-guillermo-s",
       "name": "Tea Time At Guillermo's",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "",
       "ingredients": [
@@ -30259,7 +30265,7 @@
       "id": "tiki-tiki-tom-tom",
       "name": "Tiki-Tiki Tom-Tom",
       "category": "Classic",
-      "source": "Death & Co",
+      "source": "Death & Co.",
       "method": "Stir",
       "glass": "Double Rocks",
       "ingredients": [
