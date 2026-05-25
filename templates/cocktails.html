@@ -35,7 +35,9 @@
        data-tags="{{ c.get('tags', []) | join(' ') | lower }}"
        data-ingredients="{{ c.get('ingredients', []) | map(attribute='name') | join(' ') | lower }}">
       <div class="cocktail-card-top">
-        <span class="cocktail-card-category">{{ c.get('category', '') }}</span>
+        <span class="cocktail-card-category">
+          {{ c.get('category', '') }}{% if c.get('premium') %} <span class="premium-dot" title="Premium cocktail">✦</span>{% endif %}
+        </span>
         {% if c.can_make %}
           <span class="badge badge-green">Can make</span>
         {% else %}

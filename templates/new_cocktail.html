@@ -42,6 +42,13 @@
                  value="{{ cocktail.source if cocktail else prefill.get('source', '') }}"
                  placeholder="e.g. Sam Ross, 2007">
         </div>
+        <div class="form-group form-col-span-2">
+          <label class="form-checkbox-label">
+            <input type="checkbox" name="premium" class="form-checkbox"
+                   {% if cocktail and cocktail.get('premium') %}checked{% endif %}>
+            <span>Premium cocktail <span class="form-hint">— reserved spirits (marked "Premium Cocktail") will count toward this recipe's makeability</span></span>
+          </label>
+        </div>
         <div class="form-group">
           <label class="form-label">Glass</label>
           <input type="text" name="glass" class="form-input" list="glass-list"

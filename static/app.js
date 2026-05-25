@@ -1,13 +1,13 @@
 /* ── Shared streaming helper ─────────────────────────────────────────────── */
 
-async function streamResponse(endpoint, messages, responseEl) {
+async function streamResponse(endpoint, messages, responseEl, extraData = {}) {
   let buffer = '';
   let fullText = '';
 
   const res = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ messages }),
+    body: JSON.stringify({ messages, ...extraData }),
   });
 
   if (!res.ok) throw new Error(`Server error ${res.status}`);
@@ -103,7 +103,9 @@ async function saveRow(btn) {
           const val = input.value;
           display.innerHTML = val === 'Neat Only'
             ? '<span class="badge badge-dim">Neat Only</span>'
-            : '<span class="badge badge-green">Cocktail</span>';
+            : val === 'Premium Cocktail'
+              ? '<span class="badge badge-premium">Premium</span>'
+              : '<span class="badge badge-green">Cocktail</span>';
         } else if (display) {
           display.textContent = input.value;
         }

@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% block title %}Ask Lloid — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container page-container-narrow">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Ask Lloid</h1>
+      <p class="page-subtitle" id="mode-subtitle">What are you looking for tonight?</p>
+    </div>
+    <button class="btn btn-ghost btn-sm" onclick="resetChat()">New conversation</button>
+  </div>
+
+  <!-- Mode selector -->
+  <div class="mode-selector">
+    <button class="mode-btn mode-btn-active" id="mode-find" onclick="setMode('find')">
+      <span class="mode-icon">&#9670;</span>
+      <span class="mode-label">Find a drink</span>
+    </button>
+    <button class="mode-btn" id="mode-riff" onclick="setMode('riff')">
+      <span class="mode-icon">&#8645;</span>
+      <span class="mode-label">Riff on a classic</span>
+    </button>
+    <button class="mode-btn" id="mode-create" onclick="setMode('create')">
+      <span class="mode-icon">&#10022;</span>
+      <span class="mode-label">Create something new</span>
+    </button>
+  </div>
+
+  <div class="chat-container" id="chat-container">
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-message chat-message-assistant">
+        <div class="chat-bubble" id="opening-bubble">
+          <p>What are you in the mood for? Tell me about a flavor, spirit, occasion, or vibe — and I'll find something from the bar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <textarea id="chat-input" class="chat-input"
+                placeholder="e.g. Something bitter and spirit-forward, maybe with amaro…"
+                rows="1" onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="chat-send" id="chat-send" onclick="sendMessage()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Save banner (appears for riff + create modes) -->
+  <div class="save-banner" id="save-banner" style="display:none">
+    <div class="save-banner-text">
+      <strong id="save-cocktail-name">Recipe ready to save</strong>
+      <span class="text-dim">Add this cocktail to your database</span>
+    </div>
+    <div class="save-banner-actions">
+      <button class="btn btn-primary" onclick="saveDesignedCocktail()" id="save-btn">Save to Database</button>
+      <a id="view-saved-link" class="btn btn-ghost" style="display:none" href="#">View Recipe</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const ENDPOINT = '/ask/stream';
+let messages = [];
+let isStreaming = false;
+let pendingSave = null;
+let currentMode = 'find';
+
+const MODE_CONFIG = {
+  find: {
+    subtitle: 'Search the bar\'s cocktail database.',
+    opening: 'What are you in the mood for? Tell me about a flavor, spirit, occasion, or vibe — and I\'ll find something from the bar.',
+    placeholder: 'e.g. Something bitter and spirit-forward, maybe with amaro…',
+    showSave: false,
+  },
+  riff: {
+    subtitle: 'Take an existing cocktail in a new direction.',
+    opening: 'Which cocktail would you like to riff on? Name a drink and tell me how you\'d like to take it — a different spirit, a seasonal twist, a flavor direction.',
+    placeholder: 'e.g. A Negroni, but built around rum instead of gin…',
+    showSave: true,
+  },
+  create: {
+    subtitle: 'Design an original recipe from what\'s in the bar.',
+    opening: 'Let\'s build something original. Tell me about a spirit you want to feature, a flavor profile, an occasion, or just a feeling — I\'ll design around what\'s in the bar.',
+    placeholder: 'e.g. Something smoky and tropical, built around the agricole rum…',
+    showSave: true,
+  },
+};
+
+function setMode(mode) {
+  currentMode = mode;
+  const cfg = MODE_CONFIG[mode];
+
+  // Update buttons
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('mode-btn-active'));
+  document.getElementById('mode-' + mode).classList.add('mode-btn-active');
+
+  // Update subtitle
+  document.getElementById('mode-subtitle').textContent = cfg.subtitle;
+
+  // Update placeholder
+  document.getElementById('chat-input').placeholder = cfg.placeholder;
+
+  // Reset chat with mode-appropriate opening
+  resetChat();
+}
+
+function resetChat() {
+  messages = [];
+  pendingSave = null;
+  document.getElementById('save-banner').style.display = 'none';
+  document.getElementById('view-saved-link').style.display = 'none';
+  if (document.getElementById('save-btn')) {
+    document.getElementById('save-btn').disabled = false;
+    document.getElementById('save-btn').textContent = 'Save to Database';
+  }
+
+  const cfg = MODE_CONFIG[currentMode];
+  const container = document.getElementById('chat-messages');
+  container.innerHTML = `
+    <div class="chat-message chat-message-assistant">
+      <div class="chat-bubble">
+        <p>${escapeHtml(cfg.opening)}</p>
+      </div>
+    </div>`;
+}
+
+function handleChatKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 160) + 'px';
+}
+
+async function sendMessage() {
+  if (isStreaming) return;
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+
+  appendMessage('user', text);
+  messages.push({ role: 'user', content: text });
+
+  const responseDiv = appendStreamingMessage();
+  isStreaming = true;
+  document.getElementById('chat-send').disabled = true;
+
+  try {
+    const fullText = await streamResponse(ENDPOINT, messages, responseDiv, { mode: currentMode });
+    messages.push({ role: 'assistant', content: fullText });
+
+    // Check for save block in riff/create modes
+    if (MODE_CONFIG[currentMode].showSave) {
+      checkForSaveBlock(fullText);
+    }
+  } catch (e) {
+    responseDiv.innerHTML = `<em class="text-dim">Error: ${e.message}</em>`;
+  } finally {
+    isStreaming = false;
+    document.getElementById('chat-send').disabled = false;
+    document.getElementById('chat-input').focus();
+  }
+}
+
+function checkForSaveBlock(text) {
+  const match = text.match(/```json\s*([\s\S]*?)\s*```/);
+  if (!match) return;
+  try {
+    const data = JSON.parse(match[1]);
+    if (data.save_cocktail && data.name) {
+      pendingSave = data;
+      document.getElementById('save-cocktail-name').textContent = data.name;
+      document.getElementById('save-banner').style.display = 'flex';
+      document.getElementById('view-saved-link').style.display = 'none';
+    }
+  } catch (e) { /* not valid JSON */ }
+}
+
+async function saveDesignedCocktail() {
+  if (!pendingSave) return;
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
+  try {
+    const res = await fetch('/ask/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(pendingSave),
+    });
+    const data = await res.json();
+    if (data.success) {
+      btn.textContent = 'Saved!';
+      const viewLink = document.getElementById('view-saved-link');
+      viewLink.href = `/cocktails/${data.id}`;
+      viewLink.style.display = 'inline-flex';
+    } else {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
+  } catch (e) {
+    btn.textContent = 'Error — try again';
+    btn.disabled = false;
+  }
+}
+
+function appendMessage(role, text) {
+  const container = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = `chat-message chat-message-${role}`;
+  div.innerHTML = `<div class="chat-bubble">${role === 'user' ? escapeHtml(text) : marked.parse(text)}</div>`;
+  container.appendChild(div);
+  scrollChat();
+}
+
+function appendStreamingMessage() {
+  const container = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'chat-message chat-message-assistant';
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble streaming';
+  bubble.innerHTML = '<span class="typing-cursor"></span>';
+  div.appendChild(bubble);
+  container.appendChild(div);
+  scrollChat();
+  return bubble;
+}
+
+function scrollChat() {
+  const msgs = document.getElementById('chat-messages');
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+{% endblock %}

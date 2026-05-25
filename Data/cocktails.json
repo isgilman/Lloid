@@ -119,7 +119,6 @@
       "created_at": "2024-01-01"
     },
     {
-      "id": "daiquiri",
       "name": "Daiquiri",
       "category": "Classic",
       "glass": "Coupe",
@@ -129,17 +128,17 @@
           "name": "Rum",
           "amount": "2",
           "unit": "oz",
-          "notes": "White or aged"
+          "notes": "Unaged or lightly aged"
         },
         {
           "name": "Lime Juice",
-          "amount": "0.75",
+          "amount": "1",
           "unit": "oz",
           "notes": "Fresh"
         },
         {
           "name": "Simple Syrup",
-          "amount": "0.75",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         }
@@ -154,6 +153,7 @@
         "rum",
         "sour"
       ],
+      "id": "daiquiri",
       "created_at": "2024-01-01"
     },
     {
@@ -462,7 +462,6 @@
       "created_at": "2024-01-01"
     },
     {
-      "id": "toronto",
       "name": "Toronto",
       "category": "Classic",
       "glass": "Coupe",
@@ -476,15 +475,15 @@
         },
         {
           "name": "Fernet-Branca",
-          "amount": "0.25",
+          "amount": "0.5",
           "unit": "oz",
-          "notes": ""
+          "notes": "OG is 1/4 oz"
         },
         {
           "name": "Simple Syrup",
-          "amount": "0.25",
-          "unit": "oz",
-          "notes": ""
+          "amount": "1",
+          "unit": "barspoon",
+          "notes": "Turbinado"
         },
         {
           "name": "Angostura Bitters",
@@ -503,6 +502,7 @@
         "whiskey",
         "amaro"
       ],
+      "id": "toronto",
       "created_at": "2024-01-01"
     },
     {
@@ -1144,6 +1144,2619 @@
       ],
       "notes": "Variation: swap Tequila Ocho Plata for Caravedo Pisco for a softer, more floral profile. Add egg white for a silkier texture.",
       "id": "the-gilded-veil",
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "southern-cross",
+      "name": "Southern Cross",
+      "category": "Original",
+      "glass": "Footed Pilsner",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Caravedo Pisco",
+          "amount": "1.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Por Siempre Sotol",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Chinola Passion Fruit",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime Juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "Fresh"
+        },
+        {
+          "name": "Saline",
+          "amount": "2",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Aperol",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "Float"
+        }
+      ],
+      "instructions": "Shake all ingredients except Aperol over pebble or crushed ice. Open pour into a footed pilsner glass. Float Aperol on top.",
+      "garnish": "Mint sprig",
+      "source": "",
+      "notes": "",
+      "tags": [
+        "original",
+        "shaken",
+        "pisco",
+        "sotol",
+        "tropical",
+        "tiki"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "name": "Night Nurse (Tropical Negroni)",
+      "category": "Saved Recipe",
+      "glass": "Double Rocks",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Doorly's 8",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "aged Jamaican rum"
+        },
+        {
+          "name": "Dolin Rouge",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "sub for Punt e Mes"
+        },
+        {
+          "name": "Campari",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Smith & Cross",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "overproof Jamaican rum"
+        },
+        {
+          "name": "Cynar",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Sathenay Crème de Banane",
+          "amount": "1",
+          "unit": "tsp",
+          "notes": "banana liqueur"
+        },
+        {
+          "name": "Tempus Fugit Crème de Moka",
+          "amount": "1",
+          "unit": "tsp",
+          "notes": "coffee liqueur"
+        }
+      ],
+      "instructions": "Add all ingredients to a mixing glass and stir with ice to chill. Strain into a double rocks glass over a large ice cube.",
+      "garnish": "Orange twist",
+      "source": "Robby Dow, Bespoke, Wilmington, North Carolina",
+      "notes": "Recipe from Imbibe Magazine. Original calls for Punt e Mes; substituted Dolin Rouge. Original calls for aged and overproof Jamaican rum; using Doorly's 8 and Smith & Cross respectively.",
+      "tags": [
+        "negroni",
+        "rum",
+        "tropical",
+        "bitter",
+        "stirred"
+      ],
+      "id": "night-nurse-tropical-negroni",
+      "created_at": "2026-05-24"
+    },
+    {
+      "name": "Mai Tai",
+      "category": "Tiki",
+      "glass": "Mai tai or large rocks (16 oz)",
+      "method": "Flash-blended",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Orgeat",
+          "amount": "1/2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Dry Curaçao",
+          "amount": "1/2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged rhum agricole",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "Pere Labat 59"
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "Smith & Cross"
+        }
+      ],
+      "instructions": "Flash blend ingredients with pebble or crusshed ice.\r\n\r\nOpen pour into a large rocks, Mai Tai, or snifter (16 oz ideally).\r\n\r\nTop with more ice.\r\n\r\nGarnish with mint and citrus wheel; float aged overproof rum on top (optional).",
+      "garnish": "Mint sprig, citrus wheel, overproof float",
+      "source": "Trader Vic, Oakland, CA",
+      "notes": "",
+      "tags": [
+        "classic",
+        "flash-blended",
+        "tiki",
+        "tropical"
+      ],
+      "id": "mai-tai",
+      "created_at": "2026-05-24"
+    },
+    {
+      "name": "The Tropic Meridian",
+      "category": "Original",
+      "glass": "Collins",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Saint James Rhum Vieux Agricole",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Chinola Passion Fruit Liqueur",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Soda Water",
+          "amount": "2",
+          "unit": "oz",
+          "notes": "Top to taste"
+        }
+      ],
+      "instructions": "Shake Saint James, Chinola, and lime juice with ice. Strain into a Collins glass over fresh ice. Top with soda water.",
+      "garnish": "Lime wheel and passionfruit half if available",
+      "tags": [
+        "original",
+        "collins",
+        "rum",
+        "tropical",
+        "passionfruit",
+        "refreshing",
+        "agricole"
+      ],
+      "notes": "Simple syrup omitted — Chinola provides sufficient sweetness. If the drink reads too sweet, nudge lime up to 0.875–1 oz. A splash of Nixta Licor de Elote or 2 dashes Angostura bitters are interesting variations.",
+      "id": "the-tropic-meridian",
+      "created_at": "2026-05-24"
+    },
+    {
+      "name": "Muck & Cacao",
+      "category": "Original",
+      "glass": "Rocks",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Grand Arôme rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": "Canonical version; SBS Origin Le Galion or Holmes Cay Savanna also recommended as variations"
+        },
+        {
+          "name": "Cacao-infused Amaro dell'Erborista",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "House infusion"
+        },
+        {
+          "name": "Amaro Sfumato Rabarbaro",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Spiced molasses syrup",
+          "amount": "1",
+          "unit": "barspoon",
+          "notes": "Clove, allspice, cinnamon, nutmeg, star anise; 3:1 sugar to blackstrap molasses ratio"
+        },
+        {
+          "name": "Saline solution (20%)",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass with ice. Stir until well chilled and properly diluted. Strain over a large cube in a rocks glass. Express an orange peel over the surface and discard.",
+      "garnish": "Expressed orange peel, discarded",
+      "source": "",
+      "notes": "Developed with Aficionados Grand Arôme from Le Galion Distillery as the canonical spirit. All three Grand Arôme bottles in inventory are worthy expressions of this recipe, each bringing distinct character. Spiced molasses syrup recipe: 1 cup hot water, 3/4 cup sugar, 1/4 cup blackstrap molasses, 2 cloves, 3 allspice berries, 1 cinnamon stick, pinch nutmeg, 1 star anise — simmer 10 minutes, fine strain, refrigerate up to 3 weeks.",
+      "tags": [
+        "original",
+        "stirred",
+        "rum",
+        "grand arome",
+        "amaro",
+        "cacao",
+        "boozy",
+        "bitter",
+        "dark"
+      ],
+      "id": "muck-cacao",
+      "created_at": "2026-05-24"
+    },
+    {
+      "name": "Tideline",
+      "category": "Original",
+      "glass": "Rocks Glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Christian Drouin Calvados Sélection",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Apple Brandy",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amaro dell'Erborista",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "House infusion"
+        },
+        {
+          "name": "Bénédictine D.O.M.",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Fresh Lemon Juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Maple shrub",
+          "amount": "1",
+          "unit": "barspoon",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a shaker with ice. Shake and strain over cracked ice in a rocks glass. Express a lemon peel over the surface and lay it in.",
+      "garnish": "Dehydrated apple wheel",
+      "source": "",
+      "notes": "Maple shrub: equal parts maple syrup and apple cider vinegar by volume.\r\n\r\nBuilt around a house-infused Amaro dell'Erborista (cacao nib, kombu, allspice, black cardamom). Bénédictine and the amaro carry residual sweetness.\r\n\r\nVariation: swap Bénédictine for 0.25 oz Yellow Chartreuse for a more botanical, grassy profile.",
+      "tags": [
+        "original",
+        "stirred",
+        "sour-adjacent",
+        "amaro",
+        "calvados",
+        "apple brandy",
+        "digestif",
+        "house infusion"
+      ],
+      "id": "tideline",
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "metropole",
+      "name": "Metropole",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Brandy",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Dry vermouth",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Peychaud's bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        },
+        {
+          "name": "Orange bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass and stir for 10-20 seconds. Strain into a cocktail glass and garnish with a cherry.",
+      "garnish": "Cherry",
+      "source": "Tuxedo No. 2",
+      "notes": "Adapted from Old Waldorf Astoria Bar Days (1931). Structured similarly to a Manhattan but with brandy instead of whiskey and dry vermouth instead of sweet.",
+      "tags": [
+        "brandy",
+        "vermouth",
+        "stirred",
+        "classic",
+        "bitters"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "tango-nuevo",
+      "name": "Tango Nuevo",
+      "category": "Tuxedo No. 2",
+      "glass": "Rocks glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Aged rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Honey syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Coffee liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "or cold brew"
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass and stir for 10-20 seconds. Strain into a rocks glass over one large ice cube. Sprinkle smoked sea salt on top and add lemon twist.",
+      "garnish": "Smoked sea salt, lemon twist",
+      "source": "Tuxedo No. 2",
+      "notes": "Adapted from The One Bottle Cocktail by Maggie Hoffman (2018). Salted caramel flavor profile; Mr Black coffee liqueur works well.",
+      "tags": [
+        "rum",
+        "coffee",
+        "stirred",
+        "contemporary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "sun-valley",
+      "name": "Sun Valley",
+      "category": "Tuxedo No. 2",
+      "glass": "Toddy glass",
+      "method": "Built",
+      "ingredients": [
+        {
+          "name": "Heavy cream",
+          "amount": "8",
+          "unit": "oz",
+          "notes": "serves 2"
+        },
+        {
+          "name": "Egg yolk",
+          "amount": "1",
+          "unit": "",
+          "notes": ""
+        },
+        {
+          "name": "Simple syrup",
+          "amount": "2",
+          "unit": "tsp",
+          "notes": ""
+        },
+        {
+          "name": "Dark rum",
+          "amount": "2",
+          "unit": "oz",
+          "notes": "Jamaican-style"
+        }
+      ],
+      "instructions": "Heat the cream to nearly boiling. Turn the heat off and add syrup, egg, and a splash of milk. Whisk together until a nice froth develops. Add rum and serve. Serves 2.",
+      "garnish": "",
+      "source": "Tuxedo No. 2",
+      "notes": "Adapted from Esquire's Handbook for Hosts (1949). A mid-century winter warmer. Dark, caramelly rum works best.",
+      "tags": [
+        "rum",
+        "cream",
+        "hot",
+        "winter",
+        "classic"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "poets-dream",
+      "name": "Poet's Dream",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "London dry gin",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Dry vermouth",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Benedictine",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass and stir briefly (10-15 seconds). Strain into a cocktail glass and garnish with lemon peel.",
+      "garnish": "Lemon peel",
+      "source": "Tuxedo No. 2",
+      "notes": "From Old Waldorf Astoria Bar Days (1931). A riff on the perfect martini with herbal, moody character.",
+      "tags": [
+        "gin",
+        "vermouth",
+        "benedictine",
+        "stirred",
+        "classic"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "crop-top",
+      "name": "Crop Top",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amaro Montenegro",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pamplemousse liqueur",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a shaker and shake over ice for 30 seconds. Strain into a cocktail glass and garnish with grapefruit peel.",
+      "garnish": "Grapefruit peel",
+      "source": "Tuxedo No. 2",
+      "notes": "A riff on the Paper Plane. Equal-parts format; grapefruit-forward with herbal amaro balance.",
+      "tags": [
+        "gin",
+        "amaro",
+        "grapefruit",
+        "shaken",
+        "equal-parts",
+        "contemporary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "coco-no-coco",
+      "name": "Coco no Coco",
+      "category": "Tuxedo No. 2",
+      "glass": "Tiki mug",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Aged demerara rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Heavy cream",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Orgeat",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and shake briefly (about 5 seconds). Strain into a tiki mug or extra tall Collins glass filled with crushed ice, then garnish with spices.",
+      "garnish": "Grated nutmeg and cinnamon",
+      "source": "Tuxedo No. 2",
+      "notes": "Created by Ezra Star of Boston's Drink bar. A creamy tiki drink; demerara rum essential for chocolatey finish.",
+      "tags": [
+        "rum",
+        "tiki",
+        "cream",
+        "pineapple",
+        "orgeat",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "halekulani",
+      "name": "Halekulani",
+      "category": "Tuxedo No. 2",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Bourbon",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": "overproof recommended"
+        },
+        {
+          "name": "Demerara syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Grenadine",
+          "amount": "1",
+          "unit": "tsp",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Orange juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and shake. Strain into a chilled coupe glass and garnish.",
+      "garnish": "Pineapple wedge, citrus wheel, or pineapple fronds",
+      "source": "Tuxedo No. 2",
+      "notes": "A cross between a classic bourbon sour and a tiki drink. Overproof bourbon recommended to balance the fruity and sweet profile.",
+      "tags": [
+        "bourbon",
+        "whiskey",
+        "tiki",
+        "tropical",
+        "sour",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "tour-le-carbet",
+      "name": "Tour Le Carbet",
+      "category": "Tuxedo No. 2",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Rhum agricole",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Suze",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and shake. Double strain into a chilled coupe and garnish with lime wheel.",
+      "garnish": "Lime wheel",
+      "source": "Tuxedo No. 2",
+      "notes": "A riff on the classic Royal Bermuda Yacht Club cocktail. Replaces Curaçao with Suze. Named after Le Carbet, a beach commune in Martinique.",
+      "tags": [
+        "rum",
+        "rhum-agricole",
+        "falernum",
+        "shaken",
+        "tropical"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "kir-royale",
+      "name": "Kir Royale",
+      "category": "Tuxedo No. 2",
+      "glass": "Champagne flute",
+      "method": "Built",
+      "ingredients": [
+        {
+          "name": "Crème de cassis",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Champagne",
+          "amount": "3",
+          "unit": "oz",
+          "notes": "dry sparkling wine"
+        }
+      ],
+      "instructions": "Add the crème de cassis to a champagne flute or coupe. Top with champagne.",
+      "garnish": "Small lemon twist (optional)",
+      "source": "Tuxedo No. 2",
+      "notes": "Use dry sparkling wine since cassis is already sweet. Adjust cassis amount to taste (0.5-1 oz). Lejay recommended.",
+      "tags": [
+        "champagne",
+        "sparkling",
+        "cassis",
+        "built",
+        "classic",
+        "french"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "ghost-coast",
+      "name": "Ghost Coast",
+      "category": "Tuxedo No. 2",
+      "glass": "Rocks glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Reposado tequila",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Blanco tequila",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Crème de banane",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Eucalyptus tincture",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": "house-made"
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Honey syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Maple syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and shake. Strain into a rocks glass over ice and garnish.",
+      "garnish": "Eucalyptus leaf and/or banana chip",
+      "source": "Tuxedo No. 2",
+      "notes": "An ode to the beaches of northern California. Eucalyptus tincture is house-made from fresh leaves in high-proof spirit. Starts like a margarita then transitions to maple, banana, and herbal eucalyptus.",
+      "tags": [
+        "tequila",
+        "banana",
+        "honey",
+        "shaken",
+        "contemporary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "apres-ski-swizzle",
+      "name": "Apres-Ski Swizzle",
+      "category": "Tuxedo No. 2",
+      "glass": "Tiki glass",
+      "method": "Built",
+      "ingredients": [
+        {
+          "name": "Aged rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Green Chartreuse",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Orgeat",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in the tiki glass. Top with crushed ice until full. Swizzle with a swizzle stick or barspoon until chilled. Top with more crushed ice and garnish.",
+      "garnish": "Pineapple wedge or fronds",
+      "source": "Tuxedo No. 2",
+      "notes": "Adapted from Easy Tiki by Chloe Frechette (2020). Originally created by Nathan Hazard at the Coconut Club in LA. Use green Chartreuse, not yellow.",
+      "tags": [
+        "rum",
+        "chartreuse",
+        "tiki",
+        "swizzle",
+        "tropical",
+        "pineapple"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "tattletale",
+      "name": "Tattletale",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Reposado tequila",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Marshmallow cream",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Apple butter",
+          "amount": "2",
+          "unit": "tsp",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a cocktail shaker without ice. Use an immersion blender to blend all ingredients. Add ice and shake vigorously for ten seconds. Strain into a cocktail glass.",
+      "garnish": "",
+      "source": "Tuxedo No. 2",
+      "notes": "A funky yet simple drink. Marshmallow cream creates egg-like thickness. Pear or pumpkin butter can substitute for apple butter.",
+      "tags": [
+        "tequila",
+        "shaken",
+        "contemporary",
+        "spiced"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "yuzu-choco",
+      "name": "Yuzu Choco",
+      "category": "Tuxedo No. 2",
+      "glass": "Rocks glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Shochu",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": "barley preferred"
+        },
+        {
+          "name": "Yuzu sake",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Crème de cacao",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Suze",
+          "amount": "1",
+          "unit": "tsp",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass and stir for approximately 10 seconds. Strain into a rocks glass over one large cube and garnish with lemon peel.",
+      "garnish": "Lemon peel",
+      "source": "Tuxedo No. 2",
+      "notes": "Adapted from The Japanese Art of the Cocktail by Masahiro Urushido and Michael Anstendig (2021). Notably dry with aromas of sweet grains and lemon.",
+      "tags": [
+        "shochu",
+        "sake",
+        "yuzu",
+        "stirred",
+        "japanese",
+        "bitter"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "gentlemans-exchange",
+      "name": "Gentleman's Exchange",
+      "category": "Tuxedo No. 2",
+      "glass": "Rocks glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Rye whiskey",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Sweet vermouth",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Suze",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amaro Averna",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Coffee liqueur",
+          "amount": "1",
+          "unit": "tsp",
+          "notes": ""
+        },
+        {
+          "name": "Absinthe",
+          "amount": "4",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass. Stir for approximately ten seconds. Pour into a rocks glass over a large cube. Garnish with grapefruit peel.",
+      "garnish": "Grapefruit peel",
+      "source": "Tuxedo No. 2",
+      "notes": "Also known as Tuxedo No. 2. Adapted from Leo Robitschek's The NoMad Cocktail Book (2019). A strong rocks cocktail with coffee and amaro emphasis.",
+      "tags": [
+        "rye",
+        "whiskey",
+        "amaro",
+        "stirred",
+        "coffee",
+        "contemporary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "shafers-eureka",
+      "name": "Shafer's Eureka",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Dry vermouth",
+          "amount": "1.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Bourbon",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Chamomile tea",
+          "amount": "1.25",
+          "unit": "oz",
+          "notes": "cooled"
+        },
+        {
+          "name": "Grapefruit bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        }
+      ],
+      "instructions": "Brew chamomile tea and allow it to cool. Combine all ingredients in a mixing glass and stir briefly until the glass begins to frost. Strain into a cocktail glass and optionally garnish.",
+      "garnish": "Chamomile bud (optional)",
+      "source": "Tuxedo No. 2",
+      "notes": "Adapted from Vermouth by Adam Ford (2015). A delicate session cocktail highlighting dry vermouth. Features a pretty yellow color with grape and chamomile notes.",
+      "tags": [
+        "vermouth",
+        "bourbon",
+        "whiskey",
+        "stirred",
+        "low-abv",
+        "session"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "electron",
+      "name": "Electron",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Mezcal",
+          "amount": "1.75",
+          "unit": "oz",
+          "notes": "salty, savory profile preferred"
+        },
+        {
+          "name": "Carrot juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Cinnamon syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Orange bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine pink peppercorn and salt in a spice grinder and process until fine. Rim cocktail glass with lime juice followed by peppercorn mixture. Combine remaining ingredients with ice and shake for 15 seconds. Strain into the prepared glass.",
+      "garnish": "Pink peppercorn and salt rim",
+      "source": "Tuxedo No. 2",
+      "notes": "A funky brunch drink pairing carrot juice with mezcal. Use mezcal with salty, savory profile.",
+      "tags": [
+        "mezcal",
+        "carrot",
+        "shaken",
+        "contemporary",
+        "spiced"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "apium",
+      "name": "Apium",
+      "category": "Tuxedo No. 2",
+      "glass": "Rocks glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Mezcal",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": "espadin preferred"
+        },
+        {
+          "name": "Lime juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Simple syrup",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Celery bitters",
+          "amount": "4",
+          "unit": "dashes",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients except salt in a shaker. Shake for 30 seconds. Strain into ice-filled glass. Garnish with a pinch of salt and optionally a lime wheel.",
+      "garnish": "Pinch of salt, lime wheel (optional)",
+      "source": "Tuxedo No. 2",
+      "notes": "A smoky and vegetal riff on the margarita. Celery bitters add savory depth. Also listed as Opium on the site.",
+      "tags": [
+        "mezcal",
+        "shaken",
+        "margarita-riff",
+        "savory",
+        "smoky"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "paris-is-burning",
+      "name": "Paris is Burning",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Mezcal",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "London dry gin",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Elderflower liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "St-Germain"
+        },
+        {
+          "name": "Simple syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice in a cocktail shaker and shake. Strain into a chilled cocktail glass, served up.",
+      "garnish": "",
+      "source": "Tuxedo No. 2",
+      "notes": "Adapted from The NoMad Cocktail Book by Leo Robitschek (2019). Split base of mezcal and gin. Fruity, herbal, and smoky bouquet.",
+      "tags": [
+        "mezcal",
+        "gin",
+        "pineapple",
+        "elderflower",
+        "shaken",
+        "contemporary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "royal-bermuda-yacht-club",
+      "name": "Royal Bermuda Yacht Club",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Aged rum",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Curaçao",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients with ice and shake. Double strain into a chilled cocktail glass and garnish with lime wheel.",
+      "garnish": "Lime wheel",
+      "source": "Tuxedo No. 2",
+      "notes": "1950s classic attributed to Trader Vic. Blends tiki canon with classic daiquiri style. Aged rum works best.",
+      "tags": [
+        "rum",
+        "falernum",
+        "curacao",
+        "shaken",
+        "tiki",
+        "classic"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "paloma",
+      "name": "Paloma",
+      "category": "Tuxedo No. 2",
+      "glass": "Highball glass",
+      "method": "Built",
+      "ingredients": [
+        {
+          "name": "Blanco tequila",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Grapefruit juice",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": "fresh"
+        },
+        {
+          "name": "Pamplemousse liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Simple syrup",
+          "amount": "1",
+          "unit": "tsp",
+          "notes": ""
+        },
+        {
+          "name": "Soda water",
+          "amount": "2.5",
+          "unit": "oz",
+          "notes": "to top"
+        }
+      ],
+      "instructions": "Combine all ingredients except soda in a highball or Collins glass over ice and stir. Optionally coat the rim with lime juice and roll in freshly ground salt. Top with soda and garnish.",
+      "garnish": "Grapefruit peel; salt rim (optional)",
+      "source": "Tuxedo No. 2",
+      "notes": "Uses fresh juices rather than grapefruit soda. Dry, slightly bitter, and absolutely refreshing.",
+      "tags": [
+        "tequila",
+        "grapefruit",
+        "highball",
+        "built",
+        "refreshing"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "french-canadian",
+      "name": "French Canadian",
+      "category": "Tuxedo No. 2",
+      "glass": "Coupe",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Cognac",
+          "amount": "2.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Champagne vinegar",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Maple syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": "pure"
+        },
+        {
+          "name": "Pure vanilla extract",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and stir until well chilled. Strain into a chilled coupe glass, express lemon oils over the top, then use peel as garnish.",
+      "garnish": "Lemon twist",
+      "source": "Tuxedo No. 2",
+      "notes": "Use quality Cognac and real maple syrup. Champagne vinegar provides complex acidity. Warm vanilla and nutty cognac with maple sweetness.",
+      "tags": [
+        "cognac",
+        "brandy",
+        "maple",
+        "stirred",
+        "contemporary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "vesper",
+      "name": "Vesper",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "2.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Kina Lillet",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "Tempus Fugit Kina L'Aero d'Or recommended"
+        },
+        {
+          "name": "Orange bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass and stir until the glass becomes frosty. Strain into a cocktail glass and garnish with lemon twist.",
+      "garnish": "Lemon twist",
+      "source": "Tuxedo No. 2",
+      "notes": "From Ian Fleming's Casino Royale (1953). This version removes vodka and uses more reasonable proportions. Stirred, not shaken.",
+      "tags": [
+        "gin",
+        "stirred",
+        "classic",
+        "martini-riff",
+        "literary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "last-man-standing",
+      "name": "Last Man Standing",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "London dry gin",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Rye whiskey",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Fernet",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "Fernet Vallet recommended"
+        },
+        {
+          "name": "Campari",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass and stir for ten seconds. Express oils from both orange twists onto the mixing glass. Strain contents into cocktail glass and garnish with one orange twist.",
+      "garnish": "Orange twist",
+      "source": "Tuxedo No. 2",
+      "notes": "A bold fernet-forward Negroni variation. Equal-parts format. Fernet Vallet recommended over Fernet-Branca. A bartender's drink.",
+      "tags": [
+        "gin",
+        "rye",
+        "whiskey",
+        "fernet",
+        "campari",
+        "bitter",
+        "stirred",
+        "negroni-riff"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "groceries-for-the-queen",
+      "name": "Groceries for the Queen",
+      "category": "Tuxedo No. 2",
+      "glass": "Tiki glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Cherry Heering",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amaro Montenegro",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Orange juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "fresh"
+        },
+        {
+          "name": "Chocolate bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients with a few pebbles of ice and shake. Pour into a glass filled with pebble ice and top with more pebble ice. Garnish with cherries or orange peel.",
+      "garnish": "Cherry or orange peel",
+      "source": "Tuxedo No. 2",
+      "notes": "Adapted from Sother Teague's I'm Just Here for the Drinks (2018). Fruity and balanced modern drink featuring amaro Montenegro.",
+      "tags": [
+        "gin",
+        "amaro",
+        "cherry",
+        "shaken",
+        "contemporary",
+        "tiki"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "death-in-the-afternoon",
+      "name": "Death in the Afternoon",
+      "category": "Tuxedo No. 2",
+      "glass": "Champagne flute",
+      "method": "Built",
+      "ingredients": [
+        {
+          "name": "Absinthe",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Champagne",
+          "amount": "4",
+          "unit": "oz",
+          "notes": "very cold, brut"
+        }
+      ],
+      "instructions": "Add absinthe to a champagne glass. Top with very cold champagne.",
+      "garnish": "",
+      "source": "Tuxedo No. 2",
+      "notes": "Attributed to Ernest Hemingway, published in a 1935 cocktail anthology. Absinthe will louche as champagne is added. Adjust absinthe to taste (0.25-1.5 oz).",
+      "tags": [
+        "absinthe",
+        "champagne",
+        "sparkling",
+        "built",
+        "classic",
+        "literary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "erin",
+      "name": "Erin",
+      "category": "Tuxedo No. 2",
+      "glass": "Rocks glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Rye whiskey",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amer Picon",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "or China China Amer"
+        },
+        {
+          "name": "Suze",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Sweet vermouth",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Allspice dram",
+          "amount": "5",
+          "unit": "dashes",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass and stir for ten seconds. Strain into a rocks glass over one large cube and garnish with both peels.",
+      "garnish": "Lemon peel and orange peel",
+      "source": "Tuxedo No. 2",
+      "notes": "Created by Toby Cecchini at Long Island Bar in Brooklyn. Structured similarly to a Boulevardier but sweeter and fruitier.",
+      "tags": [
+        "rye",
+        "whiskey",
+        "amaro",
+        "stirred",
+        "contemporary",
+        "bitter"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "buttermilk-flip",
+      "name": "Buttermilk Flip",
+      "category": "Tuxedo No. 2",
+      "glass": "Rocks glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Bourbon",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Maple syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "1:1 diluted"
+        },
+        {
+          "name": "Cold brew coffee",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "unsweetened"
+        },
+        {
+          "name": "Buttermilk",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Egg",
+          "amount": "1",
+          "unit": "",
+          "notes": "whole"
+        }
+      ],
+      "instructions": "Combine all ingredients in a shaker without ice and dry shake until emulsified, approximately 20 seconds. Fill shaker with ice and shake until chilled and frothy. Strain into a rocks glass over ice and garnish with grated hazelnut.",
+      "garnish": "Grated hazelnut",
+      "source": "Tuxedo No. 2",
+      "notes": "Adapted from The One Bottle Cocktail by Maggie Hoffman (2018). Buttermilk provides lighter body and tartness. A decadent alternative to holiday classics.",
+      "tags": [
+        "bourbon",
+        "whiskey",
+        "flip",
+        "egg",
+        "coffee",
+        "shaken",
+        "seasonal"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "flannel-shirt",
+      "name": "Flannel Shirt",
+      "category": "Tuxedo No. 2",
+      "glass": "Rocks glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Scotch",
+          "amount": "1.75",
+          "unit": "oz",
+          "notes": "blended, malt-forward"
+        },
+        {
+          "name": "Apple cider",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amaro Averna",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Demerara syrup",
+          "amount": "2",
+          "unit": "tsp",
+          "notes": ""
+        },
+        {
+          "name": "Allspice dram",
+          "amount": "0.5",
+          "unit": "tsp",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a shaker and shake. Strain into a rocks glass over cracked ice.",
+      "garnish": "Orange peel",
+      "source": "Tuxedo No. 2",
+      "notes": "Fruity and spiced with velvety texture. Apple, citrus, and malt notes; clove and herbal finish. Pig's Nose and Monkey Shoulder recommended scotch options.",
+      "tags": [
+        "scotch",
+        "whisky",
+        "apple",
+        "amaro",
+        "shaken",
+        "autumn",
+        "spiced"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "el-tigre",
+      "name": "El Tigre",
+      "category": "Tuxedo No. 2",
+      "glass": "Collins glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Reposado tequila",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aquavit",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Egg",
+          "amount": "1",
+          "unit": "",
+          "notes": "whole"
+        },
+        {
+          "name": "Cinnamon syrup",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Mole bitters",
+          "amount": "4",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Soda water",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients except soda water in a cocktail shaker and dry shake for 5 seconds. Fill shaker with ice and shake again for 10-15 seconds. Fill a small Collins or rocks glass with soda water, then strain remaining contents on top.",
+      "garnish": "Cinnamon (optional, for colder months)",
+      "source": "Tuxedo No. 2",
+      "notes": "A spin on the Ramos Gin Fizz at the intersection of a flip and a fizz. Tequila and aquavit split base. Linie Aquavit and Cimarron reposado recommended.",
+      "tags": [
+        "tequila",
+        "aquavit",
+        "fizz",
+        "egg",
+        "shaken",
+        "contemporary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "pale-end-of-the-day",
+      "name": "Pale End of the Day",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Blanc vermouth",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "London dry gin",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pear liqueur",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "spiced pear preferred"
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass and stir until the sides are frosty. Serve in a chilled cocktail glass and garnish with pear slice.",
+      "garnish": "Pear slice",
+      "source": "Tuxedo No. 2",
+      "notes": "Quality blanc vermouth essential (Del Professore Classic Bianco recommended). St. George's spiced pear liqueur works beautifully.",
+      "tags": [
+        "gin",
+        "vermouth",
+        "pear",
+        "stirred",
+        "low-abv",
+        "delicate"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "star",
+      "name": "Star",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Apple brandy",
+          "amount": "2",
+          "unit": "oz",
+          "notes": "calvados recommended"
+        },
+        {
+          "name": "Sweet vermouth",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Simple syrup",
+          "amount": "1",
+          "unit": "barspoon",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients in a mixing glass and stir for ten seconds. Strain into a cocktail glass and garnish with lemon twist.",
+      "garnish": "Lemon twist",
+      "source": "Tuxedo No. 2",
+      "notes": "From George Kappeler's Modern American Drinks (1895). A Manhattan riff with apple brandy yielding autumn flavors.",
+      "tags": [
+        "apple-brandy",
+        "calvados",
+        "vermouth",
+        "stirred",
+        "classic",
+        "autumn"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "punch-a-la-romaine",
+      "name": "Punch a la Romaine",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Light rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Egg white",
+          "amount": "1",
+          "unit": "",
+          "notes": ""
+        },
+        {
+          "name": "Orange juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Simple syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Champagne",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Add all ingredients except champagne to a shaker and dry shake without ice. Add ice and shake again. Strain into a cocktail glass filled with shaved ice. Top with champagne.",
+      "garnish": "",
+      "source": "Tuxedo No. 2",
+      "notes": "A fanciful cooler bridging kitchen and bar. Dry shake first to maximize egg white volume. Blood orange can be used for a pink hue.",
+      "tags": [
+        "rum",
+        "champagne",
+        "sparkling",
+        "egg-white",
+        "shaken",
+        "classic"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "odd-bedfellows",
+      "name": "Odd Bedfellows",
+      "category": "Tuxedo No. 2",
+      "glass": "Tiki glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Aged rum",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "Smith & Cross recommended"
+        },
+        {
+          "name": "Gold rum",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Coconut cream",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "canned, not Coco Lopez"
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Crème de cacao",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Fernet",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "Fernet-Branca"
+        }
+      ],
+      "instructions": "Combine all ingredients with a few pebbles of ice and shake. Pour into a glass filled with pebble ice, and top with more pebble ice. Garnish with pineapple wedge, mint, and/or grated bitter chocolate.",
+      "garnish": "Pineapple wedge, mint sprig, and/or grated bitter chocolate",
+      "source": "Tuxedo No. 2",
+      "notes": "From Sother Teague's I'm Just Here for the Drinks (2018). Decadent tiki drink with bracing fernet complexity.",
+      "tags": [
+        "rum",
+        "fernet",
+        "tiki",
+        "pineapple",
+        "coconut",
+        "shaken",
+        "contemporary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "lavender-lady",
+      "name": "Lavender Lady",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "London dry gin",
+          "amount": "1.25",
+          "unit": "oz",
+          "notes": "lemon-forward preferred"
+        },
+        {
+          "name": "Crème de violette",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Maraschino liqueur",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lavender bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Champagne",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "neutral, acidic sparkling wine"
+        }
+      ],
+      "instructions": "Combine all ingredients except champagne in a mixing glass and stir for twenty seconds. Strain into a cocktail glass. Top with champagne and garnish with lavender buds.",
+      "garnish": "Lavender buds (2-3 buds)",
+      "source": "Tuxedo No. 2",
+      "notes": "A brisk blast of spring herbals. Lemon-forward gins work best. Use neutral sparkling wine with good acidity.",
+      "tags": [
+        "gin",
+        "lavender",
+        "champagne",
+        "stirred",
+        "floral",
+        "contemporary"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "spanish-coffee",
+      "name": "Spanish Coffee",
+      "category": "Tuxedo No. 2",
+      "glass": "Toddy glass",
+      "method": "Built",
+      "ingredients": [
+        {
+          "name": "Navy-strength gold rum",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "Hamilton Navy strength recommended"
+        },
+        {
+          "name": "Coffee liqueur",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": "Kahlua or Mr. Black"
+        },
+        {
+          "name": "Orange liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Hot coffee",
+          "amount": "3",
+          "unit": "oz",
+          "notes": "freshly brewed"
+        }
+      ],
+      "instructions": "Create a slit in a lime wedge and coat the top lip of the glass generously. Dip the rim into sugar to form a band. Add rum and ignite it; use the flame to caramelize the sugar on the rim. Pour in liqueurs and coffee, top with whipped cream and a dusting of nutmeg.",
+      "garnish": "Lightly whipped cream, nutmeg",
+      "source": "Tuxedo No. 2",
+      "notes": "A Portland original with dazzling tableside preparation. Uses navy-strength rum instead of 151-proof for safety while maintaining caramel flavor. Fresh whipped cream preferred.",
+      "tags": [
+        "rum",
+        "coffee",
+        "hot",
+        "built",
+        "tableside",
+        "flamed"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "fionia",
+      "name": "Fionia",
+      "category": "Tuxedo No. 2",
+      "glass": "Coupe",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "London dry gin",
+          "amount": "1.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Blanc vermouth",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Sherry",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "dry amontillado"
+        },
+        {
+          "name": "Pickled chamomile liquid",
+          "amount": "1",
+          "unit": "barspoon",
+          "notes": "house-made"
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and stir. Strain into a coupe and garnish with chamomile flowers.",
+      "garnish": "Pickled chamomile buds",
+      "source": "Tuxedo No. 2",
+      "notes": "Adapted from Selma Slabiak's Spirit of the North (2018). Scandinavian-inspired with approachable complexity. Dry amontillado sherry recommended.",
+      "tags": [
+        "gin",
+        "vermouth",
+        "sherry",
+        "stirred",
+        "floral",
+        "scandinavian"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "doctor-cocktail",
+      "name": "Doctor Cocktail",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Gold rum",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Swedish punsch",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and shake. Strain into a cocktail glass and garnish.",
+      "garnish": "Lime peel",
+      "source": "Tuxedo No. 2",
+      "notes": "From Ted Haigh's Vintage Spirits and Forgotten Cocktails (2004). A funky, short, complex proto-tiki classic. Dates back to 1917.",
+      "tags": [
+        "rum",
+        "swedish-punsch",
+        "shaken",
+        "classic",
+        "tiki",
+        "funky"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "harvard",
+      "name": "Harvard",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Cognac",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Sweet vermouth",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Soda water",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine cognac, vermouth, and bitters over ice and stir until chilled. Strain into a chilled cocktail glass. Top with soda water and garnish.",
+      "garnish": "Orange peel",
+      "source": "Tuxedo No. 2",
+      "notes": "From George J. Kappeler's Modern American Drinks (1895). A brandy Manhattan variation with soda water for a lighter profile.",
+      "tags": [
+        "cognac",
+        "brandy",
+        "vermouth",
+        "stirred",
+        "classic"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "suburban",
+      "name": "Suburban",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Rye whiskey",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Dark rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "Jamaican preferred"
+        },
+        {
+          "name": "Port",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "tawny"
+        },
+        {
+          "name": "Orange bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and stir. Strain into a chilled cocktail glass, served up.",
+      "garnish": "",
+      "source": "Tuxedo No. 2",
+      "notes": "A winter cocktail with vanilla, cherry, and orange flavors. Similar to a Manhattan but smoother with port and rum additions.",
+      "tags": [
+        "rye",
+        "whiskey",
+        "rum",
+        "port",
+        "stirred",
+        "classic",
+        "winter"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "chicago-cocktail",
+      "name": "Chicago Cocktail",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Brandy",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Orange liqueur",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": "dry Curaçao"
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        },
+        {
+          "name": "Champagne",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": "simple, dry"
+        }
+      ],
+      "instructions": "Optionally sugar the rim of a cocktail glass. Combine brandy, orange liqueur, and bitters over ice and stir. Strain into glass and top with champagne.",
+      "garnish": "Sugared rim (optional)",
+      "source": "Tuxedo No. 2",
+      "notes": "A spirit-forward sparkling drink with high brandy ratio. Precise proportions crucial. China-China Amer can substitute for orange liqueur.",
+      "tags": [
+        "brandy",
+        "champagne",
+        "sparkling",
+        "stirred",
+        "classic"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "paere-dansk",
+      "name": "Pære Dansk",
+      "category": "Tuxedo No. 2",
+      "glass": "Rocks glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Spiced pear liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "St. George's preferred"
+        },
+        {
+          "name": "Orgeat",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Dry champagne",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Add all ingredients except champagne over ice and shake. Pour over cubes in a tumbler and top with sparkling wine. Garnish with pear.",
+      "garnish": "Pear slices (dried or fresh)",
+      "source": "Tuxedo No. 2",
+      "notes": "Created by Selma Slabiak, head bartender at NYC's Nordic restaurant Aska. St. George's Spiced Pear Liqueur recommended. Falernum can substitute orgeat.",
+      "tags": [
+        "vodka",
+        "pear",
+        "champagne",
+        "sparkling",
+        "shaken",
+        "scandinavian"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "la-dominicana",
+      "name": "La Dominicana",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "Dark rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": "aged, El Dorado 12 recommended"
+        },
+        {
+          "name": "Coffee liqueur",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": "Mr. Black recommended"
+        }
+      ],
+      "instructions": "Whip together heavy cream using a whisk or stand mixer. Add rum and coffee liqueur to a mixing glass and stir over ice. Strain into a cocktail glass and float whipped cream on top.",
+      "garnish": "Floated whipped cream",
+      "source": "Tuxedo No. 2",
+      "notes": "Created by Sasha Petraske around 2011. An exceptional upgrade to the White Russian. Smooth aged rum avoids harshness with coffee liqueur.",
+      "tags": [
+        "rum",
+        "coffee",
+        "stirred",
+        "contemporary",
+        "cream"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "cynar-flip",
+      "name": "Cynar Flip",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Cynar",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Egg",
+          "amount": "1",
+          "unit": "",
+          "notes": "whole"
+        },
+        {
+          "name": "Simple syrup",
+          "amount": "2",
+          "unit": "tsp",
+          "notes": "2:1"
+        }
+      ],
+      "instructions": "Dry shake the whole egg in a cocktail shaker for 20 seconds. Add Cynar, simple syrup, and ice before shaking again for another 20 seconds. Strain into a cocktail glass and top with several dashes of bitters in the foam.",
+      "garnish": "Angostura bitters (dashed on foam)",
+      "source": "Tuxedo No. 2",
+      "notes": "Dry shake vigorously twice for best frothy head. Works well with fernet, Zucca, amaro Ciociaro, or Campari substitutions.",
+      "tags": [
+        "cynar",
+        "amaro",
+        "flip",
+        "egg",
+        "shaken",
+        "bitter"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "diki-diki",
+      "name": "Diki-Diki",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Apple brandy",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Swedish punsch",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Grapefruit juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and shake. Strain into a chilled cocktail glass, served up.",
+      "garnish": "",
+      "source": "Tuxedo No. 2",
+      "notes": "From Vintage Spirits and Forgotten Cocktails by Ted Haigh. Slightly modified from Robert Vermiere's 1922 original. Reminiscent of a more complex Jack Rose.",
+      "tags": [
+        "apple-brandy",
+        "swedish-punsch",
+        "grapefruit",
+        "shaken",
+        "classic"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "grasshopper",
+      "name": "Grasshopper",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Crème de cacao",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Crème de menthe",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Heavy cream",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and shake for 30 seconds. Strain into a chilled cocktail glass and garnish with mint.",
+      "garnish": "Mint",
+      "source": "Tuxedo No. 2",
+      "notes": "Quality crème de menthe is essential. No ice cream or green food coloring. A balanced, creamy dessert drink.",
+      "tags": [
+        "cream",
+        "mint",
+        "chocolate",
+        "shaken",
+        "classic",
+        "dessert"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "monkey-gland",
+      "name": "Monkey Gland",
+      "category": "Tuxedo No. 2",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "London dry gin",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Orange juice",
+          "amount": "2",
+          "unit": "oz",
+          "notes": "fresh"
+        },
+        {
+          "name": "Absinthe",
+          "amount": "1",
+          "unit": "tsp",
+          "notes": ""
+        },
+        {
+          "name": "Grenadine",
+          "amount": "1",
+          "unit": "tsp",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and shake. Strain into a chilled coupe and garnish with orange wedge.",
+      "garnish": "Orange wedge",
+      "source": "Tuxedo No. 2",
+      "notes": "A simple mix of gin, orange, grenadine, and absinthe with beautiful candy-orange color. Fresh orange juice essential.",
+      "tags": [
+        "gin",
+        "orange",
+        "absinthe",
+        "shaken",
+        "classic"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "suissesse",
+      "name": "Suissesse",
+      "category": "Tuxedo No. 2",
+      "glass": "Cocktail glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Absinthe",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aquavit",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "Linie recommended"
+        },
+        {
+          "name": "Crème de cacao",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Egg white",
+          "amount": "0.5",
+          "unit": "",
+          "notes": "half a large egg white"
+        },
+        {
+          "name": "Peychaud's bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Chilled water",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Combine all ingredients over ice and shake vigorously. Strain into a cocktail glass and garnish with grated nutmeg. Express lemon oils and discard peel.",
+      "garnish": "Grated nutmeg, expressed lemon peel",
+      "source": "Tuxedo No. 2",
+      "notes": "The culmination of absinthe in the mixed drink format. Dead Rabbit adaptation featuring crème de cacao and aquavit. Serve immediately.",
+      "tags": [
+        "absinthe",
+        "aquavit",
+        "egg-white",
+        "shaken",
+        "classic",
+        "new-orleans"
+      ],
       "created_at": "2026-05-24"
     }
   ]

@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% block title %}Pantry — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Pantry</h1>
+      <p class="page-subtitle">Staples always assumed in stock, plus house-made preparations.</p>
+    </div>
+  </div>
+
+  <!-- Standard Pantry Items -->
+  <div class="pantry-section">
+    <div class="pantry-section-header">
+      <div>
+        <h2 class="pantry-section-title">Pantry Staples</h2>
+        <p class="page-subtitle">These ingredients are always assumed available for cocktail matching.</p>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="toggleAddStandard()">+ Add Item</button>
+    </div>
+
+    <div class="add-standard-form" id="add-standard-form" style="display:none">
+      <form method="post" action="{{ url_for('pantry_standard_add') }}" class="inline-add-form">
+        <input type="text" name="name" class="form-input" placeholder="e.g. turbinado syrup" required
+               id="standard-name-input" autocomplete="off">
+        <button type="submit" class="btn btn-primary btn-sm">Add</button>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="toggleAddStandard()">Cancel</button>
+      </form>
+    </div>
+
+    <div class="pantry-tags" id="pantry-tags">
+      {% for item in pantry.standard %}
+      <span class="pantry-tag">
+        {{ item }}
+        <form method="post" action="{{ url_for('pantry_standard_delete') }}" class="inline">
+          <input type="hidden" name="name" value="{{ item }}">
+          <button type="submit" class="pantry-tag-remove" title="Remove"
+                  onclick="return confirm('Remove &quot;{{ item }}&quot; from pantry staples?')">&#10005;</button>
+        </form>
+      </span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Specialty / House-Made Items -->
+  <div class="pantry-section">
+    <div class="pantry-section-header">
+      <div>
+        <h2 class="pantry-section-title">House-Made &amp; Specialty</h2>
+        <p class="page-subtitle">Preparations you make yourself — syrups, tinctures, infusions. Toggle in-stock when a batch is ready.</p>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openSpecialtyModal()">+ New Item</button>
+    </div>
+
+    {% if pantry.specialty %}
+    <div class="specialty-grid">
+      {% for item in pantry.specialty %}
+      <div class="specialty-card {% if item.in_stock %}specialty-card-active{% endif %}" id="card-{{ item.id }}">
+        <div class="specialty-card-header">
+          <div class="specialty-card-title-row">
+            <h3 class="specialty-card-name">{{ item.name }}</h3>
+            {% if item.in_stock %}
+              <span class="badge badge-green">In stock</span>
+            {% else %}
+              <span class="badge badge-dim">Not in stock</span>
+            {% endif %}
+          </div>
+          {% if item.description %}
+          <p class="specialty-card-desc">{{ item.description }}</p>
+          {% endif %}
+        </div>
+
+        {% if item.recipe %}
+        <details class="specialty-recipe">
+          <summary class="specialty-recipe-toggle">Recipe</summary>
+          <div class="specialty-recipe-body">{{ item.recipe }}</div>
+        </details>
+        {% endif %}
+
+        <div class="specialty-card-footer">
+          <button class="stock-toggle {% if item.in_stock %}stock-toggle-on{% endif %}"
+                  onclick="toggleStock('{{ item.id }}', this)"
+                  data-id="{{ item.id }}">
+            <span class="stock-toggle-knob"></span>
+          </button>
+          <span class="specialty-card-stock-label">
+            {% if item.in_stock %}In stock{% else %}Not in stock{% endif %}
+          </span>
+          <div class="specialty-card-actions">
+            <button class="btn-icon" onclick="openEditModal('{{ item.id }}', {{ item | tojson | e }})" title="Edit">&#9998;</button>
+            <form method="post" action="{{ url_for('pantry_specialty_delete') }}" class="inline">
+              <input type="hidden" name="id" value="{{ item.id }}">
+              <button type="submit" class="btn-icon btn-icon-danger" title="Delete"
+                      onclick="return confirm('Delete &quot;{{ item.name }}&quot;?')">&#10005;</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="specialty-empty">
+      <p>No house-made items yet. Add a syrup, tincture, or infusion you prepare at home.</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Add Specialty Modal -->
+<div class="modal-overlay" id="specialty-modal" style="display:none" onclick="closeModalIfBg(event, 'specialty-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="specialty-modal-title">New Specialty Item</h2>
+      <button class="modal-close" onclick="closeModal('specialty-modal')">&#10005;</button>
+    </div>
+    <form method="post" id="specialty-form" action="{{ url_for('pantry_specialty_add') }}" class="modal-form">
+      <input type="hidden" name="id" id="specialty-id">
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label">Name *</label>
+        <input type="text" name="name" id="specialty-name" class="form-input" required
+               placeholder="e.g. Honey-Ginger Syrup">
+      </div>
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label">Description <span class="form-hint">(optional)</span></label>
+        <input type="text" name="description" id="specialty-description" class="form-input"
+               placeholder="e.g. 2:1 honey syrup with fresh ginger">
+      </div>
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label">Recipe <span class="form-hint">(optional — how to make it)</span></label>
+        <textarea name="recipe" id="specialty-recipe" class="form-input form-textarea" rows="4"
+                  placeholder="e.g. Combine 2 parts honey and 1 part water in a saucepan. Add sliced ginger. Heat gently until honey dissolves. Cool and strain. Keeps 2 weeks refrigerated."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('specialty-modal')">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="specialty-submit">Add to Pantry</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function toggleAddStandard() {
+  const form = document.getElementById('add-standard-form');
+  const visible = form.style.display !== 'none';
+  form.style.display = visible ? 'none' : 'block';
+  if (!visible) document.getElementById('standard-name-input').focus();
+}
+
+function openSpecialtyModal() {
+  document.getElementById('specialty-modal-title').textContent = 'New Specialty Item';
+  document.getElementById('specialty-form').action = '{{ url_for("pantry_specialty_add") }}';
+  document.getElementById('specialty-id').value = '';
+  document.getElementById('specialty-name').value = '';
+  document.getElementById('specialty-description').value = '';
+  document.getElementById('specialty-recipe').value = '';
+  document.getElementById('specialty-submit').textContent = 'Add to Pantry';
+  document.getElementById('specialty-modal').style.display = 'flex';
+}
+
+function openEditModal(id, item) {
+  document.getElementById('specialty-modal-title').textContent = 'Edit ' + item.name;
+  document.getElementById('specialty-form').action = '{{ url_for("pantry_specialty_update") }}';
+  document.getElementById('specialty-id').value = id;
+  document.getElementById('specialty-name').value = item.name || '';
+  document.getElementById('specialty-description').value = item.description || '';
+  document.getElementById('specialty-recipe').value = item.recipe || '';
+  document.getElementById('specialty-submit').textContent = 'Save Changes';
+  document.getElementById('specialty-modal').style.display = 'flex';
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+function closeModalIfBg(e, id) {
+  if (e.target === e.currentTarget) closeModal(id);
+}
+
+async function toggleStock(id, btn) {
+  try {
+    const res = await fetch('{{ url_for("pantry_specialty_toggle") }}', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'id=' + encodeURIComponent(id),
+    });
+    const data = await res.json();
+    if (data.success) {
+      const card = document.getElementById('card-' + id);
+      const label = card.querySelector('.specialty-card-stock-label');
+      const badge = card.querySelector('.badge');
+      if (data.in_stock) {
+        btn.classList.add('stock-toggle-on');
+        card.classList.add('specialty-card-active');
+        label.textContent = 'In stock';
+        badge.className = 'badge badge-green';
+        badge.textContent = 'In stock';
+      } else {
+        btn.classList.remove('stock-toggle-on');
+        card.classList.remove('specialty-card-active');
+        label.textContent = 'Not in stock';
+        badge.className = 'badge badge-dim';
+        badge.textContent = 'Not in stock';
+      }
+    }
+  } catch (e) {
+    console.error('Toggle failed', e);
+  }
+}
+</script>
+{% endblock %}

@@ -19,17 +19,17 @@
            class="nav-link {% if request.endpoint == 'inventory' %}active{% endif %}">
           Inventory
         </a>
+        <a href="{{ url_for('pantry') }}"
+           class="nav-link {% if request.endpoint in ['pantry'] %}active{% endif %}">
+          Pantry
+        </a>
         <a href="{{ url_for('cocktails') }}"
            class="nav-link {% if request.endpoint in ['cocktails', 'cocktail_detail', 'cocktail_new', 'cocktail_edit'] %}active{% endif %}">
           Cocktails
         </a>
-        <a href="{{ url_for('finder') }}"
-           class="nav-link nav-ai {% if request.endpoint == 'finder' %}active{% endif %}">
-          Finder <span class="ai-tag">AI</span>
-        </a>
-        <a href="{{ url_for('designer') }}"
-           class="nav-link nav-ai {% if request.endpoint == 'designer' %}active{% endif %}">
-          Designer <span class="ai-tag">AI</span>
+        <a href="{{ url_for('ask') }}"
+           class="nav-link nav-ai {% if request.endpoint in ['ask', 'ask_stream', 'ask_save'] %}active{% endif %}">
+          Ask Lloid <span class="ai-tag">AI</span>
         </a>
       </div>
     </div>

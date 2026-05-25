@@ -63,12 +63,15 @@
             <span class="display-val">
               {% if bottle.Use == 'Neat Only' %}
                 <span class="badge badge-dim">Neat Only</span>
+              {% elif bottle.Use == 'Premium Cocktail' %}
+                <span class="badge badge-premium">Premium</span>
               {% else %}
                 <span class="badge badge-green">Cocktail</span>
               {% endif %}
             </span>
             <select class="edit-input" name="Use">
               <option {% if bottle.Use == 'Cocktail' %}selected{% endif %}>Cocktail</option>
+              <option {% if bottle.Use == 'Premium Cocktail' %}selected{% endif %}>Premium Cocktail</option>
               <option {% if bottle.Use == 'Neat Only' %}selected{% endif %}>Neat Only</option>
             </select>
           </td>
@@ -137,6 +140,7 @@
           <label class="form-label">Use</label>
           <select name="Use" class="form-input">
             <option>Cocktail</option>
+            <option>Premium Cocktail</option>
             <option>Neat Only</option>
           </select>
         </div>

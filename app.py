@@ -19,27 +19,29 @@ BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / 'Data'
 INVENTORY_FILE = DATA_DIR / 'bar_inventory.csv'
 COCKTAILS_FILE = DATA_DIR / 'cocktails.json'
+PANTRY_FILE    = DATA_DIR / 'pantry.json'
 
 INVENTORY_FIELDS = ['Name', 'Category', 'Style', 'Origin', 'Age', 'ABV', 'Producer', 'Use']
 
-PANTRY_ITEMS = {
-    'angostura bitters', 'bitters', "peychaud's bitters", 'aromatic bitters',
-    'orange bitters', 'mole bitters', 'chocolate bitters', 'cardamom bitters',
-    'fees bitters', 'black walnut bitters', 'barrel-aged bitters',
-    'lemon juice', 'fresh lemon juice', 'lime juice', 'fresh lime juice',
-    'orange juice', 'grapefruit juice', 'pineapple juice',
-    'simple syrup', 'rich simple syrup', 'rich demerara syrup', 'demerara syrup',
-    'honey syrup', 'honey-ginger syrup', 'agave syrup', 'agave nectar',
-    'cane syrup', 'grenadine', 'raspberry syrup',
-    'sugar', 'sugar cube', 'demerara sugar',
-    'salt', 'saline solution', 'saline',
-    'egg white', 'egg', 'cream', 'heavy cream',
-    'soda water', 'club soda', 'sparkling water', 'tonic water',
-    'ginger beer', 'ginger ale', 'cola', 'water', 'ice',
-    'mint', 'rosemary', 'thyme', 'basil', 'cucumber', 'jalapeño',
-    'coconut cream', 'orgeat',
-    'absinthe rinse', 'absinthe', 'pastis',
-}
+# Default pantry used only to bootstrap pantry.json if it doesn't exist
+DEFAULT_PANTRY_STANDARD = [
+    'absinthe', 'absinthe rinse', 'agave nectar', 'agave syrup',
+    'angostura bitters', 'aromatic bitters', 'barrel-aged bitters',
+    'basil', 'bitters', 'black walnut bitters', 'buttermilk',
+    'cane syrup', 'cardamom bitters', 'chocolate bitters',
+    'club soda', 'coconut cream', 'cola', 'cream', 'cucumber',
+    'demerara sugar', 'demerara syrup', 'egg', 'egg white', 'falernum',
+    'fees bitters', 'fresh lemon juice', 'fresh lime juice',
+    'ginger ale', 'ginger beer', 'grapefruit juice', 'grenadine',
+    'heavy cream', 'honey syrup', 'honey-ginger syrup', 'ice', 'jalapeño',
+    'lemon juice', 'lime juice', 'mint', 'mole bitters',
+    'orange bitters', 'orange juice', 'orgeat', 'pastis',
+    "peychaud's bitters", 'pineapple juice', 'raspberry syrup',
+    'rich demerara syrup', 'rich simple syrup', 'rosemary',
+    'saline', 'saline solution', 'salt', 'simple syrup',
+    'soda water', 'sparkling water', 'sugar', 'sugar cube',
+    'thyme', 'tonic water', 'water',
+]
 
 CATEGORY_MAP = {
     'rum': ['rum', 'rhum', 'cachaça', 'clairin', 'batavia arrack'],
@@ -155,6 +157,21 @@ def save_cocktails(cocktails):
         json.dump({'cocktails': cocktails}, f, indent=2, ensure_ascii=False)
 
 
+def load_pantry():
+    if PANTRY_FILE.exists():
+        with open(PANTRY_FILE, encoding='utf-8') as f:
+            return json.load(f)
+    # Bootstrap defaults
+    pantry = {'standard': sorted(DEFAULT_PANTRY_STANDARD), 'specialty': []}
+    save_pantry(pantry)
+    return pantry
+
+
+def save_pantry(pantry):
+    with open(PANTRY_FILE, 'w', encoding='utf-8') as f:
+        json.dump(pantry, f, indent=2, ensure_ascii=False)
+
+
 def slugify(name):
     s = name.lower()
     s = re.sub(r"[^\w\s-]", '', s)
@@ -174,21 +191,42 @@ def unique_id(name, existing_ids):
 
 # ── Ingredient matching ───────────────────────────────────────────────────────
 
-def check_ingredient_available(ing_name, inventory):
-    """Return (available: bool, source: str|None)."""
+def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=False):
+    """Return (available: bool, source: str|None).
+
+    is_premium: if True, bottles marked 'Premium Cocktail' are counted.
+                if False (default), they are skipped.
+    """
     ing = normalize(ing_name)
     if not ing:
         return True, 'pantry'
 
-    # Pantry check
-    for p in PANTRY_ITEMS:
+    # Standard pantry check
+    pantry_std = pantry.get('standard', []) if pantry else DEFAULT_PANTRY_STANDARD
+    for p in pantry_std:
+        p = normalize(p)
         if p == ing or p in ing or ing in p:
             return True, 'pantry'
+
+    # Specialty pantry check (only in-stock items count)
+    if pantry:
+        for item in pantry.get('specialty', []):
+            if item.get('in_stock'):
+                p = normalize(item.get('name', ''))
+                if p and (p == ing or p in ing or ing in p):
+                    return True, item['name']
 
     stop = {'the', 'a', 'an', 'of', 'de', 'du', '&', 'and', 'no', 'st', 'n', 'le'}
 
     for bottle in inventory:
-        if normalize(bottle.get('Use', '')) == 'neat only':
+        use = normalize(bottle.get('Use', ''))
+
+        # Neat-only bottles never count for mixing
+        if use == 'neat only':
+            continue
+
+        # Premium bottles only count for premium cocktails
+        if use == 'premium cocktail' and not is_premium:
             continue
 
         bname = normalize(bottle.get('Name', ''))
@@ -225,10 +263,11 @@ def check_ingredient_available(ing_name, inventory):
     return False, None
 
 
-def get_makeable_status(cocktail, inventory):
+def get_makeable_status(cocktail, inventory, pantry=None):
+    is_premium = cocktail.get('premium', False)
     missing = []
     for ing in cocktail.get('ingredients', []):
-        ok, _ = check_ingredient_available(ing['name'], inventory)
+        ok, _ = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
         if not ok:
             missing.append(ing['name'])
     return len(missing) == 0, missing
@@ -236,14 +275,29 @@ def get_makeable_status(cocktail, inventory):
 
 def inventory_summary_text(inventory):
     by_cat = {}
+    premium = []
     for b in inventory:
-        if normalize(b.get('Use', '')) == 'neat only':
+        use = normalize(b.get('Use', ''))
+        if use == 'neat only':
             continue
         cat = b.get('Category', 'Other')
-        by_cat.setdefault(cat, []).append(b.get('Name', ''))
+        if use == 'premium cocktail':
+            premium.append(b.get('Name', ''))
+        else:
+            by_cat.setdefault(cat, []).append(b.get('Name', ''))
     lines = []
     for cat in sorted(by_cat):
         lines.append(f"{cat}: {', '.join(by_cat[cat])}")
+    if premium:
+        lines.append(f"Premium/reserve (use for premium cocktails only): {', '.join(premium)}")
+    return '\n'.join(lines)
+
+
+def pantry_summary_text(pantry):
+    lines = ['PANTRY STAPLES (always available): ' + ', '.join(pantry.get('standard', []))]
+    in_stock = [s['name'] for s in pantry.get('specialty', []) if s.get('in_stock')]
+    if in_stock:
+        lines.append('HOUSE-MADE IN STOCK: ' + ', '.join(in_stock))
     return '\n'.join(lines)
 
 
@@ -276,6 +330,7 @@ def cocktail_from_form():
         'source': request.form.get('source', '').strip(),
         'notes': request.form.get('notes', '').strip(),
         'tags': tags,
+        'premium': request.form.get('premium') == 'on',
     }
 
 
@@ -284,15 +339,16 @@ def cocktail_from_form():
 @app.route('/')
 def index():
     inventory = load_inventory()
+    pantry = load_pantry()
     cocktails = load_cocktails()
-    makeable = sum(1 for c in cocktails if get_makeable_status(c, inventory)[0])
+    makeable = sum(1 for c in cocktails if get_makeable_status(c, inventory, pantry)[0])
     by_cat = {}
     for b in inventory:
         cat = b.get('Category', 'Other')
         by_cat[cat] = by_cat.get(cat, 0) + 1
     recent = sorted(cocktails, key=lambda c: c.get('created_at', ''), reverse=True)[:6]
     for c in recent:
-        c['can_make'] = get_makeable_status(c, inventory)[0]
+        c['can_make'] = get_makeable_status(c, inventory, pantry)[0]
     return render_template('index.html',
                            bottle_count=len(inventory),
                            cocktail_count=len(cocktails),
@@ -344,14 +400,111 @@ def inventory_delete():
     return redirect(url_for('inventory'))
 
 
+# ── Routes: pantry ────────────────────────────────────────────────────────────
+
+@app.route('/pantry')
+def pantry():
+    p = load_pantry()
+    return render_template('pantry.html', pantry=p)
+
+
+@app.route('/pantry/standard/add', methods=['POST'])
+def pantry_standard_add():
+    name = request.form.get('name', '').strip()
+    if name:
+        p = load_pantry()
+        existing = [normalize(x) for x in p['standard']]
+        if normalize(name) not in existing:
+            p['standard'].append(name.lower())
+            p['standard'].sort()
+            save_pantry(p)
+            flash(f'"{name}" added to pantry staples.', 'success')
+        else:
+            flash(f'"{name}" is already in the pantry.', 'error')
+    return redirect(url_for('pantry'))
+
+
+@app.route('/pantry/standard/delete', methods=['POST'])
+def pantry_standard_delete():
+    name = request.form.get('name', '').strip()
+    if name:
+        p = load_pantry()
+        p['standard'] = [x for x in p['standard'] if normalize(x) != normalize(name)]
+        save_pantry(p)
+    return redirect(url_for('pantry'))
+
+
+@app.route('/pantry/specialty/add', methods=['POST'])
+def pantry_specialty_add():
+    name = request.form.get('name', '').strip()
+    if name:
+        p = load_pantry()
+        existing_ids = {s['id'] for s in p['specialty']}
+        new_item = {
+            'id': unique_id(name, existing_ids),
+            'name': name,
+            'description': request.form.get('description', '').strip(),
+            'recipe': request.form.get('recipe', '').strip(),
+            'in_stock': False,
+            'created_at': datetime.now().strftime('%Y-%m-%d'),
+        }
+        p['specialty'].append(new_item)
+        save_pantry(p)
+        flash(f'"{name}" added to specialty pantry.', 'success')
+    return redirect(url_for('pantry'))
+
+
+@app.route('/pantry/specialty/update', methods=['POST'])
+def pantry_specialty_update():
+    item_id = request.form.get('id', '')
+    p = load_pantry()
+    for item in p['specialty']:
+        if item['id'] == item_id:
+            item['name'] = request.form.get('name', '').strip() or item['name']
+            item['description'] = request.form.get('description', '').strip()
+            item['recipe'] = request.form.get('recipe', '').strip()
+            break
+    save_pantry(p)
+    flash('Updated.', 'success')
+    return redirect(url_for('pantry'))
+
+
+@app.route('/pantry/specialty/toggle', methods=['POST'])
+def pantry_specialty_toggle():
+    item_id = request.form.get('id', '')
+    p = load_pantry()
+    new_state = False
+    for item in p['specialty']:
+        if item['id'] == item_id:
+            item['in_stock'] = not item.get('in_stock', False)
+            new_state = item['in_stock']
+            break
+    save_pantry(p)
+    return jsonify({'success': True, 'in_stock': new_state})
+
+
+@app.route('/pantry/specialty/delete', methods=['POST'])
+def pantry_specialty_delete():
+    item_id = request.form.get('id', '')
+    p = load_pantry()
+    item = next((s for s in p['specialty'] if s['id'] == item_id), None)
+    name = item['name'] if item else ''
+    p['specialty'] = [s for s in p['specialty'] if s['id'] != item_id]
+    save_pantry(p)
+    if name:
+        flash(f'"{name}" removed from specialty pantry.', 'success')
+    return redirect(url_for('pantry'))
+
+
 # ── Routes: cocktails ─────────────────────────────────────────────────────────
 
 @app.route('/cocktails')
 def cocktails():
     inventory = load_inventory()
+    pantry = load_pantry()
     all_cocktails = load_cocktails()
     for c in all_cocktails:
-        c['can_make'], c['missing'] = get_makeable_status(c, inventory)
+        c['can_make'], c['missing'] = get_makeable_status(c, inventory, pantry)
     cats = sorted(set(c.get('category', '') for c in all_cocktails if c.get('category')))
     return render_template('cocktails.html', cocktails=all_cocktails, categories=cats)
 
@@ -380,14 +533,16 @@ def cocktail_new():
 @app.route('/cocktails/<cocktail_id>')
 def cocktail_detail(cocktail_id):
     inventory = load_inventory()
+    pantry = load_pantry()
     cocktails = load_cocktails()
     cocktail = next((c for c in cocktails if c['id'] == cocktail_id), None)
     if not cocktail:
         flash('Cocktail not found.', 'error')
         return redirect(url_for('cocktails'))
-    can_make, missing = get_makeable_status(cocktail, inventory)
+    is_premium = cocktail.get('premium', False)
+    can_make, missing = get_makeable_status(cocktail, inventory, pantry)
     for ing in cocktail.get('ingredients', []):
-        ok, source = check_ingredient_available(ing['name'], inventory)
+        ok, source = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
         ing['available'] = ok
         ing['source'] = source
     return render_template('cocktail_detail.html',
@@ -454,85 +609,25 @@ def stream_claude(system, messages, max_tokens=2048):
     )
 
 
-# ── Routes: finder ────────────────────────────────────────────────────────────
+# ── Routes: Ask Lloid ─────────────────────────────────────────────────────────
 
-@app.route('/finder')
-def finder():
-    return render_template('finder.html')
+@app.route('/ask')
+def ask():
+    return render_template('ask.html')
 
 
-@app.route('/finder/stream', methods=['POST'])
-def finder_stream():
+@app.route('/ask/stream', methods=['POST'])
+def ask_stream():
     data = request.get_json()
     messages = data.get('messages', [])
+    mode = data.get('mode', 'find')  # 'find' | 'riff' | 'create'
+
     inventory = load_inventory()
-    cocktails = load_cocktails()
-
+    pantry = load_pantry()
     inv_text = inventory_summary_text(inventory)
-    cocktail_lines = []
-    for c in cocktails:
-        can_make, missing = get_makeable_status(c, inventory)
-        status = 'CAN MAKE' if can_make else f"missing: {', '.join(missing[:3])}"
-        ings = ', '.join(i['name'] for i in c.get('ingredients', []))
-        cocktail_lines.append(
-            f"- {c['name']} [{c.get('category', '')}] [{status}] — {ings}"
-        )
+    pantry_text = pantry_summary_text(pantry)
 
-    system = f"""You are Lloid, the knowledgeable bartender for this home bar. Help guests find the perfect cocktail from the bar's database.
-
-CURRENT INVENTORY:
-{inv_text}
-
-COCKTAIL DATABASE:
-{chr(10).join(cocktail_lines)}
-
-Guidelines:
-- Ask about mood, flavor preferences, spirit preference, or occasion if needed
-- Recommend 2–3 cocktails that best match, prioritizing those marked "CAN MAKE"
-- Briefly explain why each fits the request
-- Provide the full recipe if asked
-- Be warm and conversational — knowledgeable but not pretentious
-- Keep responses focused and not overly long"""
-
-    return stream_claude(system, messages, max_tokens=1024)
-
-
-# ── Routes: designer ─────────────────────────────────────────────────────────
-
-@app.route('/designer')
-def designer():
-    return render_template('designer.html')
-
-
-@app.route('/designer/stream', methods=['POST'])
-def designer_stream():
-    data = request.get_json()
-    messages = data.get('messages', [])
-    inventory = load_inventory()
-    inv_text = inventory_summary_text(inventory)
-
-    system = f"""You are Lloid, a creative cocktail designer. Help create original cocktail recipes using this home bar's inventory.
-
-CURRENT INVENTORY:
-{inv_text}
-
-PANTRY BASICS ALWAYS AVAILABLE: fresh lemon juice, fresh lime juice, simple syrup, rich demerara syrup, honey syrup, agave syrup, Angostura bitters, orange bitters, egg white, salt, soda water, tonic water, ginger beer, mint, cucumber, and standard fresh garnishes.
-
-When designing a cocktail:
-1. Engage with the user's concept, flavor profile, or inspiration
-2. Design an original recipe using primarily available inventory
-3. Present a complete recipe with:
-   - A fitting name
-   - Precise measurements in oz
-   - Method (shaken / stirred / built)
-   - Glass and garnish
-   - Flavor profile and design rationale
-4. Apply proper cocktail balance (spirit 1.5–2 oz, modifier, ~0.75 oz sour, ~0.5–0.75 oz sweet)
-5. Suggest a variation or adjustment
-
-After presenting a complete recipe, ask if they'd like to save it to the bar's database.
-
-When they confirm saving, output a JSON block in EXACTLY this format (it will be parsed by the app):
+    SAVE_JSON_FORMAT = """When they confirm saving, output a JSON block in EXACTLY this format (it will be parsed by the app):
 ```json
 {{
   "save_cocktail": true,
@@ -551,11 +646,95 @@ When they confirm saving, output a JSON block in EXACTLY this format (it will be
 }}
 ```"""
 
-    return stream_claude(system, messages, max_tokens=2048)
+    if mode == 'find':
+        cocktails = load_cocktails()
+        cocktail_lines = []
+        for c in cocktails:
+            can_make, missing = get_makeable_status(c, inventory, pantry)
+            status = 'CAN MAKE' if can_make else f"missing: {', '.join(missing[:3])}"
+            ings = ', '.join(i['name'] for i in c.get('ingredients', []))
+            cocktail_lines.append(
+                f"- {c['name']} [{c.get('category', '')}] [{status}] — {ings}"
+            )
+        system = f"""You are Lloid, the knowledgeable bartender for this home bar. \
+Help guests find the perfect cocktail from the bar's database.
+
+CURRENT INVENTORY:
+{inv_text}
+
+{pantry_text}
+
+COCKTAIL DATABASE:
+{chr(10).join(cocktail_lines)}
+
+Guidelines:
+- Ask about mood, flavor preferences, spirit preference, or occasion if needed
+- Recommend 2–3 cocktails that best match, prioritizing those marked "CAN MAKE"
+- Briefly explain why each fits the request
+- Provide the full recipe if asked
+- Be warm and conversational — knowledgeable but not pretentious
+- Keep responses focused and not overly long"""
+        return stream_claude(system, messages, max_tokens=1024)
+
+    elif mode == 'riff':
+        cocktails = load_cocktails()
+        db_lines = [f"- {c['name']}: {', '.join(i['name'] for i in c.get('ingredients', []))}"
+                    for c in cocktails]
+        system = f"""You are Lloid, a creative bartender. Your task: take an existing cocktail \
+from the bar's database and create a compelling variation — a different base spirit, \
+a seasonal twist, a flavor direction, a different format.
+
+CURRENT INVENTORY:
+{inv_text}
+
+{pantry_text}
+
+COCKTAIL DATABASE:
+{chr(10).join(db_lines)}
+
+Guidelines:
+1. Ask which cocktail they'd like to riff on if not stated, or confirm your understanding
+2. Ask how they'd like to take it (different spirit, seasonal, flavor direction, etc.)
+3. Design the variation — keep what makes the original great, change what they asked for
+4. Present the variation with:
+   - A fitting name (acknowledge its lineage)
+   - Precise measurements in oz
+   - Method, glass, garnish
+   - Brief rationale: what changed and why it works
+5. Suggest a further tweak if relevant
+6. Ask if they'd like to save it to the bar's database
+
+{SAVE_JSON_FORMAT}"""
+        return stream_claude(system, messages, max_tokens=2048)
+
+    else:  # create
+        system = f"""You are Lloid, a creative cocktail designer. Your task: design entirely \
+original cocktail recipes using this home bar's inventory.
+
+CURRENT INVENTORY:
+{inv_text}
+
+{pantry_text}
+
+When designing a cocktail:
+1. Engage with the user's concept, flavor profile, or inspiration
+2. Design an original recipe using primarily available inventory
+3. Present a complete recipe with:
+   - A fitting name
+   - Precise measurements in oz
+   - Method (shaken / stirred / built)
+   - Glass and garnish
+   - Flavor profile and design rationale
+4. Apply proper cocktail balance (spirit 1.5–2 oz, modifier, ~0.75 oz sour, ~0.5–0.75 oz sweet)
+5. Suggest a variation or adjustment
+6. Ask if they'd like to save it to the bar's database
+
+{SAVE_JSON_FORMAT}"""
+        return stream_claude(system, messages, max_tokens=2048)
 
 
-@app.route('/designer/save', methods=['POST'])
-def designer_save():
+@app.route('/ask/save', methods=['POST'])
+def ask_save():
     cocktail_data = request.get_json()
     if not cocktail_data or not cocktail_data.get('name'):
         return jsonify({'success': False, 'error': 'Invalid cocktail data'}), 400
