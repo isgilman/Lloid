@@ -88,7 +88,7 @@
             {% if item.in_stock %}In stock{% else %}Not in stock{% endif %}
           </span>
           <div class="specialty-card-actions">
-            <button class="btn-icon" onclick="openEditModal('{{ item.id }}', {{ item | tojson | e }})" title="Edit">&#9998;</button>
+            <button class="btn-icon" onclick="openEditModal('{{ item.id }}')" title="Edit">&#9998;</button>
             <form method="post" action="{{ url_for('pantry_specialty_delete') }}" class="inline">
               <input type="hidden" name="id" value="{{ item.id }}">
               <button type="submit" class="btn-icon btn-icon-danger" title="Delete"
@@ -142,6 +142,8 @@
 
 {% block scripts %}
 <script>
+var SPECIALTY_ITEMS = {{ pantry.specialty | tojson }};
+
 function toggleAddStandard() {
   const form = document.getElementById('add-standard-form');
   const visible = form.style.display !== 'none';
@@ -160,7 +162,9 @@ function openSpecialtyModal() {
   document.getElementById('specialty-modal').style.display = 'flex';
 }
 
-function openEditModal(id, item) {
+function openEditModal(id) {
+  const item = SPECIALTY_ITEMS.find(x => x.id === id);
+  if (!item) return;
   document.getElementById('specialty-modal-title').textContent = 'Edit ' + item.name;
   document.getElementById('specialty-form').action = '{{ url_for("pantry_specialty_update") }}';
   document.getElementById('specialty-id').value = id;
