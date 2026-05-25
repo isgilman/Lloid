@@ -173,11 +173,27 @@ function toggleSort() {
 /* ── Cocktails: filter & search ──────────────────────────────────────────── */
 
 let makeableOnly = false;
+let triedOnly = false;
+let favoritedOnly = false;
 
 function toggleMakeable() {
   makeableOnly = !makeableOnly;
   const btn = document.getElementById('cq-makeable-btn');
   if (btn) btn.classList.toggle('active', makeableOnly);
+  filterCocktails();
+}
+
+function toggleTriedFilter() {
+  triedOnly = !triedOnly;
+  const btn = document.getElementById('cq-tried-btn');
+  if (btn) btn.classList.toggle('active', triedOnly);
+  filterCocktails();
+}
+
+function toggleFavoritedFilter() {
+  favoritedOnly = !favoritedOnly;
+  const btn = document.getElementById('cq-fav-btn');
+  if (btn) btn.classList.toggle('active', favoritedOnly);
   filterCocktails();
 }
 
@@ -218,6 +234,8 @@ function filterCocktails() {
     const cardSource  = card.dataset.source || '';
     const cardCreator = (card.dataset.creator || '').toLowerCase();
     const makeable    = card.dataset.makeable === 'true';
+    const tried      = card.dataset.tried === 'true';
+    const favorited  = card.dataset.favorited === 'true';
     const ings        = card.dataset.ingredients || '';
 
     // Text search (name + tags + ingredients + creator)
@@ -245,8 +263,10 @@ function filterCocktails() {
 
     // Can Make toggle
     const matchMake = !makeableOnly || makeable;
+    const matchTried     = !triedOnly     || tried;
+    const matchFavorited = !favoritedOnly || favorited;
 
-    const show = matchQuery && matchTags && matchSource && matchCreator && matchMake;
+    const show = matchQuery && matchTags && matchSource && matchCreator && matchMake && matchTried && matchFavorited;
     card.style.display = show ? '' : 'none';
     if (show) visible++;
   });
@@ -301,6 +321,89 @@ function _renderActiveFilterChips(tags, sources, creators) {
     chip.innerHTML = `${label} <button aria-label="Remove filter" onclick="_removeFilter('${type}','${safe}')">&#215;</button>`;
     container.appendChild(chip);
   });
+}
+
+
+/* ── Cocktail feedback bar ───────────────────────────────────────────────── */
+
+async function _postFeedback(payload) {
+  const bar = document.getElementById('feedback-bar');
+  if (!bar) return null;
+  const id = bar.dataset.cocktailId;
+  try {
+    const res = await fetch('/cocktails/' + id + '/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return await res.json();
+  } catch (e) {
+    showToast('Error saving feedback', 'error');
+    return null;
+  }
+}
+
+function _applyFeedbackState(fb) {
+  if (!fb) return;
+  const bar = document.getElementById('feedback-bar');
+  if (!bar) return;
+
+  bar.dataset.tried     = fb.tried;
+  bar.dataset.rating    = fb.rating || '';
+  bar.dataset.favorited = fb.favorited;
+
+  const triedBtn = document.getElementById('fb-tried-btn');
+  if (triedBtn) {
+    triedBtn.classList.toggle('active', fb.tried);
+    triedBtn.textContent = fb.tried ? '✓ Tried' : 'Tried it?';
+  }
+
+  const ratingGroup = document.getElementById('fb-rating-group');
+  if (ratingGroup) ratingGroup.classList.toggle('visible', fb.tried);
+
+  const likeBtn    = document.getElementById('fb-like-btn');
+  const dislikeBtn = document.getElementById('fb-dislike-btn');
+  const needsBtn   = document.getElementById('fb-needs-btn');
+  if (likeBtn)    likeBtn.classList.toggle('active-like',    fb.rating === 'like');
+  if (dislikeBtn) dislikeBtn.classList.toggle('active-dislike', fb.rating === 'dislike');
+  if (needsBtn)   needsBtn.classList.toggle('active-needs',  fb.rating === 'needs-work');
+
+  const favBtn = document.getElementById('fb-fav-btn');
+  if (favBtn) {
+    favBtn.classList.toggle('active', fb.favorited);
+    favBtn.textContent = fb.favorited ? '♥' : '♡';
+  }
+}
+
+async function toggleTried() {
+  const bar = document.getElementById('feedback-bar');
+  if (!bar) return;
+  const current = bar.dataset.tried === 'true';
+  const fb = await _postFeedback({ tried: !current });
+  if (fb) {
+    _applyFeedbackState(fb);
+    showToast(fb.tried ? 'Marked as tried!' : 'Removed from tried', 'success');
+  }
+}
+
+async function setRating(rating) {
+  const bar = document.getElementById('feedback-bar');
+  if (!bar) return;
+  const current = bar.dataset.rating;
+  const newRating = current === rating ? '' : rating;
+  const fb = await _postFeedback({ rating: newRating });
+  if (fb) _applyFeedbackState(fb);
+}
+
+async function toggleFavorite() {
+  const bar = document.getElementById('feedback-bar');
+  if (!bar) return;
+  const current = bar.dataset.favorited === 'true';
+  const fb = await _postFeedback({ favorited: !current });
+  if (fb) {
+    _applyFeedbackState(fb);
+    showToast(fb.favorited ? 'Added to favorites!' : 'Removed from favorites', 'success');
+  }
 }
 
 /* ── Toast ────────────────────────────────────────────────────────────────── */
@@ -365,6 +468,11 @@ document.addEventListener('DOMContentLoaded', () => {
       filterCocktails();
     }
   }
+
+  // Wire up feedback rating buttons (avoids inline onclick with string args)
+  document.querySelectorAll('.feedback-rating-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { setRating(btn.dataset.rating); });
+  });
 
   // Auto-dismiss flash messages
   document.querySelectorAll('.flash').forEach(el => {

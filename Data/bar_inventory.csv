@@ -1,5 +1,5 @@
 Name,Category,Style,Origin,Age,ABV,Producer,Use
-Por Siempre Sotol,Agave Spirit,Sotol,Mexico,Unaged,40%,Por Siempre,Cocktail
+Por Siempre Sotol,Agave Spirit,Sotol,Mexico,,40%,,Cocktail
 Vago Elote Mezcal,Agave Spirit,Mezcal,Mexico,Unaged,50%,Vago,Cocktail
 Tequila Ocho Plata,Agave Spirit,Blanco tequila,Mexico,Unaged,40%,Tequila Ocho,Cocktail
 Amaro Sfumato Rabarbaro,Amaro / Aperitif,Rabarbaro Amaro,Italy,NAS,20%,Cappelletti,Cocktail
@@ -51,9 +51,9 @@ Sathenay Crème de Banane,Liqueur,Crème de Banane,France,NAS,25%,Sathenay,Cockt
 Nixta Licor de Elote,Liqueur,Corn Liqueur,Mexico,NAS,30%,Nixta,Cocktail
 Tempus Fugit Crème de Moka,Liqueur,Coffee Liqueur,Switzerland,NAS,28%,Tempus Fugit,Cocktail
 Yuzu Dry Curaçao,Liqueur,Curaçao,France,NAS,40%,Maison Ferrand,Cocktail
-Cacao Liqueur,Liqueur,Cacao Liqueur,,NAS,,,Cocktail
+Giffard Creme de Cacao,Liqueur,Cacao Liqueur,,,25,,Cocktail
 Rothman & Winter Orchard Apricot,Liqueur,Apricot Liqueur,Austria,NAS,22%,Rothman & Winter,Cocktail
-Tempus Fugit Crème de Noyaux,Liqueur,Stone Fruit Liqueur,Switzerland,NAS,30%,Tempus Fugit,Cocktail
+Tempus Fugit Crème de Noyaux,Liqueur,Crème de Noyaux,Switzerland,,30%,,Cocktail
 St. Elizabeth Allspice Dram,Liqueur,Allspice Dram,Jamaica,NAS,22.5%,St. Elizabeth,Cocktail
 Cheoum Cheoreom,Soju,Soju,South Korea,NAS,16.9%,Lotte Chilsung,Cocktail
 Reyka Vodka,Vodka,Vodka,Iceland,NAS,40%,Reyka,Cocktail
@@ -89,9 +89,10 @@ Dolin Dry,Vermouth,Dry Vermouth,France,NAS,17.5%,Dolin,Cocktail
 Dolin Blanc,Vermouth,Blanc Vermouth,France,NAS,17.5%,Dolin,Cocktail
 Stellum Rye,Whiskey,Straight Rye,USA,NAS,57%,Barrell Craft Spirits,Cocktail
 Elijah Craig Straight Rye,Whiskey,Straight Rye,USA,NAS,47%,Heaven Hill,Cocktail
-Old Forester 1,Whiskey,Straight Bourbon,USA,NAS,50%,Brown-Forman,Cocktail
+Old Forester 100,Whiskey,Straight Bourbon,USA,,50%,,Cocktail
 Suntory Toki,Whiskey,Japanese Blended,Japan,NAS,43%,Suntory,Cocktail
 Jameson,Whiskey,Irish Dlended,Ireland,NAS,40%,Irish Distillers,Cocktail
 Sesame Oil-Washed Rye,Whiskey,Fat-washed Rye,USA,NAS,,Homemade,Cocktail
 00 Cyril Zangs Cider Eau De Vie,Eau de Vie,Calvados,Normandy,,50,,Premium Cocktail
-Aficionados Grand Arôme,Rum,Grand Arôme,Martinique,Unaged,58.32,Le Galion,Cocktail
+Aficionados Grand Arôme,Rum,Grand Arôme,Martinique,,58.32,,Premium Cocktail
+Ancho Reyes Verde Chile Poblano Liqueur,Liqueur,Spiced liqueur,Mexico,,40,,Cocktail

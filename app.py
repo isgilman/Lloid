@@ -547,8 +547,11 @@ def cocktails():
     inventory = load_inventory()
     pantry = load_pantry()
     all_cocktails = _db.get_cocktails()
+    all_feedback = _db.get_all_feedback()
+    blank_fb = {'tried': False, 'rating': None, 'favorited': False}
     for c in all_cocktails:
         c['can_make'], c['missing'] = get_makeable_status(c, inventory, pantry)
+        c['feedback'] = all_feedback.get(c['id'], blank_fb)
 
     # Default display order is random; client-side sort button handles A→Z
     random.shuffle(all_cocktails)
@@ -624,9 +627,11 @@ def cocktail_detail(cocktail_id):
         ing['available'] = ok
         ing['source'] = source
     history = _db.get_history(cocktail_id, limit=10)
+    feedback = _db.get_feedback(cocktail_id)
     return render_template('cocktail_detail.html',
                            cocktail=cocktail, can_make=can_make, missing=missing,
-                           style_tag_values=STYLE_TAG_VALUES, history=history)
+                           style_tag_values=STYLE_TAG_VALUES, history=history,
+                           feedback=feedback)
 
 
 @app.route('/cocktails/<cocktail_id>/edit', methods=['GET', 'POST'])
@@ -685,6 +690,20 @@ def cocktail_restore(cocktail_id, history_id):
         return redirect(url_for('cocktail_detail', cocktail_id=cocktail_id))
     flash('Could not restore that version.', 'error')
     return redirect(url_for('cocktails'))
+
+
+
+@app.route('/cocktails/<cocktail_id>/feedback', methods=['POST'])
+def cocktail_feedback(cocktail_id):
+    data = request.get_json() or {}
+    tried     = data.get('tried')
+    rating    = data.get('rating')
+    favorited = data.get('favorited')
+    fb = _db.set_feedback(cocktail_id,
+                          tried=tried,
+                          rating=rating,
+                          favorited=favorited)
+    return jsonify(fb)
 
 
 # ── Claude helpers ────────────────────────────────────────────────────────────

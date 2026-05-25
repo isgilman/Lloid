@@ -33,6 +33,14 @@
             title="Show only cocktails you can make now">
       Can Make
     </button>
+    <button id="cq-tried-btn" class="filter-toggle" onclick="toggleTriedFilter()"
+            title="Show only cocktails you have tried">
+      Tried
+    </button>
+    <button id="cq-fav-btn" class="filter-toggle" onclick="toggleFavoritedFilter()"
+            title="Show only favorited cocktails">
+      &#9825; Favorites
+    </button>
   </div>
 
   <!-- Expandable filter panel -->
@@ -101,6 +109,8 @@
        data-name="{{ c.name | lower }}"
        data-source="{{ c.get('source', '') }}"
        data-makeable="{{ 'true' if c.can_make else 'false' }}"
+       data-tried="{{ 'true' if c.feedback.tried else 'false' }}"
+       data-favorited="{{ 'true' if c.feedback.favorited else 'false' }}"
        data-tags="{{ c.get('tags', []) | join('|') | lower }}"
        data-creator="{{ c.get('creator', '') }}"
        data-ingredients="{{ c.get('ingredients', []) | map(attribute='name') | join(' ') | lower }}">

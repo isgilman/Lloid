@@ -42,6 +42,14 @@ CREATE TABLE IF NOT EXISTS settings (
     key   TEXT PRIMARY KEY,
     value TEXT NOT NULL DEFAULT ''
 );
+
+CREATE TABLE IF NOT EXISTS feedback (
+    cocktail_id  TEXT PRIMARY KEY REFERENCES cocktails(id) ON DELETE CASCADE,
+    tried        INTEGER NOT NULL DEFAULT 0,
+    rating       TEXT,
+    favorited    INTEGER NOT NULL DEFAULT 0,
+    updated_at   TEXT NOT NULL
+);
 """
 
 
@@ -256,6 +264,77 @@ def restore_version(history_id: int):
         conn.commit()
 
     return get_cocktail(cid)
+
+
+# ── Feedback ──────────────────────────────────────────────────────────────────
+
+_BLANK_FEEDBACK = {'tried': False, 'rating': None, 'favorited': False}
+
+
+def get_feedback(cocktail_id: str) -> dict:
+    """Return feedback dict for a cocktail, or a blank default if none exists."""
+    with _connect() as conn:
+        row = conn.execute(
+            "SELECT tried, rating, favorited FROM feedback WHERE cocktail_id=?",
+            (cocktail_id,)
+        ).fetchone()
+    if row:
+        return {'tried': bool(row['tried']), 'rating': row['rating'], 'favorited': bool(row['favorited'])}
+    return dict(_BLANK_FEEDBACK)
+
+
+def set_feedback(cocktail_id: str,
+                 tried: bool = None,
+                 rating: str = None,
+                 favorited: bool = None) -> dict:
+    """Upsert feedback for a cocktail.  Only supplied (non-None) fields are changed.
+    Pass rating='' to explicitly clear the rating."""
+    now  = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    current = get_feedback(cocktail_id)
+
+    new_tried    = tried    if tried    is not None else current['tried']
+    new_favorited = favorited if favorited is not None else current['favorited']
+    # rating=None means "don't change", rating='' or rating=False means "clear it"
+    if rating is None:
+        new_rating = current['rating']
+    elif rating in ('', False):
+        new_rating = None
+    else:
+        new_rating = rating
+
+    # If untrying, also clear the rating
+    if not new_tried:
+        new_rating = None
+
+    with _connect() as conn:
+        conn.execute("""
+            INSERT INTO feedback (cocktail_id, tried, rating, favorited, updated_at)
+            VALUES (?, ?, ?, ?, ?)
+            ON CONFLICT(cocktail_id) DO UPDATE SET
+                tried=excluded.tried,
+                rating=excluded.rating,
+                favorited=excluded.favorited,
+                updated_at=excluded.updated_at
+        """, (cocktail_id, int(new_tried), new_rating, int(new_favorited), now))
+        conn.commit()
+
+    return {'tried': new_tried, 'rating': new_rating, 'favorited': new_favorited}
+
+
+def get_all_feedback() -> dict:
+    """Return {cocktail_id: feedback_dict} for every cocktail that has a row."""
+    with _connect() as conn:
+        rows = conn.execute(
+            "SELECT cocktail_id, tried, rating, favorited FROM feedback"
+        ).fetchall()
+    return {
+        r['cocktail_id']: {
+            'tried':     bool(r['tried']),
+            'rating':    r['rating'],
+            'favorited': bool(r['favorited']),
+        }
+        for r in rows
+    }
 
 
 # ── Sync ──────────────────────────────────────────────────────────────────────

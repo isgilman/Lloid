@@ -1500,6 +1500,83 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   font-size: 13px;
 }
 
+
+/* ── Feedback bar ─────────────────────────────────────────────────────────── */
+
+.feedback-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.feedback-tried-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--text-sec);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 14px;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.feedback-tried-btn:hover { border-color: var(--border-light); color: var(--text); }
+.feedback-tried-btn.active {
+  background: var(--green-bg);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.feedback-rating-group {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+.feedback-rating-group.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.feedback-rating-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-sec);
+  font-size: 13px;
+  padding: 5px 12px;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.feedback-rating-btn:hover { border-color: var(--border-light); color: var(--text); }
+.feedback-rating-btn.active-like    { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.feedback-rating-btn.active-dislike { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+.feedback-rating-btn.active-needs   { background: rgba(255,180,50,.10); border-color: rgba(255,180,50,.5); color: #ffb432; }
+
+.feedback-fav-btn {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-sec);
+  font-size: 16px;
+  line-height: 1;
+  padding: 5px 12px;
+  transition: all var(--transition);
+}
+.feedback-fav-btn:hover { border-color: var(--border-light); color: var(--text); }
+.feedback-fav-btn.active { color: #e6305a; border-color: rgba(230,48,90,.5); background: rgba(230,48,90,.08); }
+
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .nav-inner { padding: 0 20px; gap: 20px; }

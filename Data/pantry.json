@@ -17,6 +17,7 @@
     "club soda",
     "coconut cream",
     "cola",
+    "cold brew concentrate",
     "cream",
     "cucumber",
     "demerara sugar",
@@ -39,6 +40,7 @@
     "lemon juice",
     "lime juice",
     "maple shrub",
+    "matcha syrup",
     "mint",
     "mole bitters",
     "orange bitters",
@@ -66,9 +68,9 @@
   "specialty": [
     {
       "id": "donns-remix",
-      "name": "Donn's Remix",
+      "name": "Don's Remix",
       "description": "cinnamon grapefruit syrup",
-      "recipe": "",
+      "recipe": "- 125 g clarified grapefruit juice\r\n- 125 g cane sugar\r\n- 15 g grapefruit peel\r\n- 7.5 g cinnamon bark, broken into pieces\r\n- 2.625 g citric acid\r\n\r\nToast cinnamon bark in a small saucepan until just aromatic. Add the juice, peels, and sugar. Bring to a gentle simmer and cover for 15 minutes, stirring occassionaly and monitoring heat to avoid scorching. Let cool and string through a nut milk bag and then coffee filter. Stir in citric acid until dissolved. Makes 8 ounces.\r\n\r\nSee Tropical Standard p 150 for Don's Remix recipe.",
       "in_stock": true,
       "created_at": "2026-05-24"
     },
@@ -102,14 +104,6 @@
       "description": "house-made syrup",
       "recipe": "1:1 passionfruit purée to 2:1 simple syrup by volume; strain through coffee filter to clarify",
       "in_stock": true,
-      "created_at": "2026-05-25"
-    },
-    {
-      "id": "cold-brew-coffee-concentrate",
-      "name": "Cold Brew Coffee Concentrate",
-      "description": "house-made concentrate",
-      "recipe": "Coarsely ground coffee steeped in cold water 1:4 (coffee:water) for 18–24 hours; strain through cheesecloth",
-      "in_stock": false,
       "created_at": "2026-05-25"
     },
     {
@@ -170,9 +164,9 @@
     },
     {
       "id": "pineapple-gomme",
-      "name": "Pineapple Gomme",
+      "name": "Pineapple Gum (Gomme) Syrup",
       "description": "house-made syrup",
-      "recipe": "2:1 simple syrup with gum arabic (2 tbsp per cup); blend with fresh pineapple juice 1:1",
+      "recipe": "- 125 g finely strained or clarified pineapple juice\r\n- 12.5 g acacia gum (gum arabic)\r\n- 87.5 g sugar of choice\r\n- 0.5 g citric acid\r\n\r\nBlend pineapple juice on low and slowly incorporate acacia gum; speed can be increased but try to limit foam production. Return to low speed and incorporate sugar and acid. Makes 6 oz.\r\n\r\nSee Tropical Standard p 197 for Gum Syrups.",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -196,7 +190,7 @@
       "id": "cranberry-syrup",
       "name": "Cranberry Syrup",
       "description": "house-made syrup",
-      "recipe": "2:1 simple syrup simmered with fresh cranberries until jammy; strain",
+      "recipe": "1:1 simple syrup simmered with fresh cranberries until jammy. Strain and brix adjust if desired.",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -282,9 +276,9 @@
     },
     {
       "id": "sarsaparilla-tincture",
-      "name": "Sarsaparilla Tincture",
-      "description": "house-made tincture",
-      "recipe": "Dried sarsaparilla root steeped in high-proof neutral spirit for 2 weeks; strain and dilute to taste",
+      "name": "Sarsaparilla Tincture/Bitters",
+      "description": "",
+      "recipe": "Dried sarsaparilla root steeped in high-proof neutral spirit for 2 weeks; strain and dilute to taste.\r\n\r\nBittercube Sarsaparilla bitters are an easier options.",
       "in_stock": true,
       "created_at": "2026-05-25"
     },
@@ -334,6 +328,22 @@
       "description": "a rich lime syrup",
       "recipe": "Macerate equal mass lime peels and cane sugar; let sit at room temperature, shaking occasionally, until sugar is completely dissolved' strain through nut milk bag or coffee filter to clarify",
       "in_stock": true,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "lemon-verbenainfused-buttermilk",
+      "name": "Lemon Verbena–Infused Buttermilk",
+      "description": "",
+      "recipe": "",
+      "in_stock": false,
+      "created_at": "2026-05-25"
+    },
+    {
+      "id": "grapefruit-punch-syrup",
+      "name": "Grapefruit Punch Syrup",
+      "description": "an intense grapefruit syrup",
+      "recipe": "- 125 g clarified grapefruit juice\r\n- 31.5 g grapefruit oleo saccharum\r\n- 86.5 g cane sugar\r\n- 1.5 g citric acid\r\n\r\nCombine juice and oleo in blend on low, then slowly incorporate the sugar and acid. Makes 6 ounces.\r\n\r\nSee Tropical Standard p 216 for Grapefruit Punch Syrup Recipe.",
+      "in_stock": false,
       "created_at": "2026-05-25"
     }
   ]

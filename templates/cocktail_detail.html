@@ -63,6 +63,30 @@
     </div>
   </div>
 
+  <!-- Feedback bar: tried / rating / favorite -->
+  <div class="feedback-bar" id="feedback-bar"
+       data-cocktail-id="{{ cocktail.id }}"
+       data-tried="{{ 'true' if feedback.tried else 'false' }}"
+       data-rating="{{ feedback.rating or '' }}"
+       data-favorited="{{ 'true' if feedback.favorited else 'false' }}">
+    <button class="feedback-tried-btn{% if feedback.tried %} active{% endif %}"
+            id="fb-tried-btn" onclick="toggleTried()">
+      {% if feedback.tried %}&#10003; Tried{% else %}Tried it?{% endif %}
+    </button>
+    <div class="feedback-rating-group{% if feedback.tried %} visible{% endif %}" id="fb-rating-group">
+      <button class="feedback-rating-btn{% if feedback.rating == 'like' %} active-like{% endif %}"
+              id="fb-like-btn" data-rating="like">Like</button>
+      <button class="feedback-rating-btn{% if feedback.rating == 'dislike' %} active-dislike{% endif %}"
+              id="fb-dislike-btn" data-rating="dislike">Dislike</button>
+      <button class="feedback-rating-btn{% if feedback.rating == 'needs-work' %} active-needs{% endif %}"
+              id="fb-needs-btn" data-rating="needs-work">Needs Work</button>
+    </div>
+    <button class="feedback-fav-btn{% if feedback.favorited %} active{% endif %}"
+            id="fb-fav-btn" onclick="toggleFavorite()" title="Favorite">
+      {% if feedback.favorited %}&#9829;{% else %}&#9825;{% endif %}
+    </button>
+  </div>
+
   <div class="detail-body">
     <div class="detail-ingredients">
       <h2 class="detail-section-title">Ingredients</h2>
