@@ -38,6 +38,7 @@
     "jalapeño",
     "lemon juice",
     "lime juice",
+    "maple shrub",
     "mint",
     "mole bitters",
     "orange bitters",
@@ -68,7 +69,15 @@
       "name": "Donn's Remix",
       "description": "cinnamon grapefruit syrup",
       "recipe": "",
-      "in_stock": false,
+      "in_stock": true,
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "maple-shrub",
+      "name": "Maple Shrub",
+      "description": "1:1 maple syrup to apple cider vinegar (v/v)",
+      "recipe": "",
+      "in_stock": true,
       "created_at": "2026-05-24"
     }
   ]

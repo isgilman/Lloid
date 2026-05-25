@@ -3758,6 +3758,2710 @@
         "new-orleans"
       ],
       "created_at": "2026-05-24"
+    },
+    {
+      "id": "alpine-odyssey",
+      "name": "Alpine Odyssey",
+      "category": "Brokedown Palace",
+      "glass": "Sling glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Cane syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Génépy",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged pot still rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Gin",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake or flash blend all ingredients over small ice. Open pour into a sling glass and top with pebble ice.",
+      "garnish": "Three pineapple fronds",
+      "source": "Port of Call, Mystic, CT",
+      "notes": "Suggested: Dakabend Oaxacan Pot Still Rum, Paranubes Oaxacan Aguardiente de Caña, Dolin Génépy le Chamois, Hendrick's Gin.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "herbal",
+        "gin",
+        "rum",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "bad-banana",
+      "name": "Bad Banana",
+      "category": "Brokedown Palace",
+      "glass": "Double Rocks",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Banana peel oleo",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Sesame orgeat",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Banana liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Rye whiskey",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged Jamaican overproof rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into an oversized double rocks or Mai Tai glass. Top with pebble ice, add banana leaf and straw, then pack with pebble ice to form a small dome. Grate nutmeg on top.",
+      "garnish": "Banana leaf, freshly grated nutmeg",
+      "source": "u/weeklytiki, Reddit",
+      "notes": "High proof, big banana. Suggested: Tempus Fugit Crème de Banane, Old Overholt BIB Rye, Worthy Park Overproof.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "banana",
+        "rum",
+        "rye",
+        "shaken",
+        "funky"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "bird-song",
+      "name": "Bird Song",
+      "category": "Brokedown Palace",
+      "glass": "Double Rocks",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Passionfruit syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Suze",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Yellow Chartreuse",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged Jamaican overproof rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a double rocks glass over a large cube. Garnish with pineapple fronds and place jalapeño slice on top of cube.",
+      "garnish": "Three pineapple fronds, jalapeño slice",
+      "source": "Brokedown Palace",
+      "notes": "A balance of bold bottles. Suggested: Hampden Rum Fire.",
+      "tags": [
+        "tropical",
+        "rum",
+        "herbal",
+        "bitter",
+        "spicy",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "box-of-rain",
+      "name": "Box of Rain",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Matcha syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Grand Arôme rum",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a chilled Nick & Nora glass. Float mint leaf on top.",
+      "garnish": "Small mint leaf",
+      "source": "Brokedown Palace",
+      "notes": "A savory, grassy daiquiri. Suggested: Le Galion Grand Arôme rum.",
+      "tags": [
+        "daiquiri",
+        "rum",
+        "grassy",
+        "savory",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "brancolada",
+      "name": "Brancolada",
+      "category": "Brokedown Palace",
+      "glass": "Collins",
+      "method": "Blended",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Coconut syrup",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "blend equal masses coconut milk and cane syrup"
+        },
+        {
+          "name": "Orange juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Fernet",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Flash blend all ingredients over small ice and open pour into a collins glass. Fill with pebble ice and garnish with mint and orange wheel.",
+      "garnish": "Mint sprig, half orange wheel",
+      "source": "Bar Bonna, Brooklyn, NYC",
+      "notes": "A Fernet-ified piña colada. Coconut syrup: blend equal masses coconut milk and cane syrup. Suggested: Fernet Branca, Smith & Cross, Hampden HLCF Classic.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "fernet",
+        "pineapple",
+        "coconut",
+        "blended"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "cane-reviver-2",
+      "name": "Cane Reviver #2",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Absinthe",
+          "amount": "1",
+          "unit": "spritz",
+          "notes": ""
+        },
+        {
+          "name": "Clarified lemon juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Créole Shrubb",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lillet Blanc",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged rhum agricole",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Spritz a chilled Nick & Nora glass with absinthe. Stir remaining ingredients over ice and strain into the glass.",
+      "garnish": "None",
+      "source": "Brokedown Palace",
+      "notes": "A tropical adaptation of a classic (Corpse Reviver #2). Suggested: Rhum Clément Créole Shrubb, Père Labat 59° Rhum Agricole.",
+      "tags": [
+        "tropical",
+        "rum",
+        "agricole",
+        "stirred",
+        "corpse-reviver-riff"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "caribou-lou-remix",
+      "name": "Caribou Lou (Remix)",
+      "category": "Brokedown Palace",
+      "glass": "Hurricane",
+      "method": "Blended",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "10",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Cane syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "acid-adjusted to lime acidity"
+        },
+        {
+          "name": "Coconut milk",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lightly aged molasses rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged 151 rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged 151 rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "float garnish"
+        }
+      ],
+      "instructions": "Flash blend all ingredients (except float) over small ice and open pour into a hurricane glass. Top with pebble ice and garnish with the banana leaf. Float the remaining 151 on top.",
+      "garnish": "Banana leaf, 0.5 oz aged 151 rum float",
+      "source": "Refined remix of the Tech N9ne standard",
+      "notes": "Suggested: Maggie's Farm Falernum, Havana Club 3 Años, Hamilton Demerara 151.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "coconut",
+        "pineapple",
+        "blended"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "the-cask-of-pinallado",
+      "name": "The Cask of Pinallado",
+      "category": "Brokedown Palace",
+      "glass": "Hurricane",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple oleo",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Cinnamon syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amontillado sherry",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Saint Lucia rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple-infused rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged 151 rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "float garnish"
+        }
+      ],
+      "instructions": "Wet shake all ingredients (except 151) over small ice and open pour into a hurricane glass. Fill with pebble ice and float the 151. Grate nutmeg on top.",
+      "garnish": "0.5 oz aged 151 rum float, freshly grated nutmeg",
+      "source": "Brokedown Palace",
+      "notes": "Another pineapple-Amontillado cocktail. Suggested: Chairman's Reserve Saint Lucia Rum, Pineapple-infused Doctor Bird Rum, Hamilton Demerara 151.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "sherry",
+        "pineapple",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "china-cat-sunflower",
+      "name": "China Cat Sunflower",
+      "category": "Brokedown Palace",
+      "glass": "Mai Tai glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Ancho Reyes chile liqueur",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Nixta corn liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Sunflower seed orgeat",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Sotol",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Oaxacan pot still rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients over small ice and open pour into a Mai Tai or double rocks glass. Garnish with pineapple wheel and huacatay.",
+      "garnish": "Dehydrated pineapple wheel, huacatay sprig",
+      "source": "Brokedown Palace",
+      "notes": "A Pan-American Mai Tai. Suggested: Sotol Por Siempre, Paranubes Añejo Oaxacan Aguardiente de Caña.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "sotol",
+        "mesoamerican",
+        "spicy",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "cynapple",
+      "name": "Cynapple",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple gum syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "acid-adjusted to lime acidity"
+        },
+        {
+          "name": "Cynar",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged overproof rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Rye whiskey",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Lightly coat a pineapple wedge with sugar and blowtorch until caramelized. While pineapple cools, wet shake all ingredients and strain into a chilled coupe or Nick & Nora. Garnish with the pineapple wedge.",
+      "garnish": "Caramelized pineapple wedge",
+      "source": "Brokedown Palace",
+      "notes": "The spice of rye meets pineapple umami. Suggested: Hamilton Demerara 151, Old Overholt BIB Rye, Rittenhouse BIB Rye.",
+      "tags": [
+        "whiskey",
+        "rye",
+        "cynar",
+        "amaro",
+        "pineapple",
+        "tropical",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "the-derelict",
+      "name": "The Derelict",
+      "category": "Brokedown Palace",
+      "glass": "Tiki mug",
+      "method": "Blended",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "10",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Donn's Remix",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Passionfruit syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Banana blend",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "see notes"
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Grapefruit juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged 151 rum",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged rhum agricole",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Guyanese rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Bourbon",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Flash blend all ingredients over small ice and open pour into tiki mug. Fill with pebble ice and garnish with the mint sprig. Place the lime half on top and fill with 151. Light the 151 and express some citrus twists over the flame.",
+      "garnish": "Aged 151 rum (in lime half, flamed), scored and hollowed lime half, citrus twists, mint sprig",
+      "source": "Ray Sakover",
+      "notes": "The kitchen sink and then some. Banana blend: blend equal parts by mass banana liqueur with overripe banana fruit and strain through a nut milk bag. Suggested: Père Labat 59° Rhum Agricole, Appleton 8yr, Hamilton Demerara 86 & 151, Buffalo Trace.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "bourbon",
+        "multi-rum",
+        "blended",
+        "showstopper"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "dark-star",
+      "name": "Dark Star",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Bittercube Bolivar bitters",
+          "amount": "3",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Crème de violette",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Luxardo Maraschino Liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Cannabis-infused gin",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "~5 mg THC; see notes"
+        },
+        {
+          "name": "Unaged rhum agricole",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a chilled Nick & Nora glass. Garnish with the cherry.",
+      "garnish": "Brandied cherry",
+      "source": "Brokedown Palace",
+      "notes": "A cannabis-infused rum-based Aviation. Cannabis is faster acting than a standard edible but shorter lasting. See book for cannabis gin infusion recipe using iSi canister technique.",
+      "tags": [
+        "rum",
+        "agricole",
+        "aviation-riff",
+        "cannabis",
+        "violet",
+        "maraschino",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "dire-wolf",
+      "name": "Dire Wolf",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Grapefruit bitters",
+          "amount": "3",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Absinthe",
+          "amount": "1",
+          "unit": "spritz",
+          "notes": ""
+        },
+        {
+          "name": "Donn's Remix",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Clarified lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Guyanese rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Jamaican rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged overproof rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Spritz a chilled Nick & Nora glass with absinthe. Stir remaining ingredients over ice and strain into the glass.",
+      "garnish": "None",
+      "source": "Brokedown Palace",
+      "notes": "A Zombie served up. Suggested: Hamilton Demerara 86, Worthy Park Overproof, Hamilton Demerara 151.",
+      "tags": [
+        "rum",
+        "zombie-riff",
+        "stirred",
+        "multi-rum",
+        "tropical"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "disgruntled-mai-tai",
+      "name": "Disgruntled Mai Tai",
+      "category": "Brokedown Palace",
+      "glass": "Mai Tai glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Orgeat",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Dry curaçao",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aperol",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and open pour into a Mai Tai or double rocks glass. Fill with pebble ice. Garnish with the mint and lime wheel. Dash some Underberg on top and stick it into the ice to garnish.",
+      "garnish": "Mint sprig, lime wheel, Underberg",
+      "source": "Attaboy, NYC",
+      "notes": "A bitter Mai Tai. Suggested: Pierre Ferrand Dry Curaçao, Smith & Cross Traditional Jamaican Rum.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "mai-tai-riff",
+        "bitter",
+        "aperol",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "do-pineapples-dream-of-tropical-drinks",
+      "name": "Do Pineapples Dream of Tropical Drinks?",
+      "category": "Brokedown Palace",
+      "glass": "Rocks",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "St. Elizabeth's Allspice Dram",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "White port",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Cocchi Americano",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple-infused aged rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Stir all ingredients over ice and strain into a rocks glass with a large cube.",
+      "garnish": "None",
+      "source": "Port of Call, Mystic, CT",
+      "notes": "A rich, umami-forward stirred drink. Suggested: Pineapple-infused Doctor Bird Rum.",
+      "tags": [
+        "rum",
+        "pineapple",
+        "stirred",
+        "low-abv-ish",
+        "tropical",
+        "umami"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "el-diablo",
+      "name": "El Diablo",
+      "category": "Brokedown Palace",
+      "glass": "Collins",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Crème de cassis",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Reposado tequila",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and open pour into a collins glass filled with cracked ice. Top with ginger beer and gently stir to incorporate. Garnish with the lime wheel.",
+      "garnish": "Ginger beer (to top), lime wheel",
+      "source": "Trader Vic",
+      "notes": "A fruity tequila cooler. Suggested: Combier Liqueur de Cassis, Arette Reposado Tequila.",
+      "tags": [
+        "tequila",
+        "cassis",
+        "highball",
+        "shaken",
+        "refreshing"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "elusive-dreams",
+      "name": "Elusive Dreams",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Tiki bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        },
+        {
+          "name": "Cinnamon syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Banana liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "acid-adjusted to lime acidity"
+        },
+        {
+          "name": "Lightly aged molasses rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple-infused aged rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a chilled Nick & Nora glass. Garnish with the pineapple wedge.",
+      "garnish": "Small pineapple wedge",
+      "source": "Demi Natoli",
+      "notes": "A riff removed from a Hotel Nacional. Suggested: Tempus Fugit Crème de Banane, Havana Club 3 Años, Pineapple-infused Doctor Bird Rum.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "banana",
+        "pineapple",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "existential-crisis-2",
+      "name": "Existential Crisis #2",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Donn's Remix",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Clarified lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amontillado sherry",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Yellow Chartreuse",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple-infused aged rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Stir all ingredients over ice and strain into a chilled Nick & Nora glass. Express grapefruit twist and garnish.",
+      "garnish": "Grapefruit twist",
+      "source": "Brokedown Palace",
+      "notes": "What is a modern tropical drink? Suggested: Pineapple-infused Doctor Bird Rum.",
+      "tags": [
+        "rum",
+        "sherry",
+        "chartreuse",
+        "stirred",
+        "tropical",
+        "herbal"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "ferpleberry",
+      "name": "Ferpleberry",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Strawberry",
+          "amount": "1",
+          "unit": "whole",
+          "notes": "muddled"
+        },
+        {
+          "name": "Pineapple gum syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Fernet",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "acid-adjusted to lime acidity"
+        },
+        {
+          "name": "Amontillado sherry",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a chilled Nick & Nora glass. Garnish with the pineapple wedge and strawberry slice on a cocktail pick.",
+      "garnish": "Small pineapple wedge, strawberry slice",
+      "source": "Brokedown Palace",
+      "notes": "Amontillado pairs with strawberry-pineapple. Suggested: Maggie's Farm Falernum, Fernet Branca, Worthy Park 109.",
+      "tags": [
+        "rum",
+        "sherry",
+        "fernet",
+        "strawberry",
+        "pineapple",
+        "shaken",
+        "tropical"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "fire-on-the-mountain",
+      "name": "Fire on the Mountain",
+      "category": "Brokedown Palace",
+      "glass": "Double Rocks",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "St. Elizabeth's Allspice Dram",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Zirbenz Stone Pine Liqueur",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Sweet vermouth",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Campari",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Hampden Rum Fire",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Stir all ingredients over ice and strain into a double rocks glass over a large cube. Express orange twist and garnish.",
+      "garnish": "Orange twist",
+      "source": "Brokedown Palace",
+      "notes": "A Rum Fire-inspired Negroni riff. Suggested: Carpano Antica, Cocchi Vermouth di Torino.",
+      "tags": [
+        "rum",
+        "negroni-riff",
+        "stirred",
+        "bitter",
+        "spiced",
+        "herbal"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "foolish-heart",
+      "name": "Foolish Heart",
+      "category": "Brokedown Palace",
+      "glass": "Collins",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Basil leaves",
+          "amount": "2",
+          "unit": "leaves",
+          "notes": "gently muddled"
+        },
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Passionfruit syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Cane syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amaro di Angostura",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged rhum agricole",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged Clairin",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Gently muddle two basil leaves in a shaker with the syrups. Add ice and remaining ingredients and shake. Strain into a collins glass and fill with pebble ice.",
+      "garnish": "Basil sprig, dehydrated citrus wheel",
+      "source": "Brokedown Palace",
+      "notes": "An herbal, spiced Port au Prince adaptation. Suggested: Neisson Élevé Sous Bois Rhum, Clairin Le Rocher, Clairin Sonson.",
+      "tags": [
+        "rum",
+        "agricole",
+        "clairin",
+        "herbal",
+        "tropical",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "friend-of-the-devil",
+      "name": "Friend of the Devil",
+      "category": "Brokedown Palace",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Chili bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Mango shrub",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Bourbon",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a chilled coupe. Cut the tops of the chiles and make a slit into the top of each. Stick them onto the rim of the coupe à la devil's horns.",
+      "garnish": "Two fresh whole red chiles",
+      "source": "Brokedown Palace",
+      "notes": "A mango bourbon sour. Suggested: Maggie's Farm Falernum, Michter's US*1 Kentucky Straight Bourbon.",
+      "tags": [
+        "bourbon",
+        "whiskey",
+        "mango",
+        "spicy",
+        "sour",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "get-it-done",
+      "name": "Get It Done",
+      "category": "Brokedown Palace",
+      "glass": "Pitcher",
+      "method": "Built",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "30",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Agave syrup",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Ancho Reyes Chile Liqueur",
+          "amount": "3",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "4",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Light Mexican lager",
+          "amount": "24",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Pour beer into a large pitcher filled with ice. Shake the remaining ingredients over ice and then open pour into the pitcher. Gently stir to incorporate. Pour into shatter-resistant glasses.",
+      "garnish": "Mint sprig per glass",
+      "source": "Brokedown Palace",
+      "notes": "A spicy, fruity michelada. Batched drink — serves a group. Suggested: Modelo Especial.",
+      "tags": [
+        "beer",
+        "batched",
+        "spicy",
+        "michelada",
+        "agave",
+        "refreshing",
+        "summer"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "killer-bird",
+      "name": "Killer Bird",
+      "category": "Brokedown Palace",
+      "glass": "Hurricane",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "10",
+          "unit": "drops",
+          "notes": "5 for each component"
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": "Jungle Bird"
+        },
+        {
+          "name": "Campari",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "Jungle Bird"
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": "Jungle Bird"
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "2",
+          "unit": "oz",
+          "notes": "Jungle Bird"
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": "Painkiller"
+        },
+        {
+          "name": "Coconut cream",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "Painkiller"
+        },
+        {
+          "name": "Orange juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": "Painkiller — acid-adjusted to lime acidity"
+        },
+        {
+          "name": "Aged molasses rum",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "Painkiller"
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "Painkiller"
+        },
+        {
+          "name": "Aged overproof rum",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "Painkiller"
+        }
+      ],
+      "instructions": "Mix the ingredients of each drink in separate shakers with ice. Fill two hurricane glasses with pebble ice. Shake the Painkiller and strain half into each glass. Shake the Jungle Bird and gently layer it on top of each Painkiller. Torch cinnamon sticks until smoldering, extinguish, and garnish.",
+      "garnish": "Two dehydrated orange wheels, two smoldering cinnamon sticks, grated nutmeg",
+      "source": "Brokedown Palace",
+      "notes": "A Jungle Bird × Painkiller mashup. Serves two — make both drinks simultaneously and layer in two glasses. Suggested: Hamilton Demerara 151, Smith & Cross, Doorly's 12yr.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "mai-tai",
+        "painkiller",
+        "serves-two",
+        "showstopper",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "mammoth-tusk",
+      "name": "Mammoth Tusk",
+      "category": "Brokedown Palace",
+      "glass": "Tiki mug",
+      "method": "Blended",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Passionfruit syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Orgeat",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Green Chartreuse",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged rhum agricole",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Flash blend all ingredients over a few small ice cubes. Open pour into a tiki mug and fill with pebble ice. Garnish with mint and dash some Peychaud's on top.",
+      "garnish": "Peychaud's bitters (dashed on top), mint sprig",
+      "source": "Minimalist Tiki",
+      "notes": "A Mai Tai meets a Chartreuse Swizzle. Suggested: Maggie's Farm Falernum, Père Labat 59° Rhum Agricole.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "agricole",
+        "chartreuse",
+        "herbal",
+        "blended"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "margot-tenenbaum",
+      "name": "Margot Tenenbaum",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        },
+        {
+          "name": "Honey syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Rhubarb amaro",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Rye whiskey",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a chilled Nick & Nora. Express lemon twist and discard. No garnish.",
+      "garnish": "None (express and discard lemon twist)",
+      "source": "Cocktail Virgin",
+      "notes": "An herbal rye sour. Suggested: Cappelletti Amaro Sfumato Rabarbaro, Michter's US*1 Single Barrel Rye, Wild Turkey 101 Rye.",
+      "tags": [
+        "whiskey",
+        "rye",
+        "amaro",
+        "sour",
+        "herbal",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "morning-dew",
+      "name": "Morning Dew",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Watermelon syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Suze",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Soju or shochu",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged cane juice rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a chilled Nick & Nora glass.",
+      "garnish": "None",
+      "source": "Brokedown Palace",
+      "notes": "A juicy, grassy daiquiri variation. Suggested: Paranubes Oaxacan Aguardiente de Caña, Père Labat 59° Rhum Agricole.",
+      "tags": [
+        "daiquiri",
+        "rum",
+        "watermelon",
+        "fruity",
+        "shaken",
+        "refreshing"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "new-england-currant",
+      "name": "New-England Currant",
+      "category": "Brokedown Palace",
+      "glass": "Double Rocks",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Honey syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Crème de cassis",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Rhubarb amaro",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Whiskey",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and open pour into a double rocks glass. Fill with cracked ice. Garnish with the fresh currants, or whatever you feel like because you don't have fresh currants.",
+      "garnish": "Strand of fresh red currants (or improvise)",
+      "source": "Brokedown Palace",
+      "notes": "A currant whiskey sour. Suggested: Cappelletti Amaro Sfumato Rabarbaro, Michter's US*1 Sour Mash.",
+      "tags": [
+        "whiskey",
+        "cassis",
+        "amaro",
+        "sour",
+        "fruity",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "panic-arrack",
+      "name": "Panic Arrack",
+      "category": "Brokedown Palace",
+      "glass": "Double Rocks",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Crème de cassis",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amaro dell'Etna",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Batavia Arrack",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Bourbon",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and open pour into a double rocks glass. Fill with cracked ice. Garnish with the dehydrated lemon wheel.",
+      "garnish": "Dehydrated lemon wheel",
+      "source": "Brokedown Palace",
+      "notes": "A sour with malt, red fruit, and baking spice notes. Suggested: Old Forester 1870 Original Batch.",
+      "tags": [
+        "bourbon",
+        "whiskey",
+        "amaro",
+        "cassis",
+        "arrack",
+        "sour",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "petty-crime",
+      "name": "Petty Crime",
+      "category": "Brokedown Palace",
+      "glass": "Mai Tai glass",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Orgeat",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Banana liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Fernet",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and open pour into a Mai Tai or double rocks glass. Top with pebble ice and garnish with mint.",
+      "garnish": "Mint sprig",
+      "source": "SubtleTiki",
+      "notes": "A tropical concoction of banana and fernet. Suggested: Tempus Fugit Crème de Banane, Fernet Branca, Smith & Cross.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "fernet",
+        "banana",
+        "shaken",
+        "bitter"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "px-sour",
+      "name": "PX Sour",
+      "category": "Brokedown Palace",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pedro Ximenez sherry",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Apple brandy",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Rye whiskey",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a chilled coupe. Float dehydrated lemon wheel on top.",
+      "garnish": "Dehydrated lemon wheel",
+      "source": "Brokedown Palace",
+      "notes": "A rye sour with sherry and apple. Suggested: Laird's Straight Apple Brandy, Michter's US*1 Single Barrel Straight Rye.",
+      "tags": [
+        "whiskey",
+        "rye",
+        "sherry",
+        "apple-brandy",
+        "sour",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "queen-jane-approximately",
+      "name": "Queen Jane Approximately",
+      "category": "Brokedown Palace",
+      "glass": "Nick & Nora",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "Green Chartreuse",
+          "amount": "1",
+          "unit": "rinse",
+          "notes": ""
+        },
+        {
+          "name": "Green grapes",
+          "amount": "6",
+          "unit": "whole",
+          "notes": "muddled"
+        },
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Bittercube Jamaica No. 1 Bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Honey syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Grapefruit juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aquavit",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged rhum agricole",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Rinse a chilled Nick & Nora glass with Green Chartreuse and discard. Use grapefruit twist to wet the outside rim and rim with toasted fennel salt. Muddle grapes in a shaker, add ice and remaining ingredients, and shake. Strain into the glass.",
+      "garnish": "Grapefruit twist, toasted fennel salt rim",
+      "source": "Death & Co., NYC (Gypsy Wedding adaptation)",
+      "notes": "A rum adaptation of Gypsy Wedding. Suggested: Maggie's Farm Falernum, Linie Aquavit, Père Labat 59° Rhum Agricole.",
+      "tags": [
+        "rum",
+        "agricole",
+        "aquavit",
+        "chartreuse",
+        "grape",
+        "herbal",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "ranglum",
+      "name": "Ranglum",
+      "category": "Brokedown Palace",
+      "glass": "Double Rocks",
+      "method": "Stirred",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Clarified lime juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Stir all ingredients over ice and strain into a double rocks glass over a large cube. Use a zester to score a lime and cut a particularly nice looking wedge to garnish.",
+      "garnish": "Scored lime wedge",
+      "source": "Gonçalo de Sousa Mounteiro, Berlin",
+      "notes": "A funky falernum sour. Suggested: Maggie's Farm Falernum, Smith & Cross.",
+      "tags": [
+        "rum",
+        "falernum",
+        "stirred",
+        "funky",
+        "sour"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "ridge-racer",
+      "name": "Ridge Racer",
+      "category": "Brokedown Palace",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "White crème de cacao",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "St. Elizabeth's Allspice Dram",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Yellow Chartreuse",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Rivers Antoine Royale Grenadian Rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Guyanese rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a chilled coupe. Float dehydrated lime wheel on top.",
+      "garnish": "Dehydrated lime wheel",
+      "source": "Queen Mary Tavern, Chicago",
+      "notes": "Funky, herbal, expensive — worth it. Served-down version: 1 barspoon each crème de cacao and lime punch syrup; 1-2 dashes allspice dram.",
+      "tags": [
+        "rum",
+        "chartreuse",
+        "herbal",
+        "shaken",
+        "funky",
+        "cacao"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "shipwrecked",
+      "name": "Shipwrecked",
+      "category": "Brokedown Palace",
+      "glass": "Tiki mug",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Absinthe",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Honey syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Rhubarb amaro",
+          "amount": "0.33",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged molasses rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients over small ice and open pour into a tiki mug. Top with pebble ice and garnish with mint and lime wheel.",
+      "garnish": "Lime wheel, mint sprig",
+      "source": "Cocktail Virgin",
+      "notes": "Pineapple, rhubarb, and rum. Suggested: Cappelletti Amaro Sfumato Rabarbaro, Smith & Cross, Hamilton Demerara 86.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "rhubarb",
+        "amaro",
+        "pineapple",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "the-smoke-also-rises",
+      "name": "The Smoke Also Rises",
+      "category": "Brokedown Palace",
+      "glass": "Coupe",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Cane syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Grapefruit juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Luxardo Maraschino Liqueur",
+          "amount": "1",
+          "unit": "barspoon",
+          "notes": ""
+        },
+        {
+          "name": "Rhubarb amaro",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lightly aged molasses rum",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and strain into a chilled coupe. Garnish with the lime wheel.",
+      "garnish": "Lime wheel",
+      "source": "Orestes Cruz",
+      "notes": "A rhubarb-ed Hemingway daiquiri. Suggested: Cappelletti Amaro Sfumato Rabarbaro, Havana Club 3 Años.",
+      "tags": [
+        "rum",
+        "daiquiri-riff",
+        "rhubarb",
+        "amaro",
+        "maraschino",
+        "shaken"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "tarzan",
+      "name": "Tarzan",
+      "category": "Brokedown Palace",
+      "glass": "Collins",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Eucalyptus bitters",
+          "amount": "2",
+          "unit": "dashes",
+          "notes": ""
+        },
+        {
+          "name": "Cane syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Campari",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Gin",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and open pour into a collins glass. Fill with ice and top with soda. Garnish with the orange wheel.",
+      "garnish": "Soda water (to top), orange wheel",
+      "source": "Cocktailarium",
+      "notes": "A long drink with gin, Campari, and pineapple. Suggested: Hendrick's Gin.",
+      "tags": [
+        "gin",
+        "campari",
+        "pineapple",
+        "highball",
+        "shaken",
+        "refreshing",
+        "bitter"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "touch-of-grey",
+      "name": "Touch of Grey",
+      "category": "Brokedown Palace",
+      "glass": "Double Rocks",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Angostura bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
+        },
+        {
+          "name": "Demerara syrup",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Fernet",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients and open pour into a double rocks glass. Fill with pebble ice and garnish with the mint.",
+      "garnish": "Mint sprig",
+      "source": "Brokedown Palace",
+      "notes": "A Midnight Stinger with Jamaican rum. Suggested: Fernet Branca, Smith & Cross.",
+      "tags": [
+        "rum",
+        "fernet",
+        "shaken",
+        "bitter",
+        "minty"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "tropical-fluff",
+      "name": "Tropical Fluff",
+      "category": "Brokedown Palace",
+      "glass": "Collins",
+      "method": "Blended",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Grapefruit juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Orange juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "2",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Banana liqueur",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aperol",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Sprinkle sugar on an orange wedge and blowtorch until caramelized. Flash blend all ingredients with a few small ice cubes until you can no longer hear them. Open pour into a small collins glass and garnish with the caramelized orange wedge.",
+      "garnish": "Caramelized orange wedge",
+      "source": "Fanny Chu, Donna, Brooklyn",
+      "notes": "A funky Garibaldi variation. Suggested: Tempus Fugit Crème de Banane, Smith & Cross.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "banana",
+        "aperol",
+        "fruity",
+        "blended"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "tuscan-toucan",
+      "name": "Tuscan Toucan",
+      "category": "Brokedown Palace",
+      "glass": "Sling glass",
+      "method": "Blended",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "10",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Donn's Remix",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Grapefruit juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Pineapple juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "acid-adjusted to lime acidity"
+        },
+        {
+          "name": "Unaged Jamaican overproof rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Amaro",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged 151 rum",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": "float garnish"
+        }
+      ],
+      "instructions": "Flash blend all ingredients (except 151) over a few small ice and open pour into a sling glass. Fill with pebble ice and garnish with the mint and citrus wheel. Float 151 on top.",
+      "garnish": "Mint sprig, dehydrated citrus wheel, 0.75 oz aged 151 rum float",
+      "source": "False Idol, San Diego",
+      "notes": "Fruity, funky, bittersweet. Suggested: Wray & Nephew White Overproof, Amaro Montenegro, Hamilton Demerara 151.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "amaro",
+        "funky",
+        "bitter",
+        "blended"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "vernons-cloak",
+      "name": "Vernon's Cloak",
+      "category": "Brokedown Palace",
+      "glass": "Double Rocks",
+      "method": "Shaken",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "5",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Honey syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Grapefruit juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "St. Elizabeth's Allspice Dram",
+          "amount": "1",
+          "unit": "barspoon",
+          "notes": ""
+        },
+        {
+          "name": "Cynar",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Jamaican rum",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Wet shake all ingredients over small ice and open pour into a double rocks glass. Fill with pebble ice and garnish with the mint.",
+      "garnish": "Mint sprig",
+      "source": "Sam Miller",
+      "notes": "Baking spices and honey with Cynar and rum. Suggested: Appleton Estate 8 Year Reserve.",
+      "tags": [
+        "rum",
+        "cynar",
+        "amaro",
+        "grapefruit",
+        "shaken",
+        "spiced",
+        "tropical"
+      ],
+      "created_at": "2026-05-24"
+    },
+    {
+      "id": "white-zombie",
+      "name": "White Zombie",
+      "category": "Brokedown Palace",
+      "glass": "Tiki mug",
+      "method": "Blended",
+      "ingredients": [
+        {
+          "name": "20% saline solution",
+          "amount": "10",
+          "unit": "drops",
+          "notes": ""
+        },
+        {
+          "name": "Luxardo Maraschino Liqueur",
+          "amount": "1",
+          "unit": "barspoon",
+          "notes": ""
+        },
+        {
+          "name": "Absinthe",
+          "amount": "1",
+          "unit": "barspoon",
+          "notes": ""
+        },
+        {
+          "name": "Passionfruit syrup",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Donn's Remix",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Falernum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime juice",
+          "amount": "0.75",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Batavia Arrack",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged Jamaican overproof rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Guyanese rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Aged Barbados rum",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Gin",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Unaged pisco",
+          "amount": "1.5",
+          "unit": "oz",
+          "notes": ""
+        }
+      ],
+      "instructions": "Flash blend all ingredients over a few small ice and open pour into a tiki mug. Fill with pebble ice and garnish with the mint and citrus wheel.",
+      "garnish": "Mint sprig, citrus wheel, brandied cherry",
+      "source": "Zac Overman, Brooklyn",
+      "notes": "Half your bar in a glass. Suggested: Maggie's Farm Falernum, Wray & Nephew White Overproof, Hamilton Demerara 86 & 151, The Real McCoy 5yr.",
+      "tags": [
+        "tiki",
+        "tropical",
+        "rum",
+        "pisco",
+        "gin",
+        "multi-spirit",
+        "blended",
+        "showstopper"
+      ],
+      "created_at": "2026-05-24"
     }
   ]
 }
