@@ -298,8 +298,13 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
 def get_makeable_status(cocktail, inventory, pantry=None):
     is_premium = cocktail.get('premium', False)
     missing = []
+    specialty_by_id = {s['id']: s for s in pantry.get('specialty', [])} if pantry else {}
     for ing in cocktail.get('ingredients', []):
-        ok, _ = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
+        explicit = specialty_by_id.get(ing.get('pantry_id', ''))
+        if explicit:
+            ok = explicit.get('in_stock', False)
+        else:
+            ok, _ = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
         if not ok:
             missing.append(ing['name'])
     return len(missing) == 0, missing
@@ -340,15 +345,23 @@ def cocktail_from_form():
     amounts = request.form.getlist('ingredient_amount')
     units = request.form.getlist('ingredient_unit')
     notes_list = request.form.getlist('ingredient_notes')
+    types      = request.form.getlist('ingredient_type')
+    pantry_ids = request.form.getlist('ingredient_pantry_id')
     ingredients = []
     for i, name in enumerate(names):
         if name.strip():
-            ingredients.append({
-                'name': name.strip(),
-                'amount': amounts[i].strip() if i < len(amounts) else '',
-                'unit': units[i].strip() if i < len(units) else '',
-                'notes': notes_list[i].strip() if i < len(notes_list) else '',
-            })
+            ing = {
+                'name':      name.strip(),
+                'amount':    amounts[i].strip()    if i < len(amounts)    else '',
+                'unit':      units[i].strip()      if i < len(units)      else '',
+                'notes':     notes_list[i].strip() if i < len(notes_list) else '',
+                'type':      types[i].strip()      if i < len(types)      else '',
+                'pantry_id': pantry_ids[i].strip() if i < len(pantry_ids) else '',
+            }
+            # Drop empty optional fields to keep data clean
+            if not ing['type']:      del ing['type']
+            if not ing['pantry_id']: del ing['pantry_id']
+            ingredients.append(ing)
 
     # Category chips (multi-select checkboxes) → stored as tags
     category_tags = [t.strip().lower() for t in request.form.getlist('category_tags') if t.strip()]
@@ -604,16 +617,19 @@ def cocktails():
 def _form_context():
     """Shared context for new/edit cocktail forms."""
     all_cocktails = _db.get_cocktails()
+    pantry = load_pantry()
     style_tags = [{'value': v, 'label': l} for v, l in STYLE_TAG_DEFS]
     known_creators = sorted(
         {c['creator'] for c in all_cocktails if c.get('creator')},
         key=lambda n: n.split()[-1]
     )
     known_sources = sorted({c['source'] for c in all_cocktails if c.get('source')})
+    specialty_items = sorted(pantry.get('specialty', []), key=lambda s: s['name'])
     return dict(style_tags=style_tags,
                 style_tag_values=STYLE_TAG_VALUES,
                 known_creators=known_creators,
-                known_sources=known_sources)
+                known_sources=known_sources,
+                specialty_items=specialty_items)
 
 
 # Define /new before /<cocktail_id> to avoid routing conflict
@@ -647,18 +663,26 @@ def cocktail_detail(cocktail_id):
         return redirect(url_for('cocktails'))
     is_premium = cocktail.get('premium', False)
     can_make, missing = get_makeable_status(cocktail, inventory, pantry)
+    specialty_by_id   = {s['id']:              s for s in pantry.get('specialty', [])}
     specialty_by_name = {normalize(s['name']): s for s in pantry.get('specialty', [])}
     for ing in cocktail.get('ingredients', []):
-        ok, source = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
-        ing['available'] = ok
-        ing['source'] = source
-        # Link specialty pantry items to their card
-        ing_norm = normalize(ing['name'])
-        ing['pantry_item'] = None
-        for sname, sitem in specialty_by_name.items():
-            if sname in ing_norm or ing_norm in sname:
-                ing['pantry_item'] = sitem
-                break
+        explicit = specialty_by_id.get(ing.get('pantry_id', ''))
+        if explicit:
+            # Explicit pantry link — bypass fuzzy matching
+            ing['pantry_item'] = explicit
+            ing['available']   = explicit.get('in_stock', False)
+            ing['source']      = explicit['name'] if explicit.get('in_stock') else None
+        else:
+            ok, source = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
+            ing['available'] = ok
+            ing['source']    = source
+            # Fuzzy specialty link fallback
+            ing_norm = normalize(ing['name'])
+            ing['pantry_item'] = None
+            for sname, sitem in specialty_by_name.items():
+                if sname in ing_norm or ing_norm in sname:
+                    ing['pantry_item'] = sitem
+                    break
     history = _db.get_history(cocktail_id, limit=10)
     feedback = _db.get_feedback(cocktail_id)
     return render_template('cocktail_detail.html',

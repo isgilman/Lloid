@@ -147,27 +147,58 @@
         {% set ing_list = cocktail.ingredients if cocktail else prefill.get('ingredients', []) %}
         {% if ing_list %}
           {% for ing in ing_list %}
-          <div class="ingredient-row" data-index="{{ loop.index0 }}" draggable="true">
-            <span class="drag-handle" title="Drag to reorder">&#8942;&#8942;</span>
-            <input type="text" name="ingredient_amount" class="form-input ing-amount"
-                   value="{{ ing.amount }}" placeholder="2">
-            <input type="text" name="ingredient_unit" class="form-input ing-unit"
-                   value="{{ ing.unit }}" placeholder="oz" list="unit-list">
-            <input type="text" name="ingredient_name" class="form-input ing-name"
-                   value="{{ ing.name }}" placeholder="Ingredient name" required>
-            <input type="text" name="ingredient_notes" class="form-input ing-notes"
-                   value="{{ ing.notes }}" placeholder="Notes (optional)">
-            <button type="button" class="btn-icon btn-icon-danger" onclick="removeIngredient(this)" title="Remove">&#10005;</button>
+          <div class="ingredient-block" data-index="{{ loop.index0 }}">
+            <div class="ingredient-row">
+              <span class="drag-handle" title="Drag to reorder">&#8942;&#8942;</span>
+              <input type="text" name="ingredient_amount" class="form-input ing-amount"
+                     value="{{ ing.amount }}" placeholder="2">
+              <input type="text" name="ingredient_unit" class="form-input ing-unit"
+                     value="{{ ing.unit }}" placeholder="oz" list="unit-list">
+              <input type="text" name="ingredient_name" class="form-input ing-name"
+                     value="{{ ing.name }}" placeholder="Ingredient name" required>
+              <input type="text" name="ingredient_notes" class="form-input ing-notes"
+                     value="{{ ing.notes or '' }}" placeholder="Notes (optional)">
+              <button type="button" class="btn-icon btn-icon-danger" onclick="removeIngredient(this)" title="Remove">&#10005;</button>
+            </div>
+            <div class="ingredient-type-row">
+              <select name="ingredient_type" class="ing-type-select" onchange="onIngTypeChange(this)">
+                <option value="">Auto</option>
+                <option value="specialty" {% if ing.type == 'specialty' %}selected{% endif %}>&#9096; Specialty</option>
+                <option value="pantry" {% if ing.type == 'pantry' %}selected{% endif %}>&#10003; Pantry staple</option>
+              </select>
+              <select name="ingredient_pantry_id" class="ing-pantry-select"
+                      {% if ing.type != 'specialty' %}style="display:none"{% endif %}>
+                <option value="">&#8212; link to pantry item &#8212;</option>
+                {% for item in specialty_items %}
+                <option value="{{ item.id }}" {% if ing.pantry_id == item.id %}selected{% endif %}>{{ item.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
           </div>
           {% endfor %}
         {% else %}
-          <div class="ingredient-row" data-index="0" draggable="true">
-            <span class="drag-handle" title="Drag to reorder">&#8942;&#8942;</span>
-            <input type="text" name="ingredient_amount" class="form-input ing-amount" placeholder="2">
-            <input type="text" name="ingredient_unit" class="form-input ing-unit" placeholder="oz" list="unit-list">
-            <input type="text" name="ingredient_name" class="form-input ing-name" placeholder="Ingredient name">
-            <input type="text" name="ingredient_notes" class="form-input ing-notes" placeholder="Notes (optional)">
-            <button type="button" class="btn-icon btn-icon-danger" onclick="removeIngredient(this)" title="Remove">&#10005;</button>
+          <div class="ingredient-block" data-index="0">
+            <div class="ingredient-row">
+              <span class="drag-handle" title="Drag to reorder">&#8942;&#8942;</span>
+              <input type="text" name="ingredient_amount" class="form-input ing-amount" placeholder="2">
+              <input type="text" name="ingredient_unit" class="form-input ing-unit" placeholder="oz" list="unit-list">
+              <input type="text" name="ingredient_name" class="form-input ing-name" placeholder="Ingredient name">
+              <input type="text" name="ingredient_notes" class="form-input ing-notes" placeholder="Notes (optional)">
+              <button type="button" class="btn-icon btn-icon-danger" onclick="removeIngredient(this)" title="Remove">&#10005;</button>
+            </div>
+            <div class="ingredient-type-row">
+              <select name="ingredient_type" class="ing-type-select" onchange="onIngTypeChange(this)">
+                <option value="">Auto</option>
+                <option value="specialty">&#9096; Specialty</option>
+                <option value="pantry">&#10003; Pantry staple</option>
+              </select>
+              <select name="ingredient_pantry_id" class="ing-pantry-select" style="display:none">
+                <option value="">&#8212; link to pantry item &#8212;</option>
+                {% for item in specialty_items %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
           </div>
         {% endif %}
       </div>
@@ -233,81 +264,109 @@
 
 {% block scripts %}
 <script>
-let ingCount = document.querySelectorAll('.ingredient-row').length;
+// Specialty items list (for dynamic ingredient rows)
+const SPECIALTY_ITEMS = {{ specialty_items | tojson }};
+
+let ingCount = document.querySelectorAll('.ingredient-block').length;
 let _dragSrc = null;
 
-function _setupDragRow(row) {
-  row.setAttribute('draggable', 'true');
-  row.addEventListener('dragstart', function(e) {
-    // Prevent drag when clicking an input or button directly
-    const tag = e.target.tagName.toLowerCase();
+function onIngTypeChange(sel) {
+  var typeRow = sel.closest('.ingredient-type-row');
+  var picker  = typeRow.querySelector('.ing-pantry-select');
+  picker.style.display = sel.value === 'specialty' ? '' : 'none';
+  if (sel.value !== 'specialty') picker.value = '';
+}
+
+function _buildSpecialtyOptions() {
+  return SPECIALTY_ITEMS.map(function(item) {
+    return '<option value="' + item.id + '">' + item.name + '</option>';
+  }).join('');
+}
+
+function _setupDragBlock(block) {
+  block.setAttribute('draggable', 'true');
+  block.addEventListener('dragstart', function(e) {
+    var tag = e.target.tagName.toLowerCase();
     if (tag === 'input' || tag === 'button' || tag === 'select' || tag === 'textarea') {
       e.preventDefault();
       return;
     }
-    _dragSrc = row;
-    row.classList.add('dragging');
+    _dragSrc = block;
+    block.classList.add('dragging');
     e.dataTransfer.effectAllowed = 'move';
   });
-  row.addEventListener('dragend', function() {
-    row.classList.remove('dragging');
-    document.querySelectorAll('.ingredient-row').forEach(function(r) {
-      r.classList.remove('drag-over');
+  block.addEventListener('dragend', function() {
+    block.classList.remove('dragging');
+    document.querySelectorAll('.ingredient-block').forEach(function(b) {
+      b.classList.remove('drag-over');
     });
     _dragSrc = null;
   });
-  row.addEventListener('dragover', function(e) {
-    if (!_dragSrc || _dragSrc === row) return;
+  block.addEventListener('dragover', function(e) {
+    if (!_dragSrc || _dragSrc === block) return;
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
-    document.querySelectorAll('.ingredient-row').forEach(function(r) {
-      r.classList.remove('drag-over');
+    document.querySelectorAll('.ingredient-block').forEach(function(b) {
+      b.classList.remove('drag-over');
     });
-    row.classList.add('drag-over');
+    block.classList.add('drag-over');
   });
-  row.addEventListener('dragleave', function() {
-    row.classList.remove('drag-over');
+  block.addEventListener('dragleave', function() {
+    block.classList.remove('drag-over');
   });
-  row.addEventListener('drop', function(e) {
+  block.addEventListener('drop', function(e) {
     e.preventDefault();
-    row.classList.remove('drag-over');
-    if (!_dragSrc || _dragSrc === row) return;
-    const list = document.getElementById('ingredients-list');
-    const rows = Array.from(list.querySelectorAll('.ingredient-row'));
-    const srcIdx = rows.indexOf(_dragSrc);
-    const tgtIdx = rows.indexOf(row);
+    block.classList.remove('drag-over');
+    if (!_dragSrc || _dragSrc === block) return;
+    var list = document.getElementById('ingredients-list');
+    var blocks = Array.from(list.querySelectorAll('.ingredient-block'));
+    var srcIdx = blocks.indexOf(_dragSrc);
+    var tgtIdx = blocks.indexOf(block);
     if (srcIdx < tgtIdx) {
-      list.insertBefore(_dragSrc, row.nextSibling);
+      list.insertBefore(_dragSrc, block.nextSibling);
     } else {
-      list.insertBefore(_dragSrc, row);
+      list.insertBefore(_dragSrc, block);
     }
   });
 }
 
-// Wire up drag on all rows present at page load
-document.querySelectorAll('.ingredient-row').forEach(function(r) { _setupDragRow(r); });
+// Wire up drag on all blocks present at page load
+document.querySelectorAll('.ingredient-block').forEach(function(b) { _setupDragBlock(b); });
 
 function addIngredient() {
-  const list = document.getElementById('ingredients-list');
-  const row = document.createElement('div');
-  row.className = 'ingredient-row';
-  row.dataset.index = ingCount++;
-  row.innerHTML = `
-    <span class="drag-handle" title="Drag to reorder">&#8942;&#8942;</span>
-    <input type="text" name="ingredient_amount" class="form-input ing-amount" placeholder="2">
-    <input type="text" name="ingredient_unit" class="form-input ing-unit" placeholder="oz" list="unit-list">
-    <input type="text" name="ingredient_name" class="form-input ing-name" placeholder="Ingredient name">
-    <input type="text" name="ingredient_notes" class="form-input ing-notes" placeholder="Notes (optional)">
-    <button type="button" class="btn-icon btn-icon-danger" onclick="removeIngredient(this)" title="Remove">&#10005;</button>
-  `;
-  list.appendChild(row);
-  _setupDragRow(row);
-  row.querySelector('.ing-amount').focus();
+  var list  = document.getElementById('ingredients-list');
+  var block = document.createElement('div');
+  block.className    = 'ingredient-block';
+  block.dataset.index = ingCount++;
+  block.innerHTML = (
+    '<div class="ingredient-row">' +
+      '<span class="drag-handle" title="Drag to reorder">&#8942;&#8942;</span>' +
+      '<input type="text" name="ingredient_amount" class="form-input ing-amount" placeholder="2">' +
+      '<input type="text" name="ingredient_unit"  class="form-input ing-unit"   placeholder="oz" list="unit-list">' +
+      '<input type="text" name="ingredient_name"  class="form-input ing-name"   placeholder="Ingredient name">' +
+      '<input type="text" name="ingredient_notes" class="form-input ing-notes"  placeholder="Notes (optional)">' +
+      '<button type="button" class="btn-icon btn-icon-danger" onclick="removeIngredient(this)" title="Remove">&#10005;</button>' +
+    '</div>' +
+    '<div class="ingredient-type-row">' +
+      '<select name="ingredient_type" class="ing-type-select" onchange="onIngTypeChange(this)">' +
+        '<option value="">Auto</option>' +
+        '<option value="specialty">&#9096; Specialty</option>' +
+        '<option value="pantry">&#10003; Pantry staple</option>' +
+      '</select>' +
+      '<select name="ingredient_pantry_id" class="ing-pantry-select" style="display:none">' +
+        '<option value="">&#8212; link to pantry item &#8212;</option>' +
+        _buildSpecialtyOptions() +
+      '</select>' +
+    '</div>'
+  );
+  list.appendChild(block);
+  _setupDragBlock(block);
+  block.querySelector('.ing-amount').focus();
 }
 
 function removeIngredient(btn) {
-  const rows = document.querySelectorAll('.ingredient-row');
-  if (rows.length > 1) btn.closest('.ingredient-row').remove();
+  var blocks = document.querySelectorAll('.ingredient-block');
+  if (blocks.length > 1) btn.closest('.ingredient-block').remove();
 }
 </script>
 {% endblock %}

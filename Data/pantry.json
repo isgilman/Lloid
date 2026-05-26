@@ -26,8 +26,6 @@
     "egg white",
     "falernum",
     "fees bitters",
-    "fresh lemon juice",
-    "fresh lime juice",
     "ginger ale",
     "ginger beer",
     "grapefruit juice",
@@ -38,7 +36,9 @@
     "ice",
     "jalapeño",
     "lemon juice",
+    "lemons",
     "lime juice",
+    "limes",
     "maple shrub",
     "matcha syrup",
     "mint",
@@ -53,7 +53,6 @@
     "rich demerara syrup",
     "rich simple syrup",
     "rosemary",
-    "saline",
     "saline solution",
     "salt",
     "simple syrup",
@@ -345,6 +344,32 @@
       "recipe": "- 125 g clarified grapefruit juice\r\n- 31.5 g grapefruit oleo saccharum\r\n- 86.5 g cane sugar\r\n- 1.5 g citric acid\r\n\r\nCombine juice and oleo in blend on low, then slowly incorporate the sugar and acid. Makes 6 ounces.\r\n\r\nSee Tropical Standard p 216 for Grapefruit Punch Syrup Recipe.",
       "in_stock": false,
       "created_at": "2026-05-25"
+    },
+    {
+      "id": "cacao-nib-infused-blanco-tequila",
+      "name": "Cacao Nib-Infused Blanco Tequila",
+      "description": "Cold-infused blanco tequila with cacao nibs",
+      "recipe": "",
+      "in_stock": false,
+      "created_at": "2026-05-25"
     }
+  ],
+  "standard_out_of_stock": [
+    "agave nectar",
+    "basil",
+    "buttermilk",
+    "cold brew concentrate",
+    "cream",
+    "cucumber",
+    "fees bitters",
+    "ginger ale",
+    "heavy cream",
+    "honey-ginger syrup",
+    "orange juice",
+    "orgeat",
+    "pastis",
+    "raspberry syrup",
+    "rosemary",
+    "thyme"
   ]
 }
