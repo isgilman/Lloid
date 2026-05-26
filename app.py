@@ -469,6 +469,7 @@ def inventory_delete():
 def pantry():
     p = load_pantry()
     std_oos = set(normalize(x) for x in p.get('standard_out_of_stock', []))
+    p['specialty'] = sorted(p.get('specialty', []), key=lambda s: s['name'].lower())
     return render_template('pantry.html', pantry=p, standard_oos=std_oos)
 
 
@@ -531,6 +532,7 @@ def pantry_specialty_add():
             'created_at': datetime.now().strftime('%Y-%m-%d'),
         }
         p['specialty'].append(new_item)
+        p['specialty'].sort(key=lambda s: s['name'].lower())
         save_pantry(p)
         flash(f'"{name}" added to specialty pantry.', 'success')
     return redirect(url_for('pantry'))
@@ -546,6 +548,7 @@ def pantry_specialty_update():
             item['description'] = request.form.get('description', '').strip()
             item['recipe'] = request.form.get('recipe', '').strip()
             break
+    p['specialty'].sort(key=lambda s: s['name'].lower())
     save_pantry(p)
     flash('Updated.', 'success')
     return redirect(url_for('pantry'))
