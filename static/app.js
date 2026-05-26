@@ -175,6 +175,19 @@ function toggleSort() {
 let makeableOnly = false;
 let triedOnly = false;
 let favoritedOnly = false;
+let _spiritFilter = null;  // array of keywords when ?spirit= param is active
+
+// Multi-keyword lookup for ?spirit= URL param
+const _SPIRIT_KEYWORDS = {
+  rum:      ['rum', 'rhum'],
+  whiskey:  ['whiskey', 'whisky', 'bourbon', 'rye', 'scotch'],
+  tequila:  ['tequila', 'mezcal', 'sotol'],
+  gin:      ['gin'],
+  vodka:    ['vodka'],
+  cognac:   ['cognac', 'brandy', 'calvados', 'armagnac'],
+  amaro:    ['amaro', 'campari', 'aperol', 'cynar', 'fernet'],
+  vermouth: ['vermouth', 'sherry', 'port'],
+};
 
 function toggleMakeable() {
   makeableOnly = !makeableOnly;
@@ -208,6 +221,17 @@ function toggleFilterPanel() {
 function clearFilters() {
   document.querySelectorAll('[name="cq-tag"],[name="cq-source"],[name="cq-creator"]')
     .forEach(el => { el.checked = false; });
+  _spiritFilter = null;
+  const container = document.getElementById('active-filters');
+  if (container) container.innerHTML = '';
+  filterCocktails();
+}
+
+function _clearSpiritFilter() {
+  _spiritFilter = null;
+  // Remove the spirit chip and re-render active chips
+  const container = document.getElementById('active-filters');
+  if (container) container.innerHTML = '';
   filterCocktails();
 }
 
@@ -266,7 +290,11 @@ function filterCocktails() {
     const matchTried     = !triedOnly     || tried;
     const matchFavorited = !favoritedOnly || favorited;
 
-    const show = matchQuery && matchTags && matchSource && matchCreator && matchMake && matchTried && matchFavorited;
+    // Spirit filter (from ?spirit= URL param)
+    const matchSpirit = !_spiritFilter ||
+      _spiritFilter.some(kw => ings.includes(kw) || name.includes(kw));
+
+    const show = matchQuery && matchTags && matchSource && matchCreator && matchMake && matchTried && matchFavorited && matchSpirit;
     card.style.display = show ? '' : 'none';
     if (show) visible++;
   });
@@ -450,10 +478,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // If on cocktails page, apply any URL filters
   if (document.getElementById('cq-search')) {
     const params = new URLSearchParams(window.location.search);
-    if (params.get('filter') === 'makeable' && !makeableOnly) {
-      toggleMakeable();
+
+    // ?filter=makeable
+    if (params.get('filter') === 'makeable' && !makeableOnly) toggleMakeable();
+
+    // ?spirit=rum — multi-keyword OR filter from home page stat links
+    const spiritParam = params.get('spirit');
+    if (spiritParam && _SPIRIT_KEYWORDS[spiritParam]) {
+      _spiritFilter = _SPIRIT_KEYWORDS[spiritParam];
+      // Show a dismissible active-filter chip for the spirit
+      const container = document.getElementById('active-filters');
+      if (container) {
+        const chip = document.createElement('span');
+        chip.className = 'active-filter-chip';
+        const label = spiritParam.charAt(0).toUpperCase() + spiritParam.slice(1);
+        chip.innerHTML = label + ' <button aria-label="Remove filter" onclick="_clearSpiritFilter()">&#215;</button>';
+        container.appendChild(chip);
+      }
     }
-    // Backward-compat: ?source=... pre-checks the matching source checkbox
+
+    // ?source=... pre-checks the matching source checkbox
     const srcParam = params.get('source');
     if (srcParam) {
       const cb = document.querySelector(`[name="cq-source"][value="${srcParam}"]`);
@@ -461,11 +505,20 @@ document.addEventListener('DOMContentLoaded', () => {
         cb.checked = true;
         const panel = document.getElementById('filter-panel');
         if (panel) panel.style.display = 'block';
-        filterCocktails();
       }
-    } else {
-      // Run filter once to populate count label correctly on load
-      filterCocktails();
+    }
+
+    filterCocktails();
+  }
+
+  // If on inventory page, apply ?category= URL param
+  if (document.getElementById('bottle-grid')) {
+    const params = new URLSearchParams(window.location.search);
+    const catParam = params.get('category');
+    if (catParam) {
+      const sel = document.getElementById('inv-category');
+      if (sel) { sel.value = catParam; }
+      if (typeof filterBottles === 'function') filterBottles();
     }
   }
 

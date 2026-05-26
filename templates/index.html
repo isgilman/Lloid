@@ -8,6 +8,7 @@
     <p class="home-subtitle">Your home bar, organized.</p>
   </div>
 
+  <!-- Top stats -->
   <div class="stats-row">
     <a href="{{ url_for('inventory') }}" class="stat-card">
       <span class="stat-number">{{ bottle_count }}</span>
@@ -23,49 +24,90 @@
     </a>
   </div>
 
-  <div class="home-grid">
-    <section class="home-section">
-      <div class="section-header">
-        <h2 class="section-title">By Category</h2>
-        <a href="{{ url_for('inventory') }}" class="section-link">View all</a>
+  <!-- Bartender's Choice -->
+  <a href="{{ url_for('cocktail_random') }}" class="bartenders-choice-btn">
+    <div class="bc-left">
+      <span class="bc-dice">&#9861;</span>
+      <div>
+        <div class="bc-label">Bartender's Choice</div>
+        <div class="bc-subtitle">Pick a random cocktail you can make right now</div>
       </div>
-      <div class="category-list">
-        {% for cat, count in categories | dictsort %}
-        <div class="category-row">
-          <span class="category-name">{{ cat }}</span>
-          <span class="category-count">{{ count }}</span>
-        </div>
-        {% endfor %}
-      </div>
-    </section>
+    </div>
+    <span class="bc-arrow">&#8594;</span>
+  </a>
 
+  <!-- Main content grid -->
+  <div class="home-grid">
+
+    <!-- Recently Viewed -->
     <section class="home-section">
       <div class="section-header">
-        <h2 class="section-title">Recent Cocktails</h2>
+        <h2 class="section-title">Recently Viewed</h2>
         <a href="{{ url_for('cocktails') }}" class="section-link">View all</a>
       </div>
-      {% if recent_cocktails %}
+      {% if recently_viewed %}
         <div class="recent-list">
-          {% for c in recent_cocktails %}
+          {% for c in recently_viewed %}
           <a href="{{ url_for('cocktail_detail', cocktail_id=c.id) }}" class="recent-item">
             <div class="recent-info">
               <span class="recent-name">{{ c.name }}</span>
-              <span class="recent-meta">{{ c.get('category', '') }}</span>
+              <span class="recent-meta">{{ c.spirit_label }}</span>
             </div>
             {% if c.can_make %}
               <span class="badge badge-green">Can make</span>
             {% else %}
-              <span class="badge badge-dim">Missing items</span>
+              <span class="badge badge-dim">Missing</span>
             {% endif %}
           </a>
           {% endfor %}
         </div>
       {% else %}
-        <p class="empty-state">No cocktails yet. <a href="{{ url_for('cocktail_new') }}">Add one.</a></p>
+        <p class="empty-state">No cocktails viewed yet — browse the <a href="{{ url_for('cocktails') }}">cocktail list</a>.</p>
       {% endif %}
     </section>
-  </div>
 
+    <!-- Cocktails by Spirit -->
+    <section class="home-section">
+      <div class="section-header">
+        <h2 class="section-title">Cocktails by Spirit</h2>
+        <a href="{{ url_for('cocktails') }}" class="section-link">View all</a>
+      </div>
+      <div class="category-list">
+        {% for label, count, url_key in spirit_stats %}
+        {% if url_key %}
+        <a href="{{ url_for('cocktails') }}?spirit={{ url_key }}" class="category-row category-row-link">
+          <span class="category-name">{{ label }}</span>
+          <span class="category-count">{{ count }}</span>
+        </a>
+        {% else %}
+        <div class="category-row">
+          <span class="category-name">{{ label }}</span>
+          <span class="category-count">{{ count }}</span>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Bottles by Category (full-width) -->
+    <section class="home-section home-section-wide">
+      <div class="section-header">
+        <h2 class="section-title">Bottles by Category</h2>
+        <a href="{{ url_for('inventory') }}" class="section-link">View all</a>
+      </div>
+      <div class="category-list category-list-2col">
+        {% for cat, count in categories | dictsort %}
+        <a href="{{ url_for('inventory') }}?category={{ cat }}" class="category-row category-row-link">
+          <span class="category-name">{{ cat }}</span>
+          <span class="category-count">{{ count }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+  </div><!-- /.home-grid -->
+
+  <!-- Quick actions -->
   <div class="home-actions">
     <a href="{{ url_for('ask') }}" class="action-card">
       <div class="action-icon">&#9670;</div>

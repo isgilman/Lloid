@@ -416,27 +416,80 @@ def cocktail_from_form():
     }
 
 
+
+# ── Spirit classification ─────────────────────────────────────────────────────
+
+# (label, [keywords-in-ingredient-name], url-key-for-?spirit= param)
+_SPIRIT_BUCKETS = [
+    ('Rum',              ['rum', 'rhum', 'cachaça', 'cachaca', 'clairin', 'batavia'], 'rum'),
+    ('Whiskey',          ['bourbon', 'rye', 'scotch', 'whiskey', 'whisky', 'irish'], 'whiskey'),
+    ('Tequila / Mezcal', ['tequila', 'mezcal', 'sotol'],                             'tequila'),
+    ('Gin',              ['gin'],                                                      'gin'),
+    ('Vodka',            ['vodka'],                                                    'vodka'),
+    ('Cognac / Brandy',  ['cognac', 'calvados', 'brandy', 'pisco', 'armagnac'],       'cognac'),
+    ('Amaro',            ['amaro', 'campari', 'aperol', 'cynar', 'fernet', 'suze'],   'amaro'),
+    ('Vermouth / Wine',  ['vermouth', 'sherry', 'port', 'madeira', 'lillet'],         'vermouth'),
+]
+
+
+def classify_cocktail_spirit(cocktail):
+    """Return (label, url_key) for the primary spirit in a cocktail."""
+    for ing in cocktail.get('ingredients', []):
+        if ing.get('type') == 'pantry':
+            continue
+        name = normalize(ing.get('name', ''))
+        for label, keywords, url_key in _SPIRIT_BUCKETS:
+            if any(kw in name for kw in keywords):
+                return label, url_key
+    return 'Other', None
+
+
 # ── Routes: home ──────────────────────────────────────────────────────────────
 
 @app.route('/')
 def index():
     inventory = load_inventory_with_notes()
-    pantry = load_pantry()
+    pantry    = load_pantry()
     cocktails = _db.get_cocktails()
-    makeable = sum(1 for c in cocktails if get_makeable_status(c, inventory, pantry)[0])
+    makeable  = sum(1 for c in cocktails if get_makeable_status(c, inventory, pantry)[0])
+
+    # Bottle stats by category
     by_cat = {}
     for b in inventory:
         cat = b.get('Category', 'Other')
         by_cat[cat] = by_cat.get(cat, 0) + 1
-    recent = sorted(cocktails, key=lambda c: c.get('created_at', ''), reverse=True)[:6]
-    for c in recent:
-        c['can_make'] = get_makeable_status(c, inventory, pantry)[0]
+
+    # Cocktail stats by base spirit
+    spirit_counts = {}
+    for c in cocktails:
+        label, url_key = classify_cocktail_spirit(c)
+        if label not in spirit_counts:
+            spirit_counts[label] = {'count': 0, 'url_key': url_key}
+        spirit_counts[label]['count'] += 1
+    spirit_stats = sorted(
+        [(label, v['count'], v['url_key']) for label, v in spirit_counts.items() if label != 'Other'],
+        key=lambda x: -x[1]
+    )
+    if 'Other' in spirit_counts:
+        spirit_stats.append(('Other', spirit_counts['Other']['count'], None))
+
+    # Recently viewed cocktails
+    rv_ids = _db.get_recently_viewed(8)
+    recently_viewed = []
+    for rv in rv_ids:
+        c = _db.get_cocktail(rv['cocktail_id'])
+        if c:
+            c['can_make'] = get_makeable_status(c, inventory, pantry)[0]
+            c['spirit_label'], _ = classify_cocktail_spirit(c)
+            recently_viewed.append(c)
+
     return render_template('index.html',
                            bottle_count=len(inventory),
                            cocktail_count=len(cocktails),
                            makeable_count=makeable,
                            categories=by_cat,
-                           recent_cocktails=recent)
+                           spirit_stats=spirit_stats,
+                           recently_viewed=recently_viewed)
 
 
 # ── Routes: inventory ─────────────────────────────────────────────────────────
@@ -631,6 +684,18 @@ def pantry_specialty_delete():
 
 # ── Routes: cocktails ─────────────────────────────────────────────────────────
 
+@app.route('/cocktails/random')
+def cocktail_random():
+    inventory = load_inventory_with_notes()
+    pantry    = load_pantry()
+    cocktails = _db.get_cocktails()
+    makeable  = [c for c in cocktails if get_makeable_status(c, inventory, pantry)[0]]
+    pool = makeable if makeable else cocktails
+    if pool:
+        return redirect(url_for('cocktail_detail', cocktail_id=random.choice(pool)['id']))
+    return redirect(url_for('cocktails'))
+
+
 @app.route('/cocktails')
 def cocktails():
     inventory = load_inventory_with_notes()
@@ -734,6 +799,7 @@ def cocktail_detail(cocktail_id):
                 if sname in ing_norm or ing_norm in sname:
                     ing['pantry_item'] = sitem
                     break
+    _db.record_view(cocktail_id)
     history = _db.get_history(cocktail_id, limit=10)
     feedback = _db.get_feedback(cocktail_id)
     return render_template('cocktail_detail.html',

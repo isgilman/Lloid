@@ -699,6 +699,13 @@ select.edit-input { padding: 5px 8px; }
 .section-link:hover { color: var(--accent-light); }
 
 .category-list { display: flex; flex-direction: column; gap: 0; }
+
+.category-list-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+}
+
 .category-row {
   display: flex;
   justify-content: space-between;
@@ -708,6 +715,20 @@ select.edit-input { padding: 5px 8px; }
   font-size: 13.5px;
 }
 .category-row:last-child { border-bottom: none; }
+
+.category-row-link {
+  text-decoration: none;
+  border-radius: var(--radius);
+  margin: 0 -8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  transition: background var(--transition);
+}
+.category-row-link:hover {
+  background: rgba(255,255,255,.04);
+}
+.category-row-link:hover .category-name { color: var(--accent-light); }
+
 .category-name { color: var(--text); }
 .category-count {
   font-size: 12px;
@@ -716,6 +737,54 @@ select.edit-input { padding: 5px 8px; }
   padding: 1px 8px;
   border-radius: 12px;
 }
+
+/* Bartender's Choice */
+.bartenders-choice-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgba(119,33,111,.12), rgba(119,33,111,.04));
+  border: 1px solid rgba(119,33,111,.28);
+  border-radius: var(--radius-lg);
+  padding: 16px 22px;
+  margin-bottom: 24px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color var(--transition), background var(--transition);
+}
+.bartenders-choice-btn:hover {
+  border-color: rgba(119,33,111,.55);
+  background: linear-gradient(135deg, rgba(119,33,111,.2), rgba(119,33,111,.08));
+}
+.bc-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.bc-dice {
+  font-size: 28px;
+  line-height: 1;
+  color: var(--accent-light);
+}
+.bc-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--accent-light);
+  line-height: 1.2;
+}
+.bc-subtitle {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.bc-arrow {
+  font-size: 22px;
+  color: var(--accent-light);
+  flex-shrink: 0;
+}
+
+.home-section-wide { grid-column: 1 / -1; }
 
 .recent-list { display: flex; flex-direction: column; gap: 4px; }
 .recent-item {
@@ -1693,6 +1762,8 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   .nav-inner { padding: 0 20px; gap: 20px; }
   .page-container { padding: 28px 20px; }
   .home-grid { grid-template-columns: 1fr; }
+  .home-section-wide { grid-column: span 1; }
+  .category-list-2col { grid-template-columns: 1fr; }
   .home-actions { grid-template-columns: 1fr; }
   .stats-row { grid-template-columns: 1fr 1fr 1fr; }
   .detail-body { grid-template-columns: 1fr; }

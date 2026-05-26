@@ -51,6 +51,11 @@ CREATE TABLE IF NOT EXISTS feedback (
     updated_at   TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS recently_viewed (
+    cocktail_id TEXT PRIMARY KEY,
+    viewed_at   TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS bottle_notes (
     bottle_name  TEXT PRIMARY KEY,
     in_stock     INTEGER NOT NULL DEFAULT 1,
@@ -495,3 +500,26 @@ def get_all_bottle_notes() -> dict:
         }
         for r in rows
     }
+
+
+# ── Recently viewed ───────────────────────────────────────────────────────────
+
+def record_view(cocktail_id: str):
+    """Upsert a recently-viewed record (one row per cocktail, updated on each visit)."""
+    now = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    with _connect() as conn:
+        conn.execute("""
+            INSERT INTO recently_viewed (cocktail_id, viewed_at) VALUES (?, ?)
+            ON CONFLICT(cocktail_id) DO UPDATE SET viewed_at=excluded.viewed_at
+        """, (cocktail_id, now))
+        conn.commit()
+
+
+def get_recently_viewed(limit: int = 8) -> list:
+    """Return up to `limit` cocktail IDs sorted most-recently-viewed first."""
+    with _connect() as conn:
+        rows = conn.execute(
+            "SELECT cocktail_id, viewed_at FROM recently_viewed "
+            "ORDER BY viewed_at DESC LIMIT ?", (limit,)
+        ).fetchall()
+    return [{'cocktail_id': r['cocktail_id'], 'viewed_at': r['viewed_at']} for r in rows]
