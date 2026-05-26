@@ -2,6 +2,7 @@
 :root {
   --bg:           #0d0d0d;
   --surface:      #181818;
+  --bg-card:      #1c1c1c;
   --card:         #212121;
   --card-hover:   #2a2a2a;
   --border:       #303030;
@@ -1964,21 +1965,34 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
 .flavor-tag-groups {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
 }
 
+.flavor-tag-group {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.flavor-tag-group:last-child { border-bottom: none; }
+
 .flavor-tag-group-label {
-  font-size: 11px;
+  font-size: 10.5px;
   text-transform: uppercase;
-  letter-spacing: .06em;
+  letter-spacing: .07em;
   color: var(--text-dim);
-  margin-bottom: 6px;
+  margin-bottom: 7px;
+  font-weight: 600;
 }
 
 .flavor-chip-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
+}
+
+/* Smaller chips inside the drawer for density */
+.flavor-chip-row .form-chip {
+  font-size: 11.5px;
+  padding: 3px 9px;
 }
 
 /* ── Responsive ──────────────────────────────────────────────────────────────── */
