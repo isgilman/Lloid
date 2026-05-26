@@ -113,20 +113,20 @@
           <div class="ingredient-status">
             {% if ing.available %}
               {% if ing.source == 'pantry' %}
-                <span class="ing-dot ing-dot-pantry" title="Pantry item">&#9679;</span>
+                <span class="ing-dot ing-dot-pantry" title="Pantry item">&#9650;</span>
               {% else %}
                 <span class="ing-dot ing-dot-have" title="{{ ing.source }}">&#9679;</span>
               {% endif %}
             {% else %}
-              <span class="ing-dot ing-dot-missing" title="Not in inventory">&#9679;</span>
+              <span class="ing-dot ing-dot-missing" title="Not in bar">&#9679;</span>
             {% endif %}
           </div>
         </li>
         {% endfor %}
       </ul>
       <div class="ingredient-legend">
-        <span class="ing-dot ing-dot-have">&#9679;</span> In inventory
-        <span class="ing-dot ing-dot-pantry" style="margin-left:12px">&#9679;</span> Pantry
+        <span class="ing-dot ing-dot-have">&#9679;</span> Bar
+        <span class="ing-dot ing-dot-pantry" style="margin-left:12px">&#9650;</span> Pantry
         <span class="ing-dot ing-dot-missing" style="margin-left:12px">&#9679;</span> Missing
       </div>
     </div>
