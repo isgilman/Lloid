@@ -6,97 +6,191 @@
   <div class="page-header">
     <div>
       <h1 class="page-title">Bottles</h1>
-      <p class="page-subtitle">{{ bottles | length }} bottles</p>
+      <p class="page-subtitle" id="bottle-count-label">{{ bottles | length }} bottles</p>
     </div>
     <button class="btn btn-primary" onclick="openAddModal()">+ Add Bottle</button>
   </div>
 
+  <!-- Filter bar -->
   <div class="filter-bar">
-    <input type="text" id="inv-search" class="filter-input" placeholder="Search bottles…" oninput="filterInventory()">
-    <select id="inv-category" class="filter-select" onchange="filterInventory()">
+    <input type="text" id="inv-search" class="filter-input"
+           placeholder="Search bottles…" oninput="filterBottles()">
+    <select id="inv-category" class="filter-select" onchange="filterBottles()">
       <option value="">All categories</option>
       {% for cat in categories %}
         <option value="{{ cat }}">{{ cat }}</option>
       {% endfor %}
     </select>
+    <button id="inv-instock-btn" class="filter-toggle" onclick="toggleInStockFilter()"
+            title="Show only in-stock bottles">In Stock</button>
   </div>
 
-  <div class="table-wrapper">
-    <table class="data-table" id="inv-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Style</th>
-          <th>Origin</th>
-          <th>ABV</th>
-          <th>Use</th>
-          <th class="col-actions"></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for bottle in bottles %}
-        <tr class="bottle-row" data-index="{{ loop.index0 }}"
-            data-name="{{ bottle.Name | lower }}"
-            data-category="{{ bottle.Category }}">
-          <td class="td-name">
-            <span class="display-val">{{ bottle.Name }}</span>
-            <input class="edit-input" type="text" name="Name" value="{{ bottle.Name }}">
-          </td>
-          <td>
-            <span class="display-val">{{ bottle.Category }}</span>
-            <input class="edit-input" type="text" name="Category" value="{{ bottle.Category }}">
-          </td>
-          <td>
-            <span class="display-val text-dim">{{ bottle.Style }}</span>
-            <input class="edit-input" type="text" name="Style" value="{{ bottle.Style }}">
-          </td>
-          <td>
-            <span class="display-val text-dim">{{ bottle.Origin }}</span>
-            <input class="edit-input" type="text" name="Origin" value="{{ bottle.Origin }}">
-          </td>
-          <td>
-            <span class="display-val text-dim">{{ bottle.ABV }}</span>
-            <input class="edit-input" type="text" name="ABV" value="{{ bottle.ABV }}">
-          </td>
-          <td>
-            <span class="display-val">
-              {% if bottle.Use == 'Neat Only' %}
-                <span class="badge badge-dim">Neat Only</span>
-              {% elif bottle.Use == 'Premium Cocktail' %}
-                <span class="badge badge-premium">Premium</span>
-              {% else %}
-                <span class="badge badge-green">Cocktail</span>
-              {% endif %}
-            </span>
-            <select class="edit-input" name="Use">
-              <option {% if bottle.Use == 'Cocktail' %}selected{% endif %}>Cocktail</option>
-              <option {% if bottle.Use == 'Premium Cocktail' %}selected{% endif %}>Premium Cocktail</option>
-              <option {% if bottle.Use == 'Neat Only' %}selected{% endif %}>Neat Only</option>
-            </select>
-          </td>
-          <td class="td-actions">
-            <div class="action-btns display-val">
-              <button class="btn-icon" onclick="editRow(this)" title="Edit">&#9998;</button>
-              <form method="post" action="{{ url_for('inventory_delete') }}" class="inline-form"
-                    onsubmit="return confirm('Remove {{ bottle.Name }}?')">
-                <input type="hidden" name="index" value="{{ loop.index0 }}">
-                <input type="hidden" name="Name" value="{{ bottle.Name }}">
-                <button type="submit" class="btn-icon btn-icon-danger" title="Delete">&#10005;</button>
-              </form>
-            </div>
-            <div class="edit-btns" style="display:none">
-              <button class="btn btn-sm btn-primary" onclick="saveRow(this)">Save</button>
-              <button class="btn btn-sm btn-ghost" onclick="cancelEdit(this)">Cancel</button>
-            </div>
-          </td>
-        </tr>
+  <!-- Bottle grid -->
+  <div class="bottle-grid" id="bottle-grid">
+    {% for b in bottles %}
+    <div class="bottle-card {% if not b.in_stock %}bottle-card-oos{% endif %}"
+         data-index="{{ b._index }}"
+         data-name="{{ b.Name | lower }}"
+         data-category="{{ b.Category }}"
+         data-instock="{{ 'true' if b.in_stock else 'false' }}"
+         onclick="openDrawer({{ loop.index0 }})">
+
+      <div class="bottle-card-top">
+        <span class="bottle-card-category">{{ b.Category }}</span>
+        <button class="bottle-stock-pill {% if b.in_stock %}bottle-stock-on{% endif %}"
+                data-name="{{ b.Name }}"
+                onclick="event.stopPropagation(); quickToggle(this)"
+                title="{% if b.in_stock %}In stock — click to toggle{% else %}Out of stock — click to toggle{% endif %}">
+          <span class="bottle-stock-dot">&#9679;</span>
+          <span class="bottle-stock-label">{% if b.in_stock %}In stock{% else %}Out of stock{% endif %}</span>
+        </button>
+      </div>
+
+      <h3 class="bottle-card-name">{{ b.Name }}</h3>
+
+      <p class="bottle-card-meta">
+        {% if b.Style %}<span>{{ b.Style }}</span>{% endif %}
+        {% if b.Origin %}<span class="text-dim">{{ b.Origin }}</span>{% endif %}
+        {% if b.Age %}<span class="text-dim">{{ b.Age }}</span>{% endif %}
+      </p>
+
+      <div class="bottle-card-footer">
+        {% if b.ABV %}<span class="bottle-card-abv">{{ b.ABV }}</span>{% endif %}
+        {% if b.Use == 'Neat Only' %}
+          <span class="badge badge-dim">Neat Only</span>
+        {% elif b.Use == 'Premium Cocktail' %}
+          <span class="badge badge-premium">Premium</span>
+        {% else %}
+          <span class="badge badge-green">Cocktail</span>
+        {% endif %}
+      </div>
+
+      {% if b.flavor_tags %}
+      <div class="bottle-card-tags">
+        {% for tag in b.flavor_tags[:4] %}
+          <span class="bottle-flavor-tag">{{ tag | replace('-', ' ') | title }}</span>
         {% endfor %}
-      </tbody>
-    </table>
+        {% if b.flavor_tags | length > 4 %}
+          <span class="bottle-flavor-tag bottle-flavor-more">+{{ b.flavor_tags | length - 4 }}</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
   </div>
 
   <p class="empty-filtered" id="inv-empty" style="display:none">No bottles match your search.</p>
+</div>
+
+<!-- Drawer overlay -->
+<div class="bottle-drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+
+<!-- Detail / tasting notes drawer -->
+<div class="bottle-drawer" id="bottle-drawer">
+  <div class="bottle-drawer-header">
+    <div class="bottle-drawer-title-wrap">
+      <h2 class="bottle-drawer-title" id="drawer-title">—</h2>
+    </div>
+    <div class="bottle-drawer-header-actions">
+      <button class="btn btn-ghost btn-sm btn-danger" onclick="deleteBottle()" id="drawer-delete-btn">Delete</button>
+      <button class="modal-close" onclick="closeDrawer()">&#10005;</button>
+    </div>
+  </div>
+
+  <div class="bottle-drawer-body">
+
+    <!-- Availability -->
+    <div class="bottle-drawer-section">
+      <div class="bottle-drawer-avail-row">
+        <button class="stock-toggle" id="drawer-stock-toggle" onclick="drawerToggleStock()">
+          <span class="stock-toggle-knob"></span>
+        </button>
+        <span class="bottle-drawer-avail-label" id="drawer-avail-label">In stock</span>
+        <span class="badge" id="drawer-use-badge"></span>
+      </div>
+    </div>
+
+    <!-- Details (editable) -->
+    <div class="bottle-drawer-section">
+      <h3 class="bottle-drawer-section-title">Details</h3>
+      <div class="form-grid-2" style="gap:10px">
+        <div class="form-group form-col-span-2" style="margin-bottom:0">
+          <label class="form-label">Name *</label>
+          <input type="text" id="dr-name" class="form-input" required>
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Category</label>
+          <input type="text" id="dr-category" class="form-input" list="drawer-cat-list">
+          <datalist id="drawer-cat-list">
+            {% for cat in categories %}
+            <option value="{{ cat }}">
+            {% endfor %}
+          </datalist>
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Style</label>
+          <input type="text" id="dr-style" class="form-input">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Origin</label>
+          <input type="text" id="dr-origin" class="form-input">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Age</label>
+          <input type="text" id="dr-age" class="form-input" placeholder="NAS, 12yr…">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">ABV</label>
+          <input type="text" id="dr-abv" class="form-input" placeholder="44%">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Producer</label>
+          <input type="text" id="dr-producer" class="form-input">
+        </div>
+        <div class="form-group form-col-span-2" style="margin-bottom:0">
+          <label class="form-label">Use</label>
+          <select id="dr-use" class="form-input" onchange="updateUseBadge()">
+            <option>Cocktail</option>
+            <option>Premium Cocktail</option>
+            <option>Neat Only</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tasting notes -->
+    <div class="bottle-drawer-section">
+      <h3 class="bottle-drawer-section-title">Tasting Notes</h3>
+      <div class="form-group" style="margin-bottom:12px">
+        <label class="form-label">Nose</label>
+        <textarea id="dr-nose" class="form-input form-textarea" rows="2"
+                  placeholder="Aromas on the nose…"></textarea>
+      </div>
+      <div class="form-group" style="margin-bottom:12px">
+        <label class="form-label">Palate</label>
+        <textarea id="dr-palate" class="form-input form-textarea" rows="2"
+                  placeholder="Flavors on the palate…"></textarea>
+      </div>
+      <div class="form-group" style="margin-bottom:12px">
+        <label class="form-label">Finish</label>
+        <textarea id="dr-finish" class="form-input form-textarea" rows="2"
+                  placeholder="Length and character of the finish…"></textarea>
+      </div>
+
+      <!-- Flavor tag chips -->
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label">Flavor Notes</label>
+        <div class="flavor-tag-groups" id="flavor-tag-groups">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.bottle-drawer-body -->
+
+  <div class="bottle-drawer-footer">
+    <button class="btn btn-primary" onclick="saveDrawer()">Save Changes</button>
+  </div>
 </div>
 
 <!-- Add Bottle Modal -->
@@ -114,7 +208,12 @@
         </div>
         <div class="form-group">
           <label class="form-label">Category</label>
-          <input type="text" name="Category" class="form-input" placeholder="e.g. Other Spirit">
+          <input type="text" name="Category" class="form-input" placeholder="e.g. Other Spirit" list="add-cat-list">
+          <datalist id="add-cat-list">
+            {% for cat in categories %}
+            <option value="{{ cat }}">
+            {% endfor %}
+          </datalist>
         </div>
         <div class="form-group">
           <label class="form-label">Style</label>
@@ -156,6 +255,339 @@
 
 {% block scripts %}
 <script>
+// ── Data ──────────────────────────────────────────────────────────────────────
+const BOTTLES = {{ bottles | tojson }};
+
+const FLAVOR_GROUPS = [
+  { label: 'Fruit',         tags: [
+    {value:'citrus',      label:'Citrus'},
+    {value:'apple-pear',  label:'Apple / Pear'},
+    {value:'stone-fruit', label:'Stone Fruit'},
+    {value:'tropical',    label:'Tropical'},
+    {value:'berry',       label:'Berry'},
+    {value:'dried-fruit', label:'Dried Fruit'},
+  ]},
+  { label: 'Floral / Herbal', tags: [
+    {value:'floral',   label:'Floral'},
+    {value:'herbal',   label:'Herbal'},
+    {value:'vegetal',  label:'Vegetal'},
+    {value:'grassy',   label:'Grassy'},
+  ]},
+  { label: 'Spice', tags: [
+    {value:'spicy',        label:'Spicy'},
+    {value:'pepper',       label:'Pepper'},
+    {value:'baking-spice', label:'Baking Spice'},
+  ]},
+  { label: 'Sweet', tags: [
+    {value:'vanilla',  label:'Vanilla'},
+    {value:'caramel',  label:'Caramel'},
+    {value:'honey',    label:'Honey'},
+    {value:'malty',    label:'Malty'},
+    {value:'sweet',    label:'Sweet'},
+  ]},
+  { label: 'Earthy / Wood', tags: [
+    {value:'smoky',  label:'Smoky'},
+    {value:'peaty',  label:'Peaty'},
+    {value:'earthy', label:'Earthy'},
+    {value:'woody',  label:'Woody'},
+    {value:'oak',    label:'Oak'},
+  ]},
+  { label: 'Other', tags: [
+    {value:'bitter',    label:'Bitter'},
+    {value:'nutty',     label:'Nutty'},
+    {value:'chocolate', label:'Chocolate'},
+    {value:'coffee',    label:'Coffee'},
+    {value:'creamy',    label:'Creamy'},
+    {value:'briny',     label:'Briny'},
+  ]},
+];
+
+// ── Filters ───────────────────────────────────────────────────────────────────
+let inStockOnly = false;
+
+function toggleInStockFilter() {
+  inStockOnly = !inStockOnly;
+  const btn = document.getElementById('inv-instock-btn');
+  btn.classList.toggle('active', inStockOnly);
+  filterBottles();
+}
+
+function filterBottles() {
+  const q    = document.getElementById('inv-search').value.toLowerCase().trim();
+  const cat  = document.getElementById('inv-category').value;
+  const cards = document.querySelectorAll('.bottle-card');
+  let visible = 0;
+  cards.forEach(function(card) {
+    const name     = card.dataset.name || '';
+    const cardCat  = card.dataset.category || '';
+    const inStock  = card.dataset.instock === 'true';
+    const matchQ   = !q   || name.includes(q);
+    const matchCat = !cat || cardCat === cat;
+    const matchStock = !inStockOnly || inStock;
+    const show = matchQ && matchCat && matchStock;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('bottle-count-label').textContent = visible + ' bottle' + (visible !== 1 ? 's' : '');
+  document.getElementById('inv-empty').style.display = visible === 0 ? '' : 'none';
+}
+
+// ── Quick stock toggle (on card) ──────────────────────────────────────────────
+async function quickToggle(btn) {
+  const name = btn.dataset.name;
+  const fd = new FormData();
+  fd.append('name', name);
+  try {
+    const res  = await fetch('/inventory/toggle', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      const inStock = data.in_stock;
+      btn.classList.toggle('bottle-stock-on', inStock);
+      btn.querySelector('.bottle-stock-label').textContent = inStock ? 'In stock' : 'Out of stock';
+      btn.title = inStock ? 'In stock — click to toggle' : 'Out of stock — click to toggle';
+      const card = btn.closest('.bottle-card');
+      card.classList.toggle('bottle-card-oos', !inStock);
+      card.dataset.instock = inStock ? 'true' : 'false';
+      // Keep local BOTTLES in sync
+      const idx = parseInt(card.dataset.index);
+      if (!isNaN(idx)) BOTTLES[idx].in_stock = inStock;
+      filterBottles();
+      showToast(inStock ? 'Marked in stock' : 'Marked out of stock', 'success');
+    }
+  } catch(e) {
+    showToast('Error updating stock', 'error');
+  }
+}
+
+// ── Drawer ────────────────────────────────────────────────────────────────────
+let _drawerIdx = null;
+let _drawerName = null;  // original name when drawer opened
+
+function openDrawer(listIdx) {
+  const b = BOTTLES[listIdx];
+  if (!b) return;
+  _drawerIdx  = listIdx;
+  _drawerName = b.Name;
+
+  // Header
+  document.getElementById('drawer-title').textContent = b.Name;
+
+  // Availability
+  const toggle = document.getElementById('drawer-stock-toggle');
+  toggle.classList.toggle('stock-toggle-on', b.in_stock !== false);
+  document.getElementById('drawer-avail-label').textContent =
+    (b.in_stock !== false) ? 'In stock' : 'Out of stock';
+
+  // Details
+  document.getElementById('dr-name').value     = b.Name        || '';
+  document.getElementById('dr-category').value = b.Category    || '';
+  document.getElementById('dr-style').value    = b.Style       || '';
+  document.getElementById('dr-origin').value   = b.Origin      || '';
+  document.getElementById('dr-age').value      = b.Age         || '';
+  document.getElementById('dr-abv').value      = b.ABV         || '';
+  document.getElementById('dr-producer').value = b.Producer    || '';
+  document.getElementById('dr-use').value      = b.Use         || 'Cocktail';
+  updateUseBadge();
+
+  // Tasting notes
+  document.getElementById('dr-nose').value   = b.nose   || '';
+  document.getElementById('dr-palate').value = b.palate || '';
+  document.getElementById('dr-finish').value = b.finish || '';
+
+  // Flavor chips
+  buildFlavorChips(b.flavor_tags || []);
+
+  // Show drawer
+  document.getElementById('drawer-overlay').classList.add('active');
+  document.getElementById('bottle-drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('active');
+  document.getElementById('bottle-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+  _drawerIdx  = null;
+  _drawerName = null;
+}
+
+function updateUseBadge() {
+  const use  = document.getElementById('dr-use').value;
+  const badge = document.getElementById('drawer-use-badge');
+  badge.className = 'badge';
+  if (use === 'Neat Only') {
+    badge.className += ' badge-dim'; badge.textContent = 'Neat Only';
+  } else if (use === 'Premium Cocktail') {
+    badge.className += ' badge-premium'; badge.textContent = 'Premium';
+  } else {
+    badge.className += ' badge-green'; badge.textContent = 'Cocktail';
+  }
+}
+
+// ── Drawer stock toggle ───────────────────────────────────────────────────────
+async function drawerToggleStock() {
+  if (_drawerIdx === null) return;
+  const name = BOTTLES[_drawerIdx].Name;
+  const fd = new FormData();
+  fd.append('name', name);
+  try {
+    const res  = await fetch('/inventory/toggle', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      const inStock = data.in_stock;
+      BOTTLES[_drawerIdx].in_stock = inStock;
+      document.getElementById('drawer-stock-toggle').classList.toggle('stock-toggle-on', inStock);
+      document.getElementById('drawer-avail-label').textContent = inStock ? 'In stock' : 'Out of stock';
+      // sync card
+      const card = document.querySelector('.bottle-card[data-index="' + BOTTLES[_drawerIdx]._index + '"]');
+      if (card) {
+        card.classList.toggle('bottle-card-oos', !inStock);
+        card.dataset.instock = inStock ? 'true' : 'false';
+        const pill = card.querySelector('.bottle-stock-pill');
+        if (pill) {
+          pill.classList.toggle('bottle-stock-on', inStock);
+          pill.querySelector('.bottle-stock-label').textContent = inStock ? 'In stock' : 'Out of stock';
+        }
+      }
+      filterBottles();
+    }
+  } catch(e) {
+    showToast('Error updating stock', 'error');
+  }
+}
+
+// ── Flavor chips ──────────────────────────────────────────────────────────────
+function buildFlavorChips(selected) {
+  const container = document.getElementById('flavor-tag-groups');
+  container.innerHTML = '';
+  const selSet = new Set(selected);
+  FLAVOR_GROUPS.forEach(function(grp) {
+    const groupEl = document.createElement('div');
+    groupEl.className = 'flavor-tag-group';
+    const labelEl = document.createElement('div');
+    labelEl.className = 'flavor-tag-group-label';
+    labelEl.textContent = grp.label;
+    groupEl.appendChild(labelEl);
+    const chips = document.createElement('div');
+    chips.className = 'flavor-chip-row';
+    grp.tags.forEach(function(t) {
+      const lbl = document.createElement('label');
+      lbl.className = 'form-chip' + (selSet.has(t.value) ? ' active' : '');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = t.value;
+      cb.checked = selSet.has(t.value);
+      cb.onchange = function() { lbl.classList.toggle('active', cb.checked); };
+      lbl.appendChild(cb);
+      lbl.appendChild(document.createTextNode(t.label));
+      chips.appendChild(lbl);
+    });
+    groupEl.appendChild(chips);
+    container.appendChild(groupEl);
+  });
+}
+
+function getSelectedFlavors() {
+  return Array.from(document.querySelectorAll('#flavor-tag-groups input[type=checkbox]:checked'))
+    .map(function(cb) { return cb.value; });
+}
+
+// ── Save ─────────────────────────────────────────────────────────────────────
+async function saveDrawer() {
+  if (_drawerIdx === null) return;
+  const b = BOTTLES[_drawerIdx];
+  const newName = document.getElementById('dr-name').value.trim();
+  if (!newName) { showToast('Name is required', 'error'); return; }
+
+  // Save bottle details
+  const detailFd = new FormData();
+  detailFd.append('index',    b._index);
+  detailFd.append('Name',     newName);
+  detailFd.append('Category', document.getElementById('dr-category').value.trim());
+  detailFd.append('Style',    document.getElementById('dr-style').value.trim());
+  detailFd.append('Origin',   document.getElementById('dr-origin').value.trim());
+  detailFd.append('Age',      document.getElementById('dr-age').value.trim());
+  detailFd.append('ABV',      document.getElementById('dr-abv').value.trim());
+  detailFd.append('Producer', document.getElementById('dr-producer').value.trim());
+  detailFd.append('Use',      document.getElementById('dr-use').value);
+
+  // Save tasting notes
+  const noteFd = new FormData();
+  noteFd.append('name',   newName);
+  noteFd.append('nose',   document.getElementById('dr-nose').value.trim());
+  noteFd.append('palate', document.getElementById('dr-palate').value.trim());
+  noteFd.append('finish', document.getElementById('dr-finish').value.trim());
+  getSelectedFlavors().forEach(function(v) { noteFd.append('flavor_tags', v); });
+
+  try {
+    const [r1, r2] = await Promise.all([
+      fetch('/inventory/update', { method: 'POST', body: detailFd }),
+      fetch('/inventory/note',   { method: 'POST', body: noteFd }),
+    ]);
+    const d1 = await r1.json();
+    if (d1.success) {
+      // Update local BOTTLES entry
+      const updated = d1.bottle;
+      BOTTLES[_drawerIdx].Name     = updated.Name;
+      BOTTLES[_drawerIdx].Category = updated.Category;
+      BOTTLES[_drawerIdx].Style    = updated.Style;
+      BOTTLES[_drawerIdx].Origin   = updated.Origin;
+      BOTTLES[_drawerIdx].Age      = updated.Age;
+      BOTTLES[_drawerIdx].ABV      = updated.ABV;
+      BOTTLES[_drawerIdx].Producer = updated.Producer;
+      BOTTLES[_drawerIdx].Use      = updated.Use;
+      BOTTLES[_drawerIdx].nose     = document.getElementById('dr-nose').value.trim();
+      BOTTLES[_drawerIdx].palate   = document.getElementById('dr-palate').value.trim();
+      BOTTLES[_drawerIdx].finish   = document.getElementById('dr-finish').value.trim();
+      BOTTLES[_drawerIdx].flavor_tags = getSelectedFlavors();
+
+      // Update the card in DOM
+      const card = document.querySelector('.bottle-card[data-index="' + b._index + '"]');
+      if (card) {
+        card.dataset.name     = updated.Name.toLowerCase();
+        card.dataset.category = updated.Category;
+        card.querySelector('.bottle-card-name').textContent = updated.Name;
+        card.querySelector('.bottle-card-category').textContent = updated.Category;
+        // Refresh flavor tags display
+        let tagsEl = card.querySelector('.bottle-card-tags');
+        const flavors = BOTTLES[_drawerIdx].flavor_tags;
+        if (flavors.length) {
+          if (!tagsEl) {
+            tagsEl = document.createElement('div');
+            tagsEl.className = 'bottle-card-tags';
+            card.appendChild(tagsEl);
+          }
+          tagsEl.innerHTML = flavors.slice(0,4).map(function(t) {
+            return '<span class="bottle-flavor-tag">' + t.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();}) + '</span>';
+          }).join('') + (flavors.length > 4 ? '<span class="bottle-flavor-tag bottle-flavor-more">+' + (flavors.length-4) + '</span>' : '');
+        } else if (tagsEl) {
+          tagsEl.remove();
+        }
+      }
+      document.getElementById('drawer-title').textContent = updated.Name;
+      _drawerName = updated.Name;
+      showToast('Saved', 'success');
+    } else {
+      showToast('Error saving details', 'error');
+    }
+  } catch(e) {
+    showToast('Error saving', 'error');
+  }
+}
+
+// ── Delete ────────────────────────────────────────────────────────────────────
+function deleteBottle() {
+  if (_drawerIdx === null) return;
+  const b = BOTTLES[_drawerIdx];
+  if (!confirm('Remove "' + b.Name + '" from your inventory?')) return;
+  const fd = new FormData();
+  fd.append('index', b._index);
+  fd.append('Name',  b.Name);
+  fetch('/inventory/delete', { method: 'POST', body: fd })
+    .then(function() { window.location.reload(); });
+}
+
+// ── Add modal ────────────────────────────────────────────────────────────────
 function openAddModal() {
   document.getElementById('add-modal').style.display = 'flex';
 }

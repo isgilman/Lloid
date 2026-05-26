@@ -50,6 +50,16 @@ CREATE TABLE IF NOT EXISTS feedback (
     favorited    INTEGER NOT NULL DEFAULT 0,
     updated_at   TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS bottle_notes (
+    bottle_name  TEXT PRIMARY KEY,
+    in_stock     INTEGER NOT NULL DEFAULT 1,
+    nose         TEXT    NOT NULL DEFAULT '',
+    palate       TEXT    NOT NULL DEFAULT '',
+    finish       TEXT    NOT NULL DEFAULT '',
+    flavor_tags  TEXT    NOT NULL DEFAULT '[]',
+    updated_at   TEXT    NOT NULL
+);
 """
 
 
@@ -397,3 +407,91 @@ def import_cocktails(cocktails: list, overwrite_shared: bool = True) -> dict:
         conn.commit()
 
     return {'added': added, 'updated': updated, 'skipped': skipped}
+
+
+# ── Bottle notes ──────────────────────────────────────────────────────────────
+
+_BLANK_BOTTLE_NOTE = {'in_stock': True, 'nose': '', 'palate': '', 'finish': '', 'flavor_tags': []}
+
+
+def get_bottle_note(bottle_name: str) -> dict:
+    """Return tasting notes + stock state for a bottle, or blank defaults."""
+    with _connect() as conn:
+        row = conn.execute(
+            "SELECT * FROM bottle_notes WHERE bottle_name=?", (bottle_name,)
+        ).fetchone()
+    if row:
+        return {
+            'in_stock':    bool(row['in_stock']),
+            'nose':        row['nose']   or '',
+            'palate':      row['palate'] or '',
+            'finish':      row['finish'] or '',
+            'flavor_tags': json.loads(row['flavor_tags'] or '[]'),
+        }
+    return dict(_BLANK_BOTTLE_NOTE)
+
+
+def set_bottle_note(bottle_name: str, **kwargs) -> dict:
+    """Upsert tasting notes / availability for a bottle."""
+    now     = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    current = get_bottle_note(bottle_name)
+    in_stock    = kwargs.get('in_stock',    current['in_stock'])
+    nose        = kwargs.get('nose',        current['nose'])
+    palate      = kwargs.get('palate',      current['palate'])
+    finish      = kwargs.get('finish',      current['finish'])
+    flavor_tags = kwargs.get('flavor_tags', current['flavor_tags'])
+    if isinstance(flavor_tags, list):
+        flavor_tags = json.dumps(flavor_tags)
+    with _connect() as conn:
+        conn.execute("""
+            INSERT INTO bottle_notes (bottle_name, in_stock, nose, palate, finish, flavor_tags, updated_at)
+            VALUES (?,?,?,?,?,?,?)
+            ON CONFLICT(bottle_name) DO UPDATE SET
+                in_stock=excluded.in_stock,
+                nose=excluded.nose,
+                palate=excluded.palate,
+                finish=excluded.finish,
+                flavor_tags=excluded.flavor_tags,
+                updated_at=excluded.updated_at
+        """, (bottle_name, int(in_stock), nose, palate, finish, flavor_tags, now))
+        conn.commit()
+    return get_bottle_note(bottle_name)
+
+
+def toggle_bottle_stock(bottle_name: str) -> dict:
+    """Flip in_stock for a bottle; return new note."""
+    note = get_bottle_note(bottle_name)
+    return set_bottle_note(bottle_name, in_stock=not note['in_stock'])
+
+
+def rename_bottle_note(old_name: str, new_name: str):
+    """Move a bottle note to a new name (called on bottle rename)."""
+    with _connect() as conn:
+        conn.execute(
+            "UPDATE bottle_notes SET bottle_name=? WHERE bottle_name=?",
+            (new_name, old_name)
+        )
+        conn.commit()
+
+
+def delete_bottle_note(bottle_name: str):
+    """Remove note row for a deleted bottle."""
+    with _connect() as conn:
+        conn.execute("DELETE FROM bottle_notes WHERE bottle_name=?", (bottle_name,))
+        conn.commit()
+
+
+def get_all_bottle_notes() -> dict:
+    """Return {bottle_name: note_dict} for every row in bottle_notes."""
+    with _connect() as conn:
+        rows = conn.execute("SELECT * FROM bottle_notes").fetchall()
+    return {
+        r['bottle_name']: {
+            'in_stock':    bool(r['in_stock']),
+            'nose':        r['nose']   or '',
+            'palate':      r['palate'] or '',
+            'finish':      r['finish'] or '',
+            'flavor_tags': json.loads(r['flavor_tags'] or '[]'),
+        }
+        for r in rows
+    }

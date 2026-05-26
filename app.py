@@ -171,6 +171,21 @@ def save_inventory(bottles):
             writer.writerow({k: b.get(k, '') for k in INVENTORY_FIELDS})
 
 
+def load_inventory_with_notes():
+    """Load inventory CSV and merge bottle_notes (in_stock etc.) into each dict."""
+    bottles = load_inventory()
+    notes   = _db.get_all_bottle_notes()
+    for i, b in enumerate(bottles):
+        note = notes.get(b['Name'], {'in_stock': True, 'nose': '', 'palate': '', 'finish': '', 'flavor_tags': []})
+        b['in_stock']    = note['in_stock']
+        b['nose']        = note['nose']
+        b['palate']      = note['palate']
+        b['finish']      = note['finish']
+        b['flavor_tags'] = note['flavor_tags']
+        b['_index']      = i
+    return bottles
+
+
 def load_cocktails():
     if COCKTAILS_FILE.exists():
         with open(COCKTAILS_FILE, encoding='utf-8') as f:
@@ -255,6 +270,10 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
 
         # Neat-only bottles never count for mixing
         if use == 'neat only':
+            continue
+
+        # Out-of-stock bottles don't count
+        if not bottle.get('in_stock', True):
             continue
 
         # Premium bottles only count for premium cocktails
@@ -401,7 +420,7 @@ def cocktail_from_form():
 
 @app.route('/')
 def index():
-    inventory = load_inventory()
+    inventory = load_inventory_with_notes()
     pantry = load_pantry()
     cocktails = _db.get_cocktails()
     makeable = sum(1 for c in cocktails if get_makeable_status(c, inventory, pantry)[0])
@@ -424,8 +443,8 @@ def index():
 
 @app.route('/inventory')
 def inventory():
-    bottles = load_inventory()
-    cats = sorted(set(b.get('Category', '') for b in bottles if b.get('Category')))
+    bottles = load_inventory_with_notes()
+    cats    = sorted(set(b.get('Category', '') for b in bottles if b.get('Category')))
     return render_template('inventory.html', bottles=bottles, categories=cats)
 
 
@@ -445,10 +464,38 @@ def inventory_update():
     bottles = load_inventory()
     idx = int(request.form.get('index', -1))
     if 0 <= idx < len(bottles):
+        original_name = bottles[idx].get('Name', '')
         bottles[idx] = {f: request.form.get(f, '').strip() for f in INVENTORY_FIELDS}
+        new_name = bottles[idx].get('Name', '')
         save_inventory(bottles)
-        return jsonify({'success': True, 'bottle': bottles[idx]})
+        if original_name and new_name and original_name != new_name:
+            _db.rename_bottle_note(original_name, new_name)
+        return jsonify({'success': True, 'bottle': bottles[idx], 'index': idx})
     return jsonify({'success': False}), 400
+
+
+@app.route('/inventory/toggle', methods=['POST'])
+def inventory_toggle():
+    name = request.form.get('name', '').strip()
+    if not name:
+        return jsonify({'success': False}), 400
+    note = _db.toggle_bottle_stock(name)
+    return jsonify({'success': True, 'in_stock': note['in_stock']})
+
+
+@app.route('/inventory/note', methods=['POST'])
+def inventory_note():
+    name = request.form.get('name', '').strip()
+    if not name:
+        return jsonify({'success': False}), 400
+    _db.set_bottle_note(
+        name,
+        nose        = request.form.get('nose', '').strip(),
+        palate      = request.form.get('palate', '').strip(),
+        finish      = request.form.get('finish', '').strip(),
+        flavor_tags = request.form.getlist('flavor_tags'),
+    )
+    return jsonify({'success': True})
 
 
 @app.route('/inventory/delete', methods=['POST'])
@@ -459,6 +506,7 @@ def inventory_delete():
         name = bottles[idx].get('Name', '')
         bottles.pop(idx)
         save_inventory(bottles)
+        _db.delete_bottle_note(name)
         flash(f"Removed \"{name}\" from inventory.", 'success')
     return redirect(url_for('inventory'))
 
@@ -585,7 +633,7 @@ def pantry_specialty_delete():
 
 @app.route('/cocktails')
 def cocktails():
-    inventory = load_inventory()
+    inventory = load_inventory_with_notes()
     pantry = load_pantry()
     all_cocktails = _db.get_cocktails()
     all_feedback = _db.get_all_feedback()
@@ -658,7 +706,7 @@ def cocktail_new():
 
 @app.route('/cocktails/<cocktail_id>')
 def cocktail_detail(cocktail_id):
-    inventory = load_inventory()
+    inventory = load_inventory_with_notes()
     pantry = load_pantry()
     cocktail = _db.get_cocktail(cocktail_id)
     if not cocktail:
@@ -856,7 +904,7 @@ def ask_stream():
     messages = data.get('messages', [])
     mode = data.get('mode', 'find')  # 'find' | 'riff' | 'create'
 
-    inventory = load_inventory()
+    inventory = load_inventory_with_notes()
     pantry = load_pantry()
     inv_text = inventory_summary_text(inventory)
     pantry_text = pantry_summary_text(pantry)

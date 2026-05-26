@@ -1736,3 +1736,253 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   .detail-title-row { flex-direction: column; }
   .cocktail-grid { grid-template-columns: 1fr; }
 }
+
+
+/* ── Bottle grid ─────────────────────────────────────────────────────────────── */
+
+.bottle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.bottle-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  text-decoration: none;
+  color: var(--text);
+}
+.bottle-card:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 4px 16px rgba(0,0,0,.18);
+}
+.bottle-card-oos {
+  opacity: 0.55;
+}
+
+.bottle-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 24px;
+}
+
+.bottle-card-category {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Inline stock pill on card */
+.bottle-stock-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.bottle-stock-pill:hover { border-color: var(--border-light); }
+.bottle-stock-pill .bottle-stock-dot { font-size: 8px; color: var(--text-dim); }
+.bottle-stock-on { border-color: rgba(76,184,134,.5); color: var(--green); }
+.bottle-stock-on .bottle-stock-dot { color: var(--green); }
+
+.bottle-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 2px 0 0;
+}
+
+.bottle-card-meta {
+  font-size: 12.5px;
+  color: var(--text-sec);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 0;
+}
+
+.bottle-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.bottle-card-abv {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sec);
+}
+
+.bottle-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.bottle-flavor-tag {
+  font-size: 10.5px;
+  padding: 2px 7px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.bottle-flavor-more {
+  color: var(--accent-light);
+  border-color: transparent;
+  background: transparent;
+}
+
+/* ── Bottle drawer ───────────────────────────────────────────────────────────── */
+
+.bottle-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.bottle-drawer-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bottle-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  max-width: 100vw;
+  height: 100dvh;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border);
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+}
+.bottle-drawer.open {
+  transform: translateX(0);
+}
+
+.bottle-drawer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.bottle-drawer-title-wrap { flex: 1; min-width: 0; }
+.bottle-drawer-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  word-break: break-word;
+}
+.bottle-drawer-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.bottle-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 20px 20px;
+}
+
+.bottle-drawer-section {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.bottle-drawer-section:last-child { border-bottom: none; }
+
+.bottle-drawer-section-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-dim);
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+.bottle-drawer-avail-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.bottle-drawer-avail-label {
+  font-size: 14px;
+  color: var(--text-sec);
+  flex: 1;
+}
+
+.bottle-drawer-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  background: var(--bg-card);
+}
+
+/* ── Flavor tag groups ───────────────────────────────────────────────────────── */
+
+.flavor-tag-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.flavor-tag-group-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.flavor-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .bottle-grid { grid-template-columns: 1fr; }
+  .bottle-drawer { width: 100vw; border-left: none; }
+}
