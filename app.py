@@ -186,9 +186,12 @@ def save_cocktails(cocktails):
 def load_pantry():
     if PANTRY_FILE.exists():
         with open(PANTRY_FILE, encoding='utf-8') as f:
-            return json.load(f)
+            p = json.load(f)
+        if 'standard_out_of_stock' not in p:
+            p['standard_out_of_stock'] = []
+        return p
     # Bootstrap defaults
-    pantry = {'standard': sorted(DEFAULT_PANTRY_STANDARD), 'specialty': []}
+    pantry = {'standard': sorted(DEFAULT_PANTRY_STANDARD), 'specialty': [], 'standard_out_of_stock': []}
     save_pantry(pantry)
     return pantry
 
@@ -229,8 +232,11 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
 
     # Standard pantry check
     pantry_std = pantry.get('standard', []) if pantry else DEFAULT_PANTRY_STANDARD
+    std_oos = set(normalize(x) for x in (pantry.get('standard_out_of_stock', []) if pantry else []))
     for p in pantry_std:
         p = normalize(p)
+        if p in std_oos:
+            continue
         if p == ing or p in ing or ing in p:
             return True, 'pantry'
 
@@ -449,7 +455,8 @@ def inventory_delete():
 @app.route('/pantry')
 def pantry():
     p = load_pantry()
-    return render_template('pantry.html', pantry=p)
+    std_oos = set(normalize(x) for x in p.get('standard_out_of_stock', []))
+    return render_template('pantry.html', pantry=p, standard_oos=std_oos)
 
 
 @app.route('/pantry/standard/add', methods=['POST'])
@@ -476,6 +483,24 @@ def pantry_standard_delete():
         p['standard'] = [x for x in p['standard'] if normalize(x) != normalize(name)]
         save_pantry(p)
     return redirect(url_for('pantry'))
+
+
+@app.route('/pantry/standard/toggle', methods=['POST'])
+def pantry_standard_toggle():
+    name = request.form.get('name', '').strip()
+    if not name:
+        return jsonify({'success': False}), 400
+    p = load_pantry()
+    out = p.setdefault('standard_out_of_stock', [])
+    norm = normalize(name)
+    if norm in [normalize(x) for x in out]:
+        p['standard_out_of_stock'] = [x for x in out if normalize(x) != norm]
+        in_stock = True
+    else:
+        p['standard_out_of_stock'].append(name.lower())
+        in_stock = False
+    save_pantry(p)
+    return jsonify({'success': True, 'in_stock': in_stock})
 
 
 @app.route('/pantry/specialty/add', methods=['POST'])
@@ -622,10 +647,18 @@ def cocktail_detail(cocktail_id):
         return redirect(url_for('cocktails'))
     is_premium = cocktail.get('premium', False)
     can_make, missing = get_makeable_status(cocktail, inventory, pantry)
+    specialty_by_name = {normalize(s['name']): s for s in pantry.get('specialty', [])}
     for ing in cocktail.get('ingredients', []):
         ok, source = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
         ing['available'] = ok
         ing['source'] = source
+        # Link specialty pantry items to their card
+        ing_norm = normalize(ing['name'])
+        ing['pantry_item'] = None
+        for sname, sitem in specialty_by_name.items():
+            if sname in ing_norm or ing_norm in sname:
+                ing['pantry_item'] = sitem
+                break
     history = _db.get_history(cocktail_id, limit=10)
     feedback = _db.get_feedback(cocktail_id)
     return render_template('cocktail_detail.html',

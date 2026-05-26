@@ -31,12 +31,14 @@
 
     <div class="pantry-tags" id="pantry-tags">
       {% for item in pantry.standard %}
-      <span class="pantry-tag">
+      <span class="pantry-tag {% if item | lower in standard_oos %}pantry-tag-oos{% endif %}" id="std-{{ loop.index }}">
+        <button class="pantry-stock-dot" data-name="{{ item }}"
+                title="{% if item | lower in standard_oos %}Out of stock — click to mark available{% else %}In stock — click to mark out of stock{% endif %}">&#9679;</button>
         {{ item }}
         <form method="post" action="{{ url_for('pantry_standard_delete') }}" class="inline">
           <input type="hidden" name="name" value="{{ item }}">
           <button type="submit" class="pantry-tag-remove" title="Remove"
-                  onclick="return confirm('Remove &quot;{{ item }}&quot; from pantry staples?')">&#10005;</button>
+                  onclick="return confirm('Remove this item from pantry staples?')">&#10005;</button>
         </form>
       </span>
       {% endfor %}
@@ -183,6 +185,28 @@ function closeModalIfBg(e, id) {
   if (e.target === e.currentTarget) closeModal(id);
 }
 
+async function toggleStandard(dot) {
+  var name = dot.dataset.name;
+  var form = new FormData();
+  form.append('name', name);
+  try {
+    var res = await fetch('{{ url_for("pantry_standard_toggle") }}', { method: 'POST', body: form });
+    var data = await res.json();
+    if (data.success) {
+      var chip = dot.closest('.pantry-tag');
+      if (data.in_stock) {
+        chip.classList.remove('pantry-tag-oos');
+        dot.title = 'In stock — click to mark out of stock';
+      } else {
+        chip.classList.add('pantry-tag-oos');
+        dot.title = 'Out of stock — click to mark available';
+      }
+    }
+  } catch (e) {
+    console.error('Toggle failed', e);
+  }
+}
+
 async function toggleStock(id, btn) {
   try {
     const res = await fetch('{{ url_for("pantry_specialty_toggle") }}', {
@@ -213,5 +237,10 @@ async function toggleStock(id, btn) {
     console.error('Toggle failed', e);
   }
 }
+
+// Wire up standard pantry stock-dot toggles
+document.querySelectorAll('.pantry-stock-dot').forEach(function(dot) {
+  dot.addEventListener('click', function() { toggleStandard(dot); });
+});
 </script>
 {% endblock %}

@@ -1595,6 +1595,61 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
 .feedback-fav-btn:hover { border-color: var(--border-light); color: var(--text); }
 .feedback-fav-btn.active { color: #e6305a; border-color: rgba(230,48,90,.5); background: rgba(230,48,90,.08); }
 
+
+/* ── Pantry standard item stock toggles ──────────────────────────────────── */
+
+.pantry-stock-dot {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 4px;
+  cursor: pointer;
+  font-size: 9px;
+  color: var(--green);
+  line-height: 1;
+  vertical-align: middle;
+  transition: color var(--transition);
+  flex-shrink: 0;
+}
+.pantry-tag-oos .pantry-stock-dot { color: var(--text-dim); }
+.pantry-tag-oos { opacity: 0.5; text-decoration: line-through; text-decoration-color: var(--text-dim); }
+.pantry-tag-oos:hover { opacity: 0.75; }
+
+/* ── Specialty ingredient link + toggle in cocktail detail ────────────────── */
+
+.ing-pantry-link {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--text-dim);
+  text-underline-offset: 2px;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+.ing-pantry-link:hover {
+  color: var(--accent-light);
+  text-decoration-color: var(--accent-light);
+}
+
+.ing-stock-btn {
+  display: inline-block;
+  font-size: 10.5px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  background: none;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: all var(--transition);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.ing-stock-btn:hover { border-color: var(--border-light); color: var(--text-sec); }
+.ing-stock-btn.ing-stock-on {
+  border-color: rgba(76,184,134,.4);
+  color: var(--green);
+  background: var(--green-bg);
+}
+
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .nav-inner { padding: 0 20px; gap: 20px; }

@@ -98,7 +98,16 @@
             {% if ing.unit %}<span class="ingredient-unit">{{ ing.unit }}</span>{% endif %}
           </div>
           <div class="ingredient-name">
-            {{ ing.name }}
+            {% if ing.pantry_item %}
+              <a href="{{ url_for('pantry') }}#card-{{ ing.pantry_item.id }}" class="ing-pantry-link">{{ ing.name }}</a>
+              <button class="ing-stock-btn {% if ing.pantry_item.in_stock %}ing-stock-on{% endif %}"
+                      data-id="{{ ing.pantry_item.id }}"
+                      title="{% if ing.pantry_item.in_stock %}In stock — click to toggle{% else %}Out of stock — click to toggle{% endif %}">
+                {% if ing.pantry_item.in_stock %}In stock{% else %}Out of stock{% endif %}
+              </button>
+            {% else %}
+              {{ ing.name }}
+            {% endif %}
             {% if ing.notes %}<span class="ingredient-notes">{{ ing.notes }}</span>{% endif %}
           </div>
           <div class="ingredient-status">
@@ -185,4 +194,42 @@
   </details>
   {% endif %}
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.querySelectorAll('.ing-stock-btn').forEach(function(btn) {
+  btn.addEventListener('click', async function(e) {
+    e.preventDefault();
+    var id = btn.dataset.id;
+    var form = new FormData();
+    form.append('id', id);
+    try {
+      var res = await fetch('/pantry/specialty/toggle', { method: 'POST', body: form });
+      var data = await res.json();
+      if (data.success) {
+        btn.classList.toggle('ing-stock-on', data.in_stock);
+        btn.textContent = data.in_stock ? 'In stock' : 'Out of stock';
+        btn.title = data.in_stock ? 'In stock — click to toggle' : 'Out of stock — click to toggle';
+        // Update the availability dot
+        var li = btn.closest('.ingredient-item');
+        var dot = li ? li.querySelector('.ing-dot') : null;
+        if (dot) {
+          if (data.in_stock) {
+            dot.className = 'ing-dot ing-dot-have';
+            dot.title = 'Pantry item';
+            li.classList.remove('ingredient-missing');
+          } else {
+            dot.className = 'ing-dot ing-dot-missing';
+            dot.title = 'Not in inventory';
+            li.classList.add('ingredient-missing');
+          }
+        }
+        showToast(data.in_stock ? 'Marked in stock' : 'Marked out of stock', 'success');
+      }
+    } catch(err) {
+      showToast('Error updating stock', 'error');
+    }
+  });
+});
+</script>
 {% endblock %}
