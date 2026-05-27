@@ -924,13 +924,26 @@ def cocktail_detail(cocktail_id):
                             break
 
         # search_term: the term to pass to the bottle shelf search link.
-        # For a bottle match, use the bottle's Style (e.g. "Straight Rye") so the
-        # user sees ALL bottles in that category, not just the one that matched.
-        # For everything else (pantry, specialty, missing) use the ingredient name.
+        # Priority:
+        #   1. CATEGORY_MAP primary style — broadest correct search, e.g. "Amaro" → "amaro"
+        #      (shows ALL amari, not just the one that happened to match first).
+        #   2. Matched bottle's Style — fallback when no map key exists.
+        #   3. Ingredient name — for pantry / specialty / missing ingredients.
         src = ing.get('source')
         if ing.get('available') and src and src != 'pantry':
-            matched = bottle_by_name.get(normalize(src))
-            ing['search_term'] = matched.get('Style', ing['name']) if matched else ing['name']
+            ing_c = clean(ing['name'])
+            best_k = None
+            for key in CATEGORY_MAP:
+                kc = clean(key)
+                if (kc == ing_c or word_in(kc, ing_c)) and (
+                        best_k is None or len(kc) > len(clean(best_k))):
+                    best_k = key
+            if best_k:
+                # Use the first (primary) style value from the map as the search term
+                ing['search_term'] = CATEGORY_MAP[best_k][0]
+            else:
+                matched = bottle_by_name.get(normalize(src))
+                ing['search_term'] = matched.get('Style', ing['name']) if matched else ing['name']
         else:
             ing['search_term'] = ing['name']
 
