@@ -1004,18 +1004,10 @@ select.edit-input { padding: 5px 8px; }
 .ing-inv-link-missing { border-bottom-color: var(--red); opacity: 0.8; }
 .ing-inv-link-missing:hover { color: var(--accent-light); border-bottom-color: var(--accent-light); opacity: 1; }
 
-.ing-dot { font-size: 13px; }
-.ing-dot-have             { color: #4cb886; }
-.ing-dot-pantry           { color: #4cb886; }
-.ing-dot-specialty-needed { color: var(--accent-light); }
-.ing-dot-missing          { color: var(--red); }
-
-.ing-specialty-hint {
-  font-size: 11px;
-  color: var(--accent-light);
-  margin-left: 6px;
-  opacity: 0.8;
-}
+.ing-dot         { line-height: 1; }
+.ing-dot-have    { color: #4cb886; font-size: 17px; }
+.ing-dot-pantry  { color: #4cb886; font-size: 13px; }
+.ing-dot-missing { color: var(--red); font-size: 13px; }
 
 .ingredient-legend {
   font-size: 11.5px;

@@ -111,7 +111,6 @@
             {% elif not ing.available and 'infused' in ing.name.lower() %}
               {# Infused = house-made specialty — prompt to add to pantry #}
               <a href="{{ url_for('pantry') }}" class="ing-pantry-link">{{ ing.name }}</a>
-              <span class="ing-specialty-hint">add to pantry</span>
             {% elif not ing.available %}
               {# Missing — link to inventory so user can see what they might substitute #}
               <a href="{{ url_for('inventory') }}?search={{ ing.name | urlencode }}" class="ing-inv-link ing-inv-link-missing">{{ ing.name }}</a>
@@ -127,10 +126,8 @@
               {% else %}
                 <span class="ing-dot ing-dot-have" title="{{ ing.source }}">&#9679;</span>
               {% endif %}
-            {% elif 'infused' in ing.name.lower() %}
-              <span class="ing-dot ing-dot-specialty-needed" title="House-made specialty — add to pantry">&#9650;</span>
             {% else %}
-              <span class="ing-dot ing-dot-missing" title="Not in bar">&#9679;</span>
+              <span class="ing-dot ing-dot-missing" title="Out of stock">&#10005;</span>
             {% endif %}
           </div>
         </li>
@@ -139,8 +136,7 @@
       <div class="ingredient-legend">
         <span class="ing-dot ing-dot-have">&#9679;</span> Bar
         <span class="ing-dot ing-dot-pantry" style="margin-left:12px">&#9650;</span> Pantry
-        <span class="ing-dot ing-dot-specialty-needed" style="margin-left:12px">&#9650;</span> Needs making
-        <span class="ing-dot ing-dot-missing" style="margin-left:12px">&#9679;</span> Missing
+        <span class="ing-dot ing-dot-missing" style="margin-left:12px">&#10005;</span> Out of stock
       </div>
     </div>
 
