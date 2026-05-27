@@ -4,6 +4,7 @@ import json
 import uuid
 import re
 import random
+import functools
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -151,6 +152,46 @@ def normalize(s):
     return s.lower().strip() if s else ''
 
 
+@functools.lru_cache(maxsize=4096)
+def clean(s):
+    """Lowercase + strip punctuation for fuzzy matching. Cached — called
+    thousands of times per page load across ingredients × bottles."""
+    if not s:
+        return ''
+    s = s.lower().strip()
+    s = re.sub(r'[^\w\s]', ' ', s)
+    return re.sub(r'\s+', ' ', s).strip()
+
+
+@functools.lru_cache(maxsize=16384)
+def word_in(needle, haystack):
+    """True if needle appears as whole word(s) in haystack.
+    Single-word needles use fast set lookup; multi-word use substring
+    (safe after clean() strips punctuation)."""
+    n = clean(needle)
+    h = clean(haystack)
+    if not n or not h:
+        return False
+    n_parts = n.split()
+    if len(n_parts) == 1:
+        return n_parts[0] in h.split()   # O(words), no regex
+    return n in h                         # phrase containment on cleaned text
+
+
+def make_availability_checker(inventory, pantry):
+    """Return a memoised checker bound to this inventory+pantry snapshot.
+    Ingredient names repeat across hundreds of cocktails; caching the result
+    per (name, is_premium) pair cuts the full-catalogue check from O(n²) to
+    effectively O(unique_ingredients × bottles)."""
+    _cache = {}
+    def check(ing_name, is_premium=False):
+        key = (ing_name, is_premium)
+        if key not in _cache:
+            _cache[key] = check_ingredient_available(ing_name, inventory, pantry, is_premium)
+        return _cache[key]
+    return check
+
+
 # ── Data helpers ──────────────────────────────────────────────────────────────
 
 def load_inventory():
@@ -241,22 +282,6 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
     is_premium: if True, bottles marked 'Premium Cocktail' are counted.
                 if False (default), they are skipped.
     """
-    def clean(s):
-        """Lowercase + collapse punctuation to spaces for fuzzy comparison.
-        Handles St-Germain == St. Germain, hyphens, apostrophes, etc."""
-        if not s:
-            return ''
-        s = normalize(s)
-        s = re.sub(r'[^\w\s]', ' ', s)
-        return re.sub(r'\s+', ' ', s).strip()
-
-    def word_in(needle, haystack):
-        """True if needle appears as whole token(s) in haystack (word-boundary safe)."""
-        n, h = clean(needle), clean(haystack)
-        if not n or not h:
-            return False
-        return bool(re.search(r'(?<![\w])'  + re.escape(n) + r'(?![\w])', h))
-
     ing = clean(ing_name)
     if not ing:
         return True, 'pantry'
@@ -344,15 +369,17 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
     return False, None
 
 
-def get_makeable_status(cocktail, inventory, pantry=None):
+def get_makeable_status(cocktail, inventory, pantry=None, _checker=None):
+    """Check whether a cocktail can be made.  Pass _checker (from
+    make_availability_checker) when calling in bulk to share the cache."""
     is_premium = cocktail.get('premium', False)
     missing = []
     specialty_by_id = {s['id']: s for s in pantry.get('specialty', [])} if pantry else {}
     bottle_by_name  = {normalize(b['Name']): b for b in inventory}
+    check = _checker or (lambda n, p=False: check_ingredient_available(n, inventory, pantry, p))
     for ing in cocktail.get('ingredients', []):
         ing_type = ing.get('type', '')
         if ing_type == 'bottle':
-            # Explicit bottle link — check by exact name
             bn = normalize(ing.get('bottle_name') or ing['name'])
             b  = bottle_by_name.get(bn)
             ok = bool(b and b.get('in_stock', True) and normalize(b.get('Use', '')) != 'neat only')
@@ -361,7 +388,7 @@ def get_makeable_status(cocktail, inventory, pantry=None):
             if explicit:
                 ok = explicit.get('in_stock', False)
             else:
-                ok, _ = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
+                ok, _ = check(ing['name'], is_premium)
         if not ok:
             missing.append(ing['name'])
     return len(missing) == 0, missing
@@ -492,7 +519,8 @@ def index():
     inventory = load_inventory_with_notes()
     pantry    = load_pantry()
     cocktails = _db.get_cocktails()
-    makeable  = sum(1 for c in cocktails if get_makeable_status(c, inventory, pantry)[0])
+    _check    = make_availability_checker(inventory, pantry)
+    makeable  = sum(1 for c in cocktails if get_makeable_status(c, inventory, pantry, _checker=_check)[0])
 
     # Bottle stats by category
     by_cat = {}
@@ -520,7 +548,7 @@ def index():
     for rv in rv_ids:
         c = _db.get_cocktail(rv['cocktail_id'])
         if c:
-            c['can_make'] = get_makeable_status(c, inventory, pantry)[0]
+            c['can_make'] = get_makeable_status(c, inventory, pantry, _checker=_check)[0]
             c['spirit_label'], _ = classify_cocktail_spirit(c)
             recently_viewed.append(c)
 
@@ -730,7 +758,8 @@ def cocktail_random():
     inventory = load_inventory_with_notes()
     pantry    = load_pantry()
     cocktails = _db.get_cocktails()
-    makeable  = [c for c in cocktails if get_makeable_status(c, inventory, pantry)[0]]
+    _check    = make_availability_checker(inventory, pantry)
+    makeable  = [c for c in cocktails if get_makeable_status(c, inventory, pantry, _checker=_check)[0]]
     pool = makeable if makeable else cocktails
     if pool:
         return redirect(url_for('cocktail_detail', cocktail_id=random.choice(pool)['id']))
@@ -744,8 +773,9 @@ def cocktails():
     all_cocktails = _db.get_cocktails()
     all_feedback = _db.get_all_feedback()
     blank_fb = {'tried': False, 'rating': None, 'favorited': False}
+    _check = make_availability_checker(inventory, pantry)
     for c in all_cocktails:
-        c['can_make'], c['missing'] = get_makeable_status(c, inventory, pantry)
+        c['can_make'], c['missing'] = get_makeable_status(c, inventory, pantry, _checker=_check)
         c['feedback'] = all_feedback.get(c['id'], blank_fb)
 
     # Default display order is random; client-side sort button handles A→Z

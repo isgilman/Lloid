@@ -5,9 +5,11 @@ start:
 
 stop:
 	pkill -f "python app.py" || true
+	lsof -ti :5001 | xargs kill -9 2>/dev/null || true
 
 restart:
 	pkill -f "python app.py" || true
+	lsof -ti :5001 | xargs kill -9 2>/dev/null || true
 	sleep 1
 	python app.py
 
