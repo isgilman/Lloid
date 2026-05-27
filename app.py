@@ -5,6 +5,7 @@ import uuid
 import re
 import random
 import functools
+import unicodedata
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -117,6 +118,8 @@ CATEGORY_MAP = {
     'amontillado': ['amontillado sherry'],
     'amontillado sherry': ['amontillado sherry'],
     'port': ['white port', 'tawny port'],
+    'tawny port': ['tawny port'],
+    'white port': ['white port'],
     'madeira': ['madeira'],
     'marsala': ['marsala'],
     'maraschino': ['maraschino'],
@@ -137,6 +140,10 @@ CATEGORY_MAP = {
     'benedictine': ['herbal liqueur'],
     'génépi': ['génépi'],
     'crème de cassis': ['crème de cassis'],
+    'crème de cacao': ['cacao liqueur'],
+    'white crème de cacao': ['cacao liqueur'],
+    'dark crème de cacao': ['cacao liqueur'],
+    'crème de menthe': ['crème de menthe'],
     'passion fruit liqueur': ['fruit liqueur'],
     'apricot liqueur': ['apricot liqueur'],
     'coffee liqueur': ['coffee liqueur'],
@@ -154,11 +161,14 @@ def normalize(s):
 
 @functools.lru_cache(maxsize=4096)
 def clean(s):
-    """Lowercase + strip punctuation for fuzzy matching. Cached — called
-    thousands of times per page load across ingredients × bottles."""
+    """Lowercase + strip diacritics + strip punctuation for fuzzy matching.
+    Unicode normalization lets 'Creme' == 'Crème', 'St-Germain' == 'St. Germain', etc.
+    Cached — called thousands of times per page load across ingredients × bottles."""
     if not s:
         return ''
-    s = s.lower().strip()
+    # NFD decomposes accented chars; filtering Mn strips the combining marks
+    s = unicodedata.normalize('NFD', s.lower().strip())
+    s = ''.join(c for c in s if unicodedata.category(c) != 'Mn')
     s = re.sub(r'[^\w\s]', ' ', s)
     return re.sub(r'\s+', ' ', s).strip()
 
@@ -304,6 +314,18 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
         # Bottle check — runs before specialty so a real bottle (e.g. "Sweet Vermouth" → Dolin Rouge)
         # always wins over a specialty preparation that merely *contains* the ingredient name
         # (e.g. "Chai Infused Sweet Vermouth" must not shadow plain "Sweet Vermouth").
+
+        # Pre-compute the longest CATEGORY_MAP key that matches this ingredient — O(keys), not O(keys×bottles).
+        # Doing it here prevents the generic overlap check from firing before a precise
+        # style mapping can route "crème de cacao" → "cacao liqueur" (not "crème de cassis").
+        best_key = None
+        for key in CATEGORY_MAP:
+            kc = clean(key)
+            if (kc == ing or word_in(kc, ing)) and (best_key is None or len(kc) > len(clean(best_key))):
+                best_key = key
+        cat_styles = [clean(s) for s in CATEGORY_MAP[best_key]] if best_key else []
+
+        # Generic beverage words excluded from overlap check — too common to be meaningful
         stop = {'the', 'a', 'an', 'of', 'de', 'du', 'and', 'no', 'n', 'le',
                 'liqueur', 'bitters', 'spirit', 'spirits', 'liquor'}
 
@@ -326,38 +348,33 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
             bstyle = clean(bottle.get('Style', ''))
             bcat   = clean(bottle.get('Category', ''))
 
-            # Direct containment (now works after punctuation normalisation,
-            # e.g. St-Germain == St. Germain)
+            # 1. Direct containment (works after unicode + punctuation normalisation,
+            #    e.g. St-Germain == St. Germain, Crème == Creme)
             if ing in bname or bname in ing:
                 return True, bottle['Name']
 
-            # Meaningful word overlap.
-            # Threshold: 50% for short (≤2) ingredients (e.g. "Yuzu liqueur"),
-            # 60% for longer names to stay precise.
-            ing_words  = set(ing.split()) - stop
-            bname_words = set(bname.split()) - stop
-            if ing_words and bname_words:
-                overlap = ing_words & bname_words
-                threshold = 0.5 if len(ing_words) <= 2 else 0.6
-                if overlap and len(overlap) / len(ing_words) >= threshold:
-                    return True, bottle['Name']
-
-            # Style / category direct match (word-boundary — prevents "gin" matching "ginger")
-            if ing and (ing == bstyle or word_in(ing, bstyle) or word_in(ing, bcat)):
+            # 2. Style / category direct match (word-boundary — prevents "gin" matching "ginger")
+            if ing == bstyle or word_in(ing, bstyle) or word_in(ing, bcat):
                 return True, bottle['Name']
 
-            # Category map lookup — longest key wins to avoid "chartreuse" shadowing
-            # "green chartreuse".  Key and style checks both use word_in to prevent
-            # substring false positives (e.g. "gin" ⊄ "ginger liqueur").
-            best_key = None
-            for key in CATEGORY_MAP:
-                kc = clean(key)
-                if (kc == ing or word_in(kc, ing)) and (best_key is None or len(kc) > len(best_key if best_key else '')):
-                    best_key = key
-            if best_key:
-                for s in CATEGORY_MAP[best_key]:
-                    sc = clean(s)
+            # 3. Category map — specific mapping checked BEFORE generic overlap so
+            #    "crème de cacao" routes to cacao-liqueur bottles and not cassis ones.
+            if cat_styles:
+                for sc in cat_styles:
                     if word_in(sc, bstyle) or word_in(sc, bcat) or word_in(sc, bname):
+                        return True, bottle['Name']
+
+            # 4. Meaningful word overlap — fallback ONLY for ingredients that have no
+            #    CATEGORY_MAP entry.  When best_key exists, direct + style + CATEGORY_MAP
+            #    are precise enough; keeping overlap would create false positives like
+            #    "Crème de Cacao" matching "Crème de Cassis" via shared "creme".
+            if not best_key:
+                ing_words   = set(ing.split()) - stop
+                bname_words = set(bname.split()) - stop
+                if ing_words and bname_words:
+                    overlap = ing_words & bname_words
+                    threshold = 0.5 if len(ing_words) <= 2 else 0.6
+                    if overlap and len(overlap) / len(ing_words) >= threshold:
                         return True, bottle['Name']
 
     # Specialty pantry check — runs after bottles so house-made preparations only
@@ -905,6 +922,18 @@ def cocktail_detail(cocktail_id):
                         if sname in ing_norm or ing_norm in sname:
                             ing['pantry_item'] = sitem
                             break
+
+        # search_term: the term to pass to the bottle shelf search link.
+        # For a bottle match, use the bottle's Style (e.g. "Straight Rye") so the
+        # user sees ALL bottles in that category, not just the one that matched.
+        # For everything else (pantry, specialty, missing) use the ingredient name.
+        src = ing.get('source')
+        if ing.get('available') and src and src != 'pantry':
+            matched = bottle_by_name.get(normalize(src))
+            ing['search_term'] = matched.get('Style', ing['name']) if matched else ing['name']
+        else:
+            ing['search_term'] = ing['name']
+
     _db.record_view(cocktail_id)
     history = _db.get_history(cocktail_id, limit=10)
     feedback = _db.get_feedback(cocktail_id)

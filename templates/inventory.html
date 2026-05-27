@@ -31,6 +31,7 @@
     <div class="bottle-card {% if not b.in_stock %}bottle-card-oos{% endif %}"
          data-index="{{ b._index }}"
          data-name="{{ b.Name | lower }}"
+         data-style="{{ b.Style | lower }}"
          data-category="{{ b.Category }}"
          data-instock="{{ 'true' if b.in_stock else 'false' }}"
          onclick="openDrawer({{ loop.index0 }})">
@@ -398,9 +399,13 @@ function filterBottles() {
   let visible = 0;
   cards.forEach(function(card) {
     const name     = card.dataset.name || '';
+    const style    = card.dataset.style || '';
     const cardCat  = card.dataset.category || '';
     const inStock  = card.dataset.instock === 'true';
-    const matchQ   = !q   || name.includes(q);
+    // Search across name + style + category so e.g. "bourbon" finds "Old Forester 100"
+    // (whose style is "Straight Bourbon") and "sweet vermouth" finds "Dolin Rouge".
+    const searchIn = name + ' ' + style + ' ' + cardCat.toLowerCase();
+    const matchQ   = !q   || searchIn.includes(q);
     const matchCat = !cat || cardCat === cat;
     const matchStock = !inStockOnly || inStock;
     const show = matchQ && matchCat && matchStock;
