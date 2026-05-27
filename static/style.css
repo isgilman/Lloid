@@ -995,6 +995,15 @@ select.edit-input { padding: 5px 8px; }
 .ingredient-notes { display: block; font-size: 12px; color: var(--text-dim); font-weight: 400; }
 .ingredient-status { display: flex; align-items: center; justify-content: flex-end; }
 
+.ing-inv-link {
+  color: inherit;
+  border-bottom: 1px dotted var(--border-light);
+  transition: border-color var(--transition), color var(--transition);
+}
+.ing-inv-link:hover { color: var(--accent-light); border-bottom-color: var(--accent-light); }
+.ing-inv-link-missing { border-bottom-color: var(--red); opacity: 0.8; }
+.ing-inv-link-missing:hover { color: var(--accent-light); border-bottom-color: var(--accent-light); opacity: 1; }
+
 .ing-dot { font-size: 12px; }
 .ing-dot-have    { color: #4cb886; font-size: 10px; }
 .ing-dot-pantry  { color: #4cb886; font-size: 14px; }

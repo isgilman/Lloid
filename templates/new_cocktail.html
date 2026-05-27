@@ -163,8 +163,17 @@
             <div class="ingredient-type-row">
               <select name="ingredient_type" class="ing-type-select" onchange="onIngTypeChange(this)">
                 <option value="">Auto</option>
+                <option value="bottle" {% if ing.type == 'bottle' %}selected{% endif %}>&#9679; Bar bottle</option>
                 <option value="specialty" {% if ing.type == 'specialty' %}selected{% endif %}>&#9096; Specialty</option>
                 <option value="pantry" {% if ing.type == 'pantry' %}selected{% endif %}>&#10003; Pantry staple</option>
+              </select>
+              <select name="ingredient_bottle_name" class="ing-bottle-select"
+                      {% if ing.type != 'bottle' %}style="display:none"{% endif %}
+                      onchange="onBottleChange(this)">
+                <option value="">&#8212; choose bottle &#8212;</option>
+                {% for b in bar_bottles %}
+                <option value="{{ b.Name }}" {% if ing.bottle_name == b.Name %}selected{% endif %}>{{ b.Name }} ({{ b.Category }})</option>
+                {% endfor %}
               </select>
               <select name="ingredient_pantry_id" class="ing-pantry-select"
                       {% if ing.type != 'specialty' %}style="display:none"{% endif %}>
@@ -189,8 +198,16 @@
             <div class="ingredient-type-row">
               <select name="ingredient_type" class="ing-type-select" onchange="onIngTypeChange(this)">
                 <option value="">Auto</option>
+                <option value="bottle">&#9679; Bar bottle</option>
                 <option value="specialty">&#9096; Specialty</option>
                 <option value="pantry">&#10003; Pantry staple</option>
+              </select>
+              <select name="ingredient_bottle_name" class="ing-bottle-select" style="display:none"
+                      onchange="onBottleChange(this)">
+                <option value="">&#8212; choose bottle &#8212;</option>
+                {% for b in bar_bottles %}
+                <option value="{{ b.Name }}">{{ b.Name }} ({{ b.Category }})</option>
+                {% endfor %}
               </select>
               <select name="ingredient_pantry_id" class="ing-pantry-select" style="display:none">
                 <option value="">&#8212; link to pantry item &#8212;</option>
@@ -266,20 +283,40 @@
 <script>
 // Specialty items list (for dynamic ingredient rows)
 const SPECIALTY_ITEMS = {{ specialty_items | tojson }};
+const BAR_BOTTLES = {{ bar_bottles | tojson }};
 
 let ingCount = document.querySelectorAll('.ingredient-block').length;
 let _dragSrc = null;
 
 function onIngTypeChange(sel) {
-  var typeRow = sel.closest('.ingredient-type-row');
-  var picker  = typeRow.querySelector('.ing-pantry-select');
-  picker.style.display = sel.value === 'specialty' ? '' : 'none';
-  if (sel.value !== 'specialty') picker.value = '';
+  var typeRow     = sel.closest('.ingredient-type-row');
+  var pantryPick  = typeRow.querySelector('.ing-pantry-select');
+  var bottlePick  = typeRow.querySelector('.ing-bottle-select');
+  pantryPick.style.display = sel.value === 'specialty' ? '' : 'none';
+  bottlePick.style.display = sel.value === 'bottle'    ? '' : 'none';
+  if (sel.value !== 'specialty') pantryPick.value = '';
+  if (sel.value !== 'bottle')    bottlePick.value = '';
+}
+
+function onBottleChange(sel) {
+  var block = sel.closest('.ingredient-block');
+  var nameInput = block.querySelector('.ing-name');
+  if (sel.value && (!nameInput.value || nameInput.dataset.autoFilled === 'true')) {
+    nameInput.value = sel.value;
+    nameInput.dataset.autoFilled = 'true';
+  }
 }
 
 function _buildSpecialtyOptions() {
   return SPECIALTY_ITEMS.map(function(item) {
     return '<option value="' + item.id + '">' + item.name + '</option>';
+  }).join('');
+}
+
+function _buildBottleOptions(selectedName) {
+  return BAR_BOTTLES.map(function(b) {
+    var sel = selectedName && b.Name === selectedName ? ' selected' : '';
+    return '<option value="' + b.Name.replace(/"/g, '&quot;') + '"' + sel + '>' + b.Name + ' (' + (b.Category || '') + ')</option>';
   }).join('');
 }
 
@@ -350,11 +387,16 @@ function addIngredient() {
     '<div class="ingredient-type-row">' +
       '<select name="ingredient_type" class="ing-type-select" onchange="onIngTypeChange(this)">' +
         '<option value="">Auto</option>' +
+        '<option value="bottle">● Bar bottle</option>' +
         '<option value="specialty">&#9096; Specialty</option>' +
         '<option value="pantry">&#10003; Pantry staple</option>' +
       '</select>' +
+      '<select name="ingredient_bottle_name" class="ing-bottle-select" style="display:none" onchange="onBottleChange(this)">' +
+        '<option value="">— choose bottle —</option>' +
+        _buildBottleOptions(null) +
+      '</select>' +
       '<select name="ingredient_pantry_id" class="ing-pantry-select" style="display:none">' +
-        '<option value="">&#8212; link to pantry item &#8212;</option>' +
+        '<option value="">— link to pantry item —</option>' +
         _buildSpecialtyOptions() +
       '</select>' +
     '</div>'

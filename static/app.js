@@ -511,15 +511,20 @@ document.addEventListener('DOMContentLoaded', () => {
     filterCocktails();
   }
 
-  // If on inventory page, apply ?category= URL param
+  // If on inventory page, apply ?category= and/or ?search= URL params
   if (document.getElementById('bottle-grid')) {
     const params = new URLSearchParams(window.location.search);
-    const catParam = params.get('category');
+    const catParam    = params.get('category');
+    const searchParam = params.get('search');
     if (catParam) {
       const sel = document.getElementById('inv-category');
       if (sel) { sel.value = catParam; }
-      if (typeof filterBottles === 'function') filterBottles();
     }
+    if (searchParam) {
+      const inp = document.getElementById('inv-search');
+      if (inp) { inp.value = searchParam; }
+    }
+    if ((catParam || searchParam) && typeof filterBottles === 'function') filterBottles();
   }
 
   // Wire up feedback rating buttons (avoids inline onclick with string args)

@@ -241,29 +241,52 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
     is_premium: if True, bottles marked 'Premium Cocktail' are counted.
                 if False (default), they are skipped.
     """
-    ing = normalize(ing_name)
+    def clean(s):
+        """Lowercase + collapse punctuation to spaces for fuzzy comparison.
+        Handles St-Germain == St. Germain, hyphens, apostrophes, etc."""
+        if not s:
+            return ''
+        s = normalize(s)
+        s = re.sub(r'[^\w\s]', ' ', s)
+        return re.sub(r'\s+', ' ', s).strip()
+
+    def word_in(needle, haystack):
+        """True if needle appears as whole token(s) in haystack (word-boundary safe)."""
+        n, h = clean(needle), clean(haystack)
+        if not n or not h:
+            return False
+        return bool(re.search(r'(?<![\w])'  + re.escape(n) + r'(?![\w])', h))
+
+    ing = clean(ing_name)
     if not ing:
         return True, 'pantry'
 
-    # Standard pantry check
+    # Standard pantry check (word-boundary safe)
     pantry_std = pantry.get('standard', []) if pantry else DEFAULT_PANTRY_STANDARD
-    std_oos = set(normalize(x) for x in (pantry.get('standard_out_of_stock', []) if pantry else []))
+    std_oos = set(clean(x) for x in (pantry.get('standard_out_of_stock', []) if pantry else []))
     for p in pantry_std:
-        p = normalize(p)
-        if p in std_oos:
+        pc = clean(p)
+        if pc in std_oos:
             continue
-        if p == ing or p in ing or ing in p:
+        if pc == ing or word_in(pc, ing) or word_in(ing, pc):
             return True, 'pantry'
 
-    # Specialty pantry check (only in-stock items count)
+    # Specialty pantry check — word-boundary matching prevents 'rum' ⊂ 'saccharum'
     if pantry:
         for item in pantry.get('specialty', []):
             if item.get('in_stock'):
-                p = normalize(item.get('name', ''))
-                if p and (p == ing or p in ing or ing in p):
+                p = clean(item.get('name', ''))
+                if p and (p == ing or word_in(ing, p) or word_in(p, ing)):
                     return True, item['name']
 
-    stop = {'the', 'a', 'an', 'of', 'de', 'du', '&', 'and', 'no', 'st', 'n', 'le'}
+    # House-made / infused preparations — never auto-match a generic bottle.
+    # They must be linked explicitly as specialty items.
+    if 'infused' in ing.split():
+        return False, None
+
+    # Generic beverage words excluded from overlap check — too common to be meaningful
+    stop = {'the', 'a', 'an', 'of', 'de', 'du', 'and', 'no', 'n', 'le',
+            'liqueur', 'bitters', 'spirit', 'spirits', 'liquor'}
 
     for bottle in inventory:
         use = normalize(bottle.get('Use', ''))
@@ -280,35 +303,42 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
         if use == 'premium cocktail' and not is_premium:
             continue
 
-        bname = normalize(bottle.get('Name', ''))
-        bstyle = normalize(bottle.get('Style', ''))
-        bcat = normalize(bottle.get('Category', ''))
+        bname  = clean(bottle.get('Name', ''))
+        bstyle = clean(bottle.get('Style', ''))
+        bcat   = clean(bottle.get('Category', ''))
 
-        # Direct containment
+        # Direct containment (now works after punctuation normalisation,
+        # e.g. St-Germain == St. Germain)
         if ing in bname or bname in ing:
             return True, bottle['Name']
 
-        # Meaningful word overlap (≥60% of ingredient words match bottle name)
-        ing_words = set(ing.split()) - stop
+        # Meaningful word overlap.
+        # Threshold: 50% for short (≤2) ingredients (e.g. "Yuzu liqueur"),
+        # 60% for longer names to stay precise.
+        ing_words  = set(ing.split()) - stop
         bname_words = set(bname.split()) - stop
         if ing_words and bname_words:
             overlap = ing_words & bname_words
-            if overlap and len(overlap) / len(ing_words) >= 0.6:
+            threshold = 0.5 if len(ing_words) <= 2 else 0.6
+            if overlap and len(overlap) / len(ing_words) >= threshold:
                 return True, bottle['Name']
 
-        # Style / category direct match
-        if ing and (ing == bstyle or ing in bstyle):
+        # Style / category direct match (word-boundary — prevents "gin" matching "ginger")
+        if ing and (ing == bstyle or word_in(ing, bstyle) or word_in(ing, bcat)):
             return True, bottle['Name']
 
-        # Category map lookup — use longest matching key to avoid false positives
-        # e.g. 'green chartreuse' should not match via generic 'chartreuse' key
+        # Category map lookup — longest key wins to avoid "chartreuse" shadowing
+        # "green chartreuse".  Key and style checks both use word_in to prevent
+        # substring false positives (e.g. "gin" ⊄ "ginger liqueur").
         best_key = None
         for key in CATEGORY_MAP:
-            if (key == ing or key in ing) and (best_key is None or len(key) > len(best_key)):
+            kc = clean(key)
+            if (kc == ing or word_in(kc, ing)) and (best_key is None or len(kc) > len(best_key if best_key else '')):
                 best_key = key
         if best_key:
             for s in CATEGORY_MAP[best_key]:
-                if s in bstyle or s in bcat or s in bname:
+                sc = clean(s)
+                if word_in(sc, bstyle) or word_in(sc, bcat) or word_in(sc, bname):
                     return True, bottle['Name']
 
     return False, None
@@ -318,12 +348,20 @@ def get_makeable_status(cocktail, inventory, pantry=None):
     is_premium = cocktail.get('premium', False)
     missing = []
     specialty_by_id = {s['id']: s for s in pantry.get('specialty', [])} if pantry else {}
+    bottle_by_name  = {normalize(b['Name']): b for b in inventory}
     for ing in cocktail.get('ingredients', []):
-        explicit = specialty_by_id.get(ing.get('pantry_id', ''))
-        if explicit:
-            ok = explicit.get('in_stock', False)
+        ing_type = ing.get('type', '')
+        if ing_type == 'bottle':
+            # Explicit bottle link — check by exact name
+            bn = normalize(ing.get('bottle_name') or ing['name'])
+            b  = bottle_by_name.get(bn)
+            ok = bool(b and b.get('in_stock', True) and normalize(b.get('Use', '')) != 'neat only')
         else:
-            ok, _ = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
+            explicit = specialty_by_id.get(ing.get('pantry_id', ''))
+            if explicit:
+                ok = explicit.get('in_stock', False)
+            else:
+                ok, _ = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
         if not ok:
             missing.append(ing['name'])
     return len(missing) == 0, missing
@@ -360,26 +398,29 @@ def pantry_summary_text(pantry):
 # ── Form helper ───────────────────────────────────────────────────────────────
 
 def cocktail_from_form():
-    names = request.form.getlist('ingredient_name')
-    amounts = request.form.getlist('ingredient_amount')
-    units = request.form.getlist('ingredient_unit')
-    notes_list = request.form.getlist('ingredient_notes')
-    types      = request.form.getlist('ingredient_type')
-    pantry_ids = request.form.getlist('ingredient_pantry_id')
+    names        = request.form.getlist('ingredient_name')
+    amounts      = request.form.getlist('ingredient_amount')
+    units        = request.form.getlist('ingredient_unit')
+    notes_list   = request.form.getlist('ingredient_notes')
+    types        = request.form.getlist('ingredient_type')
+    pantry_ids   = request.form.getlist('ingredient_pantry_id')
+    bottle_names = request.form.getlist('ingredient_bottle_name')
     ingredients = []
     for i, name in enumerate(names):
         if name.strip():
             ing = {
-                'name':      name.strip(),
-                'amount':    amounts[i].strip()    if i < len(amounts)    else '',
-                'unit':      units[i].strip()      if i < len(units)      else '',
-                'notes':     notes_list[i].strip() if i < len(notes_list) else '',
-                'type':      types[i].strip()      if i < len(types)      else '',
-                'pantry_id': pantry_ids[i].strip() if i < len(pantry_ids) else '',
+                'name':        name.strip(),
+                'amount':      amounts[i].strip()      if i < len(amounts)      else '',
+                'unit':        units[i].strip()        if i < len(units)        else '',
+                'notes':       notes_list[i].strip()   if i < len(notes_list)   else '',
+                'type':        types[i].strip()        if i < len(types)        else '',
+                'pantry_id':   pantry_ids[i].strip()   if i < len(pantry_ids)   else '',
+                'bottle_name': bottle_names[i].strip() if i < len(bottle_names) else '',
             }
             # Drop empty optional fields to keep data clean
-            if not ing['type']:      del ing['type']
-            if not ing['pantry_id']: del ing['pantry_id']
+            if not ing['type']:        del ing['type']
+            if not ing['pantry_id']:   del ing['pantry_id']
+            if not ing['bottle_name']: del ing['bottle_name']
             ingredients.append(ing)
 
     # Category chips (multi-select checkboxes) → stored as tags
@@ -734,6 +775,7 @@ def _form_context():
     """Shared context for new/edit cocktail forms."""
     all_cocktails = _db.get_cocktails()
     pantry = load_pantry()
+    inventory = load_inventory_with_notes()
     style_tags = [{'value': v, 'label': l} for v, l in STYLE_TAG_DEFS]
     known_creators = sorted(
         {c['creator'] for c in all_cocktails if c.get('creator')},
@@ -741,11 +783,17 @@ def _form_context():
     )
     known_sources = sorted({c['source'] for c in all_cocktails if c.get('source')})
     specialty_items = sorted(pantry.get('specialty', []), key=lambda s: s['name'])
+    # Bottles available for mixing (not neat-only), sorted by name
+    bar_bottles = sorted(
+        [b for b in inventory if normalize(b.get('Use', '')) != 'neat only'],
+        key=lambda b: b['Name']
+    )
     return dict(style_tags=style_tags,
                 style_tag_values=STYLE_TAG_VALUES,
                 known_creators=known_creators,
                 known_sources=known_sources,
-                specialty_items=specialty_items)
+                specialty_items=specialty_items,
+                bar_bottles=bar_bottles)
 
 
 # Define /new before /<cocktail_id> to avoid routing conflict
@@ -781,24 +829,39 @@ def cocktail_detail(cocktail_id):
     can_make, missing = get_makeable_status(cocktail, inventory, pantry)
     specialty_by_id   = {s['id']:              s for s in pantry.get('specialty', [])}
     specialty_by_name = {normalize(s['name']): s for s in pantry.get('specialty', [])}
+    bottle_by_name    = {normalize(b['Name']): b for b in inventory}
     for ing in cocktail.get('ingredients', []):
-        explicit = specialty_by_id.get(ing.get('pantry_id', ''))
-        if explicit:
-            # Explicit pantry link — bypass fuzzy matching
-            ing['pantry_item'] = explicit
-            ing['available']   = explicit.get('in_stock', False)
-            ing['source']      = explicit['name'] if explicit.get('in_stock') else None
-        else:
-            ok, source = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
-            ing['available'] = ok
-            ing['source']    = source
-            # Fuzzy specialty link fallback
-            ing_norm = normalize(ing['name'])
+        ing_type = ing.get('type', '')
+        if ing_type == 'bottle':
+            # Explicit bottle link
+            bn = normalize(ing.get('bottle_name') or ing['name'])
+            b  = bottle_by_name.get(bn)
             ing['pantry_item'] = None
-            for sname, sitem in specialty_by_name.items():
-                if sname in ing_norm or ing_norm in sname:
-                    ing['pantry_item'] = sitem
-                    break
+            if b:
+                ok = b.get('in_stock', True) and normalize(b.get('Use', '')) != 'neat only'
+                ing['available'] = ok
+                ing['source']    = b['Name'] if ok else None
+            else:
+                ing['available'] = False
+                ing['source']    = None
+        else:
+            explicit = specialty_by_id.get(ing.get('pantry_id', ''))
+            if explicit:
+                # Explicit specialty link — bypass fuzzy matching
+                ing['pantry_item'] = explicit
+                ing['available']   = explicit.get('in_stock', False)
+                ing['source']      = explicit['name'] if explicit.get('in_stock') else None
+            else:
+                ok, source = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
+                ing['available'] = ok
+                ing['source']    = source
+                # Fuzzy specialty link fallback
+                ing_norm = normalize(ing['name'])
+                ing['pantry_item'] = None
+                for sname, sitem in specialty_by_name.items():
+                    if sname in ing_norm or ing_norm in sname:
+                        ing['pantry_item'] = sitem
+                        break
     _db.record_view(cocktail_id)
     history = _db.get_history(cocktail_id, limit=10)
     feedback = _db.get_feedback(cocktail_id)

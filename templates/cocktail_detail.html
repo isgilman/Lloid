@@ -105,6 +105,12 @@
                       title="{% if ing.pantry_item.in_stock %}In stock — click to toggle{% else %}Out of stock — click to toggle{% endif %}">
                 {% if ing.pantry_item.in_stock %}In stock{% else %}Out of stock{% endif %}
               </button>
+            {% elif ing.source and ing.source != 'pantry' %}
+              {# Matched a specific bottle — link to inventory filtered to that bottle #}
+              <a href="{{ url_for('inventory') }}?search={{ ing.source | urlencode }}" class="ing-inv-link">{{ ing.name }}</a>
+            {% elif not ing.available %}
+              {# Missing — link to inventory so user can see what they might substitute #}
+              <a href="{{ url_for('inventory') }}?search={{ ing.name | urlencode }}" class="ing-inv-link ing-inv-link-missing">{{ ing.name }}</a>
             {% else %}
               {{ ing.name }}
             {% endif %}
