@@ -296,75 +296,79 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
         if pc == ing or word_in(pc, ing) or word_in(ing, pc):
             return True, 'pantry'
 
-    # Specialty pantry check — word-boundary matching prevents 'rum' ⊂ 'saccharum'
+    # House-made / infused preparations — never auto-match a generic bottle.
+    # They must be explicitly linked as specialty items or matched in the specialty check below.
+    is_infused = 'infused' in ing.split()
+
+    if not is_infused:
+        # Bottle check — runs before specialty so a real bottle (e.g. "Sweet Vermouth" → Dolin Rouge)
+        # always wins over a specialty preparation that merely *contains* the ingredient name
+        # (e.g. "Chai Infused Sweet Vermouth" must not shadow plain "Sweet Vermouth").
+        stop = {'the', 'a', 'an', 'of', 'de', 'du', 'and', 'no', 'n', 'le',
+                'liqueur', 'bitters', 'spirit', 'spirits', 'liquor'}
+
+        for bottle in inventory:
+            use = normalize(bottle.get('Use', ''))
+
+            # Neat-only bottles never count for mixing
+            if use == 'neat only':
+                continue
+
+            # Out-of-stock bottles don't count
+            if not bottle.get('in_stock', True):
+                continue
+
+            # Premium bottles only count for premium cocktails
+            if use == 'premium cocktail' and not is_premium:
+                continue
+
+            bname  = clean(bottle.get('Name', ''))
+            bstyle = clean(bottle.get('Style', ''))
+            bcat   = clean(bottle.get('Category', ''))
+
+            # Direct containment (now works after punctuation normalisation,
+            # e.g. St-Germain == St. Germain)
+            if ing in bname or bname in ing:
+                return True, bottle['Name']
+
+            # Meaningful word overlap.
+            # Threshold: 50% for short (≤2) ingredients (e.g. "Yuzu liqueur"),
+            # 60% for longer names to stay precise.
+            ing_words  = set(ing.split()) - stop
+            bname_words = set(bname.split()) - stop
+            if ing_words and bname_words:
+                overlap = ing_words & bname_words
+                threshold = 0.5 if len(ing_words) <= 2 else 0.6
+                if overlap and len(overlap) / len(ing_words) >= threshold:
+                    return True, bottle['Name']
+
+            # Style / category direct match (word-boundary — prevents "gin" matching "ginger")
+            if ing and (ing == bstyle or word_in(ing, bstyle) or word_in(ing, bcat)):
+                return True, bottle['Name']
+
+            # Category map lookup — longest key wins to avoid "chartreuse" shadowing
+            # "green chartreuse".  Key and style checks both use word_in to prevent
+            # substring false positives (e.g. "gin" ⊄ "ginger liqueur").
+            best_key = None
+            for key in CATEGORY_MAP:
+                kc = clean(key)
+                if (kc == ing or word_in(kc, ing)) and (best_key is None or len(kc) > len(best_key if best_key else '')):
+                    best_key = key
+            if best_key:
+                for s in CATEGORY_MAP[best_key]:
+                    sc = clean(s)
+                    if word_in(sc, bstyle) or word_in(sc, bcat) or word_in(sc, bname):
+                        return True, bottle['Name']
+
+    # Specialty pantry check — runs after bottles so house-made preparations only
+    # satisfy ingredients when no real bottle match exists.  Word-boundary matching
+    # prevents 'rum' ⊂ 'saccharum'.
     if pantry:
         for item in pantry.get('specialty', []):
             if item.get('in_stock'):
                 p = clean(item.get('name', ''))
                 if p and (p == ing or word_in(ing, p) or word_in(p, ing)):
                     return True, item['name']
-
-    # House-made / infused preparations — never auto-match a generic bottle.
-    # They must be linked explicitly as specialty items.
-    if 'infused' in ing.split():
-        return False, None
-
-    # Generic beverage words excluded from overlap check — too common to be meaningful
-    stop = {'the', 'a', 'an', 'of', 'de', 'du', 'and', 'no', 'n', 'le',
-            'liqueur', 'bitters', 'spirit', 'spirits', 'liquor'}
-
-    for bottle in inventory:
-        use = normalize(bottle.get('Use', ''))
-
-        # Neat-only bottles never count for mixing
-        if use == 'neat only':
-            continue
-
-        # Out-of-stock bottles don't count
-        if not bottle.get('in_stock', True):
-            continue
-
-        # Premium bottles only count for premium cocktails
-        if use == 'premium cocktail' and not is_premium:
-            continue
-
-        bname  = clean(bottle.get('Name', ''))
-        bstyle = clean(bottle.get('Style', ''))
-        bcat   = clean(bottle.get('Category', ''))
-
-        # Direct containment (now works after punctuation normalisation,
-        # e.g. St-Germain == St. Germain)
-        if ing in bname or bname in ing:
-            return True, bottle['Name']
-
-        # Meaningful word overlap.
-        # Threshold: 50% for short (≤2) ingredients (e.g. "Yuzu liqueur"),
-        # 60% for longer names to stay precise.
-        ing_words  = set(ing.split()) - stop
-        bname_words = set(bname.split()) - stop
-        if ing_words and bname_words:
-            overlap = ing_words & bname_words
-            threshold = 0.5 if len(ing_words) <= 2 else 0.6
-            if overlap and len(overlap) / len(ing_words) >= threshold:
-                return True, bottle['Name']
-
-        # Style / category direct match (word-boundary — prevents "gin" matching "ginger")
-        if ing and (ing == bstyle or word_in(ing, bstyle) or word_in(ing, bcat)):
-            return True, bottle['Name']
-
-        # Category map lookup — longest key wins to avoid "chartreuse" shadowing
-        # "green chartreuse".  Key and style checks both use word_in to prevent
-        # substring false positives (e.g. "gin" ⊄ "ginger liqueur").
-        best_key = None
-        for key in CATEGORY_MAP:
-            kc = clean(key)
-            if (kc == ing or word_in(kc, ing)) and (best_key is None or len(kc) > len(best_key if best_key else '')):
-                best_key = key
-        if best_key:
-            for s in CATEGORY_MAP[best_key]:
-                sc = clean(s)
-                if word_in(sc, bstyle) or word_in(sc, bcat) or word_in(sc, bname):
-                    return True, bottle['Name']
 
     return False, None
 
@@ -885,13 +889,22 @@ def cocktail_detail(cocktail_id):
                 ok, source = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
                 ing['available'] = ok
                 ing['source']    = source
-                # Fuzzy specialty link fallback
-                ing_norm = normalize(ing['name'])
                 ing['pantry_item'] = None
-                for sname, sitem in specialty_by_name.items():
-                    if sname in ing_norm or ing_norm in sname:
+                if ok and source and source != 'pantry':
+                    # source may be a specialty item name (e.g. "Brown Butter Falernum")
+                    # rather than a bottle name — link it so the stock toggle is available.
+                    sitem = specialty_by_name.get(normalize(source))
+                    if sitem:
                         ing['pantry_item'] = sitem
-                        break
+                        ing['source'] = 'pantry'
+                elif not ok:
+                    # Not available — fuzzy-link to a matching specialty so the user
+                    # can toggle it in stock from the detail view.
+                    ing_norm = normalize(ing['name'])
+                    for sname, sitem in specialty_by_name.items():
+                        if sname in ing_norm or ing_norm in sname:
+                            ing['pantry_item'] = sitem
+                            break
     _db.record_view(cocktail_id)
     history = _db.get_history(cocktail_id, limit=10)
     feedback = _db.get_feedback(cocktail_id)
