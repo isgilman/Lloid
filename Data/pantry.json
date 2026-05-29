@@ -118,7 +118,7 @@
       "name": "Brown Butter Falernum",
       "description": "house-made infused liqueur",
       "recipe": "300 g unsalted butter, cubed\r\n1 L  Falernum\r\n\r\nIn a large pot over medium heat, melt the butter, whisking constantly, while the milk solids brown evenly. Continue to let brown, whisking, until the color is as dark as an almond skin. Remove from the heat and add the velvet falernum. Transfer the butter to a storage container and place in the freezer until the fat has risen to the top and solidified. Remove and discard the solidified fat cap. Store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES ~1 L\r\nSource: NoMad",
-      "in_stock": true,
+      "in_stock": false,
       "created_at": "2026-05-25"
     },
     {
@@ -158,7 +158,7 @@
       "name": "Chai Infused Sweet Vermouth",
       "description": "house-made infusion",
       "recipe": "- 30 g chai tea\r\n- 750 mL Cocchi Vermouth di Torino\r\n\r\nIn a large bowl, combine the tea and vermouth, let steep for 3 to 5 minutes\r\n(taste as you go because it becomes tannic very quickly), and then strain\r\nthrough a chinois. Store in an airtight container, refrigerated, for up to 6\r\nweeks.\r\n\r\nMAKES 750 ML\r\nSource: NoMad",
-      "in_stock": true,
+      "in_stock": false,
       "created_at": "2026-05-25"
     },
     {
@@ -245,7 +245,7 @@
       "id": "corn-syrup",
       "name": "Corn Syrup",
       "description": "house-made syrup",
-      "recipe": "- 2.7 kg freeze-dried corn\r\n- 2.8 kg sugar\r\n- 3.8 L hot water\r\n- Salt\r\n\r\nIn a high-speed blender, blitz the corn into a powder. Stir the sugar into the\r\ncorn and add the hot water. Let steep for 15 minutes, then strain through a\r\nchinois and season with salt. Store in an airtight container, refrigerated, for up\r\nto 2 weeks.\r\n\r\nMAKES 3.8 TO 4.7 L\r\nSource: NoMad",
+      "recipe": "- 143 g freeze-dried corn\r\n- 148 g sugar\r\n- 200 mL hot water\r\n- 1 g kosher salt\r\n\r\nBlitz the corn into a fine powder. Stir in the sugar, add the hot water, and mix to combine. Steep 15 minutes, then strain through a chinois, pressing the solids firmly. Season with salt. Refrigerate in an airtight container for up to 2 weeks.\r\n\r\nMAKES 200–250 mL\r\nSource: NoMad (scaled down by Claude)",
       "in_stock": false,
       "created_at": "2026-05-25"
     },

@@ -10,11 +10,13 @@ Browse your bar as a card grid. Each bottle shows category, style, origin, ABV, 
 - **Editable details** — name, category, style, origin, age, ABV, producer, use (Cocktail / Premium / Neat Only)
 - **Tasting notes** — freetext nose, palate, and finish fields
 - **Flavor tags** — 88 curated descriptors across 14 groups (Tropical Fruit, Citrus, Stone Fruit, Dried Fruit, Floral, Herbal, Baking Spice, Heat, Sweet & Caramel, Chocolate & Coffee, Wood & Oak, Earth & Smoke, Funk & Ferment, Texture & Other)
+- **Spirit Rankings** — ELO-based head-to-head ranking within category leagues (see below)
 
 ### Cocktails
-Searchable, filterable card grid of recipes. Filters include category, source, creator, "Can Make" (based on current inventory), and personal feedback.
+Searchable, filterable card grid of recipes. Filters include category, source, creator, "Can Make" (based on current inventory), and personal feedback. Each card shows a short descriptor tagline when one is set.
 
 - **Can Make** — real-time availability check against bottles, pantry staples, and specialty items; respects out-of-stock flags
+- **Descriptor** — short italic tagline shown on the card and detail page (e.g. "A riff on the Toronto with aged rum")
 - **Feedback** — mark cocktails as tried, rate them (Like / Dislike / Needs Work), and favorite them
 - **Version history** — every edit is preserved; restore any prior version
 - **Sync** — pull updates from `Data/cocktails.json` without overwriting your personalized recipes
@@ -30,9 +32,22 @@ Auto-saline injection: recipes with ≥ ½ oz of citrus juice automatically get 
 ### Pantry
 Two sections:
 
-**Pantry Staples** — ingredients always assumed in stock for recipe matching (simple syrup, bitters, citrus juice, etc.). Each item has a stock toggle; out-of-stock staples are excluded from availability checks.
+**Pantry Staples** — readily available or easily purchased ingredients (juice, sugar, eggs, bitters, soda). Each item has a stock toggle; out-of-stock staples are excluded from availability checks.
 
-**House-Made & Specialty** — syrups, tinctures, and infusions you prepare yourself. Each card holds a name, description, recipe, and an in-stock toggle. Specialty items link from ingredient lists in recipe detail views.
+**House-Made & Specialty** — preparations that take time to make at home: syrups, infusions, tinctures, cordials. Each card holds a name, description, recipe, and an in-stock toggle. Toggle in-stock when a fresh batch is ready. Specialty items link from ingredient lists in recipe detail views.
+
+### Cocktail Lists
+Save named collections of cocktails (e.g. "Friday Night", "Tiki Party"). Each list shows a live "Can Make" badge per entry. Open any recipe and tap **+ List** to add it to a new or existing list.
+
+### Spirit Rankings
+Head-to-head ELO ranking system for your bottles. Rate any bottle against others in its category through a simple matchup flow:
+
+1. **Choose a league** — pick from default category leagues (Rum, Whiskey, etc.) or a custom league you create (e.g. "Jamaican Rum", "Rye Whiskey")
+2. **Give an impression** — Love it / Like it / It's okay / Not for me seeds an initial ELO score and tier
+3. **Head-to-head rounds** — five matchups against nearby-ranked bottles; pick your preferred or skip with "Too Tough to Call"
+4. **Result** — see your bottle's final score and tier chip (Elite / Great / Good / Fair / Pass)
+
+ELO scores are per bottle per league. K-factor tapers as match count grows (64 → 32 → 16) to stabilize scores over time. Rankings are visible on the bottle card and in the drawer. The **Spirit Rankings** nav page shows all leagues with top-3 previews; drill into any league for the full leaderboard.
 
 ### Ask Lloid (AI)
 Three modes powered by Claude:
@@ -77,7 +92,7 @@ The `ANTHROPIC_API_KEY` is only required for the Ask Lloid feature. All other fe
 | `Data/bar_inventory.csv` | Bottle inventory — editable from the app or directly |
 | `Data/pantry.json` | Pantry staples, specialty items, and out-of-stock lists |
 | `Data/cocktails.json` | Shared cocktail catalog (synced from app) |
-| `Data/lloid.db` | SQLite database — cocktail recipes, version history, feedback, bottle tasting notes |
+| `lloid.db` | SQLite database — cocktail recipes, version history, feedback, bottle tasting notes, ELO rankings, cocktail lists (gitignored; personal data stays local) |
 
 All flat files are human-readable and version-controlled. The SQLite DB is the source of truth for recipes at runtime; `cocktails.json` is used for bulk sync and bootstrapping.
 
@@ -87,13 +102,13 @@ All flat files are human-readable and version-controlled. The SQLite DB is the s
 
 ```
 app.py          Flask routes and business logic
-db.py           SQLite persistence (cocktails, history, feedback, bottle notes)
+db.py           SQLite persistence (cocktails, history, feedback, bottle notes, ELO)
 harmonize.py    Bulk-normalizes cocktails.json (auto-saline, field cleanup)
 static/
   style.css     All styles (dark theme, CSS custom properties)
   app.js        Client-side filtering, feedback, and toast notifications
 templates/      Jinja2 templates (one per page + base.html)
-Data/           Flat-file data and SQLite DB
+Data/           Flat-file data (inventory CSV, pantry JSON, cocktail catalog)
 ```
 
 The AI features use `claude-sonnet-4-6` via streaming for real-time responses.

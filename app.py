@@ -1123,11 +1123,12 @@ def cocktail_detail(cocktail_id):
                 ing['available'] = False
                 ing['source']    = None
         elif ing_type == 'pantry':
-            # Explicitly tagged as a pantry staple in the editor — always available,
-            # never needs a bottle-shelf link regardless of fuzzy-match results.
+            # Explicitly tagged as a pantry staple in the editor.
+            # Still respect the out-of-stock toggle — consistent with get_makeable_status.
+            ok, _ = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
             ing['pantry_item'] = None
-            ing['available']   = True
-            ing['source']      = 'pantry'
+            ing['available']   = ok
+            ing['source']      = 'pantry' if ok else None
         else:
             explicit = specialty_by_id.get(ing.get('pantry_id', ''))
             if explicit:
