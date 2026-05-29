@@ -639,8 +639,18 @@ def inventory():
     bottles = load_inventory_with_notes()
     cats    = sorted(set(b.get('Category', '') for b in bottles if b.get('Category')))
     custom_flavor_tags = json.loads(_db.get_setting('custom_flavor_tags', '{}'))
+    # Ensure a default league exists for every category
+    _db.ensure_default_leagues(cats)
+    # Enrich each bottle with its ELO data
+    elo_map = _db.get_all_bottle_elo([b['Name'] for b in bottles])
+    for b in bottles:
+        leagues = elo_map.get(b['Name'], [])
+        b['elo_leagues'] = leagues
+        b['elo_display'] = leagues[0] if leagues else None  # best (custom-first, highest score)
+    all_leagues = _db.get_leagues()
     return render_template('inventory.html', bottles=bottles, categories=cats,
-                           custom_flavor_tags=custom_flavor_tags)
+                           custom_flavor_tags=custom_flavor_tags,
+                           all_leagues=all_leagues)
 
 
 @app.route('/inventory/flavor-tags/add', methods=['POST'])
@@ -692,6 +702,7 @@ def inventory_update():
         save_inventory(bottles)
         if original_name and new_name and original_name != new_name:
             _db.rename_bottle_note(original_name, new_name)
+            _db.rename_bottle_in_leagues(original_name, new_name)
         return jsonify({'success': True, 'bottle': bottles[idx], 'index': idx})
     return jsonify({'success': False}), 400
 
@@ -729,8 +740,104 @@ def inventory_delete():
         bottles.pop(idx)
         save_inventory(bottles)
         _db.delete_bottle_note(name)
+        _db.remove_bottle_from_all_leagues(name)
         flash(f"Removed \"{name}\" from inventory.", 'success')
     return redirect(url_for('inventory'))
+
+
+# ── Routes: leagues ──────────────────────────────────────────────────────────
+
+@app.route('/leagues')
+def leagues_index():
+    bottles = load_inventory_with_notes()
+    cats    = sorted(set(b.get('Category', '') for b in bottles if b.get('Category')))
+    _db.ensure_default_leagues(cats)
+    leagues = _db.get_leagues()
+    # Attach top-3 members for preview
+    for lg in leagues:
+        detail = _db.get_league(lg['id'])
+        lg['top'] = detail['members'][:3] if detail else []
+    return render_template('leagues.html', leagues=leagues)
+
+
+@app.route('/leagues/<league_id>')
+def league_detail_view(league_id):
+    league = _db.get_league(league_id)
+    if not league:
+        flash('League not found.', 'error')
+        return redirect(url_for('leagues_index'))
+    return render_template('league_detail.html', league=league)
+
+
+@app.route('/leagues/create', methods=['POST'])
+def league_create():
+    name = request.form.get('name', '').strip()
+    if not name:
+        return jsonify({'success': False, 'error': 'Name required'}), 400
+    league = _db.create_league(name)
+    return jsonify({'success': True, 'league': league})
+
+
+@app.route('/leagues/<league_id>/delete', methods=['POST'])
+def league_delete(league_id):
+    ok = _db.delete_league(league_id)
+    if not ok:
+        return jsonify({'success': False, 'error': 'Cannot delete default leagues'}), 400
+    return jsonify({'success': True})
+
+
+@app.route('/leagues/<league_id>/rename', methods=['POST'])
+def league_rename(league_id):
+    name = request.form.get('name', '').strip()
+    ok   = _db.rename_league(league_id, name)
+    return jsonify({'success': ok})
+
+
+@app.route('/leagues/<league_id>/remove-bottle', methods=['POST'])
+def league_remove_bottle(league_id):
+    bottle_name = request.form.get('bottle_name', '').strip()
+    ok = _db.remove_from_league(league_id, bottle_name)
+    return jsonify({'success': ok})
+
+
+# ── Routes: ELO rating ────────────────────────────────────────────────────────
+
+@app.route('/elo/rate-setup', methods=['POST'])
+def elo_rate_setup():
+    """Seed initial ELO for a bottle in a league, then return matchup candidates."""
+    bottle_name = request.form.get('bottle_name', '').strip()
+    league_id   = request.form.get('league_id', '').strip()
+    tier        = request.form.get('tier', '').strip()   # love/like/okay/dislike or '' for re-rate
+    if not bottle_name or not league_id:
+        return jsonify({'success': False, 'error': 'Missing parameters'}), 400
+    _db.add_to_league(league_id, bottle_name, tier=tier or None)
+    candidates  = _db.get_matchup_candidates(league_id, bottle_name)
+    return jsonify({'success': True, 'candidates': candidates})
+
+
+@app.route('/elo/submit', methods=['POST'])
+def elo_submit():
+    """Submit a batch of matchup results and update ELO scores."""
+    data      = request.get_json() or {}
+    league_id = data.get('league_id', '')
+    results   = data.get('results', [])
+    if not league_id:
+        return jsonify({'success': False, 'error': 'Missing league_id'}), 400
+    updated = _db.record_elo_results(league_id, results)
+    # Return the focal bottle's updated league membership
+    bottle_name  = results[0]['bottle_a'] if results else ''
+    bottle_leagues = _db.get_bottle_leagues(bottle_name) if bottle_name else []
+    return jsonify({'success': True, 'updated_scores': updated,
+                    'bottle_leagues': bottle_leagues})
+
+
+@app.route('/elo/bottle-data')
+def elo_bottle_data():
+    """Return a bottle's current league memberships plus the full leagues list."""
+    name       = request.args.get('bottle', '').strip()
+    bottle_leagues = _db.get_bottle_leagues(name) if name else []
+    all_leagues    = _db.get_leagues()
+    return jsonify({'bottle_leagues': bottle_leagues, 'all_leagues': all_leagues})
 
 
 # ── Routes: pantry ────────────────────────────────────────────────────────────

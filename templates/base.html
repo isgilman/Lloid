@@ -27,6 +27,10 @@
            class="nav-link {% if request.endpoint == 'inventory' %}active{% endif %}">
           Bottle Shelf
         </a>
+        <a href="{{ url_for('leagues_index') }}"
+           class="nav-link {% if request.endpoint in ['leagues_index', 'league_detail_view'] %}active{% endif %}">
+          Leagues
+        </a>
         <a href="{{ url_for('pantry') }}"
            class="nav-link {% if request.endpoint in ['pantry'] %}active{% endif %}">
           Pantry

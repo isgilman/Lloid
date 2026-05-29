@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}{{ league.name }} — Leagues — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container page-container-narrow">
+  <div class="detail-header">
+    <div class="detail-header-top">
+      <a href="{{ url_for('leagues_index') }}" class="back-link">&#8592; Leagues</a>
+      {% if not league.is_default %}
+      <div class="detail-actions">
+        <button class="btn btn-ghost btn-sm" onclick="startRename()">Rename</button>
+        <form method="post" action="{{ url_for('league_delete', league_id=league.id) }}"
+              onsubmit="return confirm('Delete league &quot;{{ league.name }}&quot;? Rankings will be lost.')"
+              style="display:inline">
+          <button type="submit" class="btn btn-ghost btn-sm btn-danger">Delete League</button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+
+    <h1 class="detail-title" id="league-title">{{ league.name }}</h1>
+    <p class="page-subtitle">
+      {{ league.members | length }} bottle{% if league.members | length != 1 %}s{% endif %} ranked
+      {% if league.is_default %} · Default league{% endif %}
+    </p>
+
+    {% if not league.is_default %}
+    <div id="rename-form" style="display:none; margin-top:10px">
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+        <input type="text" id="rename-input" class="form-input" value="{{ league.name }}"
+               maxlength="60" style="max-width:300px"
+               onkeydown="if(event.key==='Enter')submitRename(); if(event.key==='Escape')cancelRename();">
+        <button class="btn btn-primary btn-sm" onclick="submitRename()">Save</button>
+        <button class="btn btn-ghost btn-sm" onclick="cancelRename()">Cancel</button>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if league.members %}
+  <div class="league-ranking-list">
+    {% for m in league.members %}
+    <div class="league-rank-row">
+      <span class="league-rank-num {% if loop.index <= 3 %}rank-top{% endif %}">#{{ loop.index }}</span>
+      <div class="league-rank-info">
+        <span class="league-rank-name">{{ m.bottle_name }}</span>
+        {% if m.match_count > 0 %}
+          <span class="league-rank-matches">{{ m.match_count }} match{% if m.match_count != 1 %}es{% endif %}</span>
+        {% else %}
+          <span class="league-rank-matches text-dim">Seeded only</span>
+        {% endif %}
+      </div>
+      <div class="league-rank-right">
+        <span class="elo-chip elo-{{ m.tier_class }}">{{ m.elo_score }}</span>
+        {% if m.tier %}
+          <span class="league-tier-label text-dim">{{ m.tier | title }}</span>
+        {% endif %}
+      </div>
+      <button class="list-cocktail-remove" style="margin-left:8px"
+              onclick="removeBottle('{{ m.bottle_name }}')" title="Remove from league">&#10005;</button>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state" style="padding:40px 0">
+    <p>No bottles ranked yet. Open any bottle on the <a href="{{ url_for('inventory') }}">Bottle Shelf</a>, tap <strong>Rate</strong>, and choose this league.</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const LEAGUE_ID = '{{ league.id }}';
+
+async function removeBottle(bottleName) {
+  if (!confirm('Remove "' + bottleName + '" from this league? Their score will be lost.')) return;
+  const fd = new FormData();
+  fd.append('bottle_name', bottleName);
+  try {
+    const res  = await fetch('/leagues/' + LEAGUE_ID + '/remove-bottle', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Removed from league', 'success');
+      setTimeout(function() { window.location.reload(); }, 600);
+    }
+  } catch(e) {
+    showToast('Error removing bottle', 'error');
+  }
+}
+
+function startRename() {
+  document.getElementById('rename-form').style.display = '';
+  const inp = document.getElementById('rename-input');
+  inp.focus(); inp.select();
+}
+function cancelRename() {
+  document.getElementById('rename-form').style.display = 'none';
+}
+async function submitRename() {
+  const name = document.getElementById('rename-input').value.trim();
+  if (!name) return;
+  const fd = new FormData();
+  fd.append('name', name);
+  try {
+    const res  = await fetch('/leagues/' + LEAGUE_ID + '/rename', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('league-title').textContent = name;
+      document.title = name + ' — Leagues — Lloid';
+      cancelRename();
+      showToast('Renamed', 'success');
+    }
+  } catch(e) {
+    showToast('Error renaming league', 'error');
+  }
+}
+</script>
+{% endblock %}

@@ -65,6 +65,9 @@
         {% else %}
           <span class="badge badge-green">Cocktail</span>
         {% endif %}
+        {% if b.elo_display %}
+          <span class="elo-chip elo-{{ b.elo_display.tier_class }}" title="{{ b.elo_display.league_name }}">{{ b.elo_display.elo_score }}</span>
+        {% endif %}
       </div>
 
       {% if b.flavor_tags %}
@@ -95,7 +98,8 @@
     </div>
     <div class="bottle-drawer-header-actions">
       <!-- View mode actions -->
-      <div id="drawer-view-actions">
+      <div id="drawer-view-actions" style="display:flex;gap:6px">
+        <button class="btn btn-ghost btn-sm" onclick="openRatingModal()">Rate</button>
         <button class="btn btn-ghost btn-sm" onclick="enterEditMode()">Edit / Review</button>
       </div>
       <!-- Edit mode actions -->
@@ -145,6 +149,12 @@
         <p class="drawer-view-note-label" style="margin-bottom:7px">Flavor Notes</p>
         <div class="flavor-chip-row" id="view-flavor-chips"></div>
       </div>
+    </div>
+
+    <!-- ELO rankings -->
+    <div class="bottle-drawer-section" id="view-elo-section" style="display:none">
+      <h3 class="bottle-drawer-section-title">Rankings</h3>
+      <div id="view-elo-leagues"></div>
     </div>
 
   </div><!-- /#drawer-view-panel -->
@@ -235,6 +245,72 @@
   </div>
 </div>
 
+<!-- Rating Modal -->
+<div class="modal-overlay" id="rating-modal" style="display:none" onclick="closeRatingModalIfBg(event)">
+  <div class="modal modal-rating">
+    <div class="modal-header">
+      <h2 class="modal-title" id="rating-modal-title">Rate Bottle</h2>
+      <button class="modal-close" onclick="closeRatingModal()">&#10005;</button>
+    </div>
+
+    <!-- Step 0: League selection -->
+    <div id="rating-step-0" class="rating-step">
+      <p class="rating-step-sub" id="rating-league-sub">Which league would you like to rate in?</p>
+      <div id="rating-league-list" class="rating-league-list"></div>
+      <div class="rating-new-league-row">
+        <input type="text" id="rating-new-league-input" class="form-input"
+               placeholder="Or create a new league…" maxlength="60" autocomplete="off"
+               onkeydown="if(event.key==='Enter') createLeagueAndSelect()">
+        <button class="btn btn-ghost btn-sm" onclick="createLeagueAndSelect()">Create</button>
+      </div>
+      <div class="modal-footer" style="margin-top:16px">
+        <button class="btn btn-ghost" onclick="closeRatingModal()">Cancel</button>
+        <button class="btn btn-primary" id="rating-start-btn" onclick="startRating()" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 1: First impression -->
+    <div id="rating-step-1" class="rating-step" style="display:none">
+      <p class="rating-step-sub">What's your first take on <strong id="rating-bottle-name-1"></strong>?</p>
+      <div class="rating-tier-grid">
+        <button class="rating-tier-btn tier-love"    onclick="selectTier('love')">❤️ Love it</button>
+        <button class="rating-tier-btn tier-like"    onclick="selectTier('like')">👍 Like it</button>
+        <button class="rating-tier-btn tier-okay"    onclick="selectTier('okay')">🤷 Just okay</button>
+        <button class="rating-tier-btn tier-dislike" onclick="selectTier('dislike')">👎 Dislike it</button>
+      </div>
+      <p class="rating-step-hint">This seeds your starting score before the head-to-head rounds.</p>
+    </div>
+
+    <!-- Step 2: Head-to-head matchups -->
+    <div id="rating-step-2" class="rating-step" style="display:none">
+      <p class="rating-progress" id="rating-progress">Round 1 of 5</p>
+      <div class="matchup-arena">
+        <button class="matchup-btn" id="matchup-btn-a" onclick="submitMatchup('a')"></button>
+        <div class="matchup-middle">
+          <span class="matchup-vs">vs</span>
+          <button class="matchup-skip-btn" onclick="submitMatchup(null)">Too Tough</button>
+        </div>
+        <button class="matchup-btn" id="matchup-btn-b" onclick="submitMatchup('b')"></button>
+      </div>
+      <p class="rating-step-hint">Tap the bottle you prefer — or <em>Too Tough</em> if it's a tie.</p>
+    </div>
+
+    <!-- Step 3: Result -->
+    <div id="rating-step-3" class="rating-step" style="display:none">
+      <div class="rating-result">
+        <div class="rating-result-score" id="rating-result-score"></div>
+        <div class="rating-result-tier"  id="rating-result-tier"></div>
+        <div class="rating-result-league" id="rating-result-league"></div>
+      </div>
+      <div id="rating-result-leagues" class="rating-result-all-leagues"></div>
+      <div class="modal-footer" style="margin-top:16px">
+        <button class="btn btn-ghost" onclick="rateAnotherLeague()">Rate in another league</button>
+        <button class="btn btn-primary" onclick="closeRatingModal()">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Add Bottle Modal -->
 <div class="modal-overlay" id="add-modal" style="display:none" onclick="closeModalIfBg(event)">
   <div class="modal">
@@ -299,6 +375,7 @@
 <script>
 // ── Data ──────────────────────────────────────────────────────────────────────
 const BOTTLES = {{ bottles | tojson }};
+let ALL_LEAGUES = {{ all_leagues | tojson }};
 // Custom flavor tags saved globally: { "Group Label": [{value, label}, ...] }
 const CUSTOM_FLAVOR_TAGS = {{ custom_flavor_tags | tojson }};
 
@@ -612,6 +689,7 @@ function openDrawer(listIdx) {
 
   document.getElementById('drawer-title').textContent = b.Name;
   populateViewPanel(b);
+  populateEloSection(b);
   setDrawerMode('view');
 
   document.getElementById('drawer-overlay').classList.add('active');
@@ -957,6 +1035,278 @@ function deleteBottle() {
   fd.append('Name',  b.Name);
   fetch('/inventory/delete', { method: 'POST', body: fd })
     .then(function() { window.location.reload(); });
+}
+
+// ── ELO helpers ──────────────────────────────────────────────────────────────
+
+function eloTierInfo(score) {
+  if (score >= 1600) return { label: 'S',  cls: 'elite' };
+  if (score >= 1450) return { label: 'A',  cls: 'great' };
+  if (score >= 1300) return { label: 'B',  cls: 'good'  };
+  if (score >= 1150) return { label: 'C',  cls: 'fair'  };
+  return                     { label: 'D',  cls: 'pass'  };
+}
+
+function populateEloSection(b) {
+  const leagues = b.elo_leagues || [];
+  const sec     = document.getElementById('view-elo-section');
+  const cont    = document.getElementById('view-elo-leagues');
+  if (!leagues.length) { sec.style.display = 'none'; return; }
+  sec.style.display = '';
+  cont.innerHTML = '';
+  leagues.forEach(function(lg) {
+    const row  = document.createElement('div');
+    row.className = 'elo-drawer-row';
+    const t = eloTierInfo(lg.elo_score);
+    row.innerHTML = (
+      '<span class="elo-drawer-league">' + lg.league_name + '</span>' +
+      '<span class="elo-chip elo-' + t.cls + '">' + lg.elo_score + '</span>' +
+      (lg.match_count ? '<span class="elo-drawer-matches">' + lg.match_count + ' matches</span>'
+                      : '<span class="elo-drawer-matches text-dim">Seeded</span>')
+    );
+    cont.appendChild(row);
+  });
+}
+
+// ── Rating modal state ────────────────────────────────────────────────────────
+
+let _rateBottle     = null;   // current BOTTLES entry
+let _rateLeagueId   = null;
+let _rateLeagueName = null;
+let _rateTier       = null;
+let _rateMatchups   = [];     // [{bottle_name, elo_score, ...}]
+let _rateResults    = [];     // [{bottle_a, bottle_b, winner}]
+let _rateRound      = 0;
+let _selectedLeagueId = null;
+
+function openRatingModal() {
+  if (_drawerIdx === null) return;
+  _rateBottle = BOTTLES[_drawerIdx];
+  _selectedLeagueId = null;
+  document.getElementById('rating-modal-title').textContent = 'Rate: ' + _rateBottle.Name;
+  _buildLeagueList();
+  _showRatingStep(0);
+  document.getElementById('rating-modal').style.display = 'flex';
+}
+
+function closeRatingModal() {
+  document.getElementById('rating-modal').style.display = 'none';
+  _rateBottle = null;
+}
+
+function closeRatingModalIfBg(e) {
+  if (e.target === e.currentTarget) closeRatingModal();
+}
+
+function _showRatingStep(n) {
+  [0, 1, 2, 3].forEach(function(i) {
+    document.getElementById('rating-step-' + i).style.display = i === n ? '' : 'none';
+  });
+}
+
+function _buildLeagueList() {
+  const cont = document.getElementById('rating-league-list');
+  cont.innerHTML = '';
+  const inLeagues = new Set((_rateBottle.elo_leagues || []).map(function(l) { return l.league_id; }));
+  const cat = _rateBottle.Category || '';
+
+  ALL_LEAGUES.forEach(function(lg) {
+    const isInLeague = inLeagues.has(lg.id);
+    const isCatDefault = lg.is_default && lg.category === cat;
+    const row = document.createElement('label');
+    row.className = 'rating-league-option' + (isCatDefault ? ' rating-league-default' : '');
+    const rb = document.createElement('input');
+    rb.type = 'radio';
+    rb.name = 'rating-league';
+    rb.value = lg.id;
+    if (isCatDefault && !_selectedLeagueId) rb.checked = true;
+    rb.onchange = function() {
+      _selectedLeagueId = lg.id;
+      document.getElementById('rating-start-btn').disabled = false;
+    };
+    const label = document.createElement('span');
+    label.className = 'rating-league-label';
+    label.innerHTML = lg.name +
+      (isInLeague ? ' <span class="rating-in-badge">Rated</span>' : '') +
+      (isCatDefault ? ' <span class="rating-default-badge">Default</span>' : '');
+    row.appendChild(rb);
+    row.appendChild(label);
+    cont.appendChild(row);
+    // Pre-select category default
+    if (isCatDefault && !_selectedLeagueId) _selectedLeagueId = lg.id;
+  });
+  document.getElementById('rating-start-btn').disabled = !_selectedLeagueId;
+}
+
+async function createLeagueAndSelect() {
+  const name = document.getElementById('rating-new-league-input').value.trim();
+  if (!name) return;
+  try {
+    const fd = new FormData();
+    fd.append('name', name);
+    const res  = await fetch('/leagues/create', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      ALL_LEAGUES.push(data.league);
+      _selectedLeagueId = data.league.id;
+      document.getElementById('rating-new-league-input').value = '';
+      _buildLeagueList();
+      // Select the new one
+      const rb = document.querySelector('[name="rating-league"][value="' + _selectedLeagueId + '"]');
+      if (rb) rb.checked = true;
+      document.getElementById('rating-start-btn').disabled = false;
+      showToast('League created', 'success');
+    }
+  } catch(e) {
+    showToast('Error creating league', 'error');
+  }
+}
+
+function startRating() {
+  if (!_selectedLeagueId) return;
+  _rateLeagueId   = _selectedLeagueId;
+  const lg = ALL_LEAGUES.find(function(l) { return l.id === _rateLeagueId; });
+  _rateLeagueName = lg ? lg.name : _rateLeagueId;
+  // Check if already in this league → skip impression step
+  const existing = (_rateBottle.elo_leagues || []).find(function(l) { return l.league_id === _rateLeagueId; });
+  if (existing) {
+    _rateTier = existing.tier || null;
+    _fetchMatchupsAndStart(null);
+  } else {
+    document.getElementById('rating-bottle-name-1').textContent = _rateBottle.Name;
+    _showRatingStep(1);
+  }
+}
+
+async function selectTier(tier) {
+  _rateTier = tier;
+  document.querySelectorAll('.rating-tier-btn').forEach(function(b) {
+    b.classList.toggle('active', b.classList.contains('tier-' + tier));
+  });
+  await _fetchMatchupsAndStart(tier);
+}
+
+async function _fetchMatchupsAndStart(tier) {
+  try {
+    const fd = new FormData();
+    fd.append('bottle_name', _rateBottle.Name);
+    fd.append('league_id',   _rateLeagueId);
+    if (tier) fd.append('tier', tier);
+    const res  = await fetch('/elo/rate-setup', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (!data.success) { showToast('Error starting rating', 'error'); return; }
+    _rateMatchups = data.candidates || [];
+    _rateResults  = [];
+    _rateRound    = 0;
+    if (_rateMatchups.length === 0) {
+      // No opponents yet — show immediate result with seeded score
+      await _finishRating();
+      return;
+    }
+    _showNextMatchup();
+    _showRatingStep(2);
+  } catch(e) {
+    showToast('Error fetching matchups', 'error');
+  }
+}
+
+function _showNextMatchup() {
+  const total = _rateMatchups.length;
+  document.getElementById('rating-progress').textContent =
+    'Round ' + (_rateRound + 1) + ' of ' + total;
+  const opponent = _rateMatchups[_rateRound];
+  document.getElementById('matchup-btn-a').textContent = _rateBottle.Name;
+  document.getElementById('matchup-btn-b').textContent = opponent.bottle_name;
+}
+
+async function submitMatchup(side) {
+  // side: 'a' = focal bottle wins, 'b' = opponent wins, null = draw
+  const opponent = _rateMatchups[_rateRound];
+  let winner = null;
+  if (side === 'a')      winner = _rateBottle.Name;
+  else if (side === 'b') winner = opponent.bottle_name;
+
+  _rateResults.push({
+    bottle_a: _rateBottle.Name,
+    bottle_b: opponent.bottle_name,
+    winner:   winner,
+  });
+  _rateRound++;
+
+  if (_rateRound >= _rateMatchups.length) {
+    await _finishRating();
+  } else {
+    _showNextMatchup();
+  }
+}
+
+async function _finishRating() {
+  try {
+    const res  = await fetch('/elo/submit', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ league_id: _rateLeagueId, results: _rateResults }),
+    });
+    const data = await res.json();
+    if (!data.success) { showToast('Error saving results', 'error'); return; }
+
+    // Update local bottle data
+    const newLeagues = data.bottle_leagues || [];
+    _rateBottle.elo_leagues = newLeagues;
+    _rateBottle.elo_display = newLeagues[0] || null;
+
+    // Refresh ELO section in drawer
+    populateEloSection(_rateBottle);
+
+    // Refresh card badge
+    const card = document.querySelector('.bottle-card[data-index="' + _rateBottle._index + '"]');
+    if (card && _rateBottle.elo_display) {
+      let chip = card.querySelector('.elo-chip');
+      const t  = eloTierInfo(_rateBottle.elo_display.elo_score);
+      if (!chip) {
+        chip = document.createElement('span');
+        chip.className = 'elo-chip';
+        const footer = card.querySelector('.bottle-card-footer');
+        if (footer) footer.appendChild(chip);
+      }
+      chip.className = 'elo-chip elo-' + t.cls;
+      chip.textContent = _rateBottle.elo_display.elo_score;
+      chip.title = _rateBottle.elo_display.league_name;
+    }
+
+    // Build result view
+    const myLeague  = newLeagues.find(function(l) { return l.league_id === _rateLeagueId; });
+    const myScore   = myLeague ? myLeague.elo_score : (data.updated_scores[_rateBottle.Name] || 1400);
+    const tierInfo  = eloTierInfo(myScore);
+
+    document.getElementById('rating-result-score').innerHTML =
+      '<span class="elo-chip elo-' + tierInfo.cls + ' elo-chip-lg">' + myScore + '</span>';
+    document.getElementById('rating-result-tier').textContent =
+      tierInfo.label + ' Tier';
+    document.getElementById('rating-result-league').textContent = _rateLeagueName;
+
+    // All leagues summary
+    const allCont = document.getElementById('rating-result-all-leagues');
+    allCont.innerHTML = '';
+    newLeagues.forEach(function(lg) {
+      if (lg.league_id === _rateLeagueId) return;
+      const t2 = eloTierInfo(lg.elo_score);
+      const row = document.createElement('div');
+      row.className = 'elo-result-other';
+      row.innerHTML = lg.league_name + ': <span class="elo-chip elo-' + t2.cls + '">' + lg.elo_score + '</span>';
+      allCont.appendChild(row);
+    });
+
+    _showRatingStep(3);
+  } catch(e) {
+    showToast('Error saving results', 'error');
+  }
+}
+
+function rateAnotherLeague() {
+  _selectedLeagueId = null;
+  _buildLeagueList();
+  _showRatingStep(0);
 }
 
 // ── Add modal ────────────────────────────────────────────────────────────────

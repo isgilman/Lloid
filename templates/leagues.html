@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}Leagues — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Leagues</h1>
+      <p class="page-subtitle">Head-to-head ELO rankings for your bottles.</p>
+    </div>
+    <button class="btn btn-primary" onclick="openCreateModal()">+ New League</button>
+  </div>
+
+  {% if leagues %}
+  <div class="leagues-grid">
+    {% for lg in leagues %}
+    <a href="{{ url_for('league_detail_view', league_id=lg.id) }}" class="league-card">
+      <div class="league-card-header">
+        <div>
+          <div class="league-card-name">{{ lg.name }}</div>
+          {% if lg.is_default %}
+            <div class="league-card-type">Default league</div>
+          {% else %}
+            <div class="league-card-type">Custom league</div>
+          {% endif %}
+        </div>
+        <div class="league-card-count">{{ lg.member_count }} bottle{% if lg.member_count != 1 %}s{% endif %}</div>
+      </div>
+      {% if lg.top %}
+      <ol class="league-card-top">
+        {% for m in lg.top %}
+        <li class="league-card-top-item">
+          <span class="league-card-rank">#{{ loop.index }}</span>
+          <span class="league-card-bottle-name">{{ m.bottle_name }}</span>
+          <span class="elo-chip elo-{{ m.tier_class }}">{{ m.elo_score }}</span>
+        </li>
+        {% endfor %}
+      </ol>
+      {% else %}
+      <p class="league-card-empty">No bottles rated yet. Open a bottle and tap <strong>Rate</strong>.</p>
+      {% endif %}
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state" style="padding:40px 0">
+    <p>No leagues yet. Open any bottle on the <a href="{{ url_for('inventory') }}">Bottle Shelf</a> and tap <strong>Rate</strong> to start ranking.</p>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Create league modal -->
+<div class="modal-overlay" id="create-modal" style="display:none" onclick="closeCreateModalIfBg(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title">New League</h2>
+      <button class="modal-close" onclick="closeCreateModal()">&#10005;</button>
+    </div>
+    <form onsubmit="submitCreate(event)" class="modal-form">
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label">League name *</label>
+        <input type="text" id="create-league-name" class="form-input" required
+               placeholder="e.g. Rye Whiskey, Jamaican Rum…" maxlength="60" autocomplete="off">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" onclick="closeCreateModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create League</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function openCreateModal() {
+  document.getElementById('create-modal').style.display = 'flex';
+  document.getElementById('create-league-name').focus();
+}
+function closeCreateModal() {
+  document.getElementById('create-modal').style.display = 'none';
+  document.getElementById('create-league-name').value = '';
+}
+function closeCreateModalIfBg(e) {
+  if (e.target === e.currentTarget) closeCreateModal();
+}
+async function submitCreate(e) {
+  e.preventDefault();
+  const name = document.getElementById('create-league-name').value.trim();
+  if (!name) return;
+  const fd = new FormData();
+  fd.append('name', name);
+  try {
+    const res  = await fetch('/leagues/create', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      window.location.href = '/leagues/' + data.league.id;
+    } else {
+      showToast(data.error || 'Error creating league', 'error');
+    }
+  } catch(err) {
+    showToast('Error creating league', 'error');
+  }
+}
+</script>
+{% endblock %}

@@ -79,6 +79,32 @@ CREATE TABLE IF NOT EXISTS list_items (
     added_at    TEXT NOT NULL,
     UNIQUE(list_id, cocktail_id)
 );
+
+CREATE TABLE IF NOT EXISTS leagues (
+    id         TEXT PRIMARY KEY,
+    name       TEXT NOT NULL COLLATE NOCASE,
+    is_default INTEGER NOT NULL DEFAULT 0,
+    category   TEXT,
+    created_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS league_members (
+    league_id   TEXT NOT NULL REFERENCES leagues(id) ON DELETE CASCADE,
+    bottle_name TEXT NOT NULL,
+    elo_score   INTEGER NOT NULL DEFAULT 1400,
+    match_count INTEGER NOT NULL DEFAULT 0,
+    tier        TEXT,
+    PRIMARY KEY (league_id, bottle_name)
+);
+
+CREATE TABLE IF NOT EXISTS elo_matches (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    league_id  TEXT NOT NULL,
+    bottle_a   TEXT NOT NULL,
+    bottle_b   TEXT NOT NULL,
+    winner     TEXT,
+    timestamp  TEXT NOT NULL
+);
 """
 
 
@@ -657,3 +683,350 @@ def get_cocktail_lists(cocktail_id: str) -> set:
             "SELECT list_id FROM list_items WHERE cocktail_id=?", (cocktail_id,)
         ).fetchall()
     return {r['list_id'] for r in rows}
+
+
+# ── Leagues & ELO ─────────────────────────────────────────────────────────────
+
+import re as _re
+import random as _random
+
+
+def _league_slug(name: str) -> str:
+    return _re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+
+
+def _elo_k(match_count: int) -> int:
+    if match_count < 5:  return 64
+    if match_count < 15: return 32
+    return 16
+
+
+def _elo_expected(a: int, b: int) -> float:
+    return 1.0 / (1.0 + 10 ** ((b - a) / 400.0))
+
+
+def _apply_elo(score_a: int, score_b: int, winner,
+               name_a: str, name_b: str,
+               count_a: int, count_b: int):
+    """Return (new_a, new_b). winner=None means draw/skip."""
+    k_a = _elo_k(count_a)
+    k_b = _elo_k(count_b)
+    e_a = _elo_expected(score_a, score_b)
+    e_b = _elo_expected(score_b, score_a)
+    if winner is None:
+        r_a, r_b = 0.5, 0.5
+    elif winner == name_a:
+        r_a, r_b = 1.0, 0.0
+    else:
+        r_a, r_b = 0.0, 1.0
+    new_a = max(100, round(score_a + k_a * (r_a - e_a)))
+    new_b = max(100, round(score_b + k_b * (r_b - e_b)))
+    return new_a, new_b
+
+
+def _elo_tier(score: int) -> str:
+    if score >= 1600: return 'elite'
+    if score >= 1450: return 'great'
+    if score >= 1300: return 'good'
+    if score >= 1150: return 'fair'
+    return 'pass'
+
+
+_TIER_SEED = {'love': 1600, 'like': 1500, 'okay': 1300, 'dislike': 1100}
+
+
+def ensure_default_leagues(categories: list) -> None:
+    """Create a default league for each inventory category that doesn't exist yet."""
+    now = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    with _connect() as conn:
+        for cat in categories:
+            if not cat:
+                continue
+            lid = 'cat-' + _league_slug(cat)
+            conn.execute("""
+                INSERT OR IGNORE INTO leagues (id, name, is_default, category, created_at)
+                VALUES (?, ?, 1, ?, ?)
+            """, (lid, cat, cat, now[:10]))
+        conn.commit()
+
+
+def get_leagues() -> list:
+    """Return all leagues with member counts; defaults first, then alphabetical."""
+    with _connect() as conn:
+        rows = conn.execute("""
+            SELECT l.id, l.name, l.is_default, l.category, l.created_at,
+                   COUNT(lm.bottle_name) AS member_count
+            FROM leagues l
+            LEFT JOIN league_members lm ON lm.league_id = l.id
+            GROUP BY l.id
+            ORDER BY l.is_default DESC, l.name
+        """).fetchall()
+    return [dict(r) for r in rows]
+
+
+def get_league(league_id: str):
+    """Return league info with ranked member list, or None."""
+    with _connect() as conn:
+        row = conn.execute(
+            "SELECT * FROM leagues WHERE id=?", (league_id,)
+        ).fetchone()
+        if not row:
+            return None
+        members = conn.execute("""
+            SELECT bottle_name, elo_score, match_count, tier
+            FROM league_members WHERE league_id=?
+            ORDER BY elo_score DESC
+        """, (league_id,)).fetchall()
+    lg = dict(row)
+    lg['members'] = [dict(m) for m in members]
+    for i, m in enumerate(lg['members']):
+        m['rank'] = i + 1
+        m['tier_class'] = _elo_tier(m['elo_score'])
+    return lg
+
+
+def create_league(name: str) -> dict:
+    """Create a new custom league and return it."""
+    now  = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    base = _league_slug(name)
+    lid  = base
+    with _connect() as conn:
+        suffix = 0
+        while conn.execute("SELECT 1 FROM leagues WHERE id=?", (lid,)).fetchone():
+            suffix += 1
+            lid = f"{base}-{suffix}"
+        conn.execute(
+            "INSERT INTO leagues (id, name, is_default, category, created_at) "
+            "VALUES (?,?,0,NULL,?)",
+            (lid, name, now[:10])
+        )
+        conn.commit()
+    return {'id': lid, 'name': name, 'is_default': False,
+            'category': None, 'created_at': now[:10], 'member_count': 0}
+
+
+def delete_league(league_id: str) -> bool:
+    """Delete a custom (non-default) league. Returns True if deleted."""
+    with _connect() as conn:
+        row = conn.execute(
+            "SELECT is_default FROM leagues WHERE id=?", (league_id,)
+        ).fetchone()
+        if not row or row['is_default']:
+            return False
+        conn.execute("DELETE FROM leagues WHERE id=?", (league_id,))
+        conn.commit()
+    return True
+
+
+def rename_league(league_id: str, name: str) -> bool:
+    """Rename a custom league. Returns True if renamed."""
+    with _connect() as conn:
+        row = conn.execute(
+            "SELECT is_default FROM leagues WHERE id=?", (league_id,)
+        ).fetchone()
+        if not row or row['is_default']:
+            return False
+        conn.execute("UPDATE leagues SET name=? WHERE id=?", (name, league_id))
+        conn.commit()
+    return True
+
+
+def get_bottle_leagues(bottle_name: str) -> list:
+    """Return [{league_id, league_name, is_default, elo_score, match_count, tier}]."""
+    with _connect() as conn:
+        rows = conn.execute("""
+            SELECT l.id AS league_id, l.name AS league_name, l.is_default,
+                   lm.elo_score, lm.match_count, lm.tier
+            FROM league_members lm
+            JOIN leagues l ON l.id = lm.league_id
+            WHERE lm.bottle_name=?
+            ORDER BY l.is_default ASC, lm.elo_score DESC
+        """, (bottle_name,)).fetchall()
+    result = [dict(r) for r in rows]
+    for r in result:
+        r['tier_class'] = _elo_tier(r['elo_score'])
+    return result
+
+
+def add_to_league(league_id: str, bottle_name: str,
+                  tier: str = None, elo: int = None) -> dict:
+    """Add/update a bottle in a league. Seeds ELO from tier if not provided."""
+    if elo is None:
+        elo = _TIER_SEED.get(tier, 1400)
+    with _connect() as conn:
+        existing = conn.execute(
+            "SELECT elo_score, match_count FROM league_members "
+            "WHERE league_id=? AND bottle_name=?",
+            (league_id, bottle_name)
+        ).fetchone()
+        if existing:
+            # Re-rating: keep match_count, update tier + elo only if tier given
+            if tier:
+                conn.execute("""
+                    UPDATE league_members SET tier=?, elo_score=?
+                    WHERE league_id=? AND bottle_name=?
+                """, (tier, elo, league_id, bottle_name))
+        else:
+            conn.execute("""
+                INSERT INTO league_members
+                    (league_id, bottle_name, elo_score, match_count, tier)
+                VALUES (?,?,?,0,?)
+            """, (league_id, bottle_name, elo, tier))
+        conn.commit()
+    row = conn.execute(
+        "SELECT elo_score, match_count, tier FROM league_members "
+        "WHERE league_id=? AND bottle_name=?",
+        (league_id, bottle_name)
+    ).fetchone() if False else None
+    return {'league_id': league_id, 'bottle_name': bottle_name,
+            'elo_score': elo, 'tier': tier}
+
+
+def remove_from_league(league_id: str, bottle_name: str) -> bool:
+    with _connect() as conn:
+        cur = conn.execute(
+            "DELETE FROM league_members WHERE league_id=? AND bottle_name=?",
+            (league_id, bottle_name)
+        )
+        conn.commit()
+    return cur.rowcount > 0
+
+
+def remove_bottle_from_all_leagues(bottle_name: str):
+    """Remove a bottle from every league (called on bottle deletion)."""
+    with _connect() as conn:
+        conn.execute(
+            "DELETE FROM league_members WHERE bottle_name=?", (bottle_name,)
+        )
+        conn.commit()
+
+
+def rename_bottle_in_leagues(old_name: str, new_name: str):
+    """Update league_members when a bottle is renamed."""
+    with _connect() as conn:
+        conn.execute(
+            "UPDATE league_members SET bottle_name=? WHERE bottle_name=?",
+            (new_name, old_name)
+        )
+        conn.execute(
+            "UPDATE elo_matches SET bottle_a=? WHERE bottle_a=?", (new_name, old_name)
+        )
+        conn.execute(
+            "UPDATE elo_matches SET bottle_b=? WHERE bottle_b=?", (new_name, old_name)
+        )
+        conn.execute(
+            "UPDATE elo_matches SET winner=? WHERE winner=?", (new_name, old_name)
+        )
+        conn.commit()
+
+
+def get_matchup_candidates(league_id: str, bottle_name: str, n: int = 5) -> list:
+    """Return up to n matchup opponents sorted by ELO proximity, with randomisation."""
+    with _connect() as conn:
+        target = conn.execute(
+            "SELECT elo_score FROM league_members WHERE league_id=? AND bottle_name=?",
+            (league_id, bottle_name)
+        ).fetchone()
+        if not target:
+            return []
+        target_elo = target['elo_score']
+        others = conn.execute("""
+            SELECT bottle_name, elo_score, match_count, tier
+            FROM league_members
+            WHERE league_id=? AND bottle_name != ?
+            ORDER BY ABS(elo_score - ?) ASC
+            LIMIT ?
+        """, (league_id, bottle_name, target_elo, n + 4)).fetchall()
+    candidates = [dict(r) for r in others]
+    for c in candidates:
+        c['tier_class'] = _elo_tier(c['elo_score'])
+    # Shuffle the tail slightly for variety
+    if len(candidates) > n:
+        head = candidates[:max(n - 2, 1)]
+        tail = candidates[max(n - 2, 1):]
+        _random.shuffle(tail)
+        candidates = head + tail
+    return candidates[:n]
+
+
+def record_elo_results(league_id: str, results: list) -> dict:
+    """
+    Process a batch of matchup results.
+    results = [{'bottle_a': str, 'bottle_b': str, 'winner': str|None}]
+    winner=None means draw/skip.
+    Returns {bottle_name: new_elo_score} for every bottle touched.
+    """
+    now = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    with _connect() as conn:
+        involved = set()
+        for r in results:
+            involved.add(r['bottle_a'])
+            involved.add(r['bottle_b'])
+
+        scores = {}
+        counts = {}
+        for name in involved:
+            row = conn.execute(
+                "SELECT elo_score, match_count FROM league_members "
+                "WHERE league_id=? AND bottle_name=?",
+                (league_id, name)
+            ).fetchone()
+            if row:
+                scores[name] = row['elo_score']
+                counts[name] = row['match_count']
+
+        for r in results:
+            a, b, winner = r['bottle_a'], r['bottle_b'], r.get('winner')
+            if a not in scores or b not in scores:
+                continue
+            new_a, new_b = _apply_elo(
+                scores[a], scores[b], winner, a, b, counts[a], counts[b]
+            )
+            scores[a] = new_a
+            scores[b] = new_b
+            counts[a] = counts.get(a, 0) + 1
+            counts[b] = counts.get(b, 0) + 1
+            conn.execute(
+                "INSERT INTO elo_matches "
+                "(league_id, bottle_a, bottle_b, winner, timestamp) VALUES (?,?,?,?,?)",
+                (league_id, a, b, winner, now)
+            )
+
+        for name in involved:
+            if name in scores:
+                conn.execute(
+                    "UPDATE league_members SET elo_score=?, match_count=? "
+                    "WHERE league_id=? AND bottle_name=?",
+                    (scores[name], counts[name], league_id, name)
+                )
+        conn.commit()
+
+    return {name: scores[name] for name in involved if name in scores}
+
+
+def get_all_bottle_elo(bottle_names: list) -> dict:
+    """
+    Return {bottle_name: [league_entry, ...]} for all given bottle names.
+    Custom (non-default) leagues are listed first, then defaults.
+    """
+    if not bottle_names:
+        return {}
+    with _connect() as conn:
+        placeholders = ','.join('?' * len(bottle_names))
+        rows = conn.execute(f"""
+            SELECT lm.bottle_name, l.id AS league_id, l.name AS league_name,
+                   l.is_default, lm.elo_score, lm.tier, lm.match_count
+            FROM league_members lm
+            JOIN leagues l ON l.id = lm.league_id
+            WHERE lm.bottle_name IN ({placeholders})
+            ORDER BY lm.bottle_name, l.is_default ASC, lm.elo_score DESC
+        """, bottle_names).fetchall()
+    result = {}
+    for r in rows:
+        name = r['bottle_name']
+        if name not in result:
+            result[name] = []
+        entry = dict(r)
+        entry['tier_class'] = _elo_tier(entry['elo_score'])
+        result[name].append(entry)
+    return result
