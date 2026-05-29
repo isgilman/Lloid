@@ -302,7 +302,7 @@
         <div class="rating-result-tier"  id="rating-result-tier"></div>
         <div class="rating-result-league" id="rating-result-league"></div>
       </div>
-      <div id="rating-result-leagues" class="rating-result-all-leagues"></div>
+      <div id="rating-result-all-leagues" class="rating-result-all-leagues"></div>
       <div class="modal-footer" style="margin-top:16px">
         <button class="btn btn-ghost" onclick="rateAnotherLeague()">Rate in another league</button>
         <button class="btn btn-primary" onclick="closeRatingModal()">Done</button>
@@ -1245,7 +1245,8 @@ async function _finishRating() {
     const res  = await fetch('/elo/submit', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ league_id: _rateLeagueId, results: _rateResults }),
+      body:    JSON.stringify({ league_id: _rateLeagueId, results: _rateResults,
+                               bottle_name: _rateBottle.Name }),
     });
     const data = await res.json();
     if (!data.success) { showToast('Error saving results', 'error'); return; }

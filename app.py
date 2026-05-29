@@ -824,8 +824,10 @@ def elo_submit():
     if not league_id:
         return jsonify({'success': False, 'error': 'Missing league_id'}), 400
     updated = _db.record_elo_results(league_id, results)
-    # Return the focal bottle's updated league membership
-    bottle_name  = results[0]['bottle_a'] if results else ''
+    # Return the focal bottle's updated league membership.
+    # bottle_name can be passed explicitly (cold-start: no matchups) or inferred from results.
+    bottle_name = (data.get('bottle_name', '') or
+                   (results[0]['bottle_a'] if results else ''))
     bottle_leagues = _db.get_bottle_leagues(bottle_name) if bottle_name else []
     return jsonify({'success': True, 'updated_scores': updated,
                     'bottle_leagues': bottle_leagues})
