@@ -227,3 +227,9 @@ static/books/
 Data/lloid.db
 Data/lloid.db-wal
 Data/lloid.db-shm
+lloid.db
+lloid.db-wal
+lloid.db-shm
+
+# Claude memory files (personal/session context, not for sharing)
+memory/

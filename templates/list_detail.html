@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}{{ lst.name }} — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container page-container-narrow">
+  <div class="detail-header">
+    <div class="detail-header-top">
+      <a href="{{ url_for('lists_index') }}" class="back-link">&#8592; Lists</a>
+      <div class="detail-actions">
+        <button class="btn btn-ghost btn-sm" onclick="startRename()">Rename</button>
+        <form method="post" action="{{ url_for('list_delete', list_id=lst.id) }}"
+              onsubmit="return confirm('Delete list &quot;{{ lst.name }}&quot;? This cannot be undone.')"
+              style="display:inline">
+          <button type="submit" class="btn btn-ghost btn-sm btn-danger">Delete List</button>
+        </form>
+      </div>
+    </div>
+
+    <h1 class="detail-title" id="list-title">{{ lst.name }}</h1>
+    <p class="page-subtitle">{{ cocktails | length }} cocktail{% if cocktails | length != 1 %}s{% endif %}</p>
+
+    <!-- Inline rename form -->
+    <div id="rename-form" style="display:none; margin-top:10px">
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+        <input type="text" id="rename-input" class="form-input" value="{{ lst.name }}"
+               maxlength="60" style="max-width:300px"
+               onkeydown="if(event.key==='Enter')submitRename(); if(event.key==='Escape')cancelRename();">
+        <button class="btn btn-primary btn-sm" onclick="submitRename()">Save</button>
+        <button class="btn btn-ghost btn-sm" onclick="cancelRename()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  {% if cocktails %}
+  <div class="list-cocktail-list">
+    {% for c in cocktails %}
+    <div class="list-cocktail-row" id="lc-{{ c.id }}">
+      <div class="list-cocktail-info">
+        <a href="{{ url_for('cocktail_detail', cocktail_id=c.id) }}" class="list-cocktail-name">{{ c.name }}</a>
+        <div class="list-cocktail-meta">
+          {% if c.can_make %}
+            <span class="badge badge-green">Can Make</span>
+          {% else %}
+            <span class="badge badge-dim">Missing</span>
+          {% endif %}
+          {% if c.get('source') %}
+            <span class="list-cocktail-source">{{ c.source }}</span>
+          {% endif %}
+        </div>
+      </div>
+      <button class="list-cocktail-remove" onclick="removeFromList('{{ c.id }}')" title="Remove from list">&#10005;</button>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state" style="padding:40px 0">
+    <p>No cocktails in this list yet. Browse your <a href="{{ url_for('cocktails') }}">cocktail library</a> and use <strong>+ List</strong> on any recipe.</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const LIST_ID = '{{ lst.id }}';
+
+async function removeFromList(cocktailId) {
+  if (!confirm('Remove this cocktail from the list?')) return;
+  const fd = new FormData();
+  fd.append('cocktail_id', cocktailId);
+  try {
+    const res  = await fetch('/lists/' + LIST_ID + '/remove', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      const row = document.getElementById('lc-' + cocktailId);
+      if (row) {
+        row.style.opacity = '0';
+        row.style.transition = 'opacity .2s';
+        setTimeout(function() { row.remove(); }, 200);
+      }
+      showToast('Removed from list', 'success');
+    }
+  } catch(e) {
+    showToast('Error removing cocktail', 'error');
+  }
+}
+
+function startRename() {
+  document.getElementById('rename-form').style.display = '';
+  const inp = document.getElementById('rename-input');
+  inp.focus();
+  inp.select();
+}
+function cancelRename() {
+  document.getElementById('rename-form').style.display = 'none';
+}
+async function submitRename() {
+  const name = document.getElementById('rename-input').value.trim();
+  if (!name) return;
+  const fd = new FormData();
+  fd.append('name', name);
+  try {
+    const res  = await fetch('/lists/' + LIST_ID + '/rename', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('list-title').textContent = name;
+      document.title = name + ' — Lloid';
+      cancelRename();
+      showToast('Renamed', 'success');
+    }
+  } catch(e) {
+    showToast('Error renaming list', 'error');
+  }
+}
+</script>
+{% endblock %}

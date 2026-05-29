@@ -31,6 +31,10 @@
            class="nav-link {% if request.endpoint in ['pantry'] %}active{% endif %}">
           Pantry
         </a>
+        <a href="{{ url_for('lists_index') }}"
+           class="nav-link {% if request.endpoint in ['lists_index', 'list_detail_view'] %}active{% endif %}">
+          Lists
+        </a>
         <a href="{{ url_for('bookshelf') }}"
            class="nav-link {% if request.endpoint == 'bookshelf' %}active{% endif %}">
           Bookshelf

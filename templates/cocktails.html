@@ -113,7 +113,7 @@
        data-favorited="{{ 'true' if c.feedback.favorited else 'false' }}"
        data-tags="{{ c.get('tags', []) | join('|') | lower }}"
        data-creator="{{ c.get('creator', '') }}"
-       data-ingredients="{{ c.get('ingredients', []) | map(attribute='name') | join(' ') | lower }}">
+       data-ingredients="{{ (c.get('ingredients', []) | map(attribute='name') | list + c.get('ingredients', []) | map(attribute='notes') | list) | join(' ') | lower }}">
       <div class="cocktail-card-top">
         <span class="cocktail-card-category">
           {{ c.get('source', '') }}{% if c.get('premium') %} <span class="premium-dot" title="Premium cocktail">✦</span>{% endif %}
@@ -127,6 +127,9 @@
         {% endif %}
       </div>
       <h3 class="cocktail-card-name">{{ c.name }}</h3>
+      {% if c.get('description') %}
+      <p class="cocktail-card-desc">{{ c.description }}</p>
+      {% endif %}
       <p class="cocktail-card-ings">
         {{ c.get('ingredients', [])[:3] | map(attribute='name') | join(', ') }}{% if c.get('ingredients', []) | length > 3 %}&hellip;{% endif %}
       </p>

@@ -881,6 +881,13 @@ select.edit-input { padding: 5px 8px; }
   color: var(--text);
   line-height: 1.2;
 }
+.cocktail-card-desc {
+  font-size: 12px;
+  color: var(--text-sec);
+  font-style: italic;
+  line-height: 1.4;
+  margin: -4px 0 0;
+}
 .cocktail-card-ings {
   font-size: 12.5px;
   color: var(--text-sec);
@@ -934,6 +941,13 @@ select.edit-input { padding: 5px 8px; }
 }
 .detail-meta-item { font-size: 13px; color: var(--text-sec); }
 .detail-creator { font-style: italic; color: var(--text-dim); }
+.detail-description {
+  font-size: 14px;
+  color: var(--text-sec);
+  font-style: italic;
+  margin: -12px 0 24px;
+  line-height: 1.5;
+}
 
 .makeable-badge {
   display: flex;
@@ -1004,10 +1018,10 @@ select.edit-input { padding: 5px 8px; }
 .ing-inv-link-missing { border-bottom-color: var(--red); opacity: 0.8; }
 .ing-inv-link-missing:hover { color: var(--accent-light); border-bottom-color: var(--accent-light); opacity: 1; }
 
-.ing-dot         { line-height: 1; }
-.ing-dot-have    { color: #4cb886; font-size: 17px; }
-.ing-dot-pantry  { color: #4cb886; font-size: 13px; }
-.ing-dot-missing { color: var(--red); font-size: 13px; }
+.ing-dot         { line-height: 1; font-size: 14px; }
+.ing-dot-have    { color: #4cb886; }
+.ing-dot-pantry  { color: #4cb886; }
+.ing-dot-missing { color: var(--red); }
 
 .ingredient-legend {
   font-size: 11.5px;
@@ -1450,6 +1464,42 @@ select.edit-input { padding: 5px 8px; }
   color: var(--text-sec);
   line-height: 1.65;
   white-space: pre-wrap;
+}
+
+.specialty-used-in {
+  padding-top: 10px;
+  margin-top: 2px;
+}
+
+.specialty-used-in-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--text-dim);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.specialty-used-in-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.specialty-used-in-link {
+  font-size: 11.5px;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-sec);
+  background: transparent;
+  white-space: nowrap;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.specialty-used-in-link:hover {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
 }
 
 .specialty-card-footer {
@@ -2040,6 +2090,58 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   background: var(--bg-card);
 }
 
+/* ── Drawer view-panel elements ──────────────────────────────────────────────── */
+
+.drawer-view-meta {
+  font-size: 13px;
+  color: var(--text-sec);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.drawer-view-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.drawer-view-field {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.drawer-view-field-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--text-dim);
+  font-weight: 600;
+  flex-shrink: 0;
+  width: 64px;
+}
+
+.drawer-view-field-value {
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+.drawer-view-note-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--text-dim);
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.drawer-view-note-text {
+  font-size: 13.5px;
+  color: var(--text-sec);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
 /* ── Flavor tag groups ───────────────────────────────────────────────────────── */
 
 .flavor-tag-groups {
@@ -2075,8 +2177,276 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   padding: 3px 9px;
 }
 
+/* Per-group "+" add-tag button — sits at the end of each chip row */
+.flavor-add-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  line-height: 1;
+  border: 1px dashed var(--border-light);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+  flex-shrink: 0;
+}
+.flavor-add-chip-btn:hover {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+
+/* Inline add-tag input that appears inside the chip row */
+.flavor-inline-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.flavor-inline-input {
+  font-size: 11.5px;
+  padding: 2px 7px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text);
+  outline: none;
+  width: 100px;
+}
+.flavor-inline-input::placeholder { color: var(--text-dim); }
+.flavor-inline-input:focus { border-color: var(--accent-light); }
+.flavor-inline-confirm {
+  font-size: 12px;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-sec);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+}
+.flavor-inline-confirm:hover {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+
+/* ── Lists page ──────────────────────────────────────────────────────────────── */
+
+.lists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.list-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition), background var(--transition);
+  cursor: pointer;
+  color: var(--text);
+}
+.list-card:hover {
+  background: var(--card-hover);
+  border-color: var(--border-light);
+}
+
+.list-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.list-card-count {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.list-card-preview {
+  font-size: 12.5px;
+  color: var(--text-sec);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* ── List detail page ────────────────────────────────────────────────────────── */
+
+.list-cocktail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.list-cocktail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+.list-cocktail-row:last-child { border-bottom: none; }
+.list-cocktail-row:hover { background: rgba(255,255,255,.025); }
+
+.list-cocktail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.list-cocktail-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list-cocktail-name:hover { color: var(--accent-light); }
+
+.list-cocktail-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.list-cocktail-source {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.list-cocktail-remove {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--text-dim);
+  font-size: 13px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+}
+.list-cocktail-remove:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* ── Add-to-list modal ────────────────────────────────────────────────────────── */
+
+.list-modal-body {
+  padding: 16px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.list-modal-create {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.list-modal-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.list-modal-divider {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--text-dim);
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+.list-modal-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.list-modal-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+.list-modal-row:last-child { border-bottom: none; }
+
+.list-modal-row-name {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-modal-row-count {
+  font-size: 12px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  min-width: 20px;
+  text-align: right;
+}
+
+.list-modal-toggle {
+  flex-shrink: 0;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  background: transparent;
+  color: var(--text-sec);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+.list-modal-toggle:hover {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+.list-modal-toggle-on {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-bg);
+}
+.list-modal-toggle-on:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-bg);
+}
+
+.list-modal-empty {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 8px 0 0;
+}
+
 /* ── Responsive ──────────────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .bottle-grid { grid-template-columns: 1fr; }
   .bottle-drawer { width: 100vw; border-left: none; }
+  .lists-grid { grid-template-columns: 1fr; }
 }

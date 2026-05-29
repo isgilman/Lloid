@@ -1402,7 +1402,7 @@
       "method": "Flash-blended",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -1537,7 +1537,7 @@
           "notes": "Clove, allspice, cinnamon, nutmeg, star anise; 3:1 sugar to blackstrap molasses ratio"
         },
         {
-          "name": "Saline Solution (20%)",
+          "name": "Saline Solution",
           "amount": "2",
           "unit": "dashes",
           "notes": ""
@@ -4004,7 +4004,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4074,7 +4074,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4138,7 +4138,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4200,7 +4200,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4250,7 +4250,7 @@
       "method": "Blended",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4308,7 +4308,7 @@
       "method": "Stirred",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4370,7 +4370,7 @@
       "method": "Blended",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "10",
           "unit": "drops",
           "notes": ""
@@ -4439,7 +4439,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4518,7 +4518,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4586,7 +4586,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4650,7 +4650,7 @@
       "method": "Blended",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "10",
           "unit": "drops",
           "notes": ""
@@ -4745,7 +4745,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4810,7 +4810,7 @@
       "method": "Stirred",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4880,7 +4880,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4939,7 +4939,7 @@
       "method": "Stirred",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -4957,10 +4957,10 @@
           "notes": ""
         },
         {
-          "name": "Cocchi Americano",
+          "name": "Quinquina",
           "amount": "0.75",
           "unit": "oz",
-          "notes": ""
+          "notes": "Cocchi Americano"
         },
         {
           "name": "Pineapple-Infused Aged Rum",
@@ -4992,7 +4992,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5038,7 +5038,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5102,7 +5102,7 @@
       "method": "Stirred",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5161,7 +5161,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5290,7 +5290,7 @@
           "notes": "gently muddled"
         },
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5359,7 +5359,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5417,7 +5417,7 @@
       "method": "Built",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "30",
           "unit": "drops",
           "notes": ""
@@ -5477,7 +5477,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "10",
           "unit": "drops",
           "notes": "5 for each component"
@@ -5567,7 +5567,7 @@
       "method": "Blended",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5638,7 +5638,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5695,7 +5695,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5758,7 +5758,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5816,7 +5816,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5875,7 +5875,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -5940,7 +5940,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -6003,7 +6003,7 @@
           "notes": "muddled"
         },
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -6070,7 +6070,7 @@
       "method": "Stirred",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -6115,7 +6115,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -6179,7 +6179,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -6256,7 +6256,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -6320,7 +6320,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -6385,7 +6385,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -6442,7 +6442,7 @@
       "method": "Blended",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -6507,7 +6507,7 @@
       "method": "Blended",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "10",
           "unit": "drops",
           "notes": ""
@@ -6572,7 +6572,7 @@
       "method": "Shaken",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "5",
           "unit": "drops",
           "notes": ""
@@ -6638,7 +6638,7 @@
       "method": "Blended",
       "ingredients": [
         {
-          "name": "20% Saline Solution",
+          "name": "Saline Solution",
           "amount": "10",
           "unit": "drops",
           "notes": ""
@@ -6781,7 +6781,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the tonic water. Fill a highball glass with 1¼ inch ice cubes. Prime the highball glass with the tonic water. Cover the cocktail tin and shake. Strain the cocktail into the highball glass.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter highball with hints of grapefruit"
     },
     {
       "id": "angelo-and-rocco",
@@ -6838,7 +6839,8 @@
       "instructions": "Combine all the ingredients in a cocktail tin. Fill the tin with ice cover and shake vigorously. Strain the cocktail into a coupe.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter sour with flavors of black pepper and apples"
     },
     {
       "id": "anthora",
@@ -6895,7 +6897,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a cobbler glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the cobbler glass and top with additional crushed ice. Garnish with the mint plouche and grapefruit twist.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "Amaro cobbler with coffee and fennel"
     },
     {
       "id": "banana-stand",
@@ -6946,7 +6949,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice. Shave bittersweet chocolate over the top of the cocktail for garnish.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A sherry cobbler with flavors of banana and chocolate"
     },
     {
       "id": "broken-spanish",
@@ -6971,8 +6975,8 @@
         {
           "amount": "1",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1¾",
@@ -6985,7 +6989,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients except the Becherovka and garnish. Fill the mixing glass with 1¼ inch ice cubes and stir. Using an atomizer rinse a chilled coupe with six sprays of Becherovka. Strain the cocktail into the coupe. Express the grapefruit twist over the drink and then drop it into the glass.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A lower-ABV martini with vinous and herbaceous flavors"
     },
     {
       "id": "bullingdon-club-cup",
@@ -7054,7 +7059,8 @@
       "instructions": "Use the lemon wedge to moisten the top inch of the outer rim of a chilled highball glass. Gently roll the highball glass in salt to rim half of the glass. Shake off excess salt. Use the corner of a folded cocktail napkin to make the salt a consistent thickness. Fill the highball glass with 1¼ inch ice cubes. Add all the remaining ingredients except the tonic water to a cocktail tin. Add three 1¼ inch ice cubes to the tin. Cover and whip vigorously. Add the tonic water to the tin. Strain the cocktail into the highball glass using a hawthorne strainer. Fill the glass with additional tonic water.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter and vegetal watermelon cooler"
     },
     {
       "id": "cardinale",
@@ -7117,7 +7123,8 @@
       "instructions": "In a cocktail tin muddle a cucumber slice in the ginger syrup then add the remaining ingredients except the club soda and garnish. Fill a highball glass with crushed ice. Add three 1¼ inch cubes to the tin. Cover and whip. Strain the cocktail into the highball glass. Add the club soda and garnish with the remaining cucumber slice.",
       "notes": "Creator: Gino Pellarin",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A refreshing cobbler with notes of grapefruit and ginger"
     },
     {
       "id": "clip-joint-cup",
@@ -7180,7 +7187,8 @@
       "instructions": "In a cocktail tin muddle a grapefruit twist and a cucumber slice with the demerara syrup. Fill a highball glass with 1¼ inch ice cubes and prime it with the club soda and tonic water. Add the rest of the ingredients except the garnishes to the tin. Cover and shake. Strain the cocktail into the highball glass. Garnish with the mint plouche and remaining cucumber slice and grapefruit twist.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter Pimm's Cup variation"
     },
     {
       "id": "common-thread",
@@ -7235,8 +7243,8 @@
         {
           "amount": "1",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1¾",
@@ -7255,7 +7263,8 @@
       "instructions": "Use the lemon wedge to moisten the top inch of the outer rim of a chilled highball glass. Gently roll the highball glass in chile salt to rim half of the glass. Shake off excess salt. Use the corner of a folded cocktail napkin to make the salt a consistent thickness. Fill the highball glass with 1¼ inch ice cubes. Add the remaining ingredients except the club soda and garnish to a cocktail tin. Add three 1¼ inch ice cubes to the tin. Cover and shake vigorously. Add 1 ounce of the club soda to the cocktail tin. Strain the cocktail into the highball glass using a hawthorne strainer. Fill the glass with the remaining ¾ ounce club soda and garnish with the cucumber slice around the inside rim of the glass.",
       "notes": "Creator: Julia Reingold",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A lightly savory and refreshing cooler"
     },
     {
       "id": "cortez",
@@ -7306,7 +7315,8 @@
       "instructions": "Combine all the ingredients except the Champagne in a cocktail tin. Fill a highball glass with 1¼ inch ice cubes and add the Champagne. Fill the cocktail tin with ice. Cover and shake vigorously. Strain the cocktail into the highball glass.",
       "notes": "Creator: Ryan Curran",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A savory Champagne cocktail"
     },
     {
       "id": "cup-of-joe",
@@ -7369,7 +7379,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the tonic water and grapefruit twist. Fill a highball glass with 1¼ inch ice cubes. Prime the highball glass with the tonic water. Cover the cocktail tin and shake. Strain the cocktail into the highball glass. Express the oils of the grapefruit twist over the drink then discard the twist.",
       "notes": "Creator: Shaun Dunn",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Pimm's Cup variation with coffee, grapefruit, and vanilla"
     },
     {
       "id": "danger-haus",
@@ -7420,7 +7431,8 @@
       "instructions": "Combine all the ingredients except the garnish in a cocktail tin. Wrap the cucumber slice around the inside of the highball glass starting from the bottom and fill the glass with crushed ice. Add three 1¾ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the highball glass.",
       "notes": "Creator: Jane Danger and Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter, cranberry-forward sherry cobbler"
     },
     {
       "id": "folklore",
@@ -7477,7 +7489,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the beer. Fill a highball glass with 1¼ inch ice cubes and add the beer. Fill the tin with ice. Cover and shake vigorously. Strain the cocktail into the highball glass.",
       "notes": "Creator: Pietro Collina and Julia Reingold",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A fall-flavored shandy with cinnamon and pear"
     },
     {
       "id": "fresa-y-cervesa",
@@ -7528,7 +7541,8 @@
       "instructions": "In a cocktail tin muddle a cucumber slice and combine the remaining ingredients except the beer and garnish. Wrap the cucumber garnish around the inside of a highball glass starting from the bottom. Fill the glass with 1¼ inch ice cubes and add the beer. Add ice to the tin. Cover and shake vigorously. Strain the cocktail into the highball glass.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tart and vegetal shandy with flavors of strawberry"
     },
     {
       "id": "haymarket",
@@ -7573,7 +7587,8 @@
       "instructions": "In a cocktail tin muddle a cucumber slice and combine the remaining ingredients except the beer and the garnish. Wrap the whole length cucumber garnish around the inside of a highball glass starting from the bottom. Fill the glass with 1¼ inch ice cubes and add the beer. Fill the tin with ice. Cover and shake vigorously. Strain the cocktail into the highball glass and garnish with the remaining cucumber slice.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter and refreshing shandy"
     },
     {
       "id": "hot-broth",
@@ -7614,7 +7629,8 @@
       "tags": [
         "built"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A savory boozy brodo with an anise undertone"
     },
     {
       "id": "howie-in-the-jungle",
@@ -7665,7 +7681,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the club soda and garnishes. Fill a highball glass with 1¼ inch ice cubes. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Add the club soda to the cocktail tin. Strain the cocktail into the highball glass. Skewer the orange half wheel through the ends place the mint sprigs through the center and garnish the cocktail.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter sling with cherry and pineapple"
     },
     {
       "id": "into-the-woods",
@@ -7704,13 +7721,20 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "Rosemary sprig",
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Seal the tin and dry shake to emulsify the egg white into the cocktail. Carefully open the tin and fill with 1¼ inch ice cubes. Seal it again and shake vigorously. Strain the cocktail into a chilled coupe using a hawthorne strainer and a fine tea strainer. Garnish with the sprig of rosemary.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A light sour with maple and pine"
     },
     {
       "id": "jane-stanley",
@@ -7749,7 +7773,8 @@
       "instructions": "In a cocktail tin muddle an orange half wheel then add the remaining ingredients except the garnish. Fill a cobbler glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the cobbler glass and garnish with the remaining orange half wheels.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter sour with orange"
     },
     {
       "id": "joe-danger",
@@ -7812,7 +7837,8 @@
       "instructions": "Combine all the ingredients except the garnishes in a cocktail tin. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice. Express the oils of the grapefruit twist over the top of the drink. Garnish with the mint plouche and the expressed grapefruit twist.",
       "notes": "Creator: Jane Danger",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A vermouth sour with coffee and grapefruit"
     },
     {
       "id": "ma-cherie",
@@ -7869,7 +7895,8 @@
       "instructions": "In a cocktail tin muddle the celery then combine all the remaining ingredients except the garnish. Wrap the cucumber garnish around the inside of a highball glass starting from the bottom. Fill the highball glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the highball glass.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A lightly savory and refreshing cooler"
     },
     {
       "id": "midnight-bramble",
@@ -7914,7 +7941,8 @@
       "instructions": "Combine all the ingredients except the blackberries and crÏme de mÜre in a cocktail tin. Place the blackberries on the bottom of a double rocks glass and fill the glass with crushed ice. Add three 1¼ inch cubes to the cocktail tin. Cover and whip. Strain the cocktail into the double rocks glass. Fill the glass with more crushed ice and make a mound of crushed ice up over the rim of the glass. Pour the crÏme de mÜre over the top of the dome.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A refreshing sour with blackberries"
     },
     {
       "id": "monferrato",
@@ -7945,8 +7973,8 @@
         {
           "amount": "1",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "2",
@@ -7959,7 +7987,8 @@
       "instructions": "Combine all the ingredients except the Champagne and orange twist in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a Champagne flute and top with Champagne. Express the oils of the orange twist over the glass then rub the twist on the rim of the glass and discard the twist.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Champagne cocktail with bitter orange notes"
     },
     {
       "id": "on-the-vine",
@@ -8010,7 +8039,8 @@
       "instructions": "Using an iSi canister see this page carbonate the saline solution cane syrup amontillado sherry tomato water and fino sherry. Place a 2 inch ice cube in a double rocks glass. Add the vinegar lemon juice and 4 ounces of the carbonated liquid to the rocks glass and stir gently for 5 seconds. Garnish with the sprig of lemon thyme.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A savory and tart sour full of tomato flavor"
     },
     {
       "id": "seoul-mate",
@@ -8061,7 +8091,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Fill a highball glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the highball glass and top with additional crushed ice. Garnish with the lemon wheel.",
       "notes": "Creator: Leo Robitschek and Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A sherry cobbler with peach and almond"
     },
     {
       "id": "shiitake-dirty-to-me",
@@ -8106,7 +8137,8 @@
       "instructions": "In a double rocks glass combine all the ingredients except the Scotch. Add a 2 inch ice cube and stir for 5 seconds. Using an atomizer top the double rocks glass with six sprays of Scotch.",
       "notes": "Creator: Shaun Dunn",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A smoky and umami-forward Old-Fashioned"
     },
     {
       "id": "shuttlecock",
@@ -8175,7 +8207,8 @@
       "instructions": "In a cocktail tin muddle the mint leaves three of the blackberries and the orange half wheel then add the remaining ingredients except the club soda and garnishes. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass and add the club soda. Skewer the remaining orange wheel and blackberry to create a flag then garnish with the mint plouche and the orange blackberry flag.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A sangria variation with bitter cherry and mint"
     },
     {
       "id": "sippy-cup",
@@ -8232,7 +8265,8 @@
       "instructions": "In a cocktail tin combine the ginger syrup lime juice vermouth and amaro. Fill a highball glass with 1¼ inch ice cubes. Fill the cocktail tin with ice. Cover and shake vigorously. Strain the cocktail into the highball glass. Add the Angostura bitters to the top of the cocktail and top with the club soda. Skewer the orange half wheel through the ends and place the mint sprigs through the center then garnish the cocktail with the orange mint flag.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter cup with ginger and lime"
     },
     {
       "id": "summer-of-yes",
@@ -8283,7 +8317,8 @@
       "instructions": "In a cocktail tin muddle the cucumber slice then add the remaining ingredients except the beer and garnish. Wrap the rhubarb garnish around the inside of a highball glass starting from the bottom. Fill the glass with 1¼ inch ice cubes and add the beer. Add 1¼ inch ice cubes to the cocktail tin. Cover and shake vigorously. Strain the cocktail into the highball glass.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A shandy with elderflower and jalapeño"
     },
     {
       "id": "superbas",
@@ -8334,7 +8369,8 @@
       "instructions": "Combine all the ingredients except the beer and garnish in a cocktail tin. Fill a highball glass with 1¼ inch ice cubes and add the beer. Fill the tin with ice. Cover and shake vigorously. Strain the cocktail into the highball glass and express the oils of the grapefruit twist over the glass. Rub the twist on the rim of the glass and drop it into the glass leaving the flesh side up.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A herbaceous beer cocktail"
     },
     {
       "id": "velvet-cobbler",
@@ -8369,7 +8405,8 @@
       "tags": [
         "cobbler"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A citrus-forward summer cobbler"
     },
     {
       "id": "all-betz-are-off",
@@ -8402,7 +8439,8 @@
       "instructions": "Combine all the ingredients except the garnish in a mixing glass. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with ice and stir. Strain the cocktail into the double rocks glass and express the oils of the lemon twist over the glass. Rub the twist on the rim of the glass and drop it into the glass leaving the flesh side up.",
       "notes": "Creator: Jim Betz",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A gin Old-Fashioned with celery and black pepper"
     },
     {
       "id": "amelia",
@@ -8459,13 +8497,20 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "",
       "instructions": "In a cocktail tin combine all the ingredients except the mezcal. Seal and dry shake to emulsify the egg white into the cocktail. Carefully open the tin and fill with 1¼ inch ice cubes. Seal it again and shake vigorously. Strain the cocktail into a chilled fizz glass using a hawthorne strainer and a fine tea strainer. Using an atomizer top with six sprays of mezcal.",
       "notes": "Creator: Cristian Rodriguez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A pisco sour variation with chicha morada"
     },
     {
       "id": "argyle",
@@ -8510,7 +8555,8 @@
       "instructions": "Combine all the ingredients except the garnish in a mixing glass. Fill the glass with ice and stir. Strain the cocktail into a coupe and express the oils of the lemon twist over the glass. Rub the twist on the rim of the glass and drop it into the glass leaving the flesh side up.",
       "notes": "Creator: Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Manhattan variation with caraway and chocolate"
     },
     {
       "id": "avo",
@@ -8573,7 +8619,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the tin. Cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice. Garnish with cacao powder and the mint plouche.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A spicy and savory caipirinha"
     },
     {
       "id": "beekeeper",
@@ -8624,6 +8671,12 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "",
@@ -8632,7 +8685,8 @@
       "tags": [
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A smoky, floral gin sour"
     },
     {
       "id": "berry-dangerous-fix",
@@ -8685,7 +8739,8 @@
       "tags": [
         "fix"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A cobbler with strawberries and anise"
     },
     {
       "id": "black-dahlia",
@@ -8730,7 +8785,8 @@
       "instructions": "Combine all the ingredients except the garnish in a mixing glass. Fill the glass with ice and stir. Strain the cocktail into a Nick and Nora glass and express the oils of the grapefruit twist over the glass. Rub the twist on the rim of the glass and drop it into the glass leaving the flesh side up.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter mezcal Manhattan"
     },
     {
       "id": "block-party",
@@ -8799,7 +8855,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Add the lime wheels to a Pilsner glass going up from the base in a clockwise motion and then fill the glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice. Garnish with the mint plouche.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A vegetal cobbler with passionfruit"
     },
     {
       "id": "bohemia",
@@ -8838,7 +8895,8 @@
       "instructions": "Combine all the ingredients except the lemon twist in a mixing glass. Fill the glass with ice and stir. Strain the cocktail into a coupe and express the oils of the lemon twist over the glass. Rub the twist on the rim of the glass and drop it into the glass leaving the flesh side up.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rich martini variation with caraway"
     },
     {
       "id": "bread-and-butternut",
@@ -8907,7 +8965,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice. Garnish with the lemon wheel.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A festive fall cobbler reminiscent of pumpkin pie"
     },
     {
       "id": "chi-chi-swizzle",
@@ -8972,7 +9031,8 @@
       "tags": [
         "swizzle"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A caipirinha with flavors of red pepper and grapefruit"
     },
     {
       "id": "choked-up",
@@ -9023,7 +9083,8 @@
       "instructions": "Use the lemon wedge to moisten the top inch of the outer rim of a chilled double rocks glass. Gently roll the double rocks glass in salt to rim half of the glass. Shake off excess salt. Use the corner of a folded cocktail napkin to make the salt a consistent thickness. In a cocktail tin muddle a kumquat half a cucumber slice and the mint leaves then add the remaining ingredients except the garnishes. Fill the double rocks glass with 1¼ inch ice cubes. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Strain the cocktail into the double rocks glass. Garnish with the mint plouche and remaining cucumber slice and kumquat half.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter gin sour with kumquat"
     },
     {
       "id": "coq-tail-1",
@@ -9092,7 +9153,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Fill a rooster cup with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip vigorously. Strain the cocktail into the rooster cup using a hawthorne strainer and top with additional crushed ice.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bright, floral vodka sour"
     },
     {
       "id": "coq-tail-2",
@@ -9155,7 +9217,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Fill a rooster cup with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip vigorously. Strain the cocktail into the rooster cup using a hawthorne strainer and top with additional crushed ice.",
       "notes": "Creator: Nathan O'Neill Pietro Collina and Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A buttery, herbaceous vodka sour"
     },
     {
       "id": "coq-tail-3",
@@ -9200,7 +9263,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Fill a rooster cup with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip vigorously. Strain the cocktail into the rooster cup using a hawthorne strainer and top with additional crushed ice.",
       "notes": "Creator: Nathan O'Neill Pietro Collina and Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A silky vodka sour with corn"
     },
     {
       "id": "deli-slang",
@@ -9245,13 +9309,20 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "Horseradish Tinctureplus 4 dashes",
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Seal and dry shake to emulsify the egg white into the cocktail. Carefully open the tin and fill with 1¼ inch ice cubes. Seal it again and shake vigorously. Strain the cocktail into a chilled coupe using a hawthorne strainer and a fine tea strainer. Once the egg white settles use a Japanese bitters dasher to carefully add dots of horseradish tincture around the rim of the glass.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A gin sour inspired by the flavors of a delicatessen"
     },
     {
       "id": "dewin-it",
@@ -9308,7 +9379,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A spicy margarita with roasted poblano peppers"
     },
     {
       "id": "dr-feelgood",
@@ -9371,7 +9443,8 @@
       "instructions": "Use the lime wedge to moisten the top inch of the outer rim of a chilled double rocks glass. Gently roll the double rocks glass in chile salt to rim half of the glass. Shake off excess salt. Use the corner of a folded cocktail napkin to make the salt a consistent thickness. In a cocktail tin muddle a cucumber slice then add the remaining ingredients except the garnishes. Fill the double rocks glass with 1¼ inch ice cubes. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Strain the cocktail into the double rocks glass. Take the remaining cucumber slice and roll it tight. Skewer the cucumber and two small tips of the pineapple fronds and garnish the cocktail.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A velvety mezcal margarita with spice"
     },
     {
       "id": "dr-walnut",
@@ -9422,13 +9495,20 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "Shaved hazelnut, Shaved walnut",
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Seal and dry shake to emulsify the egg white into the cocktail. Carefully open the tin and fill with 1¼ inch ice cubes. Seal it again and shake vigorously. Strain the cocktail into a chilled coupe using a hawthorne strainer and a fine tea strainer. Garnish with hazelnut and walnut shavings.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A nutty and bitter gin sour"
     },
     {
       "id": "el-rey",
@@ -9479,7 +9559,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a highball glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip vigorously. Strain the cocktail into the highball glass and top with additional crushed ice. Garnish with zested lime and pistachio shavings.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tequila cobbler with the flavors of seasonal Mexican corn"
     },
     {
       "id": "el-tucan",
@@ -9542,7 +9623,8 @@
       "instructions": "Use a lime wedge to moisten the top inch of the outer rim of a chilled highball glass. Gently roll the highball glass in salt to rim half of the glass. Shake off excess salt. Use the corner of a folded cocktail napkin to make the salt a consistent thickness. Fill the highball glass with 1¼ inch ice cubes. In a cocktail tin combine the remaining ingredients except the garnishes and club soda. Add three 1¼ inch ice cubes to the tin. Seal the tin and whip vigorously. Strain the cocktail into the highball glass using a hawthorne strainer. Add the Peychaud's bitters to the top of the drink and then fill the glass with the club soda and garnish with the remaining lime wedge.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A smoky, vegetal paloma"
     },
     {
       "id": "english-heat",
@@ -9593,7 +9675,8 @@
       "instructions": "Combine all the ingredients in a cocktail tin. Fill a fizz glass with 1¼ inch ice cubes. Fill the tin with ice cover and shake vigorously. Strain the cocktail into the fizz glass.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A spicy gin sour with hints of vanilla"
     },
     {
       "id": "far-from-the-tree",
@@ -9650,7 +9733,8 @@
       "instructions": "Combine all the ingredients except the allspice dram in a cocktail tin. Rinse a double rocks glass with six sprays of allspice dram from an atomizer and place a 2 inch ice cube in it. Fill the tin with ice cover and shake. Strain the cocktail into the glass.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A fall-spiced margarita with hints of apple"
     },
     {
       "id": "fig-and-thistle",
@@ -9701,7 +9785,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Cover and dry shake vigorously. Fill a double rocks glass with 1¼ inch ice cubes. Fill the cocktail tin with 1¼ inch ice cubes. Seal it again and shake vigorously. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A fig-and-honey-flavored tequila sour"
     },
     {
       "name": "Forbidden Dance",
@@ -9771,7 +9856,8 @@
       "tags": [],
       "premium": false,
       "id": "forbidden-dance",
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tiki drink with caraway and malt"
     },
     {
       "id": "the-gilsey",
@@ -9796,8 +9882,8 @@
         {
           "amount": "¾",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "½",
@@ -9822,7 +9908,8 @@
       "instructions": "Combine all the ingredients except the Chartreuse in a mixing glass. Rinse a coupe with six sprays of green Chartreuse from an atomizer. Fill the mixing glass with ice and stir. Strain the cocktail into the coupe.",
       "notes": "Creator: Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A savory, vegetal martini"
     },
     {
       "id": "golden-ticket",
@@ -9885,7 +9972,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Using a brush paint a brushstroke of chocolate shell in a chilled double rocks glass starting at the bottom and going to the top in a 45 degree angle. Place a 2 inch ice cube in the double rocks glass. Fill the cocktail tin with 1¼ inch ice cubes. Seal the tin and shake. Strain the cocktail into the double rocks glass using a hawthorne strainer and a fine tea strainer.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A margarita with flavors of mole"
     },
     {
       "id": "green-streets",
@@ -9898,8 +9986,8 @@
         {
           "amount": "1",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1",
@@ -9918,7 +10006,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients except the garnish. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into a chilled double rocks glass over a 2 inch ice cube. Garnish with the sorrel leaf.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A lighter, vegetal pisco Negroni"
     },
     {
       "id": "hearsay",
@@ -9969,7 +10058,8 @@
       "instructions": "In a mixing glass combine all the ingredients. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into a Nick and Nora glass using a hawthorne strainer.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A fall-spiced mezcal Manhattan"
     },
     {
       "id": "honey-oat",
@@ -10026,13 +10116,20 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "",
       "instructions": "In a cocktail tin combine all the ingredients. Seal and dry shake to emulsify the egg white into the cocktail. Carefully open the tin and fill with 1¼ inch ice cubes. Seal it again and shake vigorously. Strain the cocktail into a chilled fizz glass using a hawthorne strainer and a fine tea strainer.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A milk-and-honey-flavored Ramos gin fizz"
     },
     {
       "id": "hot-lips",
@@ -10077,7 +10174,8 @@
       "instructions": "Combine all the ingredients except the salt in a mixing glass. Rim a single rocks glass with salt and fill it with 1¼ inch ice cubes. Fill the mixing glass with ice and stir. Strain the cocktail into the single rocks glass.",
       "notes": "Creator: Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A take on a smoky-spicy margarita with pineapple and vanilla"
     },
     {
       "id": "island-time",
@@ -10152,7 +10250,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass add the Angostura bitters and top with additional crushed ice. Garnish with the mint plouche.",
       "notes": "Creator: Guillermo Bravo",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tiki cocktail with ginger and peach"
     },
     {
       "id": "jitney",
@@ -10197,7 +10296,8 @@
       "instructions": "Combine all the ingredients except the grapefruit twist in a mixing glass. Add a 2 inch ice cube to a double rocks glass. Fill the mixing glass with ice and stir. Strain the cocktail into the double rocks glass and express the oils of the grapefruit twist over the glass. Rub the twist on the rim of the glass and drop it into the glass leaving the flesh side up.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A mezcal Negroni variation with coffee and absinthe"
     },
     {
       "id": "koala-pear",
@@ -10216,8 +10316,8 @@
         {
           "amount": "½",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1",
@@ -10254,7 +10354,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the club soda and garnishes. Fill a highball glass with 1¼ inch ice cubes. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Add the club soda to the cocktail tin. Strain the cocktail into the highball glass. Skewer the lemon wheels one on top of the other and put the bay leaf between them then garnish the cocktail.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Tom Collins with eucalyptus and bay leaf"
     },
     {
       "id": "loisaida-avenue",
@@ -10305,7 +10406,8 @@
       "instructions": "Combine all the ingredients except the bitters in a cocktail tin. Fill the tin with ice cover and shake vigorously. Strain the cocktail into a Nick and Nora glass. Top the cocktail with the Angostura bitters.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A mezcal margarita that is spicy and herbaceous"
     },
     {
       "id": "longfellow",
@@ -10366,8 +10468,8 @@
         {
           "amount": "½",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1¾",
@@ -10386,7 +10488,8 @@
       "instructions": "In a cocktail tin muddle the cardamom pods then add the remaining ingredients except the club soda and garnish. Fill a black highball glass with 1¼ inch ice cubes. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Add the club soda to the tin. Strain the cocktail into the highball glass. Using a vegetable sheeter sheet a foot of daikon radish. Fold the radish lengthwise into a fan so it looks like a flower and insert it into the top of the glass.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Tom Collins with horseradish and apple"
     },
     {
       "id": "lowrider",
@@ -10449,7 +10552,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into a chilled double rocks glass over a 2 inch ice cube.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A mezcal Manhattan with fig"
     },
     {
       "id": "mad-gnome",
@@ -10512,7 +10616,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Fill a copper gnome glass or a chilled double rocks glass with 1¼ inch ice cubes. Fill the cocktail tin with 1¼ inch ice cubes. Seal the tin and shake. Strain the cocktail into the gnome glass using a hawthorne strainer and a fine tea strainer.",
       "notes": "Creator: Leo Robitschek and Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A dirty chai vodka cobbler"
     },
     {
       "id": "maize-runner",
@@ -10569,7 +10674,8 @@
       "instructions": "In a cocktail tin muddle the blueberries then add the remaining ingredients except the garnishes. Fill a highball glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip vigorously. Strain the cocktail into the highball glass and top with additional crushed ice. Garnish with lime and orange zests.",
       "notes": "Creator: Shaun Dunn",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A corn-and-blueberry cobbler"
     },
     {
       "id": "mother-s-little-helper",
@@ -10620,7 +10726,8 @@
       "instructions": "Combine all the ingredients in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a coupe.",
       "notes": "Creator: Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A floral-rich gin martini"
     },
     {
       "id": "needle-and-thread",
@@ -10659,13 +10766,20 @@
           "unit": "oz",
           "name": "Gin",
           "notes": "Beefeater"
+        },
+        {
+          "amount": null,
+          "unit": "",
+          "name": "Pernod Absinthe",
+          "notes": "as a rinse"
         }
       ],
       "garnish": "",
       "instructions": "Combine all the ingredients except the absinthe and lemon twist in a mixing glass. Rinse a coupe glass with six sprays of absinthe from an atomizer. Fill the mixing glass with ice and stir. Strain the cocktail into the coupe. Express the oils of the lemon twist over the glass then discard the twist.",
       "notes": "Creator: Will Peet and Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A citrus-forward gin martini"
     },
     {
       "id": "nod-to-nothing",
@@ -10708,8 +10822,8 @@
         {
           "amount": "½",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1",
@@ -10728,7 +10842,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Fill a double rocks glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the double rocks glass add additional crushed ice and dome the top of the cocktail using a julep strainer. Garnish with the lemon wheel.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A floral, tart, and herbaceous gin fix"
     },
     {
       "id": "old-ranhofer",
@@ -10761,7 +10876,8 @@
       "instructions": "In a mixing glass combine all the ingredients. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Jim Betz",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A spicy rum Old-Fashioned with flavors of rum raisin"
     },
     {
       "id": "paint-it-black",
@@ -10824,7 +10940,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the simple syrup and blackberries. Fill a highball glass with crushed ice. In a separate cocktail tin combine the simple syrup and blackberries and muddle. Add three 1¼ inch ice cubes to the tin with the liquid ingredients. Cover and whip. Strain the cocktail into the highball glass and top with additional crushed ice and the muddled blackberry mixture.",
       "notes": "Creator: Jessica Gonzalez and Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tequila cobbler with blackberries and vanilla"
     },
     {
       "id": "panamericano",
@@ -10843,8 +10960,8 @@
         {
           "amount": "1",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1",
@@ -10857,7 +10974,8 @@
       "instructions": "Combine all the ingredients except the orange twist in a mixing glass. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with ice and stir. Strain the cocktail into the double rocks glass and express the oils of the orange twist over the glass. Rub the twist on the rim of the glass and drop it into the glass leaving the flesh side up.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A white Negroni variation highlighting pisco"
     },
     {
       "id": "paris-is-burning-nomad",
@@ -10914,7 +11032,8 @@
       "instructions": "Combine all the ingredients except the bitters in a cocktail tin. Fill the tin with ice. Cover and shake. Strain the cocktail into a coupe. Top with the Angostura bitters.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A smoky gin sour with elderflower"
     },
     {
       "id": "petticoat",
@@ -10965,7 +11084,8 @@
       "instructions": "Combine all the ingredients in a cocktail tin. Fill the tin with ice cover and shake. Strain the cocktail into a coupe.",
       "notes": "Creator: Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A gin sour with Szechuan spice"
     },
     {
       "id": "piedmont-fizz",
@@ -10990,8 +11110,8 @@
         {
           "amount": "1",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1",
@@ -11024,7 +11144,8 @@
       "tags": [
         "fizz"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An anise-forward gin Collins"
     },
     {
       "id": "rainbow-road",
@@ -11081,7 +11202,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a highball glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the highball glass add the Peychaud's bitters and top with additional crushed ice. Garnish with the lime wheel.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A herbaceous, stone-fruit highball"
     },
     {
       "id": "red-light",
@@ -11150,7 +11272,8 @@
       "instructions": "Combine all the ingredients except the Campari in a cocktail tin. Pour the Campari into a double rocks glass and add a 2 inch ice cube. Fill the tin with ice cover and shake vigorously. Slowly strain the cocktail into the double rocks glass making sure you pour the liquid over the ice cubethis will ensure that the cocktail layers over the Campari.",
       "notes": "Creator: Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bittered anise-flavored daiquiri"
     },
     {
       "id": "red-pepper-passionfruit-daiquiri",
@@ -11210,7 +11333,8 @@
         "daiquiri",
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A savory daiquiri that is perfect for brunch"
     },
     {
       "id": "rue-barbare",
@@ -11279,7 +11403,8 @@
       "instructions": "Combine all the ingredients except the mezcal in a cocktail tin. Fill the tin with ice cover and shake. Strain into a double rocks glass over a 2 inch ice cube. Top with six sprays of mezcal from an atomizer.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A smoky rhubarb–olive oil tequila sour"
     },
     {
       "id": "runyon-canyon",
@@ -11342,7 +11467,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a Belgium glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip vigorously. Strain the cocktail into the Belgium glass using a hawthorne strainer and top with additional crushed ice. Using an atomizer spritz the mint plouche with six sprays of Scotch and garnish the cocktail.",
       "notes": "Creator: Shaun Dunn",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tiki variation on the flavors of a vodka cranberry"
     },
     {
       "id": "sakura-maru",
@@ -11399,7 +11525,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Place a 2 inch ice cube in a double rocks glass. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Strain the cocktail into the double rocks glass. Garnish with lime zest.",
       "notes": "Creator: Leo Robitschek and Guillermo Bravo",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A pisco sour with cinnamon and yogurt"
     },
     {
       "id": "scarlet-knight",
@@ -11450,7 +11577,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the mint eau de vie and cranberries. Fill a cobbler glass with crushed ice. Add three 1¼ inch ice cubes to the tin cover and whip. Strain the cocktail into the cobbler glass. Spritz the mint plouche six times with Douglas Fir eau de vie from an atomizer. Garnish the cocktail with the fir scented mint plouche and the cranberries.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "Cranberry and pine meet a gin sour"
     },
     {
       "id": "sergeant-pepper",
@@ -11507,7 +11635,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Fill the tin with 1¼ inch ice cubes. Cover and shake. Strain the cocktail into a chilled coupe.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A herbaceous tequila sour with spice and green pepper"
     },
     {
       "id": "shirley-heights",
@@ -11570,7 +11699,8 @@
       "instructions": "In a cocktail tin muddle a strawberry then add the remaining ingredients except the garnishes. Fill a Belgium glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip vigorously. Strain the cocktail into the Belgium glass using a hawthorne strainer and top with additional crushed ice. Garnish with the mint plouche and remaining strawberry.",
       "notes": "Creator: Julian Reingold",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rum punch with bittered orange, strawberry, and almond"
     },
     {
       "id": "south-park-sling",
@@ -11647,7 +11777,8 @@
       "tags": [
         "sling"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter variation on a gin sling"
     },
     {
       "id": "summer-jamz",
@@ -11704,7 +11835,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a double rocks glass with crushed ice. Cut the lemon wheels in half and skewer them in a fan shape. Add the raspberry to the top of the skewer. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the double rocks glass add additional crushed ice and dome the top of the cocktail using a julep strainer. Garnish with the lemon wheel�raspberry fan.",
       "notes": "Creator: Nathan O'Neil",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tart berry cobbler with floral tones"
     },
     {
       "id": "tit-for-tat",
@@ -11761,7 +11893,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a double rocks glass with crushed ice. Skewer the raspberries through the lemon wheel. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the double rocks glass add additional crushed ice and dome the top of the cocktail using a julep strainer. Garnish with the lemon wheel� raspberry flag.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter fruit-and-caraway sour"
     },
     {
       "id": "vasa",
@@ -11830,7 +11963,8 @@
       "instructions": "In a cocktail tin muddle the fennel seeds and celery then add the remaining ingredients. Place a 2 inch ice cube in a double rocks glass. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Julia Reingold",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A coconut vodka sour with caraway and fennel"
     },
     {
       "id": "v-o-c",
@@ -11881,7 +12015,8 @@
       "instructions": "Combine all the ingredients in a cocktail tin. Fill the tin with ice cover and shake. Strain the cocktail into a coupe.",
       "notes": "Creator: Jim Betz",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A gingersnap cookie meets a genever sour"
     },
     {
       "id": "walter-gibson",
@@ -11944,7 +12079,8 @@
       "instructions": "In a mixing glass combine all the ingredients except the garnish. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into two Nick and Nora glasses using a hawthorne strainer. Garnish each with 3 pearl onions.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A take on a savory Gibson, inspired by chenin blanc"
     },
     {
       "id": "whey-to-go",
@@ -11981,8 +12117,8 @@
         {
           "amount": "1",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1",
@@ -12013,7 +12149,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the club soda and garnish. Fill a highball glass with 1¼ inch ice cubes. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake. Add the club soda to the cocktail tin. Strain the cocktail into the highball glass. Garnish with the dill frond.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A lactic Collins with a touch of bitterness"
     },
     {
       "id": "1903",
@@ -12038,8 +12175,8 @@
         {
           "amount": "½",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1",
@@ -12058,7 +12195,8 @@
       "instructions": "Combine all the ingredients in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a coupe.",
       "notes": "Creator: Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Manhattan variation with notes of apple and grapefruit"
     },
     {
       "id": "baudouine",
@@ -12115,7 +12253,8 @@
       "instructions": "Combine all the ingredients in a mixing glass. Add a 2 inch ice cube to a double rocks glass. Fill the mixing glass with ice and stir. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Gino Pellarin",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tequila Manhattan with mole flavors"
     },
     {
       "id": "beau-four",
@@ -12148,7 +12287,8 @@
       "instructions": "Combine all the ingredients except the cucumber garnish in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a coupe. Skewer the remaining cucumber slice into a wave and garnish the cocktail.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A springtime Manhattan with mentholated complexity and depth"
     },
     {
       "id": "bee-lavender",
@@ -12173,8 +12313,8 @@
         {
           "amount": "½",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1¾",
@@ -12195,7 +12335,8 @@
       "tags": [
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Scotch sour with hints of lavender and honey"
     },
     {
       "id": "birch-tree",
@@ -12246,7 +12387,8 @@
       "instructions": "Combine all the ingredients except the cherry and grapefruit twist in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a Nick and Nora glass and garnish with the brandied cherry. Express the oils from the grapefruit twist over the cocktail then discard the twist.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A cognac Manhattan reminiscent of root beer flavors"
     },
     {
       "id": "bitches-brew",
@@ -12285,7 +12427,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into a chilled coupe.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter-chocolate-and-coffee-tinged Manhattan"
     },
     {
       "id": "blistered-in-the-sun",
@@ -12342,7 +12485,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rye-based tiki drink with red pepper and passionfruit"
     },
     {
       "id": "broadway",
@@ -12393,7 +12537,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients except the garnish. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into the double rocks glass. Skewer the cherries and place in the drink.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter Manhattan variation named after the famous street where NoMad NYC is located"
     },
     {
       "id": "brown-sugar",
@@ -12438,7 +12583,8 @@
       "instructions": "Combine all the ingredients in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a coupe.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rum Manhattan with flavors of caramelized sugar"
     },
     {
       "id": "the-brunswick",
@@ -12495,7 +12641,8 @@
       "instructions": "Combine all the ingredients except the lemon twist in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a coupe. Express the oils from the lemon twist over the cocktail then discard the twist.",
       "notes": "Creator: Jonathan Armstrong",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A complex, dark bitter Manhattan"
     },
     {
       "id": "caf-con-leche",
@@ -12546,13 +12693,20 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "",
       "instructions": "Combine all the ingredients except the egg white in a cocktail tin then add the egg white to the tin. Cover and dry shake to emulsify the egg white. Fill the tin with ice cover again and shake. Strain the cocktail into a coupe.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rum-and-aquavit sour with the flavors of a cappuccino"
     },
     {
       "id": "cameo",
@@ -12589,8 +12743,8 @@
         {
           "amount": "½",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1",
@@ -12603,7 +12757,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients except the garnish. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into a single rocks glass. Skewer the apple slices into a fan shape and place on the rim of the glass.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A fall variation on a Sazerac"
     },
     {
       "id": "charlie-watts",
@@ -12672,7 +12827,8 @@
       "instructions": "Combine all the ingredients except the club soda and garnishes in a cocktail tin. Fill a double rocks glass with 1¼ inch ice cubes. Fill the tin with ice cover and shake. Strain the cocktail into the double rocks glass and add the club soda. Garnish with a sprinkle of black pepper and a pineapple frond.",
       "notes": "Creator: Jessica Gonzalez and Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A modern tiki drink with black pepper and apricot"
     },
     {
       "id": "ciampino",
@@ -12723,7 +12879,8 @@
       "instructions": "Combine the simple syrup Angostura bitters and cream in a cocktail tin cover and shake until the cream thickens but is still loose enough to pour. Fill a hot cocktail glass with hot water in order to heat it. Combine the remaining ingredients in a small saucepan and warm over medium heat until the cocktail comes to a simmer. Discard the hot water in the cocktail glass then pour in the cocktail. Float with the Angostura cream.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A herbaceous, spiked hotel chocolate"
     },
     {
       "id": "crooked-kilt",
@@ -12774,7 +12931,8 @@
       "instructions": "Combine all the ingredients except the garnishes in a cocktail tin. Fill a cobbler glass with crushed ice. Add three 1¼ inch cubes to the tin cover and whip. Strain the cocktail into the cobbler glass. Spritz the mint plouche six times with Laphroaig from an atomizer and garnish the cocktail.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Scotch cobbler with bittered, green pineapple notes"
     },
     {
       "id": "dark-horse",
@@ -12819,7 +12977,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients except the orange twist. Fill the glass with 1¼ inch ice cubes and stir. Strain the cocktail into a coupe. Use a lit match to warm both sides of the orange twist holding the match and twist close to the edge of the coupe with the match between the peel and glass. Quickly express the orange oils from the peel so that they ignite over the drink then discard the twist.",
       "notes": "Creator: Daniel Dirth",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rum-and-cognac Manhattan with bitter orange and coffee"
     },
     {
       "id": "detox-retox",
@@ -12876,7 +13035,8 @@
       "instructions": "In a double rocks glass combine all the ingredients. Add a 2 inch ice cube and stir for 5 seconds.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A silky Old-Fashioned with hints of coconut"
     },
     {
       "id": "dos-gardenias-para-ti",
@@ -12933,7 +13093,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A honey-and-nut dominant, rich tiki drink"
     },
     {
       "id": "doyers-street",
@@ -12978,7 +13139,8 @@
       "instructions": "Combine all the ingredients in a mixing glass. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with ice and stir. Strain the cocktail into the double rocks glass over the 2 inch cube.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter-orange Manhattan"
     },
     {
       "id": "dr-kananga",
@@ -13047,7 +13209,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a Belgium glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip vigorously. Strain the cocktail into the Belgium glass using a hawthorne strainer then top with the coffee infused Angostura bitters and additional crushed ice. Garnish with the mint plouche lemon wheel and cinnamon stick.",
       "notes": "Creator: Shaun Dunn",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A nutty and rich mai tai variation"
     },
     {
       "id": "el-tigre-nomad",
@@ -13110,7 +13273,8 @@
       "instructions": "Combine all the ingredients except the club soda in a cocktail tin. Cover the tin and dry shake to emulsify the egg. Then fill the tin with ice cover and shake again. Prime a fizz glass with the club soda. Strain the cocktail into the fizz glass.",
       "notes": "Creator: Lacy Hawkins",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tropical flip with the flavor of mole"
     },
     {
       "id": "en-maison",
@@ -13155,7 +13319,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients except the garnish. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into the double rocks glass. Garnish with the sea salt on top of the ice cube.",
       "notes": "Creator: Shaun Dunn",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Japanese whisky Old-Fashioned with coffee, maple, and salt"
     },
     {
       "id": "five-families-frank",
@@ -13200,7 +13365,8 @@
       "instructions": "Combine all the ingredients in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a coupe.",
       "notes": "Creator: Jonathan Armstrong",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An Italian-style Manhattan, as smooth as Frank in his suit"
     },
     {
       "id": "fortune-teller",
@@ -13239,7 +13405,8 @@
       "instructions": "Combine all the ingredients in a mixing glass. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with ice and stir. Strain the cocktail into the double rocks glass over the 2 inch cube.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter rum Manhattan"
     },
     {
       "id": "forty-thieves",
@@ -13302,7 +13469,8 @@
       "instructions": "Combine all the ingredients in a cocktail tin. Place a 2 inch ice cube in a double rocks glass. Fill the tin with ice cover and shake. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Gino Pellarin",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A whiskey sour with bitter fruit notes"
     },
     {
       "id": "foxtrot",
@@ -13371,7 +13539,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass then top with the coffee infused Angostura bitters and additional crushed ice. Garnish with the mint plouche and grated nutmeg.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rye mai tai with tropical fruit"
     },
     {
       "id": "gentlemen-s-exchange",
@@ -13428,7 +13597,8 @@
       "instructions": "Combine all the ingredients except the grapefruit twist in a mixing glass. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with ice and stir. Strain the cocktail into the double rocks glass. Express the oils from the grapefruit twist over the cocktail and discard the twist.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Manhattan variation with notes of coffee and chocolate"
     },
     {
       "id": "gimme-a-beet",
@@ -13499,7 +13669,8 @@
       "tags": [
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An earthy whiskey sour with strawberries"
     },
     {
       "id": "hair-trigger",
@@ -13550,7 +13721,8 @@
       "instructions": "Combine all the ingredients except the cucumber garnish and the mint plouche in a cocktail tin. Fill a cobbler glass with crushed ice. Add three 1¼ inch ice cubes to the tin cover and whip. Strain the cocktail into the cobbler glass and top with additional crushed ice. Garnish with the mint plouche and the remaining cucumber slice.",
       "notes": "Creator: Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter, minty, and complex dark and stormy"
     },
     {
       "id": "jive-turkey",
@@ -13601,7 +13773,8 @@
       "instructions": "Combine all the ingredients except the lemon twist in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a coupe. Express the oils from the lemon twist over the cocktail then discard the twist.",
       "notes": "Creator: Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A lighter-style Manhattan with a hint of floralness"
     },
     {
       "id": "king-s-arms",
@@ -13646,7 +13819,8 @@
       "instructions": "Combine all the ingredients in a mixing glass. Fill the glass with 1¼ inch ice cubes and stir. Strain the cocktail into a single rocks glass.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A caraway-and-cacao Sazerac variation"
     },
     {
       "id": "kingsman",
@@ -13697,7 +13871,8 @@
       "instructions": "Combine all the ingredients in a mixing glass. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with ice and stir. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A cereal-malt Old-Fashioned with banana"
     },
     {
       "id": "little-dragon",
@@ -13748,7 +13923,8 @@
       "instructions": "In a mixing glass combine all the ingredients except the garnish. Using a brush paint a brushstroke of umeboshi paste in a double rocks glass starting at the inside bottom and going straight up to the top then paint from the top of the glass one third of the way down the front following the same line you created on the inside. Place a 2 inch ice cube in the double rocks glass. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into the double rocks glass using a hawthorne strainer.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A complex Old-Fashioned with salted plums and dark chocolate"
     },
     {
       "id": "little-red-rooster",
@@ -13799,7 +13975,8 @@
       "instructions": "Muddle the strawberry in a cocktail tin and then add the remaining ingredients. Fill the tin with ice cover and shake. Strain the cocktail into a coupe.",
       "notes": "Creator: Leo Robitschek and Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A fruit-forward whiskey sour"
     },
     {
       "id": "madame-laveau",
@@ -13844,13 +14021,20 @@
           "unit": "oz",
           "name": "Aged Rum",
           "notes": "El Dorado 15-Year"
+        },
+        {
+          "amount": null,
+          "unit": "",
+          "name": "Pernod Absinthe",
+          "notes": "as a rinse"
         }
       ],
       "garnish": "Orange twist",
       "instructions": "Combine all the ingredients except the absinthe and orange twist in a mixing glass. Rinse a coupe glass with six sprays of absinthe from an atomizer. Fill the mixing glass with ice and stir. Strain the cocktail into the rinsed coupe. Flame the orange twist over the drink and place it skin side up in the glass.",
       "notes": "Creator: Jim Kearns",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A herbaceous rum Manhattan"
     },
     {
       "id": "madison-park-smash",
@@ -13903,7 +14087,8 @@
       "tags": [
         "smash"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A richer-style smash named after Madison Park"
     },
     {
       "id": "manhattan-milk-punch",
@@ -13974,7 +14159,8 @@
       "tags": [
         "punch"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A clarified milk punch with flavors of a tropical Manhattan cocktail"
     },
     {
       "id": "massapeequa",
@@ -14118,7 +14304,8 @@
       "instructions": "Combine all the ingredients except the mint in a cocktail tin. Fill a snifter with crushed ice. Add three 1¼ inch ice cubes to the tin cover and whip. Strain the cocktail into the snifter and top with additional crushed ice. Garnish with the mint plouche.",
       "notes": "Creator: Jonathan Armstrong",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A high-proof whiskey zombie variation"
     },
     {
       "id": "miles-ahead",
@@ -14193,7 +14380,8 @@
       "instructions": "In a cocktail tin lightly muddle the cardamom pods then add the remaining ingredients. Fill the tin with 1¼ inch ice cubes. Cover and shake vigorously. Strain the cocktail into a chilled coupe.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A herbaceous whiskey sour with cardamom"
     },
     {
       "id": "mott-and-mulberry",
@@ -14232,7 +14420,8 @@
       "instructions": "Combine all the ingredients except the garnish in a cocktail tin. Fill a double rocks glass with 1¼ inch ice cubes. Fill the tin with ice cover and shake. Strain the cocktail into the double rocks glass. Skewer the apple slices into a fan shape and place on the rim of the glass.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A whiskey sour that tastes like mulled cider"
     },
     {
       "id": "mynah-bird",
@@ -14283,7 +14472,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A stirred tiki drink with the flavors of a Jungle Bird cocktail"
     },
     {
       "id": "old-alhambra",
@@ -14322,7 +14512,8 @@
       "instructions": "Combine all the ingredients except the grapefruit twist in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a coupe. Express the oils from the grapefruit twist over the cocktail and place it in the drink.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rich Scotch Manhattan with smoke and cacao"
     },
     {
       "id": "original-sin",
@@ -14345,17 +14536,30 @@
           "notes": ""
         },
         {
-          "amount": "¾",
+          "amount": "½",
+          "unit": "oz",
+          "name": "Lemon Juice",
+          "notes": "scant"
+        },
+        {
+          "amount": "½",
           "unit": "oz",
           "name": "Fig Leaf Syrup",
           "notes": ""
+        },
+        {
+          "amount": "1½",
+          "unit": "oz",
+          "name": "Lustau Brandy de Jerez Solera Reserva",
+          "notes": "heavy"
         }
       ],
       "garnish": "",
       "instructions": "In a cocktail tin combine all the ingredients. Place a 2 inch ice cube in a double rocks glass. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A fig-forward, rich brandy sour with hints of young coconut"
     },
     {
       "id": "pandan-express",
@@ -14430,7 +14634,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Place a 2 inch ice cube in a double rocks glass. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A complex, coconutty, and easy-drinking Scotch sour with layers of flavor"
     },
     {
       "id": "pico-and-robinson",
@@ -14481,7 +14686,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients except the garnish. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into the double rocks glass. Garnish with the sea salt on top of the ice cube.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A drink inspired by Leo's grandmother's Passover macaroons, with hints of coffee"
     },
     {
       "id": "purple-dragon",
@@ -14538,7 +14744,8 @@
       "instructions": "Combine all the ingredients except the garnishes in a cocktail tin. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice. Briefly light the top of a cinnamon stick until it smokes and place it into the drink for garnish. Garnish with the pineapple fronds and lime zest.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An earthy whiskey piña colada"
     },
     {
       "id": "repossession",
@@ -14589,7 +14796,8 @@
       "instructions": "Combine all the ingredients except the mezcal in a cocktail tin. Place a 2 inch ice cube in a double rocks glass. Fill the cocktail tin with ice cover and shake. Strain the cocktail into the double rocks glass. Spritz the surface of the cocktail six times with Sombra mezcal from an atomizer.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tequila sour with stone fruit and smoke"
     },
     {
       "id": "ringo",
@@ -14670,7 +14878,8 @@
       "instructions": "In a cocktail tin combine all the ingredients. Place a 2 inch ice cube in a double rocks glass. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Joey Smith",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A lightly spiced whiskey sour with caraway, apple, and cucumber"
     },
     {
       "id": "riptide",
@@ -14745,7 +14954,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a snifter with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the snifter glass then top with the coffee infused Angostura bitters and additional crushed ice. Garnish with the mint plouche and cucumber slice.",
       "notes": "Creator: Jack Schramm",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An anise-forward mai tai variation"
     },
     {
       "id": "rock-and-a-hard-place",
@@ -14796,7 +15006,8 @@
       "instructions": "Combine all the ingredients in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a Nick and Nora glass.",
       "notes": "Creator: Alisa Bobcat Robovsky",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A nutty Manhattan"
     },
     {
       "id": "the-roots",
@@ -14827,8 +15038,8 @@
         {
           "amount": "½",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "½",
@@ -14847,7 +15058,8 @@
       "instructions": "Using a vegetable peeler shave a strip from the celery stalk starting at the top of the stalk and pulling down until you reach the bottom creating a celery curl. Roll the curl tightly and place in ice water. In a chilled mixing glass combine the remaining ingredients. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into the double rocks glass. Garnish with the celery curl on top of the ice cube.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An earthy kitchen-centric mai tai with chocolate"
     },
     {
       "id": "satan-s-circus",
@@ -14892,7 +15104,8 @@
       "instructions": "Combine all the ingredients in a cocktail tin. Fill the tin with ice cover and shake. Strain the cocktail into a coupe.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rye whiskey sour with chile, cherry, and bitter orange"
     },
     {
       "id": "scotch-dumpling",
@@ -14937,13 +15150,20 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "",
       "instructions": "Combine all the ingredients except the egg white in a cocktail tin then add the egg white to the tin. Cover the tin and dry shake to emulsify the egg white. Fill the tin with ice cover again and shake. Strain the cocktail into a coupe.",
       "notes": "Creator: Josh Shweesti Ben Yaish",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An apple brandy sour with aromatic pepper"
     },
     {
       "id": "smoking-jacket",
@@ -14988,7 +15208,8 @@
       "instructions": "In a mixing glass combine all the ingredients. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into a Nick and Nora glass using a hawthorne strainer.",
       "notes": "Creator: Shaun Dunn",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Manhattan variation with smoked tea"
     },
     {
       "id": "sons-of-liberty",
@@ -15033,13 +15254,20 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "Ground Tellicherry black pepper",
       "instructions": "Combine all the ingredients except the egg white and black pepper in a cocktail tin then add the egg white to the tin. Cover the tin and dry shake to emulsify the egg white. Fill the tin with ice cover again and shake. Strain the cocktail into a coupe. When the egg white settles add a pinch of Tellicherry pepper to the top of the cocktail in a half moon shape. Swirl the coupe a few times to stretch the half moon into a spiral.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A fall sour with apple and Earl Grey"
     },
     {
       "id": "spiced-carrot-colada-cold",
@@ -15096,7 +15324,8 @@
       "instructions": "Combine all the ingredients except the pineapple fronds in a cocktail tin. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice. Garnish with the pineapple fronds.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A carrot cake–flavored piña colada"
     },
     {
       "id": "spiced-carrot-colada-hot",
@@ -15155,7 +15384,8 @@
       "tags": [
         "built"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A warm carrot cake–flavored piña colada"
     },
     {
       "id": "spring-sting",
@@ -15186,8 +15416,8 @@
         {
           "amount": "½",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1",
@@ -15206,7 +15436,8 @@
       "instructions": "In a mixing glass combine all the ingredients except the cucumber. Using a melon baller cut a dime size ball out of the cucumber. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into a Nick and Nora glass using a hawthorne strainer. Skewer the cucumber ball and garnish the cocktail.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A stirred savory grasshopper"
     },
     {
       "id": "start-me-up",
@@ -15269,7 +15500,8 @@
       "instructions": "Combine all the ingredients in a cocktail tin. Place a 2 inch ice cube in a double rocks glass. Fill the tin with ice cubes cover and shake. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Leo Robitschek and Jessica Gonzalez",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A whiskey sour with honey and ginger"
     },
     {
       "id": "taxi-dancer",
@@ -15332,7 +15564,8 @@
       "instructions": "Combine all the ingredients in a cocktail tin. Fill the tin with ice cubes cover and shake. Strain the cocktail into a coupe.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A spicy whiskey sour with red wine"
     },
     {
       "id": "thick-as-thieves",
@@ -15407,7 +15640,8 @@
       "instructions": "In a chilled mixing glass combine all the ingredients. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into the double rocks glass.",
       "notes": "Creator: Alex Lerman",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rum Old-Fashioned with banana and cacao"
     },
     {
       "id": "tinseltown-rebellion",
@@ -15470,7 +15704,8 @@
       "instructions": "In a cocktail tin muddle the cucumber slice then add all the remaining ingredients except the garnishes. Place the cucumber garnish inside a highball glass in a straight line starting from the bottom straight to the top. Fill the glass with 1¼ inch ice cubes. Fill the cocktail tin with 1¼ inch ice cubes. Cover and shake vigorously. Strain the cocktail into the highball glass. Garnish with the mint plouche.",
       "notes": "Creator: Tyler Caffall",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An agricole rum punch with passionfruit and melon"
     },
     {
       "id": "tivoli",
@@ -15507,8 +15742,8 @@
         {
           "amount": "½",
           "unit": "oz",
-          "name": "Cocchi Americano",
-          "notes": ""
+          "name": "Quinquina",
+          "notes": "Cocchi Americano"
         },
         {
           "amount": "1",
@@ -15521,7 +15756,8 @@
       "instructions": "Using a vegetable peeler shave a strip from the 6 inch celery stalk starting at the top of the stalk and pulling down until you reach the bottom creating a celery curl. Roll the curl tightly and place in ice water. In a chilled mixing glass lightly muddle the 1 inch celery piece then add all the remaining ingredients except the garnish. Place a 2 inch ice cube in a double rocks glass. Fill the mixing glass with 1¼ inch ice cubes and stir. Strain the cocktail into the double rocks glass. Garnish with the celery curl on top of the ice cube.",
       "notes": "Creator: Nathan O'Neill",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A stirred celery-añejo Old-Fashioned; savory with a touch of acidity"
     },
     {
       "id": "topanga",
@@ -15566,7 +15802,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnish. Fill a Pilsner glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip. Strain the cocktail into the Pilsner glass and top with additional crushed ice. Garnish with lime zest.",
       "notes": "Creator: David Bonatesta",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tequila tiki cocktail with chai and yogurt"
     },
     {
       "id": "vagabond",
@@ -15599,13 +15836,20 @@
           "unit": "oz",
           "name": "Islay Scotch",
           "notes": "Laphroaig 10-Year"
+        },
+        {
+          "amount": null,
+          "unit": "",
+          "name": "Pernod Absinthe",
+          "notes": "as a rinse"
         }
       ],
       "garnish": "",
       "instructions": "Combine all the ingredients except the absinthe and lemon twist in a mixing glass. Rinse a single rocks glass with six sprays of absinthe from an atomizer. Fill the mixing glass with ice and stir. Strain the cocktail into the single rocks glass. Express the oils from the lemon twist over the cocktail then discard the twist.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A smoky Scotch Old-Fashioned with hints of anise"
     },
     {
       "id": "wheeler-and-wilson",
@@ -15650,7 +15894,8 @@
       "instructions": "Combine all the ingredients except the cucumber garnish in a mixing glass. Fill the mixing glass with ice and stir. Strain the cocktail into a coupe. Skewer the remaining cucumber slice into a wave shape and garnish the drink.",
       "notes": "Creator: Leo Robitschek",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A floral, springtime Manhattan"
     },
     {
       "id": "wit-the-coco",
@@ -15707,7 +15952,8 @@
       "instructions": "In a cocktail tin combine all the ingredients except the garnishes. Fill a highball glass with crushed ice. Add three 1¼ inch ice cubes to the cocktail tin. Cover and whip vigorously. Strain the cocktail into the highball glass. Add the Angostura bitters and top with additional crushed ice. Garnish with the pineapple fronds.",
       "notes": "Creator: Pietro Collina",
       "tags": [],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A piña colada that is herbaceous and spirituous"
     },
     {
       "id": "adonis-nomad",
@@ -15754,7 +16000,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A sherry Manhattan with fall spice"
     },
     {
       "id": "amaretto-sour",
@@ -15799,6 +16046,12 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "Angostura bitters",
@@ -15808,7 +16061,8 @@
         "classic",
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "Our take on a guilty pleasure, an almond sour with a touch of bitterness"
     },
     {
       "id": "aperol-sour",
@@ -15841,6 +16095,12 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "Peychaud's bitters",
@@ -15850,7 +16110,8 @@
         "classic",
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter and citrus-forward sour with hints of strawberry"
     },
     {
       "id": "badminton-cup",
@@ -15915,7 +16176,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A variation on a refreshing sangria"
     },
     {
       "id": "bamboo-nomad",
@@ -15962,7 +16224,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A nutty, umami-forward sherry Manhattan"
     },
     {
       "id": "bijou-nomad",
@@ -16003,7 +16266,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A herbaceous, bitter, and rich martini"
     },
     {
       "id": "bijou-reserve",
@@ -16044,7 +16308,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A more refined take on a Bijou"
     },
     {
       "id": "blinker",
@@ -16097,7 +16362,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A whiskey sour with grapefruit and raspberry"
     },
     {
       "id": "blue-hawaiian",
@@ -16156,7 +16422,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A vegetal variation on a tropical 1950s classic"
     },
     {
       "id": "brandy-crusta",
@@ -16215,7 +16482,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A Cognac sour with hints of cherry"
     },
     {
       "id": "clover-club",
@@ -16254,6 +16522,12 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "Peychaud's bitters",
@@ -16263,7 +16537,8 @@
         "classic",
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A gin sour with raspberry"
     },
     {
       "id": "creole-contentment",
@@ -16316,7 +16591,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A nutty Cognac Manhattan with cherry"
     },
     {
       "id": "daiquiri-nomad",
@@ -16359,7 +16635,8 @@
         "daiquiri",
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A classic rum sour meant to be enjoyed quickly"
     },
     {
       "id": "demerara-dry-float",
@@ -16412,7 +16689,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A daiquiri variation with passionfruit and berries"
     },
     {
       "id": "diplomat",
@@ -16453,7 +16731,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A low-ABV Manhattan variation made with vermouth"
     },
     {
       "id": "don-t-give-up-the-ship",
@@ -16494,7 +16773,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter and rich martini"
     },
     {
       "id": "egg-nog",
@@ -16571,7 +16851,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A classic holiday nog with a kick"
     },
     {
       "id": "el-presidente",
@@ -16612,7 +16893,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rum martini with hints of fruit"
     },
     {
       "id": "fourth-degree",
@@ -16653,7 +16935,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A richer martini with anise"
     },
     {
       "id": "grasshopper-nomad",
@@ -16694,7 +16977,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rich and creamy mint-chocolate cocktail"
     },
     {
       "id": "green-beast",
@@ -16741,7 +17025,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An absinthe sour with cucumber"
     },
     {
       "id": "hemingway-daiquiri",
@@ -16802,7 +17087,8 @@
         "daiquiri",
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A daiquiri variation with grapefruit bitterness"
     },
     {
       "id": "honi-honi",
@@ -16861,7 +17147,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A whiskey mai tai"
     },
     {
       "id": "huntsman",
@@ -16914,7 +17201,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A funky vodka sour"
     },
     {
       "id": "improved-whiskey-cocktail-reserve",
@@ -16973,7 +17261,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A combination of amazing whiskies showcased at their finest"
     },
     {
       "id": "jack-rose",
@@ -17026,7 +17315,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An apple brandy sour with pomegranate"
     },
     {
       "id": "jungle-bird-nomad",
@@ -17086,7 +17376,8 @@
         "classic",
         "tiki"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter and malty rum sour"
     },
     {
       "id": "mai-tai-nomad",
@@ -17158,7 +17449,8 @@
         "classic",
         "tiki"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A quintessential tiki cocktail with almond and citrus"
     },
     {
       "id": "martinez",
@@ -17199,7 +17491,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A richer, darker variant of the martini"
     },
     {
       "id": "mint-julep",
@@ -17235,7 +17528,8 @@
         "classic",
         "julep"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A boozy, minty, and refreshing whiskey cocktail"
     },
     {
       "id": "montauk",
@@ -17282,7 +17576,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A lighter Negroni variation"
     },
     {
       "id": "morning-glory-fizz",
@@ -17321,6 +17616,12 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "",
@@ -17330,7 +17631,8 @@
         "classic",
         "fizz"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A whiskey sour with anise"
     },
     {
       "id": "new-york-sour",
@@ -17369,6 +17671,12 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "amount": "1",
+          "unit": "",
+          "name": "Egg White",
+          "notes": ""
         }
       ],
       "garnish": "",
@@ -17377,7 +17685,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A whiskey sour with mulled cider"
     },
     {
       "id": "paloma-nomad",
@@ -17442,7 +17751,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A refreshing tequila drink with grapefruit"
     },
     {
       "id": "penicillin-nomad",
@@ -17495,7 +17805,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A honeyed ginger Scotch sour"
     },
     {
       "id": "philadelphia-fish-house-punch",
@@ -17567,7 +17878,8 @@
         "classic",
         "punch"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A rum punch with peach and ginger"
     },
     {
       "id": "pimm-s-cup",
@@ -17626,7 +17938,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A refreshing highball with ginger and a slight bitterness"
     },
     {
       "id": "pi-a-colada",
@@ -17680,7 +17993,8 @@
         "classic",
         "tiki"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An island concoction rounded out with coconut and pineapple"
     },
     {
       "id": "pineapple-daiquiri",
@@ -17735,7 +18049,8 @@
         "daiquiri",
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A classic daiquiri with pineapple"
     },
     {
       "id": "pineapple-julep",
@@ -17819,7 +18134,8 @@
         "classic",
         "julep"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A refreshing gin cocktail with pineapple and berries"
     },
     {
       "id": "sherry-cobbler",
@@ -17855,7 +18171,8 @@
         "classic",
         "cobbler"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A low-ABV, refreshing cobbler with a nutty finish"
     },
     {
       "id": "sherry-painkiller",
@@ -17915,7 +18232,8 @@
         "classic",
         "tiki"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An easy-drinking piña colada variation with orange"
     },
     {
       "id": "up-to-date",
@@ -17968,7 +18286,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A lighter Manhattan with orange"
     },
     {
       "id": "vasquez-daiquiri",
@@ -18023,7 +18342,8 @@
         "daiquiri",
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A chocolaty daiquiri"
     },
     {
       "id": "ward-8",
@@ -18070,7 +18390,8 @@
       "tags": [
         "classic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A whiskey sour with orange and pomegranate"
     },
     {
       "id": "zombie-for-two",
@@ -18160,7 +18481,8 @@
         "classic",
         "tiki"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A boozy tiki cocktail with passionfruit and anise"
     },
     {
       "id": "basil-fennel-soda",
@@ -18207,7 +18529,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A refreshing highball with basil and fennel"
     },
     {
       "id": "beet-up",
@@ -18273,7 +18596,8 @@
         "non-alcoholic",
         "sour"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An earthy sour with rich crème fraîche"
     },
     {
       "id": "cease-and-desist",
@@ -18320,7 +18644,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "Our take on a classic orange creamsicle"
     },
     {
       "id": "devlin-s-delight",
@@ -18355,7 +18680,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A coconut-ginger flip"
     },
     {
       "id": "devocion-tonic",
@@ -18408,7 +18734,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A bitter, citrusy coffee highball with grapefruit"
     },
     {
       "id": "gingered-ale",
@@ -18455,7 +18782,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "Our take on ginger beer"
     },
     {
       "id": "gotham-parksider",
@@ -18490,7 +18818,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A maple–green tea refresher"
     },
     {
       "id": "guidara-s-sober-manhattan",
@@ -18537,7 +18866,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A teetotaler's Manhattan"
     },
     {
       "id": "la-pi-a",
@@ -18584,7 +18914,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A pineapple sour"
     },
     {
       "id": "ocha",
@@ -18631,7 +18962,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A yogurt drink with lime"
     },
     {
       "id": "paradise-city",
@@ -18690,7 +19022,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A tropical creamsicle"
     },
     {
       "id": "peter-piper",
@@ -18749,7 +19082,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A savory and tart pineapple cooler"
     },
     {
       "id": "polka-man",
@@ -18814,7 +19148,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A refreshing beverage with coffee and strawberries"
     },
     {
       "id": "spring-and-tonic",
@@ -18867,7 +19202,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A nonalcoholic gin and tonic"
     },
     {
       "id": "up-the-alley",
@@ -18914,7 +19250,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "An apple and maple sour"
     },
     {
       "id": "yuzu-arnold-palmer",
@@ -18967,7 +19304,8 @@
       "tags": [
         "non-alcoholic"
       ],
-      "created_at": "2026-05-25"
+      "created_at": "2026-05-25",
+      "description": "A floral and citrusy Arnold Palmer variation"
     },
     {
       "id": "grand-street",
@@ -19036,10 +19374,10 @@
           "notes": "Marie Brizard"
         },
         {
-          "name": "Cocchi Americano",
+          "name": "Quinquina",
           "amount": "0.75",
           "unit": "oz",
-          "notes": ""
+          "notes": "Cocchi Americano"
         },
         {
           "name": "Lemon Juice",
@@ -19066,42 +19404,42 @@
       "name": "Aviation",
       "category": "Classic",
       "source": "Death & Co.",
-      "method": "Stir",
-      "glass": "Rocks",
+      "method": "Shake",
+      "glass": "Coupe",
       "ingredients": [
         {
-          "name": "Blanc Vermouth",
-          "amount": "1.5",
-          "unit": "oz",
-          "notes": "Dolin"
-        },
-        {
-          "name": "Amontillado Sherry",
-          "amount": "1.75",
-          "unit": "oz",
-          "notes": "Barbadillo Príncipe"
-        },
-        {
-          "name": "Cane Sugar Syrup",
+          "name": "Plymouth Gin",
+          "notes": "",
           "amount": "2",
-          "unit": "tsp",
-          "notes": ""
+          "unit": "oz"
         },
         {
-          "name": "Orange Bitters",
-          "amount": "1",
-          "unit": "dash",
-          "notes": ""
+          "name": "Lemon Juice",
+          "notes": "",
+          "amount": "0.75",
+          "unit": "oz"
         },
         {
-          "name": "Angostura Bitters",
-          "amount": "1",
-          "unit": "dash",
-          "notes": ""
+          "name": "Luxardo Maraschino Liqueur",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
+        },
+        {
+          "name": "Crème Yvette",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "tsp"
+        },
+        {
+          "name": "Simple Syrup",
+          "notes": "",
+          "amount": "0.25",
+          "unit": "oz"
         }
       ],
-      "garnish": "1 Lemon Twist",
-      "instructions": "Stir all the ingredients over ice, then strain into a rocks glass. Garnish with the lemon twist.",
+      "garnish": "1 Brandied Cherry",
+      "instructions": "Shake all the ingredients with ice, then double-strain into a coupe. Garnish with a brandied cherry.",
       "created_at": "2026-05-25",
       "tags": [
         "classic",
@@ -19117,38 +19455,32 @@
       "glass": "Coupe",
       "ingredients": [
         {
-          "name": "Single Malt Scotch",
-          "amount": "1",
-          "unit": "oz",
-          "notes": "Springbank 10-Year"
+          "name": "Tanqueray Gin",
+          "notes": "",
+          "amount": "2",
+          "unit": "oz"
         },
         {
-          "name": "Cherry Heering",
-          "amount": "0.5",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Sweet Vermouth",
+          "name": "Acacia Honey Syrup",
+          "notes": "",
           "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Orange Juice",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
+          "unit": "oz"
         },
         {
           "name": "Lemon Juice",
-          "amount": "2",
-          "unit": "tsp",
-          "notes": ""
+          "notes": "",
+          "amount": "0.75",
+          "unit": "oz"
+        },
+        {
+          "name": "Lavender Bitters",
+          "notes": "",
+          "amount": "3",
+          "unit": "dash"
         }
       ],
       "garnish": "1 Brandied Cherry",
-      "instructions": "Shake all the ingredients with ice, then strain into a coupe. Garnish with the",
+      "instructions": "Shake all the ingredients with ice, then double-strain into a coupe. Garnish with a brandied cherry.",
       "created_at": "2026-05-25",
       "tags": [
         "classic",
@@ -19160,36 +19492,42 @@
       "name": "Blood And Sand",
       "category": "Classic",
       "source": "Death & Co.",
-      "method": "Stir",
-      "glass": "Martini",
+      "method": "Shake",
+      "glass": "Coupe",
       "ingredients": [
         {
           "name": "Single Malt Scotch",
-          "amount": "2",
-          "unit": "oz",
-          "notes": "Springbank 10-Year"
+          "notes": "Springbank 10-Year",
+          "amount": "1",
+          "unit": "oz"
+        },
+        {
+          "name": "Orange Juice",
+          "notes": "",
+          "amount": "0.75",
+          "unit": "oz"
         },
         {
           "name": "Sweet Vermouth",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
+          "notes": "half Punt e Mes, half Dolin Rouge",
+          "amount": "0.5",
+          "unit": "oz"
         },
         {
-          "name": "Drambuie",
-          "amount": "4",
-          "unit": "oz",
-          "notes": ""
+          "name": "Cherry Heering",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
         },
         {
-          "name": "Angostura Bitters",
-          "amount": "1",
-          "unit": "dash",
-          "notes": ""
+          "name": "Lemon Juice",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "tsp"
         }
       ],
-      "garnish": "1 Lemon Twist",
-      "instructions": "Stir all the ingredients over ice, then strain into a martini glass. Garnish with the lemon twist.",
+      "garnish": "1 Brandied Cherry",
+      "instructions": "Shake all the ingredients with ice, then double-strain into a coupe. Garnish with a brandied cherry.",
       "created_at": "2026-05-25",
       "tags": [
         "classic"
@@ -19238,32 +19576,26 @@
       "glass": "Coupe",
       "ingredients": [
         {
-          "name": "Rye Whiskey",
-          "amount": "2",
-          "unit": "oz",
-          "notes": "Rittenhouse Bonded"
+          "name": "Elijah Craig Bourbon",
+          "notes": "",
+          "amount": "1.5",
+          "unit": "oz"
         },
         {
-          "name": "Dry Vermouth",
+          "name": "Sweet Vermouth",
+          "notes": "",
           "amount": "0.75",
-          "unit": "oz",
-          "notes": "Dolin"
+          "unit": "oz"
         },
         {
-          "name": "Amaro Ciociaro",
-          "amount": "4",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Maraschino Liqueur",
-          "amount": "1",
-          "unit": "tsp",
-          "notes": "Luxardo"
+          "name": "Campari",
+          "notes": "",
+          "amount": "0.75",
+          "unit": "oz"
         }
       ],
-      "garnish": "",
-      "instructions": "Stir all the ingredients over ice, then strain into a coupe. No garnish.",
+      "garnish": "1 Lemon Twist",
+      "instructions": "Stir all the ingredients over ice, then strain into a coupe. Garnish with a lemon twist.",
       "created_at": "2026-05-25",
       "tags": [
         "classic"
@@ -19274,42 +19606,36 @@
       "name": "Brooklyn",
       "category": "Classic",
       "source": "Death & Co.",
-      "method": "Shake",
+      "method": "Stir",
       "glass": "Coupe",
       "ingredients": [
         {
-          "name": "Bourbon",
+          "name": "100-Proof Rye Whiskey",
+          "notes": "Rittenhouse",
           "amount": "2",
-          "unit": "oz",
-          "notes": "Elijah Craig 12-Year"
+          "unit": "oz"
         },
         {
-          "name": "Grapefruit Juice",
-          "amount": "1",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Lemon Juice",
-          "amount": "1",
-          "unit": "tsp",
-          "notes": ""
-        },
-        {
-          "name": "Acacia Honey Syrup",
-          "notes": "",
+          "name": "Dry Vermouth",
+          "notes": "Dolin",
           "amount": "0.75",
           "unit": "oz"
         },
         {
-          "name": "Saline Solution",
-          "amount": "5",
-          "unit": "drops",
-          "notes": ""
+          "name": "Amaro CioCiaro",
+          "notes": "",
+          "amount": "0.25",
+          "unit": "oz"
+        },
+        {
+          "name": "Luxardo Maraschino Liqueur",
+          "notes": "",
+          "amount": "1",
+          "unit": "tsp"
         }
       ],
-      "garnish": "1 Grapefruit Twist",
-      "instructions": "Shake all the ingredients with ice, then strain into a coupe. Garnish with the grapefruit twist.",
+      "garnish": "",
+      "instructions": "Stir all the ingredients over ice, then strain into a coupe. No garnish.",
       "created_at": "2026-05-25",
       "tags": [
         "classic"
@@ -19321,35 +19647,35 @@
       "category": "Classic",
       "source": "Death & Co.",
       "method": "Shake",
-      "glass": "Double Rocks",
+      "glass": "Coupe",
       "ingredients": [
         {
-          "name": "Lime Wedge",
-          "amount": "6",
-          "unit": "",
-          "notes": ""
-        },
-        {
-          "name": "Simple Syrup",
+          "name": "Elijah Craig Bourbon",
           "notes": "",
-          "amount": "0.75",
+          "amount": "2",
           "unit": "oz"
         },
         {
-          "name": "White Sugar Cube",
+          "name": "Grapefruit Juice",
+          "notes": "",
           "amount": "1",
-          "unit": "",
-          "notes": ""
+          "unit": "oz"
         },
         {
-          "name": "Avua Amburana Cachaga",
-          "amount": "2",
-          "unit": "oz",
-          "notes": ""
+          "name": "Lemon Juice",
+          "notes": "",
+          "amount": "1",
+          "unit": "tsp"
+        },
+        {
+          "name": "Acacia Honey Syrup",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
         }
       ],
-      "garnish": "",
-      "instructions": "In a shaker, muddle the lime with the simple syrup and sugar cube. Add the cachaga and shake with ice, then dump into a double rocks glass. No garnish.",
+      "garnish": "1 Grapefruit Twist",
+      "instructions": "Shake all the ingredients with ice, then double-strain into a coupe. Garnish with a grapefruit twist.",
       "created_at": "2026-05-25",
       "tags": [
         "classic"
@@ -19361,47 +19687,33 @@
       "category": "Classic",
       "source": "Death & Co.",
       "method": "Shake",
-      "glass": "Coupe",
+      "glass": "Double Rocks",
       "ingredients": [
         {
-          "name": "Cognac",
-          "amount": "2",
-          "unit": "oz",
-          "notes": "Pierre Ferrand Ambre"
+          "name": "Lime Wedge",
+          "notes": "muddled",
+          "amount": "6"
         },
         {
-          "name": "Green Chartreuse",
-          "amount": "2",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Lemon Juice",
+          "name": "Simple Syrup",
+          "notes": "",
           "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
+          "unit": "oz"
         },
         {
-          "name": "Cane Sugar Syrup",
+          "name": "White Sugar Cube",
+          "notes": "",
+          "amount": "1"
+        },
+        {
+          "name": "Avua Amburana Cachaça",
+          "notes": "",
           "amount": "2",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Angostura Bitters",
-          "amount": "1",
-          "unit": "dash",
-          "notes": ""
-        },
-        {
-          "name": "Saline Solution",
-          "amount": "5",
-          "unit": "drops",
-          "notes": ""
+          "unit": "oz"
         }
       ],
-      "garnish": "1 Lemon Twist",
-      "instructions": "Shake all the ingredients with ice, then strain into a coupe. Garnish with the lemon twist.",
+      "garnish": "",
+      "instructions": "In a shaker, muddle the lime wedges with the simple syrup and sugar cube. Add the cachaça and shake with ice. Double-strain into a double rocks glass over ice. No garnish.",
       "created_at": "2026-05-25",
       "tags": [
         "classic"
@@ -19412,48 +19724,42 @@
       "name": "Champs-Élysées",
       "category": "Classic",
       "source": "Death & Co.",
-      "method": "Stir",
+      "method": "Shake",
       "glass": "Coupe",
       "ingredients": [
         {
-          "name": "Gin",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": "Anchor Junipero"
+          "name": "Cognac",
+          "notes": "Pierre Ferrand Ambre",
+          "amount": "2",
+          "unit": "oz"
         },
         {
-          "name": "Kirsch",
-          "notes": "Massenez",
+          "name": "Green Chartreuse",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
+        },
+        {
+          "name": "Lemon Juice",
+          "notes": "",
           "amount": "0.75",
           "unit": "oz"
         },
         {
-          "name": "Dry Vermouth",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": "Dolin"
+          "name": "Cane Sugar Syrup",
+          "notes": "",
+          "amount": "0.25",
+          "unit": "oz"
         },
         {
-          "name": "Punt E Mes",
-          "amount": "2",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Gabriel Boudier Curacao",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Maraschino Liqueur",
-          "amount": "0.5",
-          "unit": "oz",
-          "notes": "Maraska"
+          "name": "Angostura Bitters",
+          "notes": "",
+          "amount": "1",
+          "unit": "dash"
         }
       ],
-      "garnish": "",
-      "instructions": "Stir all the ingredients over ice, then strain into a coupe. No garnish.",
+      "garnish": "1 Lemon Twist",
+      "instructions": "Shake all the ingredients with ice, then double-strain into a coupe. Garnish with a lemon twist.",
       "created_at": "2026-05-25",
       "tags": [
         "classic"
@@ -19505,7 +19811,7 @@
         },
         {
           "name": "Passion Fruit Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -19644,7 +19950,7 @@
         },
         {
           "name": "Maraschino Liqueur",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": "Luxardo"
         },
@@ -20096,40 +20402,6 @@
       ]
     },
     {
-      "id": "oldfashioned",
-      "name": "Old-Fashioned",
-      "category": "Classic",
-      "source": "Death & Co.",
-      "method": "Stir",
-      "glass": "Nick & Nora",
-      "ingredients": [
-        {
-          "name": "Rye Whiskey",
-          "notes": "Rittenhouse Bonded",
-          "amount": "1.25",
-          "unit": "oz"
-        },
-        {
-          "name": "Campari",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Dry Vermouth",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": "Dolin"
-        }
-      ],
-      "garnish": "1 Lemon Twist",
-      "instructions": "Stir all the ingredients over ice, then strain into a Nick & Nora glass. Garnish with the lemon twist.",
-      "created_at": "2026-05-25",
-      "tags": [
-        "classic"
-      ]
-    },
-    {
       "id": "pendennis-club-cocktail",
       "name": "Pendennis Club Cocktail",
       "category": "Classic",
@@ -20533,36 +20805,48 @@
       "name": "Scofflaw",
       "category": "Classic",
       "source": "Death & Co.",
-      "method": "Stir",
-      "glass": "",
+      "method": "Shake",
+      "glass": "Coupe",
       "ingredients": [
         {
-          "name": "Cognac",
-          "amount": "2",
-          "unit": "oz",
-          "notes": "Pierre Ferrand 1840"
+          "name": "Rye Whiskey",
+          "notes": "Templeton",
+          "amount": "1.5",
+          "unit": "oz"
         },
         {
-          "name": "Cointreau",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
+          "name": "Dry Vermouth",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
+        },
+        {
+          "name": "Blanc Vermouth",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
         },
         {
           "name": "Lemon Juice",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
         },
         {
-          "name": "Saline Solution",
-          "amount": "5",
-          "unit": "drops",
-          "notes": ""
+          "name": "Grenadine",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
+        },
+        {
+          "name": "Orange Bitters",
+          "notes": "",
+          "amount": "1",
+          "unit": "dash"
         }
       ],
-      "garnish": "",
-      "instructions": "",
+      "garnish": "1 Lemon Peel",
+      "instructions": "Shake all the ingredients with ice, then double-strain into a coupe. Garnish with a lemon peel.",
       "created_at": "2026-05-25",
       "tags": [
         "classic"
@@ -20574,65 +20858,35 @@
       "category": "Classic",
       "source": "Death & Co.",
       "method": "Shake",
-      "glass": "Highball",
+      "glass": "Coupe",
       "ingredients": [
         {
-          "name": "Gin",
-          "amount": "1.5",
-          "unit": "oz",
-          "notes": "Beefeater"
-        },
-        {
-          "name": "Cherry Heering",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
+          "name": "Cognac",
+          "notes": "Pierre Ferrand 1840",
+          "amount": "2",
+          "unit": "oz"
         },
         {
           "name": "Cointreau",
           "notes": "",
-          "amount": "0.75",
+          "amount": "0.5",
           "unit": "oz"
         },
         {
-          "name": "Bénédictine",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Pineapple Juice",
-          "amount": "2",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Lime Juice",
+          "name": "Lemon Juice",
           "notes": "",
           "amount": "0.75",
           "unit": "oz"
         },
         {
-          "name": "Grenadine",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Angostura Bitters",
-          "amount": "1",
-          "unit": "dash",
-          "notes": ""
-        },
-        {
-          "name": "Saline Solution",
-          "amount": "5",
-          "unit": "drops",
-          "notes": ""
+          "name": "Cane Sugar Syrup",
+          "notes": "",
+          "amount": "0.25",
+          "unit": "oz"
         }
       ],
-      "garnish": "1 Pineapple And Brandied Cherry Flag",
-      "instructions": "Short shake all the ingredients with 3 ice cubes, then strain into a highball glass filled with ice cubes. Garnish with the pineapple and cherry flag.",
+      "garnish": "1 Orange Twist",
+      "instructions": "Shake all the ingredients with ice, then double-strain into a coupe. Garnish with an orange twist.",
       "created_at": "2026-05-25",
       "tags": [
         "classic",
@@ -20644,36 +20898,60 @@
       "name": "Singapore Sling",
       "category": "Classic",
       "source": "Death & Co.",
-      "method": "Stir",
-      "glass": "",
+      "method": "Shake",
+      "glass": "Highball",
       "ingredients": [
         {
-          "name": "Mint Leaf",
-          "amount": "5",
-          "unit": "",
-          "notes": ""
+          "name": "Gin",
+          "notes": "Beefeater",
+          "amount": "1.5",
+          "unit": "oz"
         },
         {
-          "name": "Gin",
+          "name": "Cherry Heering",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
+        },
+        {
+          "name": "Cointreau",
+          "notes": "",
+          "amount": "0.25",
+          "unit": "oz"
+        },
+        {
+          "name": "Bénédictine",
+          "notes": "",
+          "amount": "0.25",
+          "unit": "oz"
+        },
+        {
+          "name": "Pineapple Juice",
+          "notes": "",
           "amount": "2",
-          "unit": "oz",
-          "notes": "Beefeater"
+          "unit": "oz"
         },
         {
           "name": "Lime Juice",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
         },
         {
-          "name": "Saline Solution",
-          "amount": "5",
-          "unit": "drops",
-          "notes": ""
+          "name": "Grenadine",
+          "notes": "D&C house grenadine",
+          "amount": "0.5",
+          "unit": "oz"
+        },
+        {
+          "name": "Angostura Bitters",
+          "notes": "",
+          "amount": "1",
+          "unit": "dash"
         }
       ],
-      "garnish": "",
-      "instructions": "",
+      "garnish": "1 Pineapple And Brandied Cherry Flag",
+      "instructions": "Short shake all the ingredients with 3 ice cubes, then strain into a highball glass over ice. Garnish with a pineapple slice and a brandied cherry.",
       "created_at": "2026-05-25",
       "tags": [
         "classic",
@@ -20689,9 +20967,15 @@
       "glass": "Double Rocks",
       "ingredients": [
         {
+          "name": "Cognac",
+          "notes": "Pierre Ferrand 1840",
+          "amount": "2",
+          "unit": "oz"
+        },
+        {
           "name": "White Crème de Menthe",
           "notes": "Marie Brizard",
-          "amount": "0.75",
+          "amount": "0.5",
           "unit": "oz"
         },
         {
@@ -20702,7 +20986,7 @@
         }
       ],
       "garnish": "1 Mint Sprig",
-      "instructions": "Short shake all the ingredients with 3 ice cubes, then strain into a double rocks glass filled with crushed ice. Garnish with the mint sprig and serve with",
+      "instructions": "Short shake all the ingredients with 3 ice cubes, then strain into a double rocks glass filled with crushed ice. Garnish with a mint sprig.",
       "created_at": "2026-05-25",
       "tags": [
         "classic"
@@ -20750,51 +21034,6 @@
       "created_at": "2026-05-25",
       "tags": [
         "classic"
-      ]
-    },
-    {
-      "id": "ti-punch-dc",
-      "name": "Ti Punch",
-      "category": "Classic",
-      "source": "Death & Co.",
-      "method": "Shake",
-      "glass": "Highball",
-      "ingredients": [
-        {
-          "name": "Gin",
-          "amount": "2",
-          "unit": "oz",
-          "notes": "Beefeater"
-        },
-        {
-          "name": "Lemon Juice",
-          "amount": "1",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Simple Syrup",
-          "amount": "0.75",
-          "unit": "oz",
-          "notes": ""
-        },
-        {
-          "name": "Club Soda",
-          "notes": ""
-        },
-        {
-          "name": "Saline Solution",
-          "amount": "5",
-          "unit": "drops",
-          "notes": ""
-        }
-      ],
-      "garnish": "1 Orange Crescent And Cherry Flag",
-      "instructions": "Short shake all the ingredients (except the club soda) with 3 ice cubes, then strain into a highball glass filled with ice cubes. Top with club soda. Garnish with the orange crescent and cherry flag and serve with a straw.",
-      "created_at": "2026-05-25",
-      "tags": [
-        "classic",
-        "punch"
       ]
     },
     {
@@ -20883,19 +21122,19 @@
         },
         {
           "name": "Orgeat",
-          "amount": "0.75",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
         {
           "name": "Cinnamon Bark Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
         {
           "name": "Acacia Honey Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -21031,11 +21270,11 @@
     },
     {
       "id": "city-of-gold-sling",
-      "name": "City Of Gold Sling",
+      "name": "City of Gold Sling",
       "category": "Classic",
       "source": "Death & Co.",
-      "method": "Stir",
-      "glass": "",
+      "method": "Shake",
+      "glass": "Highball",
       "ingredients": [
         {
           "name": "Old Tom Gin",
@@ -21045,25 +21284,50 @@
         },
         {
           "name": "El Dorado 12-Year Rum",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
         {
-          "name": "Donn'S Spices #2",
+          "name": "Donn's Spices #2",
           "amount": "0.75",
           "unit": "oz",
-          "notes": ""
+          "notes": "",
+          "pantry_id": "donns-spices-2"
         },
         {
           "name": "Absinthe",
           "amount": "1",
           "unit": "dash",
           "notes": "Vieux Pontarlier"
+        },
+        {
+          "name": "Pineapple Juice",
+          "amount": "1",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Lime Juice",
+          "amount": "0.5",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Orgeat",
+          "amount": "0.25",
+          "unit": "oz",
+          "notes": ""
+        },
+        {
+          "name": "Peychaud's Bitters",
+          "amount": "1",
+          "unit": "dash",
+          "notes": ""
         }
       ],
-      "garnish": "",
-      "instructions": "",
+      "garnish": "Pineapple wedge",
+      "instructions": "Shake everything with ice, then strain into a highball glass and serve on the rocks.",
       "created_at": "2026-05-25",
       "creator": "Joaquin Simo",
       "year": "2009",
@@ -21091,7 +21355,7 @@
         },
         {
           "name": "Falernum",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": "Velvet"
         },
@@ -21136,8 +21400,8 @@
       "name": "Frisco Club",
       "category": "Classic",
       "source": "Death & Co.",
-      "method": "Stir",
-      "glass": "",
+      "method": "Shake",
+      "glass": "Coupe",
       "ingredients": [
         {
           "name": "Gin",
@@ -21147,7 +21411,7 @@
         },
         {
           "name": "Solerno Blood Orange Liqueur",
-          "amount": "0.5",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -21165,7 +21429,7 @@
         },
         {
           "name": "Lime Juice",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -21174,9 +21438,15 @@
           "amount": "5",
           "unit": "drops",
           "notes": ""
+        },
+        {
+          "name": "Simple Syrup",
+          "notes": "",
+          "amount": "0.5",
+          "unit": "oz"
         }
       ],
-      "garnish": "",
+      "garnish": "1 Grapefruit Twist",
       "instructions": "",
       "created_at": "2026-05-25",
       "creator": "Thomas Waugh",
@@ -21269,7 +21539,7 @@
         },
         {
           "name": "Orgeat",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -21315,7 +21585,7 @@
         },
         {
           "name": "Aperol",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -21539,13 +21809,13 @@
         },
         {
           "name": "Orgeat",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
         {
           "name": "Ginger Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -21939,7 +22209,7 @@
         },
         {
           "name": "Lemon Juice",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -21995,7 +22265,7 @@
         },
         {
           "name": "Orgeat",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -22121,7 +22391,7 @@
         },
         {
           "name": "Cane Sugar Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -22500,10 +22770,10 @@
           "notes": "Alvear Festival Pale"
         },
         {
-          "name": "Cocchi Americano",
+          "name": "Quinquina",
           "amount": "0.75",
           "unit": "oz",
-          "notes": ""
+          "notes": "Cocchi Americano"
         },
         {
           "name": "Maraschino Liqueur",
@@ -22679,7 +22949,7 @@
         },
         {
           "name": "Cynar",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -22747,7 +23017,7 @@
         },
         {
           "name": "Yellow Chartreuse",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -22937,7 +23207,7 @@
         },
         {
           "name": "Crema de Mezcal",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": "Del Maguey"
         },
@@ -23447,7 +23717,7 @@
         },
         {
           "name": "Cane Sugar Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         }
@@ -23551,7 +23821,7 @@
         },
         {
           "name": "Cane Sugar Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -23753,7 +24023,7 @@
         },
         {
           "name": "Simple Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -23927,7 +24197,7 @@
         },
         {
           "name": "Orgeat",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -24001,7 +24271,7 @@
         },
         {
           "name": "Maple Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -24107,13 +24377,13 @@
         },
         {
           "name": "Orange Juice",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
         {
           "name": "Grenadine",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -24199,7 +24469,7 @@
         },
         {
           "name": "Lemon Juice",
-          "amount": "4",
+          "amount": "0.75",
           "unit": "oz",
           "notes": ""
         },
@@ -24697,7 +24967,7 @@
         },
         {
           "name": "Cane Sugar Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -24743,7 +25013,7 @@
         },
         {
           "name": "Ginger Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -25052,12 +25322,16 @@
           "notes": "Otima 10-Year"
         },
         {
-          "name": "2% Teaspoon Marie Brizard White Creme de Cacao",
-          "notes": ""
+          "name": "Marie Brizard White Crème de Cacao",
+          "notes": "",
+          "amount": "0.25",
+          "unit": "tsp"
         },
         {
-          "name": "2% Teaspoon Alchemia Chocolate Vodka",
-          "notes": ""
+          "name": "Alchemia Chocolate Vodka",
+          "notes": "",
+          "amount": "0.25",
+          "unit": "tsp"
         },
         {
           "name": "Mole Bitters",
@@ -25427,13 +25701,13 @@
         },
         {
           "name": "Cinnamon Bark Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
         {
           "name": "Cane Sugar Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -25899,7 +26173,7 @@
         },
         {
           "name": "Campari",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -25917,7 +26191,7 @@
         },
         {
           "name": "Passion Fruit Syrup",
-          "amount": "0.75",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -25957,7 +26231,7 @@
         },
         {
           "name": "Orange Liqueur",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": "Santa Teresa"
         },
@@ -26483,7 +26757,7 @@
         },
         {
           "name": "Simple Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -26643,7 +26917,7 @@
         },
         {
           "name": "Cynar",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -26857,7 +27131,7 @@
         },
         {
           "name": "Pear Brandy",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": "Clear Creek"
         }
@@ -27173,7 +27447,7 @@
         },
         {
           "name": "Cynar",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -27269,7 +27543,7 @@
         },
         {
           "name": "St-Germain",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -27595,7 +27869,7 @@
         },
         {
           "name": "Yellow Chartreuse",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         }
@@ -28041,7 +28315,7 @@
         },
         {
           "name": "Acacia Honey Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -28075,13 +28349,13 @@
         },
         {
           "name": "Campari",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
         {
           "name": "Grand Marnier",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -28093,13 +28367,13 @@
         },
         {
           "name": "Lemon Juice",
-          "amount": "0.75",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
         {
           "name": "Ginger Syrup",
-          "amount": "0.75",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -28153,7 +28427,7 @@
         },
         {
           "name": "Maple Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -28269,7 +28543,7 @@
         },
         {
           "name": "Orgeat",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -28529,7 +28803,7 @@
         },
         {
           "name": "Maple Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -28581,7 +28855,7 @@
         },
         {
           "name": "Ginger Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -28657,7 +28931,7 @@
         },
         {
           "name": "Cane Sugar Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -28925,7 +29199,7 @@
         },
         {
           "name": "Acacia Honey Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -29317,7 +29591,7 @@
         },
         {
           "name": "Demerara Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         }
@@ -29489,13 +29763,13 @@
         },
         {
           "name": "Solerno Blood Orange Liqueur",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
         {
           "name": "Kirsch",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": "Massenez"
         },
@@ -29547,7 +29821,7 @@
         },
         {
           "name": "Cumin Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -29793,7 +30067,7 @@
         },
         {
           "name": "Green Chartreuse",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -29833,7 +30107,7 @@
         },
         {
           "name": "Dry Vermouth",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": "Dolin"
         },
@@ -29910,10 +30184,10 @@
           "notes": "Knappogue Castle 12-Year"
         },
         {
-          "name": "Cocchi Americano",
+          "name": "Quinquina",
           "amount": "0.75",
           "unit": "oz",
-          "notes": ""
+          "notes": "Cocchi Americano"
         },
         {
           "name": "Peach Liqueur",
@@ -30423,7 +30697,7 @@
         },
         {
           "name": "Vanilla Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -30675,7 +30949,7 @@
         },
         {
           "name": "Maraschino Liqueur",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": "Luxardo"
         },
@@ -30871,25 +31145,25 @@
       "ingredients": [
         {
           "name": "Cognac",
-          "amount": "1.25",
+          "amount": "1.5",
           "unit": "oz",
           "notes": "Hine H"
         },
         {
           "name": "East India Solera Sherry",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
         {
           "name": "Grand Marnier",
-          "amount": "0.75",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
         {
           "name": "Lazzaroni Amaretto",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -30901,7 +31175,7 @@
         },
         {
           "name": "Simple Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -31097,7 +31371,7 @@
         },
         {
           "name": "Cream Sherry",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": "Alvear Festival Pale"
         },
@@ -31183,7 +31457,7 @@
         },
         {
           "name": "Amaro Nonino",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         }
@@ -31367,7 +31641,7 @@
         },
         {
           "name": "Maraschino Liqueur",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": "Luxardo"
         },
@@ -31440,10 +31714,10 @@
           "notes": "Hine H"
         },
         {
-          "name": "Cocchi Americano",
+          "name": "Quinquina",
           "amount": "0.75",
           "unit": "oz",
-          "notes": ""
+          "notes": "Cocchi Americano"
         },
         {
           "name": "Sweet Vermouth",
@@ -31584,14 +31858,14 @@
           "notes": "Campo de Encanto"
         },
         {
-          "name": "Cocchi Americano",
+          "name": "Quinquina",
           "amount": "0.5",
           "unit": "oz",
-          "notes": ""
+          "notes": "Cocchi Americano"
         },
         {
           "name": "Blanc Vermouth",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": "Dolin"
         },
@@ -31711,7 +31985,7 @@
         },
         {
           "name": "Campari",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -31817,7 +32091,7 @@
         },
         {
           "name": "St-Germain",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -31917,7 +32191,7 @@
         },
         {
           "name": "Lime Juice",
-          "amount": "4",
+          "amount": "0.75",
           "unit": "oz",
           "notes": ""
         },
@@ -31961,7 +32235,7 @@
         },
         {
           "name": "St-Germain",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -32023,7 +32297,7 @@
         },
         {
           "name": "Grade B Maple Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -32361,7 +32635,7 @@
         },
         {
           "name": "Absinthe",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": "Vieux Pontarlier"
         },
@@ -32537,7 +32811,7 @@
         },
         {
           "name": "Green Chartreuse",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -32605,7 +32879,7 @@
         },
         {
           "name": "Lemon Juice",
-          "amount": "4",
+          "amount": "0.75",
           "unit": "oz",
           "notes": ""
         },
@@ -32649,7 +32923,7 @@
         },
         {
           "name": "Cherry Liqueur",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": "Rothman & Winter"
         },
@@ -32692,8 +32966,10 @@
           "notes": "Plymouth"
         },
         {
-          "name": "3% Ounce Cointreau",
-          "notes": ""
+          "name": "Cointreau",
+          "notes": "",
+          "amount": "0.75",
+          "unit": "oz"
         },
         {
           "name": "Maraschino Liqueur",
@@ -33003,7 +33279,7 @@
         },
         {
           "name": "Rose-Infused Lillet Rose",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -33193,7 +33469,7 @@
         },
         {
           "name": "Yellow Chartreuse",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -33237,7 +33513,7 @@
         },
         {
           "name": "Coffee- and Chile-Infused Campari",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -33517,7 +33793,7 @@
         },
         {
           "name": "Acacia Honey Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -33596,10 +33872,10 @@
           "notes": "Dolin"
         },
         {
-          "name": "Cocchi Americano",
+          "name": "Quinquina",
           "amount": "0.75",
           "unit": "oz",
-          "notes": ""
+          "notes": "Cocchi Americano"
         },
         {
           "name": "Gin",
@@ -33695,7 +33971,7 @@
         },
         {
           "name": "Cynar",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -33877,7 +34153,7 @@
         },
         {
           "name": "Lemon Juice",
-          "amount": "0.75",
+          "amount": "3",
           "unit": "oz",
           "notes": ""
         },
@@ -33972,8 +34248,10 @@
           "notes": ""
         },
         {
-          "name": "7' Ounce Club Soda",
-          "notes": ""
+          "name": "Club Soda",
+          "notes": "",
+          "amount": "7",
+          "unit": "oz"
         },
         {
           "name": "Fuji Apple-Infused Blended Scotch",
@@ -33988,8 +34266,10 @@
           "notes": ""
         },
         {
-          "name": "4', Ounce Fuji Apple Juice",
-          "notes": ""
+          "name": "Fuji Apple Juice",
+          "notes": "",
+          "amount": "4",
+          "unit": "oz"
         },
         {
           "name": "Lemon Juice",
@@ -34404,8 +34684,10 @@
           "notes": "Luxardo"
         },
         {
-          "name": "Scant % Ounce St. George Absinthe",
-          "notes": ""
+          "name": "St. George Absinthe",
+          "notes": "",
+          "amount": "scant",
+          "unit": "oz"
         },
         {
           "name": "Orange Juice",
@@ -35474,7 +35756,7 @@
         },
         {
           "name": "Grenadine",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -35634,7 +35916,7 @@
         },
         {
           "name": "Demerara Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -35676,7 +35958,7 @@
         },
         {
           "name": "Orgeat",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -35870,7 +36152,7 @@
         },
         {
           "name": "Maple Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -36466,7 +36748,7 @@
         },
         {
           "name": "Falernum",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": "Velvet"
         },
@@ -36622,7 +36904,7 @@
         },
         {
           "name": "Grand Marnier",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -36846,7 +37128,7 @@
         },
         {
           "name": "Cynar",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         }
@@ -37122,7 +37404,7 @@
         },
         {
           "name": "Demerara Syrup",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -37194,7 +37476,7 @@
         },
         {
           "name": "St-Germain",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -37590,7 +37872,7 @@
         },
         {
           "name": "Aperol",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         }
@@ -37766,7 +38048,7 @@
         },
         {
           "name": "Campari",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -37858,7 +38140,7 @@
         },
         {
           "name": "Cane Sugar Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -38018,7 +38300,7 @@
         },
         {
           "name": "Demerara Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -38122,7 +38404,7 @@
         },
         {
           "name": "Combier Pamplemousse Rose Liqueur",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -38289,8 +38571,8 @@
       "name": "Jovencourt Daiquiri",
       "category": "Classic",
       "source": "Death & Co.",
-      "method": "Stir",
-      "glass": "",
+      "method": "Shake",
+      "glass": "Coupe",
       "ingredients": [
         {
           "name": "Rum",
@@ -38300,9 +38582,21 @@
         },
         {
           "name": "Mezcal",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": "Del Maguey Vida"
+        },
+        {
+          "name": "Simple Syrup",
+          "notes": "",
+          "amount": "0.75",
+          "unit": "oz"
+        },
+        {
+          "name": "Lime Juice",
+          "notes": "",
+          "amount": "0.75",
+          "unit": "oz"
         }
       ],
       "garnish": "",
@@ -38337,7 +38631,7 @@
         },
         {
           "name": "Simple Syrup",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -38508,7 +38802,7 @@
         },
         {
           "name": "St. Elizabeth Allspice Dram",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         },
@@ -38806,7 +39100,7 @@
         },
         {
           "name": "St-Germain",
-          "amount": "4",
+          "amount": "0.25",
           "unit": "oz",
           "notes": ""
         }
@@ -39092,7 +39386,7 @@
         },
         {
           "name": "Sweet Vermouth",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": "Cocchi di Torino"
         },
@@ -39564,7 +39858,7 @@
         },
         {
           "name": "Drambuie",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },
@@ -39610,7 +39904,7 @@
         },
         {
           "name": "Drambuie",
-          "amount": "2",
+          "amount": "0.5",
           "unit": "oz",
           "notes": ""
         },

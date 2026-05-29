@@ -65,6 +65,20 @@ CREATE TABLE IF NOT EXISTS bottle_notes (
     flavor_tags  TEXT    NOT NULL DEFAULT '[]',
     updated_at   TEXT    NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS lists (
+    id         TEXT PRIMARY KEY,
+    name       TEXT NOT NULL,
+    created_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS list_items (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    list_id     TEXT NOT NULL REFERENCES lists(id) ON DELETE CASCADE,
+    cocktail_id TEXT NOT NULL,
+    added_at    TEXT NOT NULL,
+    UNIQUE(list_id, cocktail_id)
+);
 """
 
 
@@ -502,6 +516,26 @@ def get_all_bottle_notes() -> dict:
     }
 
 
+# ── Settings ─────────────────────────────────────────────────────────────────
+
+def get_setting(key: str, default: str = '') -> str:
+    """Return a settings value by key, or default if not set."""
+    with _connect() as conn:
+        row = conn.execute("SELECT value FROM settings WHERE key=?", (key,)).fetchone()
+    return row['value'] if row else default
+
+
+def set_setting(key: str, value: str):
+    """Upsert a key/value pair in the settings table."""
+    with _connect() as conn:
+        conn.execute(
+            "INSERT INTO settings (key, value) VALUES (?,?) "
+            "ON CONFLICT(key) DO UPDATE SET value=excluded.value",
+            (key, value)
+        )
+        conn.commit()
+
+
 # ── Recently viewed ───────────────────────────────────────────────────────────
 
 def record_view(cocktail_id: str):
@@ -523,3 +557,103 @@ def get_recently_viewed(limit: int = 8) -> list:
             "ORDER BY viewed_at DESC LIMIT ?", (limit,)
         ).fetchall()
     return [{'cocktail_id': r['cocktail_id'], 'viewed_at': r['viewed_at']} for r in rows]
+
+
+# ── Lists ─────────────────────────────────────────────────────────────────────
+
+def get_lists() -> list:
+    """Return all lists with item counts, newest first."""
+    with _connect() as conn:
+        rows = conn.execute("""
+            SELECT l.id, l.name, l.created_at,
+                   COUNT(li.id) AS count
+            FROM lists l
+            LEFT JOIN list_items li ON li.list_id = l.id
+            GROUP BY l.id
+            ORDER BY l.created_at DESC
+        """).fetchall()
+    return [dict(r) for r in rows]
+
+
+def get_list(list_id: str):
+    """Return a list with its cocktail IDs and timestamps, or None."""
+    with _connect() as conn:
+        row = conn.execute(
+            "SELECT id, name, created_at FROM lists WHERE id=?", (list_id,)
+        ).fetchone()
+        if not row:
+            return None
+        items = conn.execute(
+            "SELECT cocktail_id, added_at FROM list_items "
+            "WHERE list_id=? ORDER BY added_at",
+            (list_id,)
+        ).fetchall()
+    return {
+        'id':         row['id'],
+        'name':       row['name'],
+        'created_at': row['created_at'],
+        'items':      [{'cocktail_id': r['cocktail_id'], 'added_at': r['added_at']}
+                       for r in items],
+    }
+
+
+def create_list(name: str, list_id: str) -> dict:
+    """Insert a new list. Caller must supply a unique list_id slug."""
+    now = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    with _connect() as conn:
+        conn.execute(
+            "INSERT INTO lists (id, name, created_at) VALUES (?,?,?)",
+            (list_id, name, now[:10])
+        )
+        conn.commit()
+    return {'id': list_id, 'name': name, 'created_at': now[:10], 'count': 0}
+
+
+def rename_list(list_id: str, name: str) -> bool:
+    """Rename a list. Returns True if the list was found and updated."""
+    with _connect() as conn:
+        cur = conn.execute("UPDATE lists SET name=? WHERE id=?", (name, list_id))
+        conn.commit()
+    return cur.rowcount > 0
+
+
+def delete_list(list_id: str):
+    """Delete a list and all its items (CASCADE)."""
+    with _connect() as conn:
+        conn.execute("DELETE FROM lists WHERE id=?", (list_id,))
+        conn.commit()
+
+
+def add_to_list(list_id: str, cocktail_id: str) -> bool:
+    """Add a cocktail to a list. Returns True if newly added, False if already present."""
+    now = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    with _connect() as conn:
+        try:
+            conn.execute(
+                "INSERT INTO list_items (list_id, cocktail_id, added_at) VALUES (?,?,?)",
+                (list_id, cocktail_id, now)
+            )
+            conn.commit()
+            return True
+        except Exception:
+            return False
+
+
+def remove_from_list(list_id: str, cocktail_id: str) -> bool:
+    """Remove a cocktail from a list. Returns True if it was found and deleted."""
+    with _connect() as conn:
+        cur = conn.execute(
+            "DELETE FROM list_items WHERE list_id=? AND cocktail_id=?",
+            (list_id, cocktail_id)
+        )
+        conn.commit()
+    return cur.rowcount > 0
+
+
+def get_cocktail_lists(cocktail_id: str) -> set:
+    """Return the set of list_ids that contain this cocktail."""
+    with _connect() as conn:
+        rows = conn.execute(
+            "SELECT list_id FROM list_items WHERE cocktail_id=?", (cocktail_id,)
+        ).fetchall()
+    return {r['list_id'] for r in rows}

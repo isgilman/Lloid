@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}Lists — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Lists</h1>
+      <p class="page-subtitle">Saved collections of cocktails.</p>
+    </div>
+    <button class="btn btn-primary" onclick="openCreateModal()">+ New List</button>
+  </div>
+
+  {% if lists %}
+  <div class="lists-grid">
+    {% for lst in lists %}
+    <a href="{{ url_for('list_detail_view', list_id=lst.id) }}" class="list-card">
+      <div class="list-card-name">{{ lst.name }}</div>
+      <div class="list-card-count">{{ lst.count }} cocktail{% if lst.count != 1 %}s{% endif %}</div>
+      {% if lst.preview %}
+      <div class="list-card-preview">
+        {{ lst.preview | join(', ') }}{% if lst.count > 3 %}&hellip;{% endif %}
+      </div>
+      {% endif %}
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state" style="padding:40px 0">
+    <p>No lists yet. Open any cocktail recipe and tap <strong>+ List</strong> to save it to a new or existing list.</p>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Create list modal -->
+<div class="modal-overlay" id="create-modal" style="display:none" onclick="closeCreateModalIfBg(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title">New List</h2>
+      <button class="modal-close" onclick="closeCreateModal()">&#10005;</button>
+    </div>
+    <form onsubmit="submitCreate(event)" class="modal-form">
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label">List name *</label>
+        <input type="text" id="create-list-name" class="form-input" required
+               placeholder="e.g. Friday Night, Tiki Party…" maxlength="60" autocomplete="off">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" onclick="closeCreateModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create List</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function openCreateModal() {
+  document.getElementById('create-modal').style.display = 'flex';
+  document.getElementById('create-list-name').focus();
+}
+function closeCreateModal() {
+  document.getElementById('create-modal').style.display = 'none';
+  document.getElementById('create-list-name').value = '';
+}
+function closeCreateModalIfBg(e) {
+  if (e.target === e.currentTarget) closeCreateModal();
+}
+async function submitCreate(e) {
+  e.preventDefault();
+  const name = document.getElementById('create-list-name').value.trim();
+  if (!name) return;
+  const fd = new FormData();
+  fd.append('name', name);
+  try {
+    const res  = await fetch('/lists/create', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      window.location.href = '/lists/' + data.list.id;
+    } else {
+      showToast(data.error || 'Error creating list', 'error');
+    }
+  } catch(err) {
+    showToast('Error creating list', 'error');
+  }
+}
+</script>
+{% endblock %}

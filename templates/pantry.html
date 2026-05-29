@@ -80,6 +80,17 @@
         </details>
         {% endif %}
 
+        {% if item.used_in %}
+        <div class="specialty-used-in">
+          <div class="specialty-used-in-label">Used in</div>
+          <div class="specialty-used-in-list">
+            {% for c in item.used_in %}
+            <a href="{{ url_for('cocktail_detail', cocktail_id=c.id) }}" class="specialty-used-in-link">{{ c.name }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
         <div class="specialty-card-footer">
           <button class="stock-toggle {% if item.in_stock %}stock-toggle-on{% endif %}"
                   onclick="toggleStock('{{ item.id }}', this)"

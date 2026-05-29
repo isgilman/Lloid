@@ -37,6 +37,14 @@
                  placeholder="Cocktail name">
         </div>
 
+        <!-- Description -->
+        <div class="form-group form-col-span-2">
+          <label class="form-label">Descriptor <span class="form-hint">— short italic tagline shown on the card</span></label>
+          <input type="text" name="description" class="form-input"
+                 value="{{ cocktail.description if cocktail else prefill.get('description', '') }}"
+                 placeholder="e.g. A riff on the Toronto with aged rum">
+        </div>
+
         <!-- Category chip picker (multi-select) -->
         <div class="form-group form-col-span-2">
           <label class="form-label">

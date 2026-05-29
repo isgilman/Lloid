@@ -241,8 +241,15 @@ function _removeFilter(type, value) {
   if (cb) { cb.checked = false; filterCocktails(); }
 }
 
+/** Normalize a search string: lowercase, trim whitespace, collapse
+ *  punctuation/apostrophes to spaces so that e.g. "ti punch" matches
+ *  "Ti' Punch" and a trailing space in the query is ignored. */
+function normSearch(s) {
+  return (s || '').toLowerCase().trim().replace(/['''`\-\.]/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function filterCocktails() {
-  const query = (document.getElementById('cq-search')?.value || '').toLowerCase();
+  const query = normSearch(document.getElementById('cq-search')?.value || '');
 
   const selectedTags     = [...document.querySelectorAll('[name="cq-tag"]:checked')].map(el => el.value);
   const selectedSources  = [...document.querySelectorAll('[name="cq-source"]:checked')].map(el => el.value);
@@ -252,15 +259,15 @@ function filterCocktails() {
   let visible = 0;
 
   cards.forEach(card => {
-    const name        = card.dataset.name || '';
+    const name        = normSearch(card.dataset.name || '');
     const cardTagsArr = (card.dataset.tags || '').split('|').filter(Boolean);
-    const cardTagsStr = card.dataset.tags || '';   // for substring text search
+    const cardTagsStr = normSearch(card.dataset.tags || '');
     const cardSource  = card.dataset.source || '';
-    const cardCreator = (card.dataset.creator || '').toLowerCase();
+    const cardCreator = normSearch(card.dataset.creator || '');
     const makeable    = card.dataset.makeable === 'true';
     const tried      = card.dataset.tried === 'true';
     const favorited  = card.dataset.favorited === 'true';
-    const ings        = card.dataset.ingredients || '';
+    const ings        = normSearch(card.dataset.ingredients || '');
 
     // Text search (name + tags + ingredients + creator)
     const matchQuery = !query

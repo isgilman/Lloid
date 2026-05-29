@@ -75,6 +75,7 @@ CATEGORY_MAP = {
     'rum': ['rum', 'rhum', 'cachaça', 'clairin', 'batavia arrack'],
     'aged rum': ['aged rum', 'rhum agricole vieux', 'aged rhum'],
     'overproof rum': ['overproof rum', 'overproof'],
+    'jamaican rum': ['rum'],  # cat_styles=['rum'] + geo_origin_filter='jamaica' = only Jamaican rums
     'rhum agricole': ['rhum agricole blanc', 'rhum agricole vieux'],
     'rhum agricole blanc': ['rhum agricole blanc'],
     'cachaça': ['cachaça'],
@@ -89,6 +90,7 @@ CATEGORY_MAP = {
     'mezcal': ['mezcal'],
     'tequila': ['blanco tequila'],
     'blanco tequila': ['blanco tequila'],
+    'reposado tequila': ['reposado tequila'],
     'sotol': ['sotol'],
     'gin': ['gin'],
     'vodka': ['vodka'],
@@ -125,6 +127,9 @@ CATEGORY_MAP = {
     'white port': ['white port'],
     'madeira': ['madeira'],
     'marsala': ['marsala'],
+    'champagne': ['brut champagne', 'champagne', 'sparkling wine'],
+    'dry champagne': ['brut champagne', 'champagne', 'sparkling wine'],
+    'sparkling wine': ['sparkling wine', 'brut champagne', 'champagne'],
     'maraschino': ['maraschino'],
     'maraschino liqueur': ['maraschino'],
     'yellow chartreuse': ['herbal liqueur'],
@@ -155,6 +160,23 @@ CATEGORY_MAP = {
     'violet liqueur': ['violet liqueur'],
     'pine liqueur': ['pine liqueur'],
     'corn liqueur': ['corn liqueur'],
+}
+
+# Override the auto-derived search_term (clean(best_key)) for specific keys.
+# Useful when the ingredient name doesn't work well as a bottle-shelf search,
+# e.g. geographic adjectives like "jamaican" → search "rum jamaica" so the
+# filterBottles substring check can span the category + origin fields.
+CATEGORY_SEARCH_TERMS = {
+    'jamaican rum': 'rum jamaica',
+}
+
+# Maps geographic adjectives that can appear in ingredient names to origin keywords.
+# When detected, the bottle loop is restricted to bottles whose Origin contains the keyword.
+# This lets "Jamaican Rum" match only Jamaican rums rather than any rum.
+GEO_MODIFIERS = {
+    'jamaican': 'jamaica',
+    'cuban':    'cuba',
+    'barbadian': 'barbados',
 }
 
 
@@ -318,6 +340,14 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
         # always wins over a specialty preparation that merely *contains* the ingredient name
         # (e.g. "Chai Infused Sweet Vermouth" must not shadow plain "Sweet Vermouth").
 
+        # Detect geographic modifiers (e.g. "jamaican" in "jamaican rum") so we can
+        # restrict matching to bottles from that country of origin.
+        geo_origin_filter = None
+        for geo_adj, origin_kw in GEO_MODIFIERS.items():
+            if word_in(geo_adj, ing):
+                geo_origin_filter = origin_kw
+                break
+
         # Pre-compute the longest CATEGORY_MAP key that matches this ingredient — O(keys), not O(keys×bottles).
         # Doing it here prevents the generic overlap check from firing before a precise
         # style mapping can route "crème de cacao" → "cacao liqueur" (not "crème de cassis").
@@ -332,45 +362,59 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
         stop = {'the', 'a', 'an', 'of', 'de', 'du', 'and', 'no', 'n', 'le',
                 'liqueur', 'bitters', 'spirit', 'spirits', 'liquor'}
 
-        for bottle in inventory:
+        def _eligible(bottle):
             use = normalize(bottle.get('Use', ''))
+            if use == 'neat only':           return False
+            if not bottle.get('in_stock', True): return False
+            if use == 'premium cocktail' and not is_premium: return False
+            return True
 
-            # Neat-only bottles never count for mixing
-            if use == 'neat only':
+        # Pass 1 — Direct name containment (highest priority).
+        # Scanned across ALL eligible bottles before any style/category matching so that
+        # e.g. "Benedictine" always matches Bénédictine D.O.M. even when Yellow Chartreuse
+        # (which shares style 'Herbal Liqueur') appears earlier in the inventory.
+        # No geo_origin_filter here — a name match is already specific enough.
+        for bottle in inventory:
+            if not _eligible(bottle):
                 continue
-
-            # Out-of-stock bottles don't count
-            if not bottle.get('in_stock', True):
-                continue
-
-            # Premium bottles only count for premium cocktails
-            if use == 'premium cocktail' and not is_premium:
-                continue
-
-            bname  = clean(bottle.get('Name', ''))
-            bstyle = clean(bottle.get('Style', ''))
-            bcat   = clean(bottle.get('Category', ''))
-
-            # 1. Direct containment (works after unicode + punctuation normalisation,
-            #    e.g. St-Germain == St. Germain, Crème == Creme)
+            bname = clean(bottle.get('Name', ''))
             if ing in bname or bname in ing:
                 return True, bottle['Name']
 
-            # 2. Style / category direct match (word-boundary — prevents "gin" matching "ginger")
+        # Pass 2 — Style, category-map, and overlap matching.
+        # Geo origin filter applied here (not in pass 1) so geographic ingredients
+        # like "Jamaican Rum" only match Jamaican bottles via style/category, while
+        # a bottle literally named "Jamaican Rum" (pass 1) would already have matched.
+        for bottle in inventory:
+            if not _eligible(bottle):
+                continue
+
+            bname   = clean(bottle.get('Name', ''))
+            bstyle  = clean(bottle.get('Style', ''))
+            bcat    = clean(bottle.get('Category', ''))
+            borigin = clean(bottle.get('Origin', ''))
+
+            if geo_origin_filter and geo_origin_filter not in borigin:
+                continue
+
+            # Style / category direct match (word-boundary — prevents "gin" matching "ginger")
             if ing == bstyle or word_in(ing, bstyle) or word_in(ing, bcat):
                 return True, bottle['Name']
 
-            # 3. Category map — specific mapping checked BEFORE generic overlap so
+            # Category map — specific mapping checked BEFORE generic overlap so
             #    "crème de cacao" routes to cacao-liqueur bottles and not cassis ones.
+            #    Origin is also checked so geographic entries like 'jamaican rum': ['rum']
+            #    restrict to bottles from the right country.
             if cat_styles:
                 for sc in cat_styles:
-                    if word_in(sc, bstyle) or word_in(sc, bcat) or word_in(sc, bname):
+                    if (word_in(sc, bstyle) or word_in(sc, bcat)
+                            or word_in(sc, bname) or word_in(sc, borigin)):
                         return True, bottle['Name']
 
-            # 4. Meaningful word overlap — fallback ONLY for ingredients that have no
-            #    CATEGORY_MAP entry.  When best_key exists, direct + style + CATEGORY_MAP
-            #    are precise enough; keeping overlap would create false positives like
-            #    "Crème de Cacao" matching "Crème de Cassis" via shared "creme".
+            # Overlap — fallback ONLY for ingredients that have no CATEGORY_MAP entry.
+            # When best_key exists, direct + style + CATEGORY_MAP are precise enough;
+            # keeping overlap would create false positives like
+            # "Crème de Cacao" matching "Crème de Cassis" via shared "creme".
             if not best_key:
                 ing_words   = set(ing.split()) - stop
                 bname_words = set(bname.split()) - stop
@@ -493,6 +537,7 @@ def cocktail_from_form():
 
     return {
         'name':         request.form.get('name', '').strip(),
+        'description':  request.form.get('description', '').strip(),
         'category':     category_tags[0] if category_tags else '',  # kept for legacy display
         'glass':        request.form.get('glass', '').strip(),
         'method':       request.form.get('method', '').strip(),
@@ -546,9 +591,11 @@ def index():
     _check    = make_availability_checker(inventory, pantry)
     makeable  = sum(1 for c in cocktails if get_makeable_status(c, inventory, pantry, _checker=_check)[0])
 
-    # Bottle stats by category
+    # Bottle stats by category — count only in-stock bottles
     by_cat = {}
     for b in inventory:
+        if not b.get('in_stock', True):
+            continue
         cat = b.get('Category', 'Other')
         by_cat[cat] = by_cat.get(cat, 0) + 1
 
@@ -577,7 +624,7 @@ def index():
             recently_viewed.append(c)
 
     return render_template('index.html',
-                           bottle_count=len(inventory),
+                           bottle_count=sum(1 for b in inventory if b.get('in_stock', True)),
                            cocktail_count=len(cocktails),
                            makeable_count=makeable,
                            categories=by_cat,
@@ -591,7 +638,34 @@ def index():
 def inventory():
     bottles = load_inventory_with_notes()
     cats    = sorted(set(b.get('Category', '') for b in bottles if b.get('Category')))
-    return render_template('inventory.html', bottles=bottles, categories=cats)
+    custom_flavor_tags = json.loads(_db.get_setting('custom_flavor_tags', '{}'))
+    return render_template('inventory.html', bottles=bottles, categories=cats,
+                           custom_flavor_tags=custom_flavor_tags)
+
+
+@app.route('/inventory/flavor-tags/add', methods=['POST'])
+def inventory_flavor_tags_add():
+    """Persist a new custom flavor tag under a named group."""
+    group = request.form.get('group', '').strip()
+    value = request.form.get('value', '').strip()
+    label = request.form.get('label', '').strip()
+    if not group or not value:
+        return jsonify({'success': False}), 400
+    current = json.loads(_db.get_setting('custom_flavor_tags', '{}'))
+    if group not in current:
+        current[group] = []
+    if not any(t['value'] == value for t in current[group]):
+        current[group].append({'value': value, 'label': label or value})
+    _db.set_setting('custom_flavor_tags', json.dumps(current))
+    return jsonify({'success': True, 'tags': current[group]})
+
+
+def _normalise_abv(bottle: dict) -> dict:
+    """Ensure ABV always ends with '%' if a value is present."""
+    abv = bottle.get('ABV', '').strip()
+    if abv and not abv.endswith('%'):
+        bottle['ABV'] = abv + '%'
+    return bottle
 
 
 @app.route('/inventory/add', methods=['POST'])
@@ -599,6 +673,7 @@ def inventory_add():
     bottles = load_inventory()
     new = {f: request.form.get(f, '').strip() for f in INVENTORY_FIELDS}
     if new.get('Name'):
+        _normalise_abv(new)
         bottles.append(new)
         save_inventory(bottles)
         flash(f"Added \"{new['Name']}\" to inventory.", 'success')
@@ -612,6 +687,7 @@ def inventory_update():
     if 0 <= idx < len(bottles):
         original_name = bottles[idx].get('Name', '')
         bottles[idx] = {f: request.form.get(f, '').strip() for f in INVENTORY_FIELDS}
+        _normalise_abv(bottles[idx])
         new_name = bottles[idx].get('Name', '')
         save_inventory(bottles)
         if original_name and new_name and original_name != new_name:
@@ -664,6 +740,45 @@ def pantry():
     p = load_pantry()
     std_oos = set(normalize(x) for x in p.get('standard_out_of_stock', []))
     p['specialty'] = sorted(p.get('specialty', []), key=lambda s: s['name'].lower())
+
+    # Reverse-link: for each specialty item, find which cocktails use it.
+    # Two-pass strategy:
+    #   Pass 1 (specific) — cocktails that explicitly name this preparation:
+    #     item_clean == ing_clean  OR  word_in(item_clean, ing_clean)
+    #     e.g. "Brown Butter Falernum" finds recipes that say "Brown Butter Falernum"
+    #   Pass 2 (substitution, fallback) — if pass 1 found nothing, check the
+    #     reverse direction (ingredient name contained in specialty name), but
+    #     cap at 12 results.  This surfaces e.g. "Cacao Nib-Infused Amaro"→
+    #     the 2 cocktails that call for plain "Amaro", without flooding infused
+    #     spirits like "Horseradish-Infused Gin" with all 98 gin cocktails.
+    _SUBST_CAP = 12
+    cocktails = _db.get_cocktails()
+    for item in p['specialty']:
+        item_clean = clean(item['name'])
+        specific, substitution = [], []
+        for c in cocktails:
+            matched_specific = matched_subst = False
+            for ing in c.get('ingredients', []):
+                ing_clean = clean(ing.get('name', ''))
+                if not item_clean:
+                    break
+                if item_clean == ing_clean or word_in(item_clean, ing_clean):
+                    matched_specific = True
+                    break
+                if word_in(ing_clean, item_clean):
+                    matched_subst = True
+                    # don't break — a specific match in another ingredient wins
+            if matched_specific:
+                specific.append({'id': c['id'], 'name': c['name']})
+            elif matched_subst:
+                substitution.append({'id': c['id'], 'name': c['name']})
+        if specific:
+            item['used_in'] = sorted(specific, key=lambda x: x['name'])
+        elif len(substitution) <= _SUBST_CAP:
+            item['used_in'] = sorted(substitution, key=lambda x: x['name'])
+        else:
+            item['used_in'] = []
+
     return render_template('pantry.html', pantry=p, standard_oos=std_oos)
 
 
@@ -898,6 +1013,12 @@ def cocktail_detail(cocktail_id):
             else:
                 ing['available'] = False
                 ing['source']    = None
+        elif ing_type == 'pantry':
+            # Explicitly tagged as a pantry staple in the editor — always available,
+            # never needs a bottle-shelf link regardless of fuzzy-match results.
+            ing['pantry_item'] = None
+            ing['available']   = True
+            ing['source']      = 'pantry'
         else:
             explicit = specialty_by_id.get(ing.get('pantry_id', ''))
             if explicit:
@@ -928,10 +1049,13 @@ def cocktail_detail(cocktail_id):
 
         # search_term: the term to pass to the bottle shelf search link.
         # Priority:
-        #   1. CATEGORY_MAP primary style — broadest correct search, e.g. "Amaro" → "amaro"
-        #      (shows ALL amari, not just the one that happened to match first).
-        #   2. Matched bottle's Style — fallback when no map key exists.
-        #   3. Ingredient name — for pantry / specialty / missing ingredients.
+        #   1. CATEGORY_SEARCH_TERMS explicit override (e.g. "jamaican rum" → "rum jamaica")
+        #   2. clean(best_key) — IF that term actually appears in some bottle's
+        #      name/style/category/origin (e.g. "bourbon" → finds "Straight Bourbon" bottles)
+        #   3. Primary style from CATEGORY_MAP — fallback when the key name isn't in any
+        #      bottle's fields (e.g. "white crème de cacao" → "cacao liqueur")
+        #   4. Matched bottle's Style — when no CATEGORY_MAP key exists at all.
+        #   5. Ingredient name — for pantry / specialty / missing ingredients.
         src = ing.get('source')
         if ing.get('available') and src and src != 'pantry':
             ing_c = clean(ing['name'])
@@ -942,8 +1066,26 @@ def cocktail_detail(cocktail_id):
                         best_k is None or len(kc) > len(clean(best_k))):
                     best_k = key
             if best_k:
-                # Use the first (primary) style value from the map as the search term
-                ing['search_term'] = CATEGORY_MAP[best_k][0]
+                override = CATEGORY_SEARCH_TERMS.get(best_k)
+                if override:
+                    ing['search_term'] = override
+                else:
+                    key_term = clean(best_k)
+                    # Use the key name as search if it actually appears in the bottle shelf
+                    # (e.g. "bourbon" appears in "Straight Bourbon").  Otherwise fall back
+                    # to the primary CATEGORY_MAP style so the search still finds results.
+                    found_in_shelf = any(
+                        key_term in (
+                            clean(b.get('Name', '')) + ' ' + clean(b.get('Style', '')) + ' ' +
+                            clean(b.get('Category', '')) + ' ' + clean(b.get('Origin', ''))
+                        )
+                        for b in inventory
+                    )
+                    if found_in_shelf:
+                        ing['search_term'] = key_term
+                    else:
+                        styles = CATEGORY_MAP.get(best_k, [])
+                        ing['search_term'] = clean(styles[0]) if styles else key_term
             else:
                 matched = bottle_by_name.get(normalize(src))
                 ing['search_term'] = matched.get('Style', ing['name']) if matched else ing['name']
@@ -953,10 +1095,13 @@ def cocktail_detail(cocktail_id):
     _db.record_view(cocktail_id)
     history = _db.get_history(cocktail_id, limit=10)
     feedback = _db.get_feedback(cocktail_id)
+    all_lists = _db.get_lists()
+    cocktail_lists = _db.get_cocktail_lists(cocktail_id)
     return render_template('cocktail_detail.html',
                            cocktail=cocktail, can_make=can_make, missing=missing,
                            style_tag_values=STYLE_TAG_VALUES, history=history,
-                           feedback=feedback)
+                           feedback=feedback,
+                           all_lists=all_lists, cocktail_lists=cocktail_lists)
 
 
 @app.route('/cocktails/<cocktail_id>/edit', methods=['GET', 'POST'])
@@ -1029,6 +1174,100 @@ def cocktail_feedback(cocktail_id):
                           rating=rating,
                           favorited=favorited)
     return jsonify(fb)
+
+
+# ── Routes: Lists ────────────────────────────────────────────────────────────
+
+@app.route('/lists')
+def lists_index():
+    all_lists = _db.get_lists()
+    # Attach a preview (up to 3 cocktail names) to each list
+    for lst in all_lists:
+        detail = _db.get_list(lst['id'])
+        lst['preview'] = []
+        if detail:
+            for item in detail['items'][:3]:
+                c = _db.get_cocktail(item['cocktail_id'])
+                if c:
+                    lst['preview'].append(c['name'])
+    return render_template('lists.html', lists=all_lists)
+
+
+@app.route('/lists/create', methods=['POST'])
+def lists_create():
+    name = request.form.get('name', '').strip()
+    cocktail_id = request.form.get('cocktail_id', '').strip()
+    if not name:
+        return jsonify({'success': False, 'error': 'Name is required'}), 400
+    existing = _db.get_lists()
+    if any(normalize(l['name']) == normalize(name) for l in existing):
+        return jsonify({'success': False, 'error': 'A list with that name already exists'}), 400
+    existing_ids = {l['id'] for l in existing}
+    new_id = unique_id(name, existing_ids)
+    lst = _db.create_list(name, new_id)
+    if cocktail_id:
+        _db.add_to_list(new_id, cocktail_id)
+        lst['has_cocktail'] = True
+    return jsonify({'success': True, 'list': lst})
+
+
+@app.route('/lists/<list_id>/delete', methods=['POST'])
+def list_delete(list_id):
+    lst = _db.get_list(list_id)
+    name = lst['name'] if lst else ''
+    _db.delete_list(list_id)
+    if name:
+        flash(f'"{name}" deleted.', 'success')
+    return redirect(url_for('lists_index'))
+
+
+@app.route('/lists/<list_id>/rename', methods=['POST'])
+def list_rename(list_id):
+    name = request.form.get('name', '').strip()
+    if not name:
+        return jsonify({'success': False}), 400
+    ok = _db.rename_list(list_id, name)
+    return jsonify({'success': ok})
+
+
+@app.route('/lists/<list_id>/add', methods=['POST'])
+def list_add_cocktail(list_id):
+    cocktail_id = request.form.get('cocktail_id', '').strip()
+    if not cocktail_id:
+        return jsonify({'success': False}), 400
+    lst = _db.get_list(list_id)
+    if not lst:
+        return jsonify({'success': False, 'error': 'List not found'}), 404
+    _db.add_to_list(list_id, cocktail_id)
+    return jsonify({'success': True, 'list_id': list_id, 'list_name': lst['name']})
+
+
+@app.route('/lists/<list_id>/remove', methods=['POST'])
+def list_remove_cocktail(list_id):
+    cocktail_id = request.form.get('cocktail_id', '').strip()
+    if not cocktail_id:
+        return jsonify({'success': False}), 400
+    _db.remove_from_list(list_id, cocktail_id)
+    return jsonify({'success': True})
+
+
+@app.route('/lists/<list_id>')
+def list_detail_view(list_id):
+    lst = _db.get_list(list_id)
+    if not lst:
+        flash('List not found.', 'error')
+        return redirect(url_for('lists_index'))
+    inventory = load_inventory_with_notes()
+    pantry    = load_pantry()
+    _check    = make_availability_checker(inventory, pantry)
+    cocktails = []
+    for item in lst['items']:
+        c = _db.get_cocktail(item['cocktail_id'])
+        if c:
+            c['can_make'], _ = get_makeable_status(c, inventory, pantry, _checker=_check)
+            c['added_at'] = item['added_at']
+            cocktails.append(c)
+    return render_template('list_detail.html', lst=lst, cocktails=cocktails)
 
 
 # ── Claude helpers ────────────────────────────────────────────────────────────

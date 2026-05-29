@@ -7,6 +7,7 @@
     <div class="detail-header-top">
       <a href="{{ url_for('cocktails') }}" class="back-link">&#8592; Cocktails</a>
       <div class="detail-actions">
+        <button class="btn btn-ghost btn-sm" onclick="openListModal()">+ List</button>
         <a href="{{ url_for('cocktail_edit', cocktail_id=cocktail.id) }}" class="btn btn-ghost btn-sm">Edit</a>
         <form method="post" action="{{ url_for('cocktail_delete', cocktail_id=cocktail.id) }}"
               onsubmit="return confirm('Delete {{ cocktail.name }}?')" style="display:inline">
@@ -63,6 +64,10 @@
     </div>
   </div>
 
+  {% if cocktail.get('description') %}
+  <p class="detail-description">{{ cocktail.description }}</p>
+  {% endif %}
+
   <!-- Feedback bar: tried / rating / favorite -->
   <div class="feedback-bar" id="feedback-bar"
        data-cocktail-id="{{ cocktail.id }}"
@@ -108,6 +113,9 @@
             {% elif ing.source and ing.source != 'pantry' %}
               {# Matched a bottle — search by style so all bottles in that category appear #}
               <a href="{{ url_for('inventory') }}?search={{ ing.search_term | urlencode }}" class="ing-inv-link">{{ ing.name }}</a>
+            {% elif ing.source == 'pantry' %}
+              {# Standard pantry staple — no bottle-shelf link needed #}
+              {{ ing.name }}
             {% elif not ing.available and 'infused' in ing.name.lower() %}
               {# Infused = house-made specialty — prompt to add to pantry #}
               <a href="{{ url_for('pantry') }}" class="ing-pantry-link">{{ ing.name }}</a>
@@ -115,8 +123,8 @@
               {# Missing — link to inventory so user can see what they might substitute #}
               <a href="{{ url_for('inventory') }}?search={{ ing.name | urlencode }}" class="ing-inv-link ing-inv-link-missing">{{ ing.name }}</a>
             {% else %}
-              {# Available via pantry standard — still link to shelf so user can browse #}
-              <a href="{{ url_for('inventory') }}?search={{ ing.search_term | urlencode }}" class="ing-inv-link">{{ ing.name }}</a>
+              {# Fallback — available but source unknown #}
+              {{ ing.name }}
             {% endif %}
             {% if ing.notes %}<span class="ingredient-notes">{{ ing.notes }}</span>{% endif %}
           </div>
@@ -204,9 +212,143 @@
   </details>
   {% endif %}
 </div>
+
+<!-- Add to List modal -->
+<div class="modal-overlay" id="list-modal" style="display:none" onclick="closeListModalIfBg(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title">Add to List</h2>
+      <button class="modal-close" onclick="closeListModal()">&#10005;</button>
+    </div>
+    <div class="list-modal-body">
+      <div class="list-modal-create">
+        <input type="text" id="new-list-name" class="form-input list-modal-input"
+               placeholder="New list name…" maxlength="60"
+               onkeydown="if(event.key==='Enter'){event.preventDefault();createListAndAdd();}">
+        <button class="btn btn-primary btn-sm" onclick="createListAndAdd()">Create &amp; Add</button>
+      </div>
+
+      {% if all_lists %}
+      <div class="list-modal-divider">Your lists</div>
+      <div class="list-modal-rows" id="list-modal-rows">
+        {% for lst in all_lists %}
+        <div class="list-modal-row" id="lmrow-{{ lst.id }}">
+          <span class="list-modal-row-name">{{ lst.name }}</span>
+          <span class="list-modal-row-count">{{ lst.count }}</span>
+          <button class="list-modal-toggle {% if lst.id in cocktail_lists %}list-modal-toggle-on{% endif %}"
+                  data-list-id="{{ lst.id }}"
+                  onclick="toggleListMembership('{{ lst.id }}', this)">
+            {% if lst.id in cocktail_lists %}&#10003; Added{% else %}+ Add{% endif %}
+          </button>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="list-modal-empty" id="list-modal-empty">No lists yet — create one above.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block scripts %}
 <script>
+// ── Add-to-list modal ────────────────────────────────────────────────────────
+const COCKTAIL_ID = '{{ cocktail.id }}';
+let _listMembership = new Set({{ cocktail_lists | list | tojson }});
+
+function openListModal() {
+  document.getElementById('list-modal').style.display = 'flex';
+  document.getElementById('new-list-name').focus();
+}
+function closeListModal() {
+  document.getElementById('list-modal').style.display = 'none';
+  document.getElementById('new-list-name').value = '';
+}
+function closeListModalIfBg(e) {
+  if (e.target === e.currentTarget) closeListModal();
+}
+
+async function createListAndAdd() {
+  const nameInput = document.getElementById('new-list-name');
+  const name = nameInput.value.trim();
+  if (!name) return;
+  const fd = new FormData();
+  fd.append('name', name);
+  fd.append('cocktail_id', COCKTAIL_ID);
+  try {
+    const res  = await fetch('/lists/create', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      const lst = data.list;
+      nameInput.value = '';
+      _listMembership.add(lst.id);
+      // Hide the empty state message if present
+      const emptyEl = document.getElementById('list-modal-empty');
+      if (emptyEl) emptyEl.style.display = 'none';
+      // Ensure the rows container exists
+      let rowsEl = document.getElementById('list-modal-rows');
+      if (!rowsEl) {
+        const divider = document.createElement('div');
+        divider.className = 'list-modal-divider';
+        divider.textContent = 'Your lists';
+        rowsEl = document.createElement('div');
+        rowsEl.className = 'list-modal-rows';
+        rowsEl.id = 'list-modal-rows';
+        const body = document.querySelector('.list-modal-body');
+        body.appendChild(divider);
+        body.appendChild(rowsEl);
+      }
+      // Prepend the new row
+      const row = document.createElement('div');
+      row.className = 'list-modal-row';
+      row.id = 'lmrow-' + lst.id;
+      row.innerHTML =
+        '<span class="list-modal-row-name">' + _esc(lst.name) + '</span>' +
+        '<span class="list-modal-row-count">1</span>' +
+        '<button class="list-modal-toggle list-modal-toggle-on" data-list-id="' + _esc(lst.id) + '"' +
+        ' onclick="toggleListMembership(\'' + _esc(lst.id) + '\', this)">&#10003; Added</button>';
+      rowsEl.prepend(row);
+      showToast('"' + lst.name + '" created', 'success');
+    } else {
+      showToast(data.error || 'Error creating list', 'error');
+    }
+  } catch(e) {
+    showToast('Error creating list', 'error');
+  }
+}
+
+async function toggleListMembership(listId, btn) {
+  const inList = _listMembership.has(listId);
+  const url = '/lists/' + listId + (inList ? '/remove' : '/add');
+  const fd = new FormData();
+  fd.append('cocktail_id', COCKTAIL_ID);
+  try {
+    const res  = await fetch(url, { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      const countEl = btn.closest('.list-modal-row').querySelector('.list-modal-row-count');
+      if (inList) {
+        _listMembership.delete(listId);
+        btn.textContent = '+ Add';
+        btn.classList.remove('list-modal-toggle-on');
+        if (countEl) countEl.textContent = Math.max(0, parseInt(countEl.textContent || '0') - 1);
+      } else {
+        _listMembership.add(listId);
+        btn.innerHTML = '&#10003; Added';
+        btn.classList.add('list-modal-toggle-on');
+        if (countEl) countEl.textContent = parseInt(countEl.textContent || '0') + 1;
+      }
+    }
+  } catch(e) {
+    showToast('Error updating list', 'error');
+  }
+}
+
+function _esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Pantry stock toggles ─────────────────────────────────────────────────────
 document.querySelectorAll('.ing-stock-btn').forEach(function(btn) {
   btn.addEventListener('click', async function(e) {
     e.preventDefault();

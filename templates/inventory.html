@@ -33,6 +33,7 @@
          data-name="{{ b.Name | lower }}"
          data-style="{{ b.Style | lower }}"
          data-category="{{ b.Category }}"
+         data-origin="{{ b.Origin | lower }}"
          data-instock="{{ 'true' if b.in_stock else 'false' }}"
          onclick="openDrawer({{ loop.index0 }})">
 
@@ -93,14 +94,22 @@
       <h2 class="bottle-drawer-title" id="drawer-title">—</h2>
     </div>
     <div class="bottle-drawer-header-actions">
-      <button class="btn btn-ghost btn-sm btn-danger" onclick="deleteBottle()" id="drawer-delete-btn">Delete</button>
+      <!-- View mode actions -->
+      <div id="drawer-view-actions">
+        <button class="btn btn-ghost btn-sm" onclick="enterEditMode()">Edit / Review</button>
+      </div>
+      <!-- Edit mode actions -->
+      <div id="drawer-edit-actions" style="display:none">
+        <button class="btn btn-ghost btn-sm btn-danger" onclick="deleteBottle()" id="drawer-delete-btn">Delete</button>
+      </div>
       <button class="modal-close" onclick="closeDrawer()">&#10005;</button>
     </div>
   </div>
 
-  <div class="bottle-drawer-body">
+  <!-- ── VIEW PANEL (default) ────────────────────────────────────────────── -->
+  <div class="bottle-drawer-body" id="drawer-view-panel">
 
-    <!-- Availability -->
+    <!-- Availability + use badge -->
     <div class="bottle-drawer-section">
       <div class="bottle-drawer-avail-row">
         <button class="stock-toggle" id="drawer-stock-toggle" onclick="drawerToggleStock()">
@@ -110,6 +119,38 @@
         <span class="badge" id="drawer-use-badge"></span>
       </div>
     </div>
+
+    <!-- Static bottle details -->
+    <div class="bottle-drawer-section">
+      <p class="drawer-view-meta" id="view-meta"></p>
+      <div class="drawer-view-fields" id="view-fields"></div>
+    </div>
+
+    <!-- Static tasting notes (hidden if empty) -->
+    <div class="bottle-drawer-section" id="view-notes-section" style="display:none">
+      <h3 class="bottle-drawer-section-title">Tasting Notes</h3>
+      <div id="view-nose-wrap" style="display:none">
+        <p class="drawer-view-note-label">Nose</p>
+        <p class="drawer-view-note-text" id="view-nose"></p>
+      </div>
+      <div id="view-palate-wrap" style="display:none">
+        <p class="drawer-view-note-label">Palate</p>
+        <p class="drawer-view-note-text" id="view-palate"></p>
+      </div>
+      <div id="view-finish-wrap" style="display:none">
+        <p class="drawer-view-note-label">Finish</p>
+        <p class="drawer-view-note-text" id="view-finish"></p>
+      </div>
+      <div id="view-flavor-section" style="display:none">
+        <p class="drawer-view-note-label" style="margin-bottom:7px">Flavor Notes</p>
+        <div class="flavor-chip-row" id="view-flavor-chips"></div>
+      </div>
+    </div>
+
+  </div><!-- /#drawer-view-panel -->
+
+  <!-- ── EDIT PANEL ─────────────────────────────────────────────────────── -->
+  <div class="bottle-drawer-body" id="drawer-edit-panel" style="display:none">
 
     <!-- Details (editable) -->
     <div class="bottle-drawer-section">
@@ -159,7 +200,7 @@
       </div>
     </div>
 
-    <!-- Tasting notes -->
+    <!-- Tasting notes (editable) -->
     <div class="bottle-drawer-section">
       <h3 class="bottle-drawer-section-title">Tasting Notes</h3>
       <div class="form-group" style="margin-bottom:12px">
@@ -177,8 +218,6 @@
         <textarea id="dr-finish" class="form-input form-textarea" rows="2"
                   placeholder="Length and character of the finish…"></textarea>
       </div>
-
-      <!-- Flavor tag chips -->
       <div class="form-group" style="margin-bottom:0">
         <label class="form-label">Flavor Notes</label>
         <div class="flavor-tag-groups" id="flavor-tag-groups">
@@ -187,9 +226,11 @@
       </div>
     </div>
 
-  </div><!-- /.bottle-drawer-body -->
+  </div><!-- /#drawer-edit-panel -->
 
-  <div class="bottle-drawer-footer">
+  <!-- Footer: only shown in edit mode -->
+  <div class="bottle-drawer-footer" id="drawer-footer" style="display:none">
+    <button class="btn btn-ghost" onclick="exitEditMode()">Cancel</button>
     <button class="btn btn-primary" onclick="saveDrawer()">Save Changes</button>
   </div>
 </div>
@@ -258,6 +299,8 @@
 <script>
 // ── Data ──────────────────────────────────────────────────────────────────────
 const BOTTLES = {{ bottles | tojson }};
+// Custom flavor tags saved globally: { "Group Label": [{value, label}, ...] }
+const CUSTOM_FLAVOR_TAGS = {{ custom_flavor_tags | tojson }};
 
 const FLAVOR_GROUPS = [
   { label: 'Tropical Fruit', tags: [
@@ -385,6 +428,12 @@ const FLAVOR_GROUPS = [
 // ── Filters ───────────────────────────────────────────────────────────────────
 let inStockOnly = false;
 
+/** Strip combining diacritical marks so accented/unaccented text compares equal.
+ *  e.g. stripDiacritics('Bénédictine') === 'Benedictine'  */
+function stripDiacritics(s) {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+
 function toggleInStockFilter() {
   inStockOnly = !inStockOnly;
   const btn = document.getElementById('inv-instock-btn');
@@ -393,7 +442,7 @@ function toggleInStockFilter() {
 }
 
 function filterBottles() {
-  const q    = document.getElementById('inv-search').value.toLowerCase().trim();
+  const q    = stripDiacritics(document.getElementById('inv-search').value.toLowerCase().trim());
   const cat  = document.getElementById('inv-category').value;
   const cards = document.querySelectorAll('.bottle-card');
   let visible = 0;
@@ -401,10 +450,14 @@ function filterBottles() {
     const name     = card.dataset.name || '';
     const style    = card.dataset.style || '';
     const cardCat  = card.dataset.category || '';
+    const origin   = card.dataset.origin || '';
     const inStock  = card.dataset.instock === 'true';
-    // Search across name + style + category so e.g. "bourbon" finds "Old Forester 100"
-    // (whose style is "Straight Bourbon") and "sweet vermouth" finds "Dolin Rouge".
-    const searchIn = name + ' ' + style + ' ' + cardCat.toLowerCase();
+    // Search across name + style + category + origin so e.g. "bourbon" finds
+    // "Old Forester 100" (style "Straight Bourbon"), and "rum jamaica" finds
+    // Jamaican rums by their origin field.
+    // stripDiacritics ensures accented bottle names like "Bénédictine D.O.M." match
+    // unaccented search terms like "benedictine" (and vice-versa).
+    const searchIn = stripDiacritics(name + ' ' + style + ' ' + cardCat.toLowerCase() + ' ' + origin);
     const matchQ   = !q   || searchIn.includes(q);
     const matchCat = !cat || cardCat === cat;
     const matchStock = !inStockOnly || inStock;
@@ -447,41 +500,120 @@ async function quickToggle(btn) {
 let _drawerIdx = null;
 let _drawerName = null;  // original name when drawer opened
 
+// ── Populate helpers ──────────────────────────────────────────────────────────
+
+function populateViewPanel(b) {
+  // Meta line: Category · Style · Origin
+  const metaParts = [b.Category, b.Style, b.Origin].filter(Boolean);
+  document.getElementById('view-meta').textContent = metaParts.join(' · ');
+
+  // Labeled fields: ABV, Age, Producer
+  const fieldsEl = document.getElementById('view-fields');
+  fieldsEl.innerHTML = '';
+  [['ABV', b.ABV], ['Age', b.Age], ['Producer', b.Producer]].forEach(function(pair) {
+    if (pair[1]) {
+      const row = document.createElement('div');
+      row.className = 'drawer-view-field';
+      const lbl = document.createElement('span');
+      lbl.className = 'drawer-view-field-label';
+      lbl.textContent = pair[0];
+      const val = document.createElement('span');
+      val.className = 'drawer-view-field-value';
+      val.textContent = pair[1];
+      row.appendChild(lbl);
+      row.appendChild(val);
+      fieldsEl.appendChild(row);
+    }
+  });
+
+  // Availability
+  const inStock = b.in_stock !== false;
+  document.getElementById('drawer-stock-toggle').classList.toggle('stock-toggle-on', inStock);
+  document.getElementById('drawer-avail-label').textContent = inStock ? 'In stock' : 'Out of stock';
+
+  // Use badge
+  _setUseBadge(b.Use || 'Cocktail');
+
+  // Tasting notes
+  const nose    = b.nose   || '';
+  const palate  = b.palate || '';
+  const finish  = b.finish || '';
+  const flavors = b.flavor_tags || [];
+  const hasNotes = nose || palate || finish || flavors.length;
+  document.getElementById('view-notes-section').style.display = hasNotes ? '' : 'none';
+
+  function _setNote(wrapId, textId, text) {
+    document.getElementById(wrapId).style.display = text ? '' : 'none';
+    document.getElementById(textId).textContent = text;
+  }
+  _setNote('view-nose-wrap',   'view-nose',   nose);
+  _setNote('view-palate-wrap', 'view-palate', palate);
+  _setNote('view-finish-wrap', 'view-finish', finish);
+
+  const flavorSection = document.getElementById('view-flavor-section');
+  if (flavors.length) {
+    flavorSection.style.display = '';
+    const chipsEl = document.getElementById('view-flavor-chips');
+    chipsEl.innerHTML = '';
+    flavors.forEach(function(v) {
+      const span = document.createElement('span');
+      span.className = 'bottle-flavor-tag';
+      span.textContent = v.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+      chipsEl.appendChild(span);
+    });
+  } else {
+    flavorSection.style.display = 'none';
+  }
+}
+
+function populateEditPanel(b) {
+  document.getElementById('dr-name').value     = b.Name     || '';
+  document.getElementById('dr-category').value = b.Category || '';
+  document.getElementById('dr-style').value    = b.Style    || '';
+  document.getElementById('dr-origin').value   = b.Origin   || '';
+  document.getElementById('dr-age').value      = b.Age      || '';
+  document.getElementById('dr-abv').value      = b.ABV      || '';
+  document.getElementById('dr-producer').value = b.Producer || '';
+  document.getElementById('dr-use').value      = b.Use      || 'Cocktail';
+  document.getElementById('dr-nose').value     = b.nose     || '';
+  document.getElementById('dr-palate').value   = b.palate   || '';
+  document.getElementById('dr-finish').value   = b.finish   || '';
+  buildFlavorChips(b.flavor_tags || []);
+}
+
+function setDrawerMode(mode) {
+  const isEdit = (mode === 'edit');
+  document.getElementById('drawer-view-panel').style.display   = isEdit ? 'none' : '';
+  document.getElementById('drawer-edit-panel').style.display   = isEdit ? ''     : 'none';
+  document.getElementById('drawer-view-actions').style.display = isEdit ? 'none' : '';
+  document.getElementById('drawer-edit-actions').style.display = isEdit ? ''     : 'none';
+  document.getElementById('drawer-footer').style.display       = isEdit ? ''     : 'none';
+}
+
+function enterEditMode() {
+  if (_drawerIdx === null) return;
+  populateEditPanel(BOTTLES[_drawerIdx]);
+  setDrawerMode('edit');
+}
+
+function exitEditMode() {
+  if (_drawerIdx === null) return;
+  populateViewPanel(BOTTLES[_drawerIdx]);
+  setDrawerMode('view');
+}
+
+// ── Open / close ──────────────────────────────────────────────────────────────
+
 function openDrawer(listIdx) {
   const b = BOTTLES[listIdx];
   if (!b) return;
   _drawerIdx  = listIdx;
   _drawerName = b.Name;
 
-  // Header
   document.getElementById('drawer-title').textContent = b.Name;
+  populateViewPanel(b);
+  setDrawerMode('view');
 
-  // Availability
-  const toggle = document.getElementById('drawer-stock-toggle');
-  toggle.classList.toggle('stock-toggle-on', b.in_stock !== false);
-  document.getElementById('drawer-avail-label').textContent =
-    (b.in_stock !== false) ? 'In stock' : 'Out of stock';
-
-  // Details
-  document.getElementById('dr-name').value     = b.Name        || '';
-  document.getElementById('dr-category').value = b.Category    || '';
-  document.getElementById('dr-style').value    = b.Style       || '';
-  document.getElementById('dr-origin').value   = b.Origin      || '';
-  document.getElementById('dr-age').value      = b.Age         || '';
-  document.getElementById('dr-abv').value      = b.ABV         || '';
-  document.getElementById('dr-producer').value = b.Producer    || '';
-  document.getElementById('dr-use').value      = b.Use         || 'Cocktail';
-  updateUseBadge();
-
-  // Tasting notes
-  document.getElementById('dr-nose').value   = b.nose   || '';
-  document.getElementById('dr-palate').value = b.palate || '';
-  document.getElementById('dr-finish').value = b.finish || '';
-
-  // Flavor chips
-  buildFlavorChips(b.flavor_tags || []);
-
-  // Show drawer
   document.getElementById('drawer-overlay').classList.add('active');
   document.getElementById('bottle-drawer').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -491,12 +623,12 @@ function closeDrawer() {
   document.getElementById('drawer-overlay').classList.remove('active');
   document.getElementById('bottle-drawer').classList.remove('open');
   document.body.style.overflow = '';
+  setDrawerMode('view');
   _drawerIdx  = null;
   _drawerName = null;
 }
 
-function updateUseBadge() {
-  const use  = document.getElementById('dr-use').value;
+function _setUseBadge(use) {
   const badge = document.getElementById('drawer-use-badge');
   badge.className = 'badge';
   if (use === 'Neat Only') {
@@ -506,6 +638,10 @@ function updateUseBadge() {
   } else {
     badge.className += ' badge-green'; badge.textContent = 'Cocktail';
   }
+}
+
+function updateUseBadge() {
+  _setUseBadge(document.getElementById('dr-use').value);
 }
 
 // ── Drawer stock toggle ───────────────────────────────────────────────────────
@@ -541,33 +677,183 @@ async function drawerToggleStock() {
 }
 
 // ── Flavor chips ──────────────────────────────────────────────────────────────
+
+// Build a single checkbox chip element.
+function _makeChip(value, label, checked) {
+  const lbl = document.createElement('label');
+  lbl.className = 'form-chip' + (checked ? ' active' : '');
+  const cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.value = value;
+  cb.checked = checked;
+  cb.onchange = function() { lbl.classList.toggle('active', cb.checked); };
+  lbl.appendChild(cb);
+  lbl.appendChild(document.createTextNode(label));
+  return lbl;
+}
+
+/** Show an inline text input inside chipRow for adding a new tag to groupLabel. */
+function _showAddInput(chipRow, groupLabel, addBtn) {
+  addBtn.style.display = 'none';
+
+  const wrap = document.createElement('span');
+  wrap.className = 'flavor-inline-add';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'flavor-inline-input';
+  input.placeholder = 'new tag…';
+  input.maxLength = 40;
+
+  const confirmBtn = document.createElement('button');
+  confirmBtn.type = 'button';
+  confirmBtn.className = 'flavor-inline-confirm';
+  confirmBtn.textContent = '✓';
+
+  let submitted = false;
+
+  function cancel() {
+    wrap.remove();
+    addBtn.style.display = '';
+  }
+
+  async function submit() {
+    if (submitted) return;
+    submitted = true;
+    const rawValue = input.value.trim();
+    if (!rawValue) { submitted = false; cancel(); return; }
+    const value = rawValue.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    if (!value) { submitted = false; cancel(); return; }
+    const label = rawValue.replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+
+    // If the tag already exists anywhere, just check it
+    const existing = document.querySelector(
+      '#flavor-tag-groups input[type=checkbox][value="' + value + '"]'
+    );
+    if (existing) {
+      existing.checked = true;
+      existing.closest('label').classList.add('active');
+      cancel();
+      return;
+    }
+
+    // Insert new chip before the inline-add span
+    const newChip = _makeChip(value, label, true);
+    chipRow.insertBefore(newChip, wrap);
+    cancel();
+
+    // Persist globally
+    try {
+      const fd = new FormData();
+      fd.append('group', groupLabel);
+      fd.append('value', value);
+      fd.append('label', label);
+      const res = await fetch('/inventory/flavor-tags/add', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!data.success) showToast('Error saving tag', 'error');
+    } catch(e) {
+      showToast('Error saving tag', 'error');
+    }
+  }
+
+  confirmBtn.onclick = submit;
+  input.onkeydown = function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); submit(); }
+    if (e.key === 'Escape') { cancel(); }
+  };
+  // Cancel on blur unless confirm button was clicked
+  input.onblur = function() { setTimeout(function() { if (!submitted) cancel(); }, 160); };
+
+  wrap.appendChild(input);
+  wrap.appendChild(confirmBtn);
+  chipRow.insertBefore(wrap, addBtn);
+  // Slightly delay focus so the click that opened this doesn't immediately blur
+  requestAnimationFrame(function() { input.focus(); });
+}
+
+/** Build a tag-group element.
+ *  predefined = [{value, label}] from FLAVOR_GROUPS
+ *  customTags = [{value, label}] from CUSTOM_FLAVOR_TAGS[groupLabel] (may be undefined)
+ *  selSet     = Set of currently-selected tag values
+ */
+function _makeTagGroup(groupLabel, predefined, selSet, customTags) {
+  const groupEl = document.createElement('div');
+  groupEl.className = 'flavor-tag-group';
+  groupEl.dataset.groupLabel = groupLabel;
+
+  const labelEl = document.createElement('div');
+  labelEl.className = 'flavor-tag-group-label';
+  labelEl.textContent = groupLabel;
+  groupEl.appendChild(labelEl);
+
+  const chips = document.createElement('div');
+  chips.className = 'flavor-chip-row';
+
+  // Predefined tags for this group
+  predefined.forEach(function(t) {
+    chips.appendChild(_makeChip(t.value, t.label, selSet.has(t.value)));
+  });
+
+  // Custom tags saved globally for this group (not already in predefined)
+  const predefinedValues = new Set(predefined.map(function(t) { return t.value; }));
+  (customTags || []).forEach(function(t) {
+    if (!predefinedValues.has(t.value)) {
+      chips.appendChild(_makeChip(t.value, t.label, selSet.has(t.value)));
+    }
+  });
+
+  // Per-group "+" add button
+  const addBtn = document.createElement('button');
+  addBtn.type = 'button';
+  addBtn.className = 'flavor-add-chip-btn';
+  addBtn.title = 'Add a tag to ' + groupLabel;
+  addBtn.textContent = '+';
+  addBtn.onclick = function() { _showAddInput(chips, groupLabel, addBtn); };
+  chips.appendChild(addBtn);
+
+  groupEl.appendChild(chips);
+  return groupEl;
+}
+
 function buildFlavorChips(selected) {
   const container = document.getElementById('flavor-tag-groups');
   container.innerHTML = '';
   const selSet = new Set(selected);
+
+  // Collect all known tag values (predefined + custom) to detect orphans
+  const knownValues = new Set();
   FLAVOR_GROUPS.forEach(function(grp) {
-    const groupEl = document.createElement('div');
-    groupEl.className = 'flavor-tag-group';
-    const labelEl = document.createElement('div');
-    labelEl.className = 'flavor-tag-group-label';
-    labelEl.textContent = grp.label;
-    groupEl.appendChild(labelEl);
-    const chips = document.createElement('div');
-    chips.className = 'flavor-chip-row';
-    grp.tags.forEach(function(t) {
-      const lbl = document.createElement('label');
-      lbl.className = 'form-chip' + (selSet.has(t.value) ? ' active' : '');
-      const cb = document.createElement('input');
-      cb.type = 'checkbox';
-      cb.value = t.value;
-      cb.checked = selSet.has(t.value);
-      cb.onchange = function() { lbl.classList.toggle('active', cb.checked); };
-      lbl.appendChild(cb);
-      lbl.appendChild(document.createTextNode(t.label));
-      chips.appendChild(lbl);
+    grp.tags.forEach(function(t) { knownValues.add(t.value); });
+  });
+  Object.values(CUSTOM_FLAVOR_TAGS).forEach(function(tags) {
+    tags.forEach(function(t) { knownValues.add(t.value); });
+  });
+
+  // Orphan tags: already on this bottle but belong to no known group
+  // (created by the old global "Add a note" system before categorization)
+  const orphans = selected.filter(function(v) { return !knownValues.has(v); });
+  if (orphans.length) {
+    const orphanGroup = document.createElement('div');
+    orphanGroup.className = 'flavor-tag-group';
+    const orphanLabel = document.createElement('div');
+    orphanLabel.className = 'flavor-tag-group-label';
+    orphanLabel.textContent = 'Custom';
+    orphanGroup.appendChild(orphanLabel);
+    const orphanChips = document.createElement('div');
+    orphanChips.className = 'flavor-chip-row';
+    orphans.forEach(function(v) {
+      const lbl = v.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+      orphanChips.appendChild(_makeChip(v, lbl, true));
     });
-    groupEl.appendChild(chips);
-    container.appendChild(groupEl);
+    orphanGroup.appendChild(orphanChips);
+    container.appendChild(orphanGroup);
+  }
+
+  // Predefined groups, each with their saved custom tags and a "+" button
+  FLAVOR_GROUPS.forEach(function(grp) {
+    container.appendChild(
+      _makeTagGroup(grp.label, grp.tags, selSet, CUSTOM_FLAVOR_TAGS[grp.label])
+    );
   });
 }
 
@@ -650,6 +936,8 @@ async function saveDrawer() {
       }
       document.getElementById('drawer-title').textContent = updated.Name;
       _drawerName = updated.Name;
+      populateViewPanel(BOTTLES[_drawerIdx]);
+      setDrawerMode('view');
       showToast('Saved', 'success');
     } else {
       showToast('Error saving details', 'error');
