@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}Leagues — Lloid{% endblock %}
+{% block title %}Spirit Rankings — Lloid{% endblock %}
 
 {% block content %}
 <div class="page-container">
   <div class="page-header">
     <div>
-      <h1 class="page-title">Leagues</h1>
+      <h1 class="page-title">Spirit Rankings</h1>
       <p class="page-subtitle">Head-to-head ELO rankings for your bottles.</p>
     </div>
     <button class="btn btn-primary" onclick="openCreateModal()">+ New League</button>
@@ -44,7 +44,7 @@
   </div>
   {% else %}
   <div class="empty-state" style="padding:40px 0">
-    <p>No leagues yet. Open any bottle on the <a href="{{ url_for('inventory') }}">Bottle Shelf</a> and tap <strong>Rate</strong> to start ranking.</p>
+    <p>No rankings yet. Open any bottle on the <a href="{{ url_for('inventory') }}">Bottle Shelf</a> and tap <strong>Rate</strong> to start ranking.</p>
   </div>
   {% endif %}
 </div>

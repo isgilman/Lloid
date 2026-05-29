@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}{{ league.name }} — Leagues — Lloid{% endblock %}
+{% block title %}{{ league.name }} — Spirit Rankings — Lloid{% endblock %}
 
 {% block content %}
 <div class="page-container page-container-narrow">
   <div class="detail-header">
     <div class="detail-header-top">
-      <a href="{{ url_for('leagues_index') }}" class="back-link">&#8592; Leagues</a>
+      <a href="{{ url_for('leagues_index') }}" class="back-link">&#8592; Spirit Rankings</a>
       {% if not league.is_default %}
       <div class="detail-actions">
         <button class="btn btn-ghost btn-sm" onclick="startRename()">Rename</button>
@@ -63,7 +63,7 @@
   </div>
   {% else %}
   <div class="empty-state" style="padding:40px 0">
-    <p>No bottles ranked yet. Open any bottle on the <a href="{{ url_for('inventory') }}">Bottle Shelf</a>, tap <strong>Rate</strong>, and choose this league.</p>
+    <p>No bottles ranked yet. Open any bottle on the <a href="{{ url_for('inventory') }}">Bottle Shelf</a>, tap <strong>Rate</strong>, and choose this ranking.</p>
   </div>
   {% endif %}
 </div>

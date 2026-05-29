@@ -5,7 +5,7 @@
 <div class="page-container page-container-narrow">
   <div class="detail-header">
     <div class="detail-header-top">
-      <a href="{{ url_for('lists_index') }}" class="back-link">&#8592; Lists</a>
+      <a href="{{ url_for('lists_index') }}" class="back-link">&#8592; Cocktail Lists</a>
       <div class="detail-actions">
         <button class="btn btn-ghost btn-sm" onclick="startRename()">Rename</button>
         <form method="post" action="{{ url_for('list_delete', list_id=lst.id) }}"
