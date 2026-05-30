@@ -208,7 +208,7 @@ async function saveAll() {
     if (data.success) {
       showToast(data.saved.length + ' recipe' + (data.saved.length !== 1 ? 's' : '') + ' saved!', 'success');
       extractedRecipes = [];
-      setTimeout(function() { window.location.href = '/cocktails'; }, 1200);
+      setTimeout(function() { window.location.href = '/cocktails/' + data.saved[0].id + '/edit'; }, 800);
     } else {
       showToast(data.error || 'Error saving', 'error');
       btn.disabled = false;
