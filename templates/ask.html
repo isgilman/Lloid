@@ -31,7 +31,7 @@
     <div class="chat-messages" id="chat-messages">
       <div class="chat-message chat-message-assistant">
         <div class="chat-bubble" id="opening-bubble">
-          <p>What are you in the mood for? Tell me about a flavor, spirit, occasion, or vibe — and I'll find something from the bar.</p>
+          <p>What are you in the mood for?</p>
         </div>
       </div>
     </div>
@@ -74,19 +74,19 @@ let currentMode = 'find';
 const MODE_CONFIG = {
   find: {
     subtitle: 'Search the bar\'s cocktail database.',
-    opening: 'What are you in the mood for? Tell me about a flavor, spirit, occasion, or vibe — and I\'ll find something from the bar.',
+    opening: 'What are you in the mood for?',
     placeholder: 'e.g. Something bitter and spirit-forward, maybe with amaro…',
     showSave: false,
   },
   riff: {
     subtitle: 'Take an existing cocktail in a new direction.',
-    opening: 'Which cocktail would you like to riff on? Name a drink and tell me how you\'d like to take it — a different spirit, a seasonal twist, a flavor direction.',
+    opening: 'Which cocktail, and how would you like to take it?',
     placeholder: 'e.g. A Negroni, but built around rum instead of gin…',
     showSave: true,
   },
   create: {
     subtitle: 'Design an original recipe from what\'s in the bar.',
-    opening: 'Let\'s build something original. Tell me about a spirit you want to feature, a flavor profile, an occasion, or just a feeling — I\'ll design around what\'s in the bar.',
+    opening: 'Tell me what you\'re after — spirit, flavor, occasion, or vibe.',
     placeholder: 'e.g. Something smoky and tropical, built around the agricole rum…',
     showSave: true,
   },

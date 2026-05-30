@@ -980,6 +980,32 @@ select.edit-input { padding: 5px 8px; }
   margin-bottom: 14px;
   letter-spacing: 0.02em;
 }
+.detail-section-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.detail-section-title-row .detail-section-title { margin-bottom: 0; }
+.serving-toggle {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.serving-btn {
+  background: none;
+  border: none;
+  padding: 2px 9px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: background 0.15s, color 0.15s;
+}
+.serving-btn:hover { color: var(--text); background: var(--surface-raised); }
+.serving-btn-active { color: var(--accent) !important; background: var(--accent-bg) !important; }
 .detail-block { margin-bottom: 28px; }
 .detail-instructions { line-height: 1.7; color: var(--text-sec); }
 .detail-notes { color: var(--text-sec); font-style: italic; }
