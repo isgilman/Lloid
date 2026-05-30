@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% block title %}Import Recipes — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container page-container-narrow">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Import Recipes</h1>
+      <p class="page-subtitle">Upload a photo of a recipe page or paste raw text — Claude extracts the recipe for review before saving.</p>
+    </div>
+  </div>
+
+  <!-- Source field -->
+  <div class="form-group" style="margin-bottom:18px; max-width:360px">
+    <label class="form-label">Source / Book <span class="form-hint">(optional — applied to all imported recipes)</span></label>
+    <input type="text" id="import-source" class="form-input" placeholder="e.g. Death &amp; Co, Tropical Standard…" autocomplete="off">
+  </div>
+
+  <!-- Input tabs -->
+  <div class="import-tabs">
+    <button class="import-tab import-tab-active" id="tab-photo" onclick="switchTab('photo')">&#128247; Photo</button>
+    <button class="import-tab" id="tab-text" onclick="switchTab('text')">&#128196; Paste Text</button>
+  </div>
+
+  <!-- Photo panel -->
+  <div id="panel-photo" class="import-panel">
+    <label class="import-drop-zone" id="drop-zone" for="image-input">
+      <div class="import-drop-inner" id="drop-inner">
+        <div class="import-drop-icon">&#128247;</div>
+        <div class="import-drop-label">Tap to choose a photo, or drag &amp; drop here</div>
+        <div class="import-drop-hint">JPG, PNG, HEIC, WEBP</div>
+      </div>
+      <img id="image-preview" class="import-preview" style="display:none" alt="Preview">
+    </label>
+    <input type="file" id="image-input" accept="image/*" style="display:none" onchange="previewImage(this)">
+  </div>
+
+  <!-- Text panel -->
+  <div id="panel-text" class="import-panel" style="display:none">
+    <textarea id="text-input" class="form-input import-textarea"
+              placeholder="Paste the recipe text here — ingredient lists, measurements, instructions…"
+              rows="12"></textarea>
+  </div>
+
+  <button class="btn btn-primary" id="extract-btn" onclick="runExtract()" style="margin-top:16px">
+    Extract Recipe
+  </button>
+
+  <!-- Results -->
+  <div id="results-section" style="display:none; margin-top:32px">
+    <div class="import-results-header">
+      <h2 class="detail-section-title" style="margin-bottom:0" id="results-title">Extracted Recipes</h2>
+      <button class="btn btn-primary" id="save-all-btn" onclick="saveAll()">Save All</button>
+    </div>
+    <p class="page-subtitle" style="margin-bottom:16px">Review before saving. Discard any you don't want, then tap Save All.</p>
+    <div id="recipe-cards"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentTab = 'photo';
+let extractedRecipes = [];
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById('panel-photo').style.display = tab === 'photo' ? '' : 'none';
+  document.getElementById('panel-text').style.display  = tab === 'text'  ? '' : 'none';
+  document.getElementById('tab-photo').classList.toggle('import-tab-active', tab === 'photo');
+  document.getElementById('tab-text').classList.toggle('import-tab-active',  tab === 'text');
+}
+
+function previewImage(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = document.getElementById('image-preview');
+    const inner = document.getElementById('drop-inner');
+    img.src = e.target.result;
+    img.style.display = 'block';
+    inner.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+// Drag-and-drop wiring
+const dropZone = document.getElementById('drop-zone');
+['dragover','dragenter'].forEach(function(evt) {
+  dropZone.addEventListener(evt, function(e) { e.preventDefault(); dropZone.classList.add('drag-over'); });
+});
+['dragleave','drop'].forEach(function(evt) {
+  dropZone.addEventListener(evt, function(e) { e.preventDefault(); dropZone.classList.remove('drag-over'); });
+});
+dropZone.addEventListener('drop', function(e) {
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) {
+    const input = document.getElementById('image-input');
+    const dt = new DataTransfer();
+    dt.items.add(file);
+    input.files = dt.files;
+    previewImage(input);
+  }
+});
+
+async function runExtract() {
+  const btn = document.getElementById('extract-btn');
+  const source = document.getElementById('import-source').value.trim();
+
+  const fd = new FormData();
+  if (source) fd.append('source', source);
+
+  if (currentTab === 'photo') {
+    const input = document.getElementById('image-input');
+    if (!input.files.length) { showToast('Choose a photo first', 'error'); return; }
+    fd.append('image', input.files[0]);
+  } else {
+    const text = document.getElementById('text-input').value.trim();
+    if (!text) { showToast('Paste some text first', 'error'); return; }
+    fd.append('text', text);
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Extracting…';
+  document.getElementById('results-section').style.display = 'none';
+
+  try {
+    const res  = await fetch('/import/extract', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (!data.success) { showToast(data.error || 'Extraction failed', 'error'); return; }
+    extractedRecipes = data.recipes;
+    renderCards(extractedRecipes);
+    document.getElementById('results-section').style.display = '';
+    document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch(e) {
+    showToast('Network error', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Extract Recipe';
+  }
+}
+
+function renderCards(recipes) {
+  const container = document.getElementById('recipe-cards');
+  const title = document.getElementById('results-title');
+  title.textContent = recipes.length + ' Recipe' + (recipes.length !== 1 ? 's' : '') + ' Found';
+  container.innerHTML = '';
+  if (!recipes.length) {
+    container.innerHTML = '<p class="page-subtitle">No recipes found. Try a clearer photo or paste the text directly.</p>';
+    document.getElementById('save-all-btn').style.display = 'none';
+    return;
+  }
+  document.getElementById('save-all-btn').style.display = '';
+  recipes.forEach(function(r, idx) {
+    const card = document.createElement('div');
+    card.className = 'import-recipe-card';
+    card.id = 'icard-' + idx;
+    card.innerHTML = recipeCardHtml(r, idx);
+    container.appendChild(card);
+  });
+}
+
+function recipeCardHtml(r, idx) {
+  const ings = (r.ingredients || []).map(function(i) {
+    return '<li>' + _esc([(i.amount || ''), (i.unit || ''), i.name, i.notes ? '(' + i.notes + ')' : ''].filter(Boolean).join(' ')) + '</li>';
+  }).join('');
+  const meta = [r.method, r.glass, r.category].filter(Boolean).join(' · ');
+  const source = r.source ? '<span class="import-card-source">' + _esc(r.source) + '</span>' : '';
+  return `
+    <div class="import-card-header">
+      <div>
+        <div class="import-card-name">${_esc(r.name)}</div>
+        ${r.description ? '<div class="import-card-desc">' + _esc(r.description) + '</div>' : ''}
+        ${meta ? '<div class="import-card-meta">' + _esc(meta) + '</div>' : ''}
+        ${source}
+      </div>
+      <button class="import-card-discard" onclick="discardRecipe(${idx})" title="Discard">&#10005;</button>
+    </div>
+    <ul class="import-card-ings">${ings}</ul>
+    ${r.instructions ? '<p class="import-card-instructions">' + _esc(r.instructions) + '</p>' : ''}
+  `;
+}
+
+function discardRecipe(idx) {
+  extractedRecipes[idx] = null;
+  const card = document.getElementById('icard-' + idx);
+  if (card) { card.style.opacity = '0'; card.style.transition = 'opacity .2s'; setTimeout(() => card.remove(), 200); }
+  const remaining = extractedRecipes.filter(Boolean).length;
+  const title = document.getElementById('results-title');
+  title.textContent = remaining + ' Recipe' + (remaining !== 1 ? 's' : '') + ' Found';
+  if (!remaining) document.getElementById('save-all-btn').style.display = 'none';
+}
+
+async function saveAll() {
+  const toSave = extractedRecipes.filter(Boolean);
+  if (!toSave.length) return;
+  const btn = document.getElementById('save-all-btn');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  try {
+    const res  = await fetch('/import/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(toSave),
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast(data.saved.length + ' recipe' + (data.saved.length !== 1 ? 's' : '') + ' saved!', 'success');
+      extractedRecipes = [];
+      setTimeout(function() { window.location.href = '/cocktails'; }, 1200);
+    } else {
+      showToast(data.error || 'Error saving', 'error');
+      btn.disabled = false;
+      btn.textContent = 'Save All';
+    }
+  } catch(e) {
+    showToast('Network error', 'error');
+    btn.disabled = false;
+    btn.textContent = 'Save All';
+  }
+}
+
+function _esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+{% endblock %}

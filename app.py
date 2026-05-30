@@ -6,6 +6,7 @@ import re
 import random
 import functools
 import unicodedata
+import base64
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -1445,6 +1446,118 @@ def stream_claude(system, messages, max_tokens=2048):
         mimetype='text/event-stream',
         headers={'Cache-Control': 'no-cache', 'X-Accel-Buffering': 'no'},
     )
+
+
+# ── Routes: Import ────────────────────────────────────────────────────────────
+
+_IMPORT_SYSTEM = """You are a precise recipe extraction assistant. Extract cocktail recipes from the provided content (image or text) and return them as a JSON array.
+
+Each recipe object must use this exact structure:
+{
+  "name": "Recipe name",
+  "description": "Short descriptor or tagline if present, otherwise empty string",
+  "category": "e.g. Sour, Stirred, Highball, Tiki, Classic — infer if not stated",
+  "glass": "Glass type",
+  "method": "Shaken / Stirred / Built / Blended / etc.",
+  "ingredients": [
+    {"name": "Ingredient name", "amount": "numeric amount or empty", "unit": "oz/ml/dash/tsp/barspoon/etc", "notes": "e.g. chilled, freshly squeezed"}
+  ],
+  "instructions": "Full preparation method",
+  "garnish": "Garnish description or empty string",
+  "notes": "Any additional notes, variations, or context"
+}
+
+Rules:
+- Prefer oz; convert ml to oz rounded to nearest 0.25 (e.g. 30ml → 1 oz, 22ml → 0.75 oz).
+- Use unicode fractions in amounts where natural (¼ ½ ¾).
+- If an ingredient has no numeric amount (e.g. "ice", "soda water to top"), leave amount and unit as empty strings and put context in notes.
+- Return ONLY a valid JSON array — no prose, no markdown fences, no extra keys.
+- If no recipes are found, return [].
+- Extract every recipe visible, even partial ones."""
+
+_IMPORT_USER_PROMPT = "Extract all cocktail recipes from this content and return the JSON array."
+
+
+@app.route('/import')
+def import_page():
+    return render_template('import.html')
+
+
+@app.route('/import/extract', methods=['POST'])
+def import_extract():
+    source = request.form.get('source', '').strip()
+    raw_text = request.form.get('text', '').strip()
+    image_file = request.files.get('image')
+
+    if not raw_text and not image_file:
+        return jsonify({'success': False, 'error': 'Provide an image or text to extract from.'}), 400
+
+    try:
+        client = claude_client()
+
+        if image_file:
+            img_bytes = image_file.read()
+            media_type = image_file.content_type or 'image/jpeg'
+            img_b64 = base64.standard_b64encode(img_bytes).decode('utf-8')
+            content = [
+                {"type": "image", "source": {"type": "base64",
+                                             "media_type": media_type,
+                                             "data": img_b64}},
+                {"type": "text", "text": _IMPORT_USER_PROMPT},
+            ]
+        else:
+            content = _IMPORT_USER_PROMPT + "\n\n" + raw_text
+
+        resp = client.messages.create(
+            model='claude-sonnet-4-6',
+            max_tokens=4096,
+            system=_IMPORT_SYSTEM,
+            messages=[{"role": "user", "content": content}],
+        )
+        raw = resp.content[0].text.strip()
+        # Strip markdown fences if the model added them despite instructions
+        if raw.startswith('```'):
+            raw = re.sub(r'^```[a-z]*\n?', '', raw)
+            raw = re.sub(r'\n?```$', '', raw)
+        recipes = json.loads(raw)
+        if not isinstance(recipes, list):
+            recipes = [recipes]
+        # Attach source book if provided
+        if source:
+            for r in recipes:
+                if not r.get('source'):
+                    r['source'] = source
+        return jsonify({'success': True, 'recipes': recipes})
+    except anthropic.RateLimitError:
+        return jsonify({'success': False, 'error': 'Rate limit — please wait a moment and try again.'}), 429
+    except json.JSONDecodeError as e:
+        return jsonify({'success': False, 'error': f'Could not parse recipe JSON: {e}'}), 500
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/import/save', methods=['POST'])
+def import_save():
+    recipes = request.get_json()
+    if not recipes or not isinstance(recipes, list):
+        return jsonify({'success': False, 'error': 'No recipes provided'}), 400
+    existing_ids = {c['id'] for c in _db.get_cocktails()}
+    saved = []
+    for r in recipes:
+        if not r.get('name'):
+            continue
+        r['id'] = unique_id(r['name'], existing_ids)
+        existing_ids.add(r['id'])
+        r.setdefault('created_at', datetime.now().strftime('%Y-%m-%d'))
+        # Normalise ingredients: ensure required keys exist
+        for ing in r.get('ingredients', []):
+            ing.setdefault('type', '')
+            ing.setdefault('notes', '')
+            ing.setdefault('amount', '')
+            ing.setdefault('unit', '')
+        _db.save_cocktail(r, is_local=True)
+        saved.append({'id': r['id'], 'name': r['name']})
+    return jsonify({'success': True, 'saved': saved})
 
 
 # ── Routes: Bookshelf ─────────────────────────────────────────────────────────

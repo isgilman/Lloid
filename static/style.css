@@ -2879,3 +2879,118 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   .matchup-arena { grid-template-columns: 1fr auto 1fr; gap: 6px; }
   .matchup-btn { padding: 14px 8px; font-size: 13px; min-height: 70px; }
 }
+
+/* ── Import page ───────────────────────────────────────────────────────────── */
+.import-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+.import-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 8px 16px;
+  margin-bottom: -1px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.import-tab:hover { color: var(--text); }
+.import-tab-active { color: var(--accent) !important; border-bottom-color: var(--accent) !important; }
+
+.import-drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--border-light);
+  border-radius: 12px;
+  min-height: 200px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  overflow: hidden;
+  position: relative;
+}
+.import-drop-zone:hover, .import-drop-zone.drag-over {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+.import-drop-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 32px;
+  text-align: center;
+}
+.import-drop-icon { font-size: 36px; }
+.import-drop-label { font-size: 14px; font-weight: 500; color: var(--text-sec); }
+.import-drop-hint  { font-size: 12px; color: var(--text-dim); }
+.import-preview {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  display: block;
+}
+
+.import-textarea { min-height: 220px; resize: vertical; font-size: 13.5px; }
+
+.import-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.import-recipe-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  background: var(--surface-raised);
+}
+.import-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.import-card-name  { font-size: 16px; font-weight: 600; color: var(--text); }
+.import-card-desc  { font-size: 13px; color: var(--text-dim); font-style: italic; margin-top: 2px; }
+.import-card-meta  { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+.import-card-source { font-size: 12px; color: var(--accent); margin-top: 3px; display: block; }
+.import-card-discard {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0.5;
+  padding: 2px 4px;
+  transition: opacity 0.15s, color 0.15s;
+}
+.import-card-discard:hover { opacity: 1; color: var(--red); }
+.import-card-ings {
+  list-style: none;
+  margin: 0 0 10px;
+  font-size: 13.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: var(--text-sec);
+}
+.import-card-instructions {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.55;
+  margin: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}

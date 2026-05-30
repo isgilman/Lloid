@@ -19,6 +19,10 @@
            class="nav-link {% if request.endpoint in ['cocktails', 'cocktail_detail', 'cocktail_new', 'cocktail_edit'] %}active{% endif %}">
           Cocktails
         </a>
+        <a href="{{ url_for('import_page') }}"
+           class="nav-link {% if request.endpoint == 'import_page' %}active{% endif %}">
+          Import
+        </a>
         <a href="{{ url_for('ask') }}"
            class="nav-link nav-ai {% if request.endpoint in ['ask', 'ask_stream', 'ask_save'] %}active{% endif %}">
           Ask Lloid <span class="ai-tag">AI</span>
