@@ -527,5 +527,19 @@ function _escHtml(s) {
 document.getElementById('comment-input').addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); submitComment(); }
 });
+
+// ── Screen Wake Lock ──────────────────────────────────────────────────────────
+// Keep the screen on while viewing a recipe. Silently no-ops on
+// unsupported browsers (older iOS, some desktop browsers).
+let _wakeLock = null;
+async function _acquireWakeLock() {
+  if (!('wakeLock' in navigator)) return;
+  try { _wakeLock = await navigator.wakeLock.request('screen'); } catch(e) { /* denied or unavailable */ }
+}
+// Wake locks are automatically released when the page is hidden; re-acquire on return.
+document.addEventListener('visibilitychange', function() {
+  if (document.visibilityState === 'visible') _acquireWakeLock();
+});
+_acquireWakeLock();
 </script>
 {% endblock %}
