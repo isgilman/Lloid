@@ -195,6 +195,27 @@
   </div>
   {% endif %}
 
+  <!-- Comments -->
+  <div class="comments-section" id="comments-section">
+    <h2 class="detail-section-title">Comments</h2>
+    <ul class="comments-list" id="comments-list">
+      {% for c in comments %}
+      <li class="comment-item" id="comment-{{ c.id }}">
+        <div class="comment-body">{{ c.body }}</div>
+        <div class="comment-meta">
+          <span class="comment-date">{{ c.created_at }}</span>
+          <button class="comment-delete" onclick="deleteComment({{ c.id }})" title="Delete">&#10005;</button>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="comment-form" id="comment-form">
+      <textarea id="comment-input" class="form-input comment-input"
+                placeholder="Add a note or comment…" rows="2"></textarea>
+      <button class="btn btn-primary btn-sm" onclick="submitComment()">Add</button>
+    </div>
+  </div>
+
   {% if history %}
   <details class="history-section">
     <summary class="history-toggle">Version history ({{ history | length }})</summary>
@@ -445,6 +466,66 @@ document.querySelectorAll('.ing-stock-btn').forEach(function(btn) {
       showToast('Error updating stock', 'error');
     }
   });
+});
+
+// ── Comments ─────────────────────────────────────────────────────────────────
+const COCKTAIL_ID_FOR_COMMENTS = '{{ cocktail.id }}';
+
+async function submitComment() {
+  const input = document.getElementById('comment-input');
+  const body = input.value.trim();
+  if (!body) return;
+  const fd = new FormData();
+  fd.append('body', body);
+  try {
+    const res  = await fetch('/cocktails/' + COCKTAIL_ID_FOR_COMMENTS + '/comments/add', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      input.value = '';
+      appendComment(data.comment);
+    } else {
+      showToast(data.error || 'Error adding comment', 'error');
+    }
+  } catch(e) {
+    showToast('Error adding comment', 'error');
+  }
+}
+
+function appendComment(c) {
+  const list = document.getElementById('comments-list');
+  const li = document.createElement('li');
+  li.className = 'comment-item';
+  li.id = 'comment-' + c.id;
+  li.innerHTML =
+    '<div class="comment-body">' + _escHtml(c.body) + '</div>' +
+    '<div class="comment-meta">' +
+      '<span class="comment-date">' + _escHtml(c.created_at) + '</span>' +
+      '<button class="comment-delete" onclick="deleteComment(' + c.id + ')" title="Delete">&#10005;</button>' +
+    '</div>';
+  list.appendChild(li);
+}
+
+async function deleteComment(id) {
+  if (!confirm('Delete this comment?')) return;
+  try {
+    const res  = await fetch('/cocktails/' + COCKTAIL_ID_FOR_COMMENTS + '/comments/' + id + '/delete', { method: 'POST' });
+    const data = await res.json();
+    if (data.success) {
+      const el = document.getElementById('comment-' + id);
+      if (el) { el.style.opacity = '0'; el.style.transition = 'opacity .2s'; setTimeout(() => el.remove(), 200); }
+    }
+  } catch(e) {
+    showToast('Error deleting comment', 'error');
+  }
+}
+
+function _escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Submit on Ctrl/Cmd+Enter in the comment textarea
+document.getElementById('comment-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); submitComment(); }
 });
 </script>
 {% endblock %}

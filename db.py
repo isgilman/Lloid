@@ -105,6 +105,13 @@ CREATE TABLE IF NOT EXISTS elo_matches (
     winner     TEXT,
     timestamp  TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS cocktail_comments (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    cocktail_id TEXT NOT NULL REFERENCES cocktails(id) ON DELETE CASCADE,
+    body        TEXT NOT NULL,
+    created_at  TEXT NOT NULL
+);
 """
 
 
@@ -390,6 +397,39 @@ def get_all_feedback() -> dict:
         }
         for r in rows
     }
+
+
+# ── Comments ──────────────────────────────────────────────────────────────────
+
+def get_comments(cocktail_id: str) -> list:
+    """Return all comments for a cocktail, oldest first."""
+    with _connect() as conn:
+        rows = conn.execute(
+            "SELECT id, body, created_at FROM cocktail_comments "
+            "WHERE cocktail_id=? ORDER BY id ASC",
+            (cocktail_id,)
+        ).fetchall()
+    return [{'id': r['id'], 'body': r['body'], 'created_at': r['created_at']} for r in rows]
+
+
+def add_comment(cocktail_id: str, body: str) -> dict:
+    """Insert a comment and return it as a dict."""
+    now = datetime.now().strftime('%Y-%m-%d %H:%M')
+    with _connect() as conn:
+        cur = conn.execute(
+            "INSERT INTO cocktail_comments (cocktail_id, body, created_at) VALUES (?,?,?)",
+            (cocktail_id, body, now)
+        )
+        conn.commit()
+        new_id = cur.lastrowid
+    return {'id': new_id, 'body': body, 'created_at': now}
+
+
+def delete_comment(comment_id: int) -> None:
+    """Delete a comment by its integer id."""
+    with _connect() as conn:
+        conn.execute("DELETE FROM cocktail_comments WHERE id=?", (comment_id,))
+        conn.commit()
 
 
 # ── Sync ──────────────────────────────────────────────────────────────────────

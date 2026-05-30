@@ -1210,14 +1210,15 @@ def cocktail_detail(cocktail_id):
             ing['search_term'] = ing['name']
 
     _db.record_view(cocktail_id)
-    history = _db.get_history(cocktail_id, limit=10)
+    history  = _db.get_history(cocktail_id, limit=10)
     feedback = _db.get_feedback(cocktail_id)
+    comments = _db.get_comments(cocktail_id)
     all_lists = _db.get_lists()
     cocktail_lists = _db.get_cocktail_lists(cocktail_id)
     return render_template('cocktail_detail.html',
                            cocktail=cocktail, can_make=can_make, missing=missing,
                            style_tag_values=STYLE_TAG_VALUES, history=history,
-                           feedback=feedback,
+                           feedback=feedback, comments=comments,
                            all_lists=all_lists, cocktail_lists=cocktail_lists)
 
 
@@ -1291,6 +1292,25 @@ def cocktail_feedback(cocktail_id):
                           rating=rating,
                           favorited=favorited)
     return jsonify(fb)
+
+
+# ── Routes: Comments ─────────────────────────────────────────────────────────
+
+@app.route('/cocktails/<cocktail_id>/comments/add', methods=['POST'])
+def comment_add(cocktail_id):
+    body = (request.form.get('body') or '').strip()
+    if not body:
+        return jsonify({'success': False, 'error': 'Comment cannot be empty'}), 400
+    if not _db.get_cocktail(cocktail_id):
+        return jsonify({'success': False, 'error': 'Cocktail not found'}), 404
+    comment = _db.add_comment(cocktail_id, body)
+    return jsonify({'success': True, 'comment': comment})
+
+
+@app.route('/cocktails/<cocktail_id>/comments/<int:comment_id>/delete', methods=['POST'])
+def comment_delete(cocktail_id, comment_id):
+    _db.delete_comment(comment_id)
+    return jsonify({'success': True})
 
 
 # ── Routes: Lists ────────────────────────────────────────────────────────────
