@@ -1420,15 +1420,23 @@ def stream_claude(system, messages, max_tokens=2048):
     def generate():
         try:
             client = claude_client()
+            # Cache the system prompt so it counts ~10x lighter against the
+            # input-token rate limit (ephemeral cache TTL = 5 min, refreshed on hits).
+            cached_system = [{"type": "text", "text": system,
+                              "cache_control": {"type": "ephemeral"}}]
+            # Cap conversation history to prevent runaway token growth.
+            trimmed = messages[-10:]
             with client.messages.stream(
                 model='claude-sonnet-4-6',
                 max_tokens=max_tokens,
-                system=system,
-                messages=messages,
+                system=cached_system,
+                messages=trimmed,
             ) as stream:
                 for text in stream.text_stream:
                     yield f"data: {json.dumps({'text': text})}\n\n"
             yield f"data: {json.dumps({'done': True})}\n\n"
+        except anthropic.RateLimitError:
+            yield f"data: {json.dumps({'error': 'The bar is briefly at capacity — please try again in a moment.'})}\n\n"
         except Exception as e:
             yield f"data: {json.dumps({'error': str(e)})}\n\n"
 
@@ -1523,14 +1531,22 @@ def ask_stream():
 
     if mode == 'find':
         cocktails = _db.get_cocktails()
-        cocktail_lines = []
+        can_make_lines, near_miss_lines = [], []
+        skipped = 0
         for c in cocktails:
             can_make, missing = get_makeable_status(c, inventory, pantry)
-            status = 'CAN MAKE' if can_make else f"missing: {', '.join(missing[:3])}"
             ings = ', '.join(i['name'] for i in c.get('ingredients', []))
-            cocktail_lines.append(
-                f"- {c['name']} [{c.get('category', '')}] [{status}] — {ings}"
-            )
+            if can_make:
+                can_make_lines.append(f"- {c['name']} [{c.get('category', '')}] — {ings}")
+            elif len(missing) <= 2:
+                near_miss_lines.append(
+                    f"- {c['name']} [{c.get('category', '')}] [needs: {', '.join(missing)}] — {ings}"
+                )
+            else:
+                skipped += 1
+        cocktail_section = '\n'.join(can_make_lines + near_miss_lines)
+        if skipped:
+            cocktail_section += f"\n(+ {skipped} more recipes requiring additional bottles)"
         system = f"""You are Lloid, head bartender of the Gold Room — formal, precise, faintly unnerving. You speak with authority, not volume.
 
 CURRENT INVENTORY:
@@ -1538,21 +1554,19 @@ CURRENT INVENTORY:
 
 {pantry_text}
 
-COCKTAIL DATABASE:
-{chr(10).join(cocktail_lines)}
+COCKTAIL DATABASE (makeable + near-miss only):
+{cocktail_section}
 
 Guidelines:
 - Be brief. 2–4 sentences per reply unless giving a full recipe. No preamble.
-- Recommend 2–3 cocktails that best match, prioritizing those marked "CAN MAKE"
+- Recommend 2–3 cocktails that best match, prioritizing those without [needs: …]
 - One sentence per recommendation explaining why it fits
 - Provide the full recipe only if explicitly asked
 - Ask a single clarifying question if the request is genuinely unclear; otherwise just recommend"""
         return stream_claude(system, messages, max_tokens=1024)
 
     elif mode == 'riff':
-        cocktails = _db.get_cocktails()
-        db_lines = [f"- {c['name']}: {', '.join(i['name'] for i in c.get('ingredients', []))}"
-                    for c in cocktails]
+        cocktail_names = [f"- {c['name']}" for c in _db.get_cocktails()]
         system = f"""You are Lloid, head bartender of the Gold Room — formal, precise, faintly unnerving. You speak with authority, not volume.
 
 CURRENT INVENTORY:
@@ -1560,8 +1574,8 @@ CURRENT INVENTORY:
 
 {pantry_text}
 
-COCKTAIL DATABASE:
-{chr(10).join(db_lines)}
+COCKTAILS IN DATABASE (names only — ask for full recipe if needed):
+{chr(10).join(cocktail_names)}
 
 Guidelines:
 - Be brief. Skip preamble. If the cocktail and direction are clear from the message, design immediately.
