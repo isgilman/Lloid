@@ -278,6 +278,7 @@
 </div>
 {% endblock %}
 {% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/nosleep.js@0.12.0/dist/NoSleep.min.js"></script>
 <script>
 // ── Add-to-list modal ────────────────────────────────────────────────────────
 const COCKTAIL_ID = '{{ cocktail.id }}';
@@ -529,17 +530,23 @@ document.getElementById('comment-input').addEventListener('keydown', function(e)
 });
 
 // ── Screen Wake Lock ──────────────────────────────────────────────────────────
-// Keep the screen on while viewing a recipe. Silently no-ops on
-// unsupported browsers (older iOS, some desktop browsers).
-let _wakeLock = null;
-async function _acquireWakeLock() {
-  if (!('wakeLock' in navigator)) return;
-  try { _wakeLock = await navigator.wakeLock.request('screen'); } catch(e) { /* denied or unavailable */ }
+// NoSleep.js uses the Wake Lock API on modern browsers and falls back to a
+// tiny invisible video loop for older iOS (which prevents sleep during playback).
+// The video path requires a user gesture, so we arm it on the first interaction.
+const _noSleep = new NoSleep();
+let _noSleepArmed = false;
+function _armNoSleep() {
+  if (_noSleepArmed) return;
+  _noSleepArmed = true;
+  _noSleep.enable().catch(function() {});
 }
-// Wake locks are automatically released when the page is hidden; re-acquire on return.
+document.addEventListener('touchstart', _armNoSleep, { once: true, passive: true });
+document.addEventListener('click',      _armNoSleep, { once: true });
+// Re-enable after the tab returns to the foreground
 document.addEventListener('visibilitychange', function() {
-  if (document.visibilityState === 'visible') _acquireWakeLock();
+  if (document.visibilityState === 'visible' && _noSleepArmed) {
+    _noSleep.enable().catch(function() {});
+  }
 });
-_acquireWakeLock();
 </script>
 {% endblock %}
