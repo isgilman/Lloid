@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}Settings — Lloid{% endblock %}
+
+{% block content %}
+<div class="page-container page-container-narrow">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Settings</h1>
+      <p class="page-subtitle">Configure push notifications so guests can order drinks.</p>
+    </div>
+  </div>
+
+  <!-- Notification setup -->
+  <div class="settings-section">
+    <h2 class="settings-section-title">Push Notifications via ntfy</h2>
+    <p class="page-subtitle" style="margin-bottom:18px">
+      <a href="https://ntfy.sh" target="_blank" rel="noopener">ntfy.sh</a> is a free push notification service.
+      Install the ntfy app on your phone, subscribe to your topic, and orders will appear as notifications.
+    </p>
+
+    <div class="settings-steps">
+      <div class="settings-step">
+        <span class="settings-step-num">1</span>
+        <div>Install <strong>ntfy</strong> on your phone
+          (<a href="https://apps.apple.com/app/ntfy/id1625396347" target="_blank" rel="noopener">iOS</a> /
+           <a href="https://play.google.com/store/apps/details?id=io.heckel.ntfy" target="_blank" rel="noopener">Android</a>)
+        </div>
+      </div>
+      <div class="settings-step">
+        <span class="settings-step-num">2</span>
+        <div>Choose a unique topic name below and subscribe to it in the ntfy app</div>
+      </div>
+      <div class="settings-step">
+        <span class="settings-step-num">3</span>
+        <div>Enter your Lloid URL so notifications link directly to recipes</div>
+      </div>
+    </div>
+
+    <form method="post" action="{{ url_for('settings_save') }}" style="margin-top:24px">
+      <div class="form-group" style="margin-bottom:16px; max-width:420px">
+        <label class="form-label">ntfy Topic</label>
+        <div style="display:flex; gap:8px; align-items:center">
+          <input type="text" name="ntfy_topic" class="form-input" value="{{ ntfy_topic }}"
+                 placeholder="e.g. lloid-myhomebar-abc123" autocomplete="off" style="flex:1">
+          <button type="button" class="btn btn-ghost btn-sm" onclick="generateTopic()">Generate</button>
+        </div>
+        <p class="form-hint" style="margin-top:4px">Keep this private — anyone who knows it can subscribe.</p>
+      </div>
+
+      <div class="form-group" style="margin-bottom:24px; max-width:420px">
+        <label class="form-label">Lloid Base URL <span class="form-hint">(for recipe links in notifications)</span></label>
+        <input type="text" name="ntfy_base_url" id="ntfy-base-url" class="form-input" value="{{ ntfy_base_url }}"
+               placeholder="e.g. http://192.168.1.10:5001" autocomplete="off">
+        <button type="button" class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="detectUrl()">
+          Use this device's address
+        </button>
+      </div>
+
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+        <button type="submit" class="btn btn-primary">Save Settings</button>
+        {% if ntfy_topic %}
+        <button type="button" class="btn btn-ghost" id="test-btn" onclick="testNotification()">
+          Send Test Notification
+        </button>
+        {% endif %}
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function generateTopic() {
+  const words = ['bar','lounge','cellar','oak','copper','gold','silver','rye','malt','bitters'];
+  const w1 = words[Math.floor(Math.random() * words.length)];
+  const w2 = words[Math.floor(Math.random() * words.length)];
+  const n  = Math.floor(Math.random() * 9000) + 1000;
+  document.querySelector('input[name="ntfy_topic"]').value = `lloid-${w1}-${w2}-${n}`;
+}
+
+function detectUrl() {
+  document.getElementById('ntfy-base-url').value =
+    window.location.protocol + '//' + window.location.host;
+}
+
+async function testNotification() {
+  const btn = document.getElementById('test-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  try {
+    const res  = await fetch('/settings/test-notification', { method: 'POST' });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Test notification sent — check your phone!', 'success');
+    } else {
+      showToast(data.error || 'Failed to send', 'error');
+    }
+  } catch(e) {
+    showToast('Network error', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send Test Notification';
+  }
+}
+</script>
+{% endblock %}

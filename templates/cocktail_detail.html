@@ -8,6 +8,7 @@
       <a href="{{ url_for('cocktails') }}" class="back-link">&#8592; Cocktails</a>
       <div class="detail-actions">
         <button class="btn btn-ghost btn-sm" onclick="openListModal()">+ List</button>
+        <button class="btn btn-primary btn-sm" onclick="openOrderModal()">Order</button>
         <button class="btn btn-ghost btn-sm wake-btn" id="wake-btn"
                 onclick="toggleWakeLock()" title="Keep screen on while making this drink">&#9728;</button>
         <a href="{{ url_for('cocktail_edit', cocktail_id=cocktail.id) }}" class="btn btn-ghost btn-sm">Edit</a>
@@ -278,6 +279,30 @@
     </div>
   </div>
 </div>
+<!-- Order modal -->
+<div class="modal-overlay" id="order-modal" style="display:none" onclick="closeOrderModalIfBg(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title">Order a Drink</h2>
+      <button class="modal-close" onclick="closeOrderModal()">&#10005;</button>
+    </div>
+    <div class="modal-form">
+      <p style="margin-bottom:14px; color:var(--text-sec); font-size:14px">
+        Requesting <strong>{{ cocktail.name }}</strong> — the bartender will be notified.
+      </p>
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label">Note <span class="form-hint">(optional — e.g. no ice, extra lime)</span></label>
+        <input type="text" id="order-note" class="form-input" placeholder="Any preferences…"
+               maxlength="120" autocomplete="off"
+               onkeydown="if(event.key==='Enter'){event.preventDefault();submitOrder();}">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" onclick="closeOrderModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" id="order-submit-btn" onclick="submitOrder()">Send Order</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/nosleep.js@0.12.0/dist/NoSleep.min.js"></script>
@@ -285,6 +310,42 @@
 // ── Add-to-list modal ────────────────────────────────────────────────────────
 const COCKTAIL_ID = '{{ cocktail.id }}';
 let _listMembership = new Set({{ cocktail_lists | list | tojson }});
+
+// ── Order modal ───────────────────────────────────────────────────────────────
+function openOrderModal() {
+  document.getElementById('order-note').value = '';
+  document.getElementById('order-modal').style.display = 'flex';
+  setTimeout(function() { document.getElementById('order-note').focus(); }, 50);
+}
+function closeOrderModal() {
+  document.getElementById('order-modal').style.display = 'none';
+}
+function closeOrderModalIfBg(e) {
+  if (e.target === e.currentTarget) closeOrderModal();
+}
+async function submitOrder() {
+  const btn  = document.getElementById('order-submit-btn');
+  const note = document.getElementById('order-note').value.trim();
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  const fd = new FormData();
+  if (note) fd.append('note', note);
+  try {
+    const res  = await fetch('/cocktails/{{ cocktail.id }}/order', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      closeOrderModal();
+      showToast('Order sent!', 'success');
+    } else {
+      showToast(data.error || 'Could not send order', 'error');
+    }
+  } catch(e) {
+    showToast('Network error', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send Order';
+  }
+}
 
 function openListModal() {
   document.getElementById('list-modal').style.display = 'flex';

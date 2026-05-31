@@ -47,6 +47,9 @@
            class="nav-link {% if request.endpoint == 'import_page' %}active{% endif %}">
           Recipe Import
         </a>
+        <a href="{{ url_for('settings_page') }}"
+           class="nav-link nav-settings {% if request.endpoint in ['settings_page','settings_save','settings_test_notification'] %}active{% endif %}"
+           title="Settings">&#9881;</a>
       </div>
     </div>
   </nav>

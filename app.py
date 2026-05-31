@@ -7,6 +7,7 @@ import random
 import functools
 import unicodedata
 import base64
+import urllib.request
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -1558,6 +1559,81 @@ def import_save():
         _db.save_cocktail(r, is_local=True)
         saved.append({'id': r['id'], 'name': r['name']})
     return jsonify({'success': True, 'saved': saved})
+
+
+# ── Routes: Orders ───────────────────────────────────────────────────────────
+
+def _send_ntfy(topic: str, title: str, body: str, click_url: str = '') -> None:
+    """Fire a push notification via ntfy.sh (or a self-hosted ntfy instance)."""
+    url = f"https://ntfy.sh/{topic}"
+    headers = {
+        'Title':    title.encode(),
+        'Priority': b'default',
+        'Tags':     b'cocktail_glass',
+    }
+    if click_url:
+        headers['Click'] = click_url.encode()
+    req = urllib.request.Request(url, data=body.encode(), headers=headers, method='POST')
+    urllib.request.urlopen(req, timeout=6)
+
+
+@app.route('/cocktails/<cocktail_id>/order', methods=['POST'])
+def cocktail_order(cocktail_id):
+    cocktail = _db.get_cocktail(cocktail_id)
+    if not cocktail:
+        return jsonify({'success': False, 'error': 'Cocktail not found'}), 404
+
+    note = (request.form.get('note') or '').strip()
+    topic    = _db.get_setting('ntfy_topic', '').strip()
+    base_url = _db.get_setting('ntfy_base_url', '').strip().rstrip('/')
+
+    if not topic:
+        return jsonify({'success': False,
+                        'error': 'Notifications not configured — ask the host to set up ntfy in Settings.'}), 503
+
+    title    = f"Order: {cocktail['name']}"
+    body     = note if note else "Tap to see the recipe."
+    click    = f"{base_url}/cocktails/{cocktail_id}" if base_url else ''
+
+    try:
+        _send_ntfy(topic, title, body, click)
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'error': f'Notification failed: {e}'}), 502
+
+
+# ── Routes: Settings ─────────────────────────────────────────────────────────
+
+@app.route('/settings')
+def settings_page():
+    topic    = _db.get_setting('ntfy_topic', '')
+    base_url = _db.get_setting('ntfy_base_url', '')
+    return render_template('settings.html', ntfy_topic=topic, ntfy_base_url=base_url)
+
+
+@app.route('/settings/save', methods=['POST'])
+def settings_save():
+    topic    = request.form.get('ntfy_topic', '').strip()
+    base_url = request.form.get('ntfy_base_url', '').strip().rstrip('/')
+    _db.set_setting('ntfy_topic', topic)
+    _db.set_setting('ntfy_base_url', base_url)
+    flash('Settings saved.', 'success')
+    return redirect(url_for('settings_page'))
+
+
+@app.route('/settings/test-notification', methods=['POST'])
+def settings_test_notification():
+    topic    = _db.get_setting('ntfy_topic', '').strip()
+    base_url = _db.get_setting('ntfy_base_url', '').strip().rstrip('/')
+    if not topic:
+        return jsonify({'success': False, 'error': 'No topic configured.'}), 400
+    try:
+        _send_ntfy(topic, 'Lloid is connected ✓',
+                   'Push notifications are working.',
+                   base_url or '')
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 502
 
 
 # ── Routes: Bookshelf ─────────────────────────────────────────────────────────
