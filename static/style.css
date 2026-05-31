@@ -1006,6 +1006,10 @@ select.edit-input { padding: 5px 8px; }
 }
 .serving-btn:hover { color: var(--text); background: var(--surface-raised); }
 .serving-btn-active { color: var(--accent) !important; background: var(--accent-bg) !important; }
+
+.wake-btn { opacity: 0.45; transition: opacity 0.15s, color 0.15s; }
+.wake-btn:hover { opacity: 0.8; }
+.wake-btn-active { opacity: 1 !important; color: var(--accent) !important; }
 .detail-block { margin-bottom: 28px; }
 .detail-instructions { line-height: 1.7; color: var(--text-sec); }
 .detail-notes { color: var(--text-sec); font-style: italic; }
