@@ -38,25 +38,11 @@
           {% endif %}
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-        {% if can_make %}
-          <div class="makeable-badge makeable-yes">
-            <span class="makeable-icon">&#10003;</span>
-            <span>Can Make</span>
-          </div>
-        {% else %}
-          <div class="makeable-badge makeable-no">
-            <span class="makeable-icon">&#8722;</span>
-            <span>Missing {{ missing | length }}</span>
-          </div>
-        {% endif %}
-        {% if cocktail.is_local %}
-          <div class="personalized-badge" title="This is your personalised version — it won't be overwritten by syncing from shared recipes">
-            <span>&#9998;</span>
-            <span>Personalised</span>
-          </div>
-        {% endif %}
-      </div>
+      {% if can_make %}
+        <span class="badge badge-green">Can Make</span>
+      {% else %}
+        <span class="badge badge-dim" title="Missing: {{ missing | join(', ') }}">&#8722; {{ missing | length }} item{% if missing | length != 1 %}s{% endif %}</span>
+      {% endif %}
     </div>
   </div>
 
@@ -236,7 +222,7 @@
   {% endif %}
 
   <div class="recipe-footer-actions">
-    <a href="{{ url_for('cocktail_edit', cocktail_id=cocktail.id) }}" class="btn btn-ghost btn-sm">Edit Recipe</a>
+    <a href="{{ url_for('cocktail_edit', cocktail_id=cocktail.id) }}" class="btn btn-ghost btn-sm">Edit</a>
     <form method="post" action="{{ url_for('cocktail_delete', cocktail_id=cocktail.id) }}"
           onsubmit="return confirm('Delete {{ cocktail.name }}?')" style="display:inline">
       <button type="submit" class="btn btn-ghost btn-sm btn-danger">Delete</button>
