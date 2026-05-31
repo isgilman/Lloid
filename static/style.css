@@ -1665,6 +1665,14 @@ select.edit-input { padding: 5px 8px; }
   font-size: 14px;
 }
 
+.recipe-footer-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
 .history-section {
   margin-top: 32px;
   border-top: 1px solid var(--border);

@@ -9,11 +9,6 @@
       <div class="detail-actions">
         <button class="btn btn-ghost btn-sm" onclick="openListModal()">+ List</button>
         <button class="btn btn-primary btn-sm" onclick="openOrderModal()">Order</button>
-        <a href="{{ url_for('cocktail_edit', cocktail_id=cocktail.id) }}" class="btn btn-ghost btn-sm">Edit</a>
-        <form method="post" action="{{ url_for('cocktail_delete', cocktail_id=cocktail.id) }}"
-              onsubmit="return confirm('Delete {{ cocktail.name }}?')" style="display:inline">
-          <button type="submit" class="btn btn-ghost btn-sm btn-danger">Delete</button>
-        </form>
       </div>
     </div>
 
@@ -239,6 +234,14 @@
     </div>
   </details>
   {% endif %}
+
+  <div class="recipe-footer-actions">
+    <a href="{{ url_for('cocktail_edit', cocktail_id=cocktail.id) }}" class="btn btn-ghost btn-sm">Edit Recipe</a>
+    <form method="post" action="{{ url_for('cocktail_delete', cocktail_id=cocktail.id) }}"
+          onsubmit="return confirm('Delete {{ cocktail.name }}?')" style="display:inline">
+      <button type="submit" class="btn btn-ghost btn-sm btn-danger">Delete</button>
+    </form>
+  </div>
 </div>
 
 <!-- Add to List modal -->
