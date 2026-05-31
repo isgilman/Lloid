@@ -9,8 +9,6 @@
       <div class="detail-actions">
         <button class="btn btn-ghost btn-sm" onclick="openListModal()">+ List</button>
         <button class="btn btn-primary btn-sm" onclick="openOrderModal()">Order</button>
-        <button class="btn btn-ghost btn-sm wake-btn" id="wake-btn"
-                onclick="toggleWakeLock()" title="Keep screen on while making this drink">&#9728;</button>
         <a href="{{ url_for('cocktail_edit', cocktail_id=cocktail.id) }}" class="btn btn-ghost btn-sm">Edit</a>
         <form method="post" action="{{ url_for('cocktail_delete', cocktail_id=cocktail.id) }}"
               onsubmit="return confirm('Delete {{ cocktail.name }}?')" style="display:inline">
@@ -592,68 +590,39 @@ document.getElementById('comment-input').addEventListener('keydown', function(e)
   if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); submitComment(); }
 });
 
-// ── Screen Wake Lock ──────────────────────────────────────────────────────────
-// Strategy:
-//   1. On page load, try the native Wake Lock API immediately (no gesture needed
-//      on iOS 16.4+, Chrome on Android, etc.) and mark the button active.
-//   2. The ☀ button lets the user explicitly enable NoSleep.js (which covers the
-//      video-loop fallback path for older iOS). Calling enable() directly inside
-//      a button click handler is the most reliable iOS user-gesture trigger.
-//   3. On visibility change, re-acquire whichever method was active.
+// ── Screen Wake Lock (silent) ─────────────────────────────────────────────────
+// Tries the native Wake Lock API on page load (iOS 16.4+, Chrome Android).
+// Falls back to NoSleep.js video trick on the first user interaction.
+// No UI — runs automatically in the background.
 const _noSleep = new NoSleep();
-let _wakeLockActive = false;
 let _nativeLock = null;
 
-function _setWakeBtnState(on) {
-  const btn = document.getElementById('wake-btn');
-  if (!btn) return;
-  btn.classList.toggle('wake-btn-active', on);
-  btn.title = on ? 'Screen staying on — tap to disable' : 'Keep screen on while making this drink';
-}
-
-// Attempt native Wake Lock on load (works without a gesture on supported browsers)
 if ('wakeLock' in navigator) {
-  navigator.wakeLock.request('screen').then(function(lock) {
-    _nativeLock = lock;
-    _wakeLockActive = true;
-    _setWakeBtnState(true);
-    lock.addEventListener('release', function() {
-      _nativeLock = null;
-    });
-  }).catch(function() { /* unsupported or denied — button still available */ });
-}
-
-// Explicit toggle button — direct click = clean user gesture, works on all iOS
-function toggleWakeLock() {
-  if (_wakeLockActive) {
-    // Turn off
-    if (_nativeLock) { _nativeLock.release(); _nativeLock = null; }
-    _noSleep.disable();
-    _wakeLockActive = false;
-    _setWakeBtnState(false);
-  } else {
-    // Turn on — try native first, fall back to NoSleep video trick
-    if ('wakeLock' in navigator) {
-      navigator.wakeLock.request('screen').then(function(lock) {
-        _nativeLock = lock;
-        lock.addEventListener('release', function() { _nativeLock = null; });
-      }).catch(function() {});
-    } else {
-      _noSleep.enable(); // synchronous inside click handler — iOS accepts this
-    }
-    _wakeLockActive = true;
-    _setWakeBtnState(true);
-  }
-}
-
-// Re-acquire after tab returns to foreground
-document.addEventListener('visibilitychange', function() {
-  if (document.visibilityState !== 'visible' || !_wakeLockActive) return;
-  if ('wakeLock' in navigator) {
-    navigator.wakeLock.request('screen').then(function(lock) {
+  navigator.wakeLock.request('screen')
+    .then(function(lock) {
       _nativeLock = lock;
       lock.addEventListener('release', function() { _nativeLock = null; });
     }).catch(function() {});
+}
+
+// Video fallback for older iOS — arm on first interaction
+(function() {
+  function _armVideo() {
+    if (!('wakeLock' in navigator)) _noSleep.enable();
+  }
+  document.addEventListener('touchstart', function() { _armVideo(); }, { once: true, passive: true });
+  document.addEventListener('click',      function() { _armVideo(); }, { once: true });
+})();
+
+// Re-acquire after tab returns to foreground
+document.addEventListener('visibilitychange', function() {
+  if (document.visibilityState !== 'visible') return;
+  if ('wakeLock' in navigator) {
+    navigator.wakeLock.request('screen')
+      .then(function(lock) {
+        _nativeLock = lock;
+        lock.addEventListener('release', function() { _nativeLock = null; });
+      }).catch(function() {});
   } else {
     _noSleep.enable();
   }
