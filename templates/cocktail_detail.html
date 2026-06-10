@@ -38,11 +38,19 @@
           {% endif %}
         </div>
       </div>
-      {% if can_make %}
-        <span class="badge badge-green">Can Make</span>
-      {% else %}
-        <span class="badge badge-dim" title="Missing: {{ missing | join(', ') }}">&#8722; {{ missing | length }} item{% if missing | length != 1 %}s{% endif %}</span>
-      {% endif %}
+      <div class="detail-title-badges">
+        {% if abv_pct is not none %}
+          <span class="abv-badge"
+                title="~{{ abv_pct }}% ABV after dilution · {{ 'based on your bottle shelf' if abv_basis == 'inventory' else 'estimated from typical spirit ABVs' }} · Dave Arnold dilution model">
+            ~{{ abv_pct }}%
+          </span>
+        {% endif %}
+        {% if can_make %}
+          <span class="badge badge-green">Can Make</span>
+        {% else %}
+          <span class="badge badge-dim" title="Missing: {{ missing | join(', ') }}">&#8722; {{ missing | length }} item{% if missing | length != 1 %}s{% endif %}</span>
+        {% endif %}
+      </div>
     </div>
   </div>
 

@@ -229,6 +229,299 @@ def make_availability_checker(inventory, pantry):
     return check
 
 
+# ── ABV estimation (Dave Arnold / Jeffrey Morgenthaler dilution model) ────────
+
+# Unicode vulgar fractions → float
+_UNICODE_FRACTIONS = {
+    '½': 0.5,   '¼': 0.25,  '¾': 0.75,
+    '⅓': 1/3,  '⅔': 2/3,  '⅛': 0.125,
+    '⅜': 0.375, '⅝': 0.625, '⅞': 0.875,
+}
+
+# Unit → fluid ounces conversion
+_UNIT_TO_OZ = {
+    'oz': 1.0,
+    'ml': 1 / 29.5735,
+    'cl': 1 / 2.95735,
+    'tsp': 1 / 6.0,          # 5 ml
+    'tbsp': 0.5,              # 15 ml
+    'barspoon': 1 / 12.0,    # ~2.5 ml
+    'barspoons': 1 / 12.0,
+    'dash': 0.021,            # ~0.625 ml per dash (Dave Arnold measurement)
+    'dashes': 0.021,
+    'drop': 0.005,
+    'drops': 0.005,
+    'rinse': 0.05,
+    'spritz': 0.02,
+    'leaves': 0.0,
+    'whole': 0.0,
+}
+
+# Typical ABV by inventory Style value (fallback when no bottle is matched).
+# Keyed on the lowercase Style strings used in bar_inventory.csv.
+_STYLE_ABV = {
+    # Base spirits
+    'vodka': 0.40,
+    'gin': 0.42,
+    'straight bourbon': 0.45,
+    'straight rye': 0.45,
+    'fat-washed rye': 0.45,
+    'scotch': 0.43,
+    'blended scotch': 0.43,
+    'single malt scotch': 0.46,
+    'irish blended': 0.40,
+    'japanese lended': 0.43,
+    'rum': 0.40,
+    'rhum': 0.40,
+    'rhum agricole blanc': 0.50,
+    'rhum agricole vieux': 0.42,
+    'aged rum': 0.40,
+    'overproof rum': 0.57,
+    'overproof': 0.57,
+    'cachaça': 0.40,
+    'clairin': 0.50,
+    'batavia arrack': 0.43,
+    'blanco tequila': 0.40,
+    'reposado tequila': 0.40,
+    'mezcal': 0.45,
+    'sotol': 0.40,
+    'cognac': 0.40,
+    'calvados': 0.40,
+    'apple brandy': 0.40,
+    'pisco': 0.40,
+    'aquavit': 0.40,
+    'soju': 0.24,
+    'absinthe': 0.62,
+    # Fortified wines / vermouths
+    'sweet vermouth': 0.165,
+    'dry vermouth': 0.175,
+    'blanc vermouth': 0.165,
+    'aperitif wine': 0.165,
+    'quinquina': 0.165,
+    'amontillado sherry': 0.175,
+    'pedro ximénez sherry': 0.175,
+    'white port': 0.20,
+    'tawny port': 0.20,
+    'madeira': 0.20,
+    'marsala': 0.18,
+    'brut champagne': 0.12,
+    'champagne': 0.12,
+    'sparkling wine': 0.12,
+    # Amari / aperitifs
+    'bitter aperitif': 0.22,
+    'gentian aperitif': 0.20,
+    'gentian amaro': 0.18,
+    'artichoke amaro': 0.165,
+    'fernet': 0.39,
+    'amaro': 0.30,
+    'amaro siciliano': 0.29,
+    'rabarbaro amaro': 0.24,
+    'rhubarb amaro': 0.24,
+    'herbal bitter': 0.35,
+    'alpine amaro': 0.30,
+    'herbal aperitif': 0.30,
+    # Liqueurs
+    'herbal liqueur': 0.43,
+    'herbal elixir': 0.43,
+    'elderflower liqueur': 0.20,
+    'orange liqueur': 0.40,
+    'maraschino': 0.32,
+    'cacao liqueur': 0.25,
+    'crème de menthe': 0.25,
+    'crème de cassis': 0.20,
+    'coffee liqueur': 0.20,
+    'ginger liqueur': 0.40,
+    'allspice dram': 0.22,
+    'fruit liqueur': 0.20,
+    'apricot liqueur': 0.25,
+    'crème de banane': 0.22,
+    'limoncello': 0.28,
+    'violet liqueur': 0.20,
+    'pine liqueur': 0.20,
+    'corn liqueur': 0.25,
+    'génépi': 0.40,
+}
+
+# Dilution water added to a cocktail (oz) by preparation method.
+# From Dave Arnold's "Liquid Intelligence" stirring/shaking studies.
+_METHOD_DILUTION_OZ = {
+    'shake':        1.5,
+    'shaken':       1.5,
+    'stir':         1.0,
+    'stirred':      1.0,
+    'swizzle':      0.75,
+    'build':        0.5,
+    'built':        0.5,
+    'blended':      2.0,
+    'flash-blended': 1.25,
+}
+
+
+def _parse_amount(s):
+    """Parse a cocktail amount string ('¾', '1½', '1 1/2', '1.25') to float."""
+    if not s:
+        return None
+    s = str(s).strip()
+    # Mixed number with unicode fraction: '1½', '2¼', etc.
+    for uf, fval in _UNICODE_FRACTIONS.items():
+        if uf in s:
+            prefix = s[:s.index(uf)].strip()
+            try:
+                whole = float(prefix) if prefix else 0.0
+            except ValueError:
+                whole = 0.0
+            return whole + fval
+    # Space-separated mixed number: '1 1/2'
+    if ' ' in s and '/' in s:
+        parts = s.split(None, 1)
+        try:
+            whole = float(parts[0])
+            n, d = parts[1].split('/')
+            return whole + float(n) / float(d)
+        except (ValueError, ZeroDivisionError):
+            pass
+    # Plain fraction: '3/4'
+    if '/' in s:
+        try:
+            n, d = s.split('/', 1)
+            return float(n) / float(d)
+        except (ValueError, ZeroDivisionError):
+            pass
+    # Plain decimal / integer
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
+
+def _ingredient_abv(ing, bottle_abv_map):
+    """Return the ABV (0.0–1.0) for one annotated ingredient, or None if unknown.
+
+    Lookup order:
+      1. Pantry / non-liquid units → 0.0
+      2. Matched source bottle in inventory → use actual ABV
+      3. CATEGORY_MAP → _STYLE_ABV fallback
+      4. _STYLE_ABV direct name lookup
+      5. Zero-pattern keywords (juice, soda, syrup …)
+      6. None (unknown — will be treated as 0 but flagged)
+    """
+    # Non-liquid amounts don't contribute
+    unit = (ing.get('unit') or '').lower().strip()
+    if unit in ('leaves', 'whole'):
+        return 0.0
+
+    # Standard pantry staples (type='pantry') are non-alcoholic
+    if ing.get('type') == 'pantry':
+        return 0.0
+
+    ing_c = clean(ing.get('name', ''))
+
+    # Helper: find ABV via CATEGORY_MAP + _STYLE_ABV for a cleaned ingredient name
+    def _style_lookup(name_c):
+        best_key = None
+        for key in CATEGORY_MAP:
+            kc = clean(key)
+            if (kc == name_c or word_in(kc, name_c)) and (
+                    best_key is None or len(kc) > len(clean(best_key))):
+                best_key = key
+        if best_key:
+            for style in CATEGORY_MAP[best_key]:
+                v = _STYLE_ABV.get(style.lower())
+                if v is not None:
+                    return v
+        return _STYLE_ABV.get(name_c)
+
+    # Specialty pantry items (source='pantry') — could be alcoholic infusions or
+    # house-made syrups.  Try a category lookup; if the name looks like a spirit
+    # (ABV > 0.15 from the style map), honour that.  Otherwise treat as 0.
+    if ing.get('source') == 'pantry':
+        v = _style_lookup(ing_c)
+        return v if (v is not None and v > 0.15) else 0.0
+
+    # Source bottle matched → use its actual ABV from inventory
+    source = ing.get('source') or ''
+    if source and source != 'pantry':
+        abv = bottle_abv_map.get(normalize(source))
+        if abv is not None:
+            return abv
+
+    # Category-map + style lookup
+    v = _style_lookup(ing_c)
+    if v is not None:
+        return v
+
+    # Common zero-alcohol patterns
+    zero_words = {
+        'juice', 'soda', 'water', 'syrup', 'cream', 'egg', 'sugar',
+        'honey', 'agave', 'grenadine', 'falernum', 'orgeat', 'coconut',
+        'tonic', 'cola', 'salt', 'saline', 'mint', 'basil', 'cucumber',
+        'thyme', 'rosemary', 'ice', 'pineapple', 'ginger', 'bitters',
+    }
+    if set(ing_c.split()) & zero_words:
+        return 0.0
+
+    return None  # unknown
+
+
+def estimate_cocktail_abv(cocktail, inventory):
+    """Estimate post-dilution ABV using the Dave Arnold dilution model.
+
+    Must be called AFTER ingredient annotation (ing['source'] must be set).
+    Returns (abv_pct: float|None, basis: str|None).
+      basis='inventory'  – every spirit matched to a real bottle with known ABV
+      basis='estimated'  – some spirits fell back to style-map defaults
+    """
+    method = cocktail.get('method', '').lower().strip()
+    dilution_oz = _METHOD_DILUTION_OZ.get(method, 1.0)
+
+    # Build {normalized_bottle_name: abv_fraction} from inventory
+    bottle_abv_map = {}
+    for b in inventory:
+        abv_str = b.get('ABV', '').strip().rstrip('%')
+        try:
+            bottle_abv_map[normalize(b['Name'])] = float(abv_str) / 100.0
+        except (ValueError, KeyError):
+            pass
+
+    total_alcohol_oz = 0.0
+    total_liquid_oz  = 0.0
+    any_spirit       = False
+    all_from_bottles = True
+
+    for ing in cocktail.get('ingredients', []):
+        unit = (ing.get('unit') or '').lower().strip()
+        oz_factor = _UNIT_TO_OZ.get(unit)
+        if oz_factor is None:
+            continue  # unknown unit — skip
+        amount = _parse_amount(ing.get('amount', ''))
+        if amount is None:
+            continue
+        oz = amount * oz_factor
+        if oz <= 0:
+            continue
+
+        abv = _ingredient_abv(ing, bottle_abv_map)
+        if abv is None:
+            all_from_bottles = False
+            abv = 0.0  # conservative: treat unknown as non-alcoholic for denominator
+
+        total_liquid_oz  += oz
+        total_alcohol_oz += oz * abv
+        if abv > 0.05:
+            any_spirit = True
+            # Check if this spirit was resolved from inventory vs fallback
+            source = ing.get('source') or ''
+            if not (source and source != 'pantry' and normalize(source) in bottle_abv_map):
+                all_from_bottles = False
+
+    if total_liquid_oz == 0 or not any_spirit:
+        return None, None
+
+    abv_pct = (total_alcohol_oz / (total_liquid_oz + dilution_oz)) * 100.0
+    basis   = 'inventory' if all_from_bottles else 'estimated'
+    return round(abv_pct, 1), basis
+
+
 # ── Data helpers ──────────────────────────────────────────────────────────────
 
 def load_inventory():
@@ -1211,6 +1504,9 @@ def cocktail_detail(cocktail_id):
         else:
             ing['search_term'] = ing['name']
 
+    # ABV estimate — called after ingredient annotation so ing['source'] is set
+    abv_pct, abv_basis = estimate_cocktail_abv(cocktail, inventory)
+
     _db.record_view(cocktail_id)
     history  = _db.get_history(cocktail_id, limit=10)
     feedback = _db.get_feedback(cocktail_id)
@@ -1221,7 +1517,8 @@ def cocktail_detail(cocktail_id):
                            cocktail=cocktail, can_make=can_make, missing=missing,
                            style_tag_values=STYLE_TAG_VALUES, history=history,
                            feedback=feedback, comments=comments,
-                           all_lists=all_lists, cocktail_lists=cocktail_lists)
+                           all_lists=all_lists, cocktail_lists=cocktail_lists,
+                           abv_pct=abv_pct, abv_basis=abv_basis)
 
 
 @app.route('/cocktails/<cocktail_id>/edit', methods=['GET', 'POST'])
