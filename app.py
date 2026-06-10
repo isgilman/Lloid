@@ -78,6 +78,9 @@ CATEGORY_MAP = {
     'aged rum': ['aged rum', 'rhum agricole vieux', 'aged rhum'],
     'overproof rum': ['overproof rum', 'overproof'],
     'jamaican rum': ['rum'],  # cat_styles=['rum'] + geo_origin_filter='jamaica' = only Jamaican rums
+    'pot still rum': ['pot still rum', 'pot still', 'unaged pot still'],
+    'high ester rum': ['high ester rum', 'high ester'],
+    'grand arome': ['grand arôme', 'grand arome'],
     'rhum agricole': ['rhum agricole blanc', 'rhum agricole vieux'],
     'rhum agricole blanc': ['rhum agricole blanc'],
     'cachaça': ['cachaça'],
@@ -657,12 +660,24 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
         stop = {'the', 'a', 'an', 'of', 'de', 'du', 'and', 'no', 'n', 'le',
                 'liqueur', 'bitters', 'spirit', 'spirits', 'liquor'}
 
+        # Whether the ingredient specifies "aged" (e.g. "aged rum", "aged jamaican rum").
+        # When True, Pass 2 and Pass 3 only match bottles whose Age field is non-empty
+        # and not "Unaged" — so unaged bottles (Wray & Nephew, etc.) are excluded.
+        _requires_aged = 'aged' in ing.split()
+
         def _eligible(bottle):
             use = normalize(bottle.get('Use', ''))
             if use == 'neat only':           return False
             if not bottle.get('in_stock', True): return False
             if use == 'premium cocktail' and not is_premium: return False
             return True
+
+        def _age_ok(bottle):
+            """Return True if the bottle satisfies the aging requirement (if any)."""
+            if not _requires_aged:
+                return True
+            age_val = (bottle.get('Age') or '').strip().lower()
+            return bool(age_val) and age_val != 'unaged'
 
         # Pass 1 — Direct name containment (highest priority).
         # Scanned across ALL eligible bottles before any style/category matching so that
@@ -693,14 +708,15 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
                 continue
 
             # Style / category direct match (word-boundary — prevents "gin" matching "ginger")
-            if ing == bstyle or word_in(ing, bstyle) or word_in(ing, bcat):
+            # _age_ok ensures "aged rum" never matches a bottle with Age="Unaged".
+            if (ing == bstyle or word_in(ing, bstyle) or word_in(ing, bcat)) and _age_ok(bottle):
                 return True, bottle['Name']
 
             # Category map — specific mapping checked BEFORE generic overlap so
             #    "crème de cacao" routes to cacao-liqueur bottles and not cassis ones.
             #    Origin is also checked so geographic entries like 'jamaican rum': ['rum']
             #    restrict to bottles from the right country.
-            if cat_styles:
+            if cat_styles and _age_ok(bottle):
                 for sc in cat_styles:
                     if (word_in(sc, bstyle) or word_in(sc, bcat)
                             or word_in(sc, bname) or word_in(sc, borigin)):
@@ -710,7 +726,7 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
             # When best_key exists, direct + style + CATEGORY_MAP are precise enough;
             # keeping overlap would create false positives like
             # "Crème de Cacao" matching "Crème de Cassis" via shared "creme".
-            if not best_key:
+            if not best_key and _age_ok(bottle):
                 ing_words   = set(ing.split()) - stop
                 bname_words = set(bname.split()) - stop
                 if ing_words and bname_words:
@@ -718,6 +734,58 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
                     threshold = 0.5 if len(ing_words) <= 2 else 0.6
                     if overlap and len(overlap) / len(ing_words) >= threshold:
                         return True, bottle['Name']
+
+        # Pass 3 — Aged NAS fallback.
+        # When an ingredient specifies "aged" (e.g. "aged rum", "aged jamaican rum",
+        # "lightly aged rum") but no Pass-2 style match fired, check the bottle's Age
+        # field.  Any non-empty value other than "Unaged" counts as aged — this covers
+        # "NAS", numeric age statements, "Aged blend", approximate ranges, etc.
+        # Geo origin filter (applied at the top of the Pass-2 loop) is still respected
+        # because we re-iterate over inventory with the same guard.
+        _AGE_QUALIFIERS = frozenset({'aged', 'lightly'})
+        if 'aged' in ing.split():
+            # Base spirit name with aging adjectives stripped (e.g. "aged rum" → "rum")
+            base_ing = ' '.join(w for w in ing.split() if w not in _AGE_QUALIFIERS)
+            base_ing = re.sub(r'\s+', ' ', base_ing).strip()
+            if base_ing:
+                # Find the best CATEGORY_MAP key for the base spirit
+                base_key = None
+                for key in CATEGORY_MAP:
+                    kc      = clean(key)
+                    kc_base = ' '.join(w for w in kc.split() if w not in _AGE_QUALIFIERS).strip()
+                    if not kc_base:
+                        continue
+                    if (kc_base == base_ing or word_in(kc_base, base_ing) or
+                            word_in(base_ing, kc_base)) and (
+                            base_key is None or len(kc_base) > len(
+                                ' '.join(w for w in clean(base_key).split()
+                                         if w not in _AGE_QUALIFIERS))):
+                        base_key = key
+                base_styles = [clean(s) for s in CATEGORY_MAP.get(base_key, [])] if base_key else []
+
+                for bottle in inventory:
+                    if not _eligible(bottle):
+                        continue
+                    borigin = clean(bottle.get('Origin', ''))
+                    if geo_origin_filter and geo_origin_filter not in borigin:
+                        continue
+                    # Only match bottles with a non-empty, non-"unaged" Age field
+                    age_val = (bottle.get('Age') or '').strip().lower()
+                    if not age_val or age_val == 'unaged':
+                        continue
+                    bstyle = clean(bottle.get('Style', ''))
+                    bcat   = clean(bottle.get('Category', ''))
+                    # Strip aging qualifiers from style for base matching
+                    bstyle_base = ' '.join(w for w in bstyle.split()
+                                           if w not in _AGE_QUALIFIERS).strip()
+                    if (base_ing == bstyle_base or
+                            word_in(base_ing, bstyle_base) or
+                            word_in(base_ing, bcat)):
+                        return True, bottle['Name']
+                    for sc in base_styles:
+                        sc_base = ' '.join(w for w in sc.split() if w not in _AGE_QUALIFIERS).strip()
+                        if sc_base and (word_in(sc_base, bstyle_base) or word_in(sc_base, bcat)):
+                            return True, bottle['Name']
 
     # Specialty pantry check — runs after bottles so house-made preparations only
     # satisfy ingredients when no real bottle match exists.  Word-boundary matching
