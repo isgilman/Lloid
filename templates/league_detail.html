@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
-{% block title %}{{ league.name }} — Spirit Rankings — Lloid{% endblock %}
+{% block title %}{{ league.name }} — Bottle Rankings — Lloid{% endblock %}
 
 {% block content %}
 <div class="page-container page-container-narrow">
   <div class="detail-header">
     <div class="detail-header-top">
-      <a href="{{ url_for('leagues_index') }}" class="back-link">&#8592; Spirit Rankings</a>
+      <a href="{{ url_for('leagues_index') }}" class="back-link">&#8592; Bottle Rankings</a>
       {% if not league.is_default %}
       <div class="detail-actions">
         <button class="btn btn-ghost btn-sm" onclick="startRename()">Rename</button>
         <form method="post" action="{{ url_for('league_delete', league_id=league.id) }}"
-              onsubmit="return confirm('Delete league &quot;{{ league.name }}&quot;? Rankings will be lost.')"
+              onsubmit="return confirm('Delete list &quot;{{ league.name }}&quot;? Rankings will be lost.')"
               style="display:inline">
-          <button type="submit" class="btn btn-ghost btn-sm btn-danger">Delete League</button>
+          <button type="submit" class="btn btn-ghost btn-sm btn-danger">Delete List</button>
         </form>
       </div>
       {% endif %}
@@ -43,7 +43,8 @@
     <div class="league-rank-row">
       <span class="league-rank-num {% if loop.index <= 3 %}rank-top{% endif %}">#{{ loop.index }}</span>
       <div class="league-rank-info">
-        <span class="league-rank-name">{{ m.bottle_name }}</span>
+        <a class="league-rank-name league-rank-name-link"
+           href="{{ url_for('inventory', open=m.bottle_name) }}">{{ m.bottle_name }}</a>
         {% if m.match_count > 0 %}
           <span class="league-rank-matches">{{ m.match_count }} match{% if m.match_count != 1 %}es{% endif %}</span>
         {% else %}
@@ -107,12 +108,14 @@ async function submitRename() {
     const data = await res.json();
     if (data.success) {
       document.getElementById('league-title').textContent = name;
-      document.title = name + ' — Leagues — Lloid';
+      document.title = name + ' — Bottle Rankings — Lloid';
       cancelRename();
       showToast('Renamed', 'success');
+    } else {
+      showToast(data.error || 'Error renaming list', 'error');
     }
   } catch(e) {
-    showToast('Error renaming league', 'error');
+    showToast('Error renaming list', 'error');
   }
 }
 </script>

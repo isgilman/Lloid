@@ -57,13 +57,14 @@ CREATE TABLE IF NOT EXISTS recently_viewed (
 );
 
 CREATE TABLE IF NOT EXISTS bottle_notes (
-    bottle_name  TEXT PRIMARY KEY,
-    in_stock     INTEGER NOT NULL DEFAULT 1,
-    nose         TEXT    NOT NULL DEFAULT '',
-    palate       TEXT    NOT NULL DEFAULT '',
-    finish       TEXT    NOT NULL DEFAULT '',
-    flavor_tags  TEXT    NOT NULL DEFAULT '[]',
-    updated_at   TEXT    NOT NULL
+    bottle_name     TEXT PRIMARY KEY,
+    in_stock        INTEGER NOT NULL DEFAULT 1,
+    nose            TEXT    NOT NULL DEFAULT '',
+    palate          TEXT    NOT NULL DEFAULT '',
+    finish          TEXT    NOT NULL DEFAULT '',
+    flavor_tags     TEXT    NOT NULL DEFAULT '[]',
+    spirit_details  TEXT    NOT NULL DEFAULT '{}',
+    updated_at      TEXT    NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS lists (
@@ -120,6 +121,10 @@ def _connect():
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA foreign_keys=ON")
+    # Wait up to 5s for a competing writer instead of failing instantly with
+    # "database is locked" (default busy_timeout is 0). Flask runs threaded=True,
+    # so concurrent requests can contend for the write lock.
+    conn.execute("PRAGMA busy_timeout=5000")
     return conn
 
 
@@ -140,6 +145,14 @@ def init_db():
     DATA_DIR.mkdir(exist_ok=True)
     with _connect() as conn:
         conn.executescript(_SCHEMA)
+        # ── Migrations ────────────────────────────────────────────────────────
+        cols = [r[1] for r in conn.execute("PRAGMA table_info(bottle_notes)").fetchall()]
+        if 'spirit_details' not in cols:
+            conn.execute(
+                "ALTER TABLE bottle_notes ADD COLUMN spirit_details TEXT NOT NULL DEFAULT '{}'"
+            )
+            conn.commit()
+        # ─────────────────────────────────────────────────────────────────────
         count = conn.execute("SELECT COUNT(*) FROM cocktails").fetchone()[0]
         if count == 0 and COCKTAILS_JSON.exists():
             _bootstrap(conn)
@@ -496,7 +509,7 @@ def import_cocktails(cocktails: list, overwrite_shared: bool = True) -> dict:
 
 # ── Bottle notes ──────────────────────────────────────────────────────────────
 
-_BLANK_BOTTLE_NOTE = {'in_stock': True, 'nose': '', 'palate': '', 'finish': '', 'flavor_tags': []}
+_BLANK_BOTTLE_NOTE = {'in_stock': True, 'nose': '', 'palate': '', 'finish': '', 'flavor_tags': [], 'spirit_details': {}}
 
 
 def get_bottle_note(bottle_name: str) -> dict:
@@ -507,11 +520,12 @@ def get_bottle_note(bottle_name: str) -> dict:
         ).fetchone()
     if row:
         return {
-            'in_stock':    bool(row['in_stock']),
-            'nose':        row['nose']   or '',
-            'palate':      row['palate'] or '',
-            'finish':      row['finish'] or '',
-            'flavor_tags': json.loads(row['flavor_tags'] or '[]'),
+            'in_stock':       bool(row['in_stock']),
+            'nose':           row['nose']   or '',
+            'palate':         row['palate'] or '',
+            'finish':         row['finish'] or '',
+            'flavor_tags':    json.loads(row['flavor_tags'] or '[]'),
+            'spirit_details': json.loads(row['spirit_details'] or '{}'),
         }
     return dict(_BLANK_BOTTLE_NOTE)
 
@@ -520,25 +534,30 @@ def set_bottle_note(bottle_name: str, **kwargs) -> dict:
     """Upsert tasting notes / availability for a bottle."""
     now     = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
     current = get_bottle_note(bottle_name)
-    in_stock    = kwargs.get('in_stock',    current['in_stock'])
-    nose        = kwargs.get('nose',        current['nose'])
-    palate      = kwargs.get('palate',      current['palate'])
-    finish      = kwargs.get('finish',      current['finish'])
-    flavor_tags = kwargs.get('flavor_tags', current['flavor_tags'])
+    in_stock       = kwargs.get('in_stock',       current['in_stock'])
+    nose           = kwargs.get('nose',            current['nose'])
+    palate         = kwargs.get('palate',          current['palate'])
+    finish         = kwargs.get('finish',          current['finish'])
+    flavor_tags    = kwargs.get('flavor_tags',     current['flavor_tags'])
+    spirit_details = kwargs.get('spirit_details',  current['spirit_details'])
     if isinstance(flavor_tags, list):
         flavor_tags = json.dumps(flavor_tags)
+    if isinstance(spirit_details, dict):
+        spirit_details = json.dumps(spirit_details)
     with _connect() as conn:
         conn.execute("""
-            INSERT INTO bottle_notes (bottle_name, in_stock, nose, palate, finish, flavor_tags, updated_at)
-            VALUES (?,?,?,?,?,?,?)
+            INSERT INTO bottle_notes
+                (bottle_name, in_stock, nose, palate, finish, flavor_tags, spirit_details, updated_at)
+            VALUES (?,?,?,?,?,?,?,?)
             ON CONFLICT(bottle_name) DO UPDATE SET
                 in_stock=excluded.in_stock,
                 nose=excluded.nose,
                 palate=excluded.palate,
                 finish=excluded.finish,
                 flavor_tags=excluded.flavor_tags,
+                spirit_details=excluded.spirit_details,
                 updated_at=excluded.updated_at
-        """, (bottle_name, int(in_stock), nose, palate, finish, flavor_tags, now))
+        """, (bottle_name, int(in_stock), nose, palate, finish, flavor_tags, spirit_details, now))
         conn.commit()
     return get_bottle_note(bottle_name)
 
@@ -572,11 +591,12 @@ def get_all_bottle_notes() -> dict:
         rows = conn.execute("SELECT * FROM bottle_notes").fetchall()
     return {
         r['bottle_name']: {
-            'in_stock':    bool(r['in_stock']),
-            'nose':        r['nose']   or '',
-            'palate':      r['palate'] or '',
-            'finish':      r['finish'] or '',
-            'flavor_tags': json.loads(r['flavor_tags'] or '[]'),
+            'in_stock':       bool(r['in_stock']),
+            'nose':           r['nose']   or '',
+            'palate':         r['palate'] or '',
+            'finish':         r['finish'] or '',
+            'flavor_tags':    json.loads(r['flavor_tags'] or '[]'),
+            'spirit_details': json.loads(r['spirit_details'] or '{}'),
         }
         for r in rows
     }
@@ -791,7 +811,7 @@ def ensure_default_leagues(categories: list) -> None:
 
 
 def get_leagues() -> list:
-    """Return all leagues with member counts; defaults first, then alphabetical."""
+    """Return all leagues with member counts, sorted alphabetically by name."""
     with _connect() as conn:
         rows = conn.execute("""
             SELECT l.id, l.name, l.is_default, l.category, l.created_at,
@@ -799,7 +819,7 @@ def get_leagues() -> list:
             FROM leagues l
             LEFT JOIN league_members lm ON lm.league_id = l.id
             GROUP BY l.id
-            ORDER BY l.is_default DESC, l.name
+            ORDER BY l.name COLLATE NOCASE
         """).fetchall()
     return [dict(r) for r in rows]
 
@@ -823,6 +843,19 @@ def get_league(league_id: str):
         m['rank'] = i + 1
         m['tier_class'] = _elo_tier(m['elo_score'])
     return lg
+
+
+def league_name_exists(name: str, exclude_id: str = None) -> bool:
+    """True if a league (default or custom) already uses this name (case-insensitive)."""
+    with _connect() as conn:
+        if exclude_id:
+            row = conn.execute(
+                "SELECT 1 FROM leagues WHERE name=? COLLATE NOCASE AND id<>?",
+                (name, exclude_id)).fetchone()
+        else:
+            row = conn.execute(
+                "SELECT 1 FROM leagues WHERE name=? COLLATE NOCASE", (name,)).fetchone()
+    return row is not None
 
 
 def create_league(name: str) -> dict:

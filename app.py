@@ -30,8 +30,9 @@ DATA_DIR = BASE_DIR / 'Data'
 INVENTORY_FILE = DATA_DIR / 'bar_inventory.csv'
 COCKTAILS_FILE = DATA_DIR / 'cocktails.json'
 PANTRY_FILE    = DATA_DIR / 'pantry.json'
+DISTILLERIES_FILE = DATA_DIR / 'distilleries.json'
 
-INVENTORY_FIELDS = ['Name', 'Category', 'Style', 'Origin', 'Age', 'ABV', 'Producer', 'Use']
+INVENTORY_FIELDS = ['Name', 'Category', 'Style', 'Country', 'Region', 'Age', 'ABV', 'Producer', 'Use']
 
 # Curated style/type categories shown in filter chips and the new/edit cocktail form.
 # Each tuple is (tag_value_stored_in_tags_array, display_label).
@@ -175,8 +176,8 @@ CATEGORY_SEARCH_TERMS = {
     'jamaican rum': 'rum jamaica',
 }
 
-# Maps geographic adjectives that can appear in ingredient names to origin keywords.
-# When detected, the bottle loop is restricted to bottles whose Origin contains the keyword.
+# Maps geographic adjectives that can appear in ingredient names to country keywords.
+# When detected, the bottle loop is restricted to bottles whose Country contains the keyword.
 # This lets "Jamaican Rum" match only Jamaican rums rather than any rum.
 GEO_MODIFIERS = {
     'jamaican': 'jamaica',
@@ -248,8 +249,8 @@ _UNIT_TO_OZ = {
     'cl': 1 / 2.95735,
     'tsp': 1 / 6.0,          # 5 ml
     'tbsp': 0.5,              # 15 ml
-    'barspoon': 1 / 12.0,    # ~2.5 ml
-    'barspoons': 1 / 12.0,
+    'barspoon': 1 / 6.0,     # ~5 ml — house convention: 1 barspoon = 1 tsp
+    'barspoons': 1 / 6.0,
     'dash': 0.021,            # ~0.625 ml per dash (Dave Arnold measurement)
     'dashes': 0.021,
     'drop': 0.005,
@@ -550,13 +551,14 @@ def load_inventory_with_notes():
     bottles = load_inventory()
     notes   = _db.get_all_bottle_notes()
     for i, b in enumerate(bottles):
-        note = notes.get(b['Name'], {'in_stock': True, 'nose': '', 'palate': '', 'finish': '', 'flavor_tags': []})
-        b['in_stock']    = note['in_stock']
-        b['nose']        = note['nose']
-        b['palate']      = note['palate']
-        b['finish']      = note['finish']
-        b['flavor_tags'] = note['flavor_tags']
-        b['_index']      = i
+        note = notes.get(b['Name'], {'in_stock': True, 'nose': '', 'palate': '', 'finish': '', 'flavor_tags': [], 'spirit_details': {}})
+        b['in_stock']       = note['in_stock']
+        b['nose']           = note['nose']
+        b['palate']         = note['palate']
+        b['finish']         = note['finish']
+        b['flavor_tags']    = note['flavor_tags']
+        b['spirit_details'] = note.get('spirit_details', {})
+        b['_index']         = i
     return bottles
 
 
@@ -570,6 +572,21 @@ def load_cocktails():
 def save_cocktails(cocktails):
     with open(COCKTAILS_FILE, 'w', encoding='utf-8') as f:
         json.dump({'cocktails': cocktails}, f, indent=2, ensure_ascii=False)
+
+
+def load_distilleries() -> list:
+    """Return all distilleries from distilleries.json, sorted by name."""
+    if DISTILLERIES_FILE.exists():
+        with open(DISTILLERIES_FILE, encoding='utf-8') as f:
+            return json.load(f).get('distilleries', [])
+    return []
+
+
+def save_distilleries(distilleries: list):
+    """Write the distillery list back to distilleries.json."""
+    distilleries = sorted(distilleries, key=lambda d: d.get('name', '').lower())
+    with open(DISTILLERIES_FILE, 'w', encoding='utf-8') as f:
+        json.dump({'distilleries': distilleries}, f, ensure_ascii=False, indent=2)
 
 
 def load_pantry():
@@ -605,6 +622,32 @@ def unique_id(name, existing_ids):
         candidate = f"{base}-{counter}"
         counter += 1
     return candidate
+
+
+def creator_tokens(creator):
+    """Split a creator string into one token per person.
+
+    "A, B and C (Bar, City)" → ["A (Bar, City)", "B (Bar, City)", "C (Bar, City)"]
+    The parenthetical suffix is attached to each name. ' and ' inside the
+    parens (e.g. "Will Elliot (Maison Premiere and Sauvage, Brooklyn)") is
+    left alone because only the part before the parens is split.
+    """
+    creator = (creator or '').strip()
+    if not creator:
+        return []
+    m = re.match(r'^(.*?)\s*(\([^)]*\))?\s*$', creator)
+    names_part = (m.group(1) or '').strip()
+    suffix     = m.group(2) or ''
+    parts = [p.strip() for p in re.split(r',\s*|\s+and\s+', names_part) if p.strip()]
+    if not parts:
+        return [creator]
+    return [f"{p} {suffix}".strip() for p in parts]
+
+
+def _creator_sort_key(token):
+    """Sort creator tokens by the person's last name (ignoring the bar suffix)."""
+    name = token.split('(')[0].strip()
+    return name.split()[-1].lower() if name else ''
 
 
 # ── Ingredient matching ───────────────────────────────────────────────────────
@@ -702,7 +745,7 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
             bname   = clean(bottle.get('Name', ''))
             bstyle  = clean(bottle.get('Style', ''))
             bcat    = clean(bottle.get('Category', ''))
-            borigin = clean(bottle.get('Origin', ''))
+            borigin = clean(bottle.get('Country', '') + ' ' + bottle.get('Region', ''))
 
             if geo_origin_filter and geo_origin_filter not in borigin:
                 continue
@@ -766,7 +809,7 @@ def check_ingredient_available(ing_name, inventory, pantry=None, is_premium=Fals
                 for bottle in inventory:
                     if not _eligible(bottle):
                         continue
-                    borigin = clean(bottle.get('Origin', ''))
+                    borigin = clean(bottle.get('Country', '') + ' ' + bottle.get('Region', ''))
                     if geo_origin_filter and geo_origin_filter not in borigin:
                         continue
                     # Only match bottles with a non-empty, non-"unaged" Age field
@@ -999,9 +1042,10 @@ def index():
 
 @app.route('/inventory')
 def inventory():
-    bottles = load_inventory_with_notes()
+    bottles = sorted(load_inventory_with_notes(), key=lambda b: b.get('Name', '').lower())
     cats    = sorted(set(b.get('Category', '') for b in bottles if b.get('Category')))
     custom_flavor_tags = json.loads(_db.get_setting('custom_flavor_tags', '{}'))
+    custom_spirit_options = json.loads(_db.get_setting('custom_spirit_options', '{}'))
     # Ensure a default league exists for every category
     _db.ensure_default_leagues(cats)
     # Enrich each bottle with its ELO data
@@ -1011,9 +1055,16 @@ def inventory():
         b['elo_leagues'] = leagues
         b['elo_display'] = leagues[0] if leagues else None  # best (custom-first, highest score)
     all_leagues = _db.get_leagues()
+    all_distilleries = load_distilleries()
+    distillery_map = {d['id']: d for d in all_distilleries}
+    for b in bottles:
+        dids = (b.get('spirit_details') or {}).get('distilleries') or []
+        b['distillery_list'] = [distillery_map[did] for did in dids if did in distillery_map]
     return render_template('inventory.html', bottles=bottles, categories=cats,
                            custom_flavor_tags=custom_flavor_tags,
-                           all_leagues=all_leagues)
+                           custom_spirit_options=custom_spirit_options,
+                           all_leagues=all_leagues,
+                           all_distilleries=all_distilleries)
 
 
 @app.route('/inventory/flavor-tags/add', methods=['POST'])
@@ -1041,6 +1092,97 @@ def _normalise_abv(bottle: dict) -> dict:
     return bottle
 
 
+# Built-in chip values per spirit-option group (mirror the static chips in inventory.html)
+_DEFAULT_SPIRIT_OPTIONS = {
+    'still_type':            {'pot', 'column'},
+    'fermentation_materials': {'molasses', 'cane-juice', 'cane-syrup', 'turbinado',
+                               'piloncillo', 'dunder', 'muck'},
+    'agave_species':         {'espadin', 'blue-weber', 'tobala', 'tepeztate', 'arroqueno',
+                              'madrecuixe', 'cuishe', 'tobaziche', 'jabali', 'mexicano',
+                              'cenizo', 'salmiana'},
+}
+
+_DEFAULT_SPIRIT_OPTION_LABELS = {
+    'still_type': {'pot': 'Pot', 'column': 'Column'},
+    'fermentation_materials': {
+        'molasses': 'Molasses', 'cane-juice': 'Cane Juice', 'cane-syrup': 'Cane Syrup',
+        'turbinado': 'Turbinado', 'piloncillo': 'Piloncillo', 'dunder': 'Dunder', 'muck': 'Muck',
+    },
+    'agave_species': {
+        'espadin': 'Espadín', 'blue-weber': 'Blue Weber', 'tobala': 'Tobalá',
+        'tepeztate': 'Tepeztate', 'arroqueno': 'Arroqueño', 'madrecuixe': 'Madrecuixe',
+        'cuishe': 'Cuishe', 'tobaziche': 'Tobaziche', 'jabali': 'Jabalí',
+        'mexicano': 'Mexicano', 'cenizo': 'Cenizo', 'salmiana': 'Salmiana',
+    },
+}
+
+# Mirror of FLAVOR_GROUPS in inventory.html — used for Settings grouping
+_FLAVOR_GROUPS = [
+    ('Tropical Fruit', [('banana','Banana'),('pineapple','Pineapple'),('mango','Mango'),
+      ('coconut','Coconut'),('passion-fruit','Passion Fruit'),('papaya','Papaya'),
+      ('guava','Guava'),('lychee','Lychee'),('tropical-fruit','Tropical Fruit (generic)'),]),
+    ('Citrus', [('lemon','Lemon'),('lime','Lime'),('orange','Orange'),
+      ('grapefruit','Grapefruit'),('tangerine','Tangerine'),('citrus-zest','Citrus Zest'),]),
+    ('Stone & Other Fruit', [('peach','Peach'),('apricot','Apricot'),('cherry','Cherry'),
+      ('plum','Plum'),('apple','Apple'),('pear','Pear'),('berry','Berry'),
+      ('strawberry','Strawberry'),('raspberry','Raspberry'),('grape','Grape'),
+      ('melon','Melon'),('green-fruit','Green Fruit (generic)'),]),
+    ('Dried Fruit', [('raisin','Raisin'),('date','Date'),('fig','Fig'),('prune','Prune'),
+      ('currant','Currant'),('dried-mango','Dried Mango'),]),
+    ('Floral', [('floral','Floral'),('rose','Rose'),('jasmine','Jasmine'),('violet','Violet'),
+      ('orange-blossom','Orange Blossom'),('lavender','Lavender'),]),
+    ('Herbal & Vegetal', [('mint','Mint'),('grassy','Grassy'),('herbal','Herbal'),
+      ('anise','Anise'),('eucalyptus','Eucalyptus'),('tobacco-leaf','Tobacco Leaf'),
+      ('vegetal','Vegetal'),('sugarcane','Sugarcane'),('agricole','Agricole'),]),
+    ('Baking Spice', [('vanilla','Vanilla'),('cinnamon','Cinnamon'),('clove','Clove'),
+      ('nutmeg','Nutmeg'),('allspice','Allspice'),('cardamom','Cardamom'),('ginger','Ginger'),]),
+    ('Heat & Pepper', [('black-pepper','Black Pepper'),('white-pepper','White Pepper'),
+      ('chili','Chili'),('spicy-heat','Spicy Heat'),]),
+    ('Sweet & Caramel', [('caramel','Caramel'),('toffee','Toffee'),('butterscotch','Butterscotch'),
+      ('molasses','Molasses'),('honey','Honey'),('brown-sugar','Brown Sugar'),
+      ('maple','Maple'),('malty','Malty'),]),
+    ('Chocolate & Coffee', [('chocolate','Chocolate'),('dark-chocolate','Dark Chocolate'),
+      ('cocoa','Cocoa'),('coffee','Coffee'),('espresso','Espresso'),('mocha','Mocha'),]),
+    ('Wood & Oak', [('oak','Oak'),('cedar','Cedar'),('leather','Leather'),('tobacco','Tobacco'),
+      ('resin','Resin'),('char','Char'),('sawdust','Sawdust'),]),
+    ('Earth & Smoke', [('smoky','Smoky'),('peaty','Peaty'),('earthy','Earthy'),('ash','Ash'),
+      ('mineral','Mineral'),('gunpowder','Gunpowder'),]),
+    ('Funk & Ferment', [('funky','Funky'),('overripe','Overripe'),('barnyard','Barnyard'),
+      ('acetone','Acetone'),('wax','Wax'),('solvent','Solvent'),('ester','Ester'),
+      ('rubber','Rubber'),('petroleum','Petroleum'),('bubblegum','Bubblegum'),]),
+    ('Texture & Other', [('creamy','Creamy'),('buttery','Buttery'),('almond','Almond'),
+      ('walnut','Walnut'),('briny','Briny'),('bitter','Bitter'),('sour','Sour'),
+      ('medicinal','Medicinal'),('brioche','Brioche'),('umami','Umami'),('olive','Olive'),]),
+]
+_FLAVOR_VALUE_TO_GROUP  = {v: g for g, tags in _FLAVOR_GROUPS for v, _ in tags}
+_FLAVOR_VALUE_TO_LABEL  = {v: l for _, tags in _FLAVOR_GROUPS for v, l in tags}
+
+
+def _register_custom_spirit_options(spirit_details: dict):
+    """Persist any non-default still-type / fermentation / agave values globally so
+    they become selectable chips when editing any bottle of that kind."""
+    if not isinstance(spirit_details, dict):
+        return
+    current = json.loads(_db.get_setting('custom_spirit_options', '{}'))
+    changed = False
+    for group in ('still_type', 'fermentation_materials', 'agave_species'):
+        values = spirit_details.get(group) or []
+        if not isinstance(values, list):
+            continue
+        defaults = _DEFAULT_SPIRIT_OPTIONS[group]
+        existing = current.setdefault(group, [])
+        existing_vals = {o['value'] for o in existing if isinstance(o, dict)}
+        for v in values:
+            if not v or v in defaults or v in existing_vals:
+                continue
+            label = v.replace('-', ' ').title()
+            existing.append({'value': v, 'label': label})
+            existing_vals.add(v)
+            changed = True
+    if changed:
+        _db.set_setting('custom_spirit_options', json.dumps(current))
+
+
 @app.route('/inventory/add', methods=['POST'])
 def inventory_add():
     bottles = load_inventory()
@@ -1049,8 +1191,169 @@ def inventory_add():
         _normalise_abv(new)
         bottles.append(new)
         save_inventory(bottles)
+        try:
+            dist_ids = json.loads(request.form.get('distillery_ids', '[]'))
+        except (ValueError, TypeError):
+            dist_ids = []
+        # Rich production data captured from a tech-sheet upload (optional)
+        try:
+            extra = json.loads(request.form.get('extra_data') or '{}')
+        except (ValueError, TypeError):
+            extra = {}
+        spirit_details = extra.get('spirit_details') or {}
+        if dist_ids:
+            spirit_details['distilleries'] = dist_ids
+        note_kwargs = {}
+        if spirit_details:
+            note_kwargs['spirit_details'] = spirit_details
+        for fld in ('nose', 'palate', 'finish'):
+            if extra.get(fld):
+                note_kwargs[fld] = extra[fld]
+        if extra.get('flavor_tags'):
+            note_kwargs['flavor_tags'] = extra['flavor_tags']
+        if note_kwargs:
+            _db.set_bottle_note(new['Name'], **note_kwargs)
+            _register_custom_spirit_options(spirit_details)
         flash(f"Added \"{new['Name']}\" to inventory.", 'success')
     return redirect(url_for('inventory'))
+
+
+@app.route('/inventory/scan', methods=['POST'])
+def inventory_scan():
+    if 'image' not in request.files:
+        return jsonify({'error': 'no image'}), 400
+    img_file = request.files['image']
+    img_bytes = img_file.read()
+    if not img_bytes:
+        return jsonify({'error': 'empty file'}), 400
+    media_type = img_file.content_type or 'image/jpeg'
+    img_b64 = base64.b64encode(img_bytes).decode('utf-8')
+    client = anthropic.Anthropic()
+    msg = client.messages.create(
+        model='claude-sonnet-4-6',
+        max_tokens=600,
+        messages=[{
+            'role': 'user',
+            'content': [
+                {'type': 'image', 'source': {'type': 'base64', 'media_type': media_type, 'data': img_b64}},
+                {'type': 'text', 'text': (
+                    'You are a spirits expert cataloging a bottle for a home bar inventory.\n\n'
+                    'Examine the bottle label and return ONLY a JSON object with these fields '
+                    '(empty string if not visible):\n'
+                    '{\n'
+                    '  "Name": "Full product name as on the label",\n'
+                    '  "Category": "Primary category — choose the closest from: Rum, Whiskey, Gin, '
+                    'Vodka, Tequila, Agave Spirit, Brandy, Cognac, Calvados, Amaro / Aperitif, '
+                    'Herbal / Spice Liqueur, Fruit Liqueur, Fortified Wine, Aromatized Wine, '
+                    'Eau de Vie, Aquavit, Other",\n'
+                    '  "Style": "Specific sub-style (e.g. Straight Bourbon, Rhum Agricole Blanc, '
+                    'Blanco Tequila, Aged Rum, Single Malt Scotch, Mezcal)",\n'
+                    '  "Country": "Country of origin",\n'
+                    '  "Region": "State, province, or sub-region (e.g. Kentucky, Oaxaca, Speyside, Martinique)",\n'
+                    '  "Age": "Age statement — use the number shown (e.g. \\"12 Year\\"), '
+                    '\'NAS\' for aged with no age statement, \'Unaged\' for new-make, '
+                    'or empty string if truly unknown",\n'
+                    '  "ABV": "Alcohol percentage including % sign (e.g. \'43%\', \'57.2%\')",\n'
+                    '  "Producer": "Producer or bottler shown on label",\n'
+                    '  "distillery_name": "Name of the distillery where it was made (may differ from '
+                    'producer for independent bottlings; empty if same as producer or unknown)",\n'
+                    '  "Use": "Cocktail"\n'
+                    '}\n\n'
+                    'Return only the JSON object with no markdown, no explanation.'
+                )}
+            ]
+        }]
+    )
+    text = msg.content[0].text.strip()
+    m = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', text)
+    if m:
+        text = m.group(1)
+    try:
+        data = json.loads(text)
+        return jsonify({'success': True, 'data': data})
+    except json.JSONDecodeError:
+        return jsonify({'error': 'Could not parse label', 'raw': text}), 500
+
+
+TECH_SHEET_PROMPT = (
+    'You are a spirits expert cataloging a bottle for a home bar inventory from its '
+    'producer tech sheet / spec sheet. Tech sheets list detailed production information.\n\n'
+    'Extract everything available and return ONLY a JSON object with this exact shape '
+    '(use empty string / empty array / omit a key when the info is not present):\n'
+    '{\n'
+    '  "Name": "Full product name",\n'
+    '  "Category": "Closest of: Rum, Whiskey, Gin, Vodka, Tequila, Agave Spirit, Brandy, '
+    'Cognac, Calvados, Amaro / Aperitif, Herbal / Spice Liqueur, Fruit Liqueur, Fortified Wine, '
+    'Aromatized Wine, Eau de Vie, Aquavit, Other (use \'Agave Spirit\' for tequila, mezcal, '
+    'sotol, raicilla, bacanora)",\n'
+    '  "Style": "Specific sub-style (e.g. Straight Bourbon, Rhum Agricole Blanc, Mezcal Joven, Aged Rum)",\n'
+    '  "Country": "Country of origin",\n'
+    '  "Region": "State, province, or sub-region",\n'
+    '  "Age": "Age statement — number shown, \'NAS\' for aged no-statement, \'Unaged\' for new-make, else empty",\n'
+    '  "ABV": "Alcohol percentage including % sign",\n'
+    '  "Producer": "Producer or bottler",\n'
+    '  "distillery_name": "Distillery where it was made if stated (may differ from producer), else empty",\n'
+    '  "Use": "Cocktail",\n'
+    '  "spirit_details": {\n'
+    '    "still_type": ["pot" and/or "column" (lowercase); other still descriptors lowercase-hyphenated],\n'
+    '    "fermentation_materials": ["for rum — any of: molasses, cane-juice, cane-syrup, turbinado, '
+    'piloncillo, dunder, muck; other materials lowercase-hyphenated e.g. cane-vinegar"],\n'
+    '    "agave_species": ["for agave spirits — lowercase-hyphenated species e.g. espadin, blue-weber, '
+    'tobala, tepeztate, arroqueno, madrecuixe, cuishe, tobaziche, jabali, mexicano, cenizo, salmiana"],\n'
+    '    "mash_bill": [{"grain": "corn", "pct": 75}, ...] (for whiskey; pct numeric or null),\n'
+    '    "barrel_type": "e.g. Ex-Bourbon, New American Oak, French Oak",\n'
+    '    "barrel_fill": "one of: First Fill, Second Fill, Third Fill, Refill, New Oak",\n'
+    '    "barrel_duration": "e.g. 18 months, 5 years",\n'
+    '    "barrel_climate": "temperate or tropical",\n'
+    '    "notes": "any other notable production detail (water source, yeast, distillation strength, etc.)"\n'
+    '  },\n'
+    '  "nose": "aroma description if the sheet lists tasting notes, else empty",\n'
+    '  "palate": "palate description if present, else empty",\n'
+    '  "finish": "finish description if present, else empty"\n'
+    '}\n\n'
+    'Only include spirit_details keys that apply to this spirit type and are actually stated. '
+    'Return only the JSON object with no markdown and no explanation.'
+)
+
+
+@app.route('/inventory/tech-sheet', methods=['POST'])
+def inventory_tech_sheet():
+    if 'file' not in request.files:
+        return jsonify({'error': 'no file'}), 400
+    f = request.files['file']
+    file_bytes = f.read()
+    if not file_bytes:
+        return jsonify({'error': 'empty file'}), 400
+    media_type = f.content_type or 'application/octet-stream'
+    b64 = base64.b64encode(file_bytes).decode('utf-8')
+
+    if media_type == 'application/pdf' or (f.filename or '').lower().endswith('.pdf'):
+        source_block = {'type': 'document',
+                        'source': {'type': 'base64', 'media_type': 'application/pdf', 'data': b64}}
+    else:
+        if not media_type.startswith('image/'):
+            media_type = 'image/jpeg'
+        source_block = {'type': 'image',
+                        'source': {'type': 'base64', 'media_type': media_type, 'data': b64}}
+
+    client = anthropic.Anthropic()
+    msg = client.messages.create(
+        model='claude-sonnet-4-6',
+        max_tokens=1200,
+        messages=[{
+            'role': 'user',
+            'content': [source_block, {'type': 'text', 'text': TECH_SHEET_PROMPT}],
+        }]
+    )
+    text = msg.content[0].text.strip()
+    m = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', text)
+    if m:
+        text = m.group(1)
+    try:
+        data = json.loads(text)
+        return jsonify({'success': True, 'data': data})
+    except json.JSONDecodeError:
+        return jsonify({'error': 'Could not parse tech sheet', 'raw': text}), 500
 
 
 @app.route('/inventory/update', methods=['POST'])
@@ -1084,13 +1387,23 @@ def inventory_note():
     name = request.form.get('name', '').strip()
     if not name:
         return jsonify({'success': False}), 400
+    # spirit_details is sent as a JSON string
+    sd_raw = request.form.get('spirit_details', '{}').strip()
+    try:
+        spirit_details = json.loads(sd_raw)
+    except (ValueError, TypeError):
+        spirit_details = {}
     _db.set_bottle_note(
         name,
-        nose        = request.form.get('nose', '').strip(),
-        palate      = request.form.get('palate', '').strip(),
-        finish      = request.form.get('finish', '').strip(),
-        flavor_tags = request.form.getlist('flavor_tags'),
+        nose           = request.form.get('nose', '').strip(),
+        palate         = request.form.get('palate', '').strip(),
+        finish         = request.form.get('finish', '').strip(),
+        flavor_tags    = request.form.getlist('flavor_tags'),
+        spirit_details = spirit_details,
     )
+    # Make any newly-added custom still-type/fermentation/agave values available
+    # when editing other bottles of the same kind.
+    _register_custom_spirit_options(spirit_details)
     return jsonify({'success': True})
 
 
@@ -1106,6 +1419,194 @@ def inventory_delete():
         _db.remove_bottle_from_all_leagues(name)
         flash(f"Removed \"{name}\" from inventory.", 'success')
     return redirect(url_for('inventory'))
+
+
+# ── Routes: distilleries ─────────────────────────────────────────────────────
+
+@app.route('/api/distilleries')
+def api_distilleries_list():
+    q = request.args.get('q', '').strip().lower()
+    distilleries = load_distilleries()
+    if q:
+        distilleries = [d for d in distilleries
+                        if q in d.get('name', '').lower()
+                        or q in d.get('region', '').lower()
+                        or q in d.get('country', '').lower()]
+    return jsonify(distilleries)
+
+
+@app.route('/api/distilleries', methods=['POST'])
+def api_distilleries_create():
+    data = request.get_json(force=True) or {}
+    name = data.get('name', '').strip()
+    if not name:
+        return jsonify({'error': 'name required'}), 400
+    distilleries = load_distilleries()
+    base_id = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+    new_id  = base_id
+    existing_ids = {d['id'] for d in distilleries}
+    suffix = 1
+    while new_id in existing_ids:
+        new_id = f'{base_id}-{suffix}'
+        suffix += 1
+    new_d = {'id': new_id, 'name': name,
+              'region': data.get('region', '').strip(),
+              'country': data.get('country', '').strip()}
+    distilleries.append(new_d)
+    save_distilleries(distilleries)
+    return jsonify(new_d), 201
+
+
+@app.route('/api/distilleries/<dist_id>', methods=['PATCH'])
+def api_distillery_update(dist_id):
+    data = request.get_json(force=True) or {}
+    distilleries = load_distilleries()
+    for d in distilleries:
+        if d['id'] == dist_id:
+            if 'name' in data:
+                d['name'] = data['name'].strip()
+            if 'region' in data:
+                d['region'] = data['region'].strip()
+            if 'country' in data:
+                d['country'] = data['country'].strip()
+            save_distilleries(distilleries)
+            return jsonify(d)
+    return jsonify({'error': 'not found'}), 404
+
+
+@app.route('/api/distilleries/<dist_id>', methods=['DELETE'])
+def api_distillery_delete(dist_id):
+    all_notes = _db.get_all_bottle_notes()
+    users = [name for name, note in all_notes.items()
+             if dist_id in (note.get('spirit_details') or {}).get('distilleries', [])]
+    if users:
+        sample = ', '.join(users[:3])
+        suffix = f' and {len(users) - 3} more' if len(users) > 3 else ''
+        return jsonify({'error': f'Used by: {sample}{suffix}'}), 409
+    distilleries = [d for d in load_distilleries() if d['id'] != dist_id]
+    save_distilleries(distilleries)
+    return jsonify({'success': True})
+
+
+def _rename_spirit_option_in_notes(group: str, old_value: str, new_value: str):
+    for bottle_name, note in _db.get_all_bottle_notes().items():
+        sd = note.get('spirit_details') or {}
+        values = sd.get(group) or []
+        if old_value in values:
+            sd[group] = [new_value if v == old_value else v for v in values]
+            _db.set_bottle_note(bottle_name, spirit_details=sd)
+
+
+def _remove_spirit_option_from_notes(group: str, value: str):
+    for bottle_name, note in _db.get_all_bottle_notes().items():
+        sd = note.get('spirit_details') or {}
+        values = sd.get(group) or []
+        if value in values:
+            sd[group] = [v for v in values if v != value]
+            _db.set_bottle_note(bottle_name, spirit_details=sd)
+
+
+def _rename_flavor_tag_in_notes(old_value: str, new_value: str):
+    for bottle_name, note in _db.get_all_bottle_notes().items():
+        tags = note.get('flavor_tags') or []
+        if old_value in tags:
+            _db.set_bottle_note(bottle_name,
+                                flavor_tags=[new_value if t == old_value else t for t in tags])
+
+
+def _remove_flavor_tag_from_notes(value: str):
+    for bottle_name, note in _db.get_all_bottle_notes().items():
+        tags = note.get('flavor_tags') or []
+        if value in tags:
+            _db.set_bottle_note(bottle_name, flavor_tags=[t for t in tags if t != value])
+
+
+@app.route('/api/settings/spirit-options/<group>/<path:value>', methods=['PATCH'])
+def api_spirit_option_update(group, value):
+    if group not in _DEFAULT_SPIRIT_OPTIONS:
+        return jsonify({'error': 'invalid group'}), 400
+    data = request.get_json(force=True) or {}
+    new_label = data.get('label', '').strip()
+    new_value = data.get('value', '').strip()
+    if not new_label and not new_value:
+        return jsonify({'error': 'label or value required'}), 400
+
+    result_value = new_value if new_value else value
+    default_label = _DEFAULT_SPIRIT_OPTION_LABELS.get(group, {}).get(value, value.replace('-', ' ').title())
+
+    current = json.loads(_db.get_setting('custom_spirit_options', '{}'))
+    options = current.setdefault(group, [])
+    existing = next((o for o in options if o.get('value') == value), None)
+    result_label = new_label if new_label else (existing['label'] if existing else default_label)
+
+    if new_value and new_value != value:
+        _rename_spirit_option_in_notes(group, value, new_value)
+
+    if existing:
+        existing['label'] = result_label
+        if new_value and new_value != value:
+            existing['value'] = result_value
+    else:
+        options.append({'value': result_value, 'label': result_label})
+
+    _db.set_setting('custom_spirit_options', json.dumps(current))
+    return jsonify({'value': result_value, 'label': result_label})
+
+
+@app.route('/api/settings/spirit-options/<group>/<path:value>', methods=['DELETE'])
+def api_spirit_option_delete(group, value):
+    if group not in _DEFAULT_SPIRIT_OPTIONS:
+        return jsonify({'error': 'invalid group'}), 400
+    current = json.loads(_db.get_setting('custom_spirit_options', '{}'))
+    current[group] = [o for o in current.get(group, []) if o.get('value') != value]
+    _db.set_setting('custom_spirit_options', json.dumps(current))
+    _remove_spirit_option_from_notes(group, value)
+    return jsonify({'success': True})
+
+
+@app.route('/api/settings/flavor-tags/<path:value>', methods=['PATCH'])
+def api_flavor_tag_update(value):
+    data = request.get_json(force=True) or {}
+    new_label = data.get('label', '').strip()
+    new_value = data.get('value', '').strip()
+    if not new_label and not new_value:
+        return jsonify({'error': 'label or value required'}), 400
+
+    result_value = new_value if new_value else value
+    default_label = _FLAVOR_VALUE_TO_LABEL.get(value, value.replace('-', ' ').title())
+    group = _FLAVOR_VALUE_TO_GROUP.get(value, 'Other')
+
+    current = json.loads(_db.get_setting('custom_flavor_tags', '{}'))
+    # Search all groups for existing entry
+    existing = None
+    for opts in current.values():
+        existing = next((o for o in opts if o.get('value') == value), None)
+        if existing:
+            break
+    result_label = new_label if new_label else (existing['label'] if existing else default_label)
+
+    if new_value and new_value != value:
+        _rename_flavor_tag_in_notes(value, new_value)
+
+    if existing:
+        existing['label'] = result_label
+        if new_value and new_value != value:
+            existing['value'] = result_value
+    else:
+        current.setdefault(group, []).append({'value': result_value, 'label': result_label})
+
+    _db.set_setting('custom_flavor_tags', json.dumps(current))
+    return jsonify({'value': result_value, 'label': result_label})
+
+
+@app.route('/api/settings/flavor-tags/<path:value>', methods=['DELETE'])
+def api_flavor_tag_delete(value):
+    current = json.loads(_db.get_setting('custom_flavor_tags', '{}'))
+    for group in current:
+        current[group] = [o for o in current[group] if o.get('value') != value]
+    _db.set_setting('custom_flavor_tags', json.dumps(current))
+    _remove_flavor_tag_from_notes(value)
+    return jsonify({'success': True})
 
 
 # ── Routes: leagues ──────────────────────────────────────────────────────────
@@ -1137,6 +1638,9 @@ def league_create():
     name = request.form.get('name', '').strip()
     if not name:
         return jsonify({'success': False, 'error': 'Name required'}), 400
+    if _db.league_name_exists(name):
+        return jsonify({'success': False,
+                        'error': f'A list named "{name}" already exists.'}), 409
     league = _db.create_league(name)
     return jsonify({'success': True, 'league': league})
 
@@ -1145,14 +1649,21 @@ def league_create():
 def league_delete(league_id):
     ok = _db.delete_league(league_id)
     if not ok:
-        return jsonify({'success': False, 'error': 'Cannot delete default leagues'}), 400
-    return jsonify({'success': True})
+        flash('Default lists cannot be deleted.', 'error')
+        return redirect(url_for('league_detail_view', league_id=league_id))
+    flash('List deleted.', 'success')
+    return redirect(url_for('leagues_index'))
 
 
 @app.route('/leagues/<league_id>/rename', methods=['POST'])
 def league_rename(league_id):
     name = request.form.get('name', '').strip()
-    ok   = _db.rename_league(league_id, name)
+    if not name:
+        return jsonify({'success': False, 'error': 'Name required'}), 400
+    if _db.league_name_exists(name, exclude_id=league_id):
+        return jsonify({'success': False,
+                        'error': f'A list named "{name}" already exists.'}), 409
+    ok = _db.rename_league(league_id, name)
     return jsonify({'success': ok})
 
 
@@ -1408,9 +1919,15 @@ def cocktails():
         present_tags.add('tiki')
     style_tags = [{'value': v, 'label': l} for v, l in STYLE_TAG_DEFS if v in present_tags]
 
-    # Unique creators sorted by last name (all from Death & Co.)
-    creator_counts = Counter(c.get('creator', '') for c in all_cocktails if c.get('creator'))
-    creators = sorted(creator_counts.keys(), key=lambda n: n.split()[-1] if n else '')
+    # Unique creator tokens sorted by last name. Multi-creator strings like
+    # "A and B (NoMad, NYC)" are split into one token per person, each
+    # carrying the shared bar suffix — so filtering by either person works.
+    creator_counts = Counter()
+    for c in all_cocktails:
+        toks = creator_tokens(c.get('creator', ''))
+        c['creator_tokens'] = toks
+        creator_counts.update(toks)
+    creators = sorted(creator_counts.keys(), key=_creator_sort_key)
 
     return render_template('cocktails.html',
                            cocktails=all_cocktails,
@@ -1557,7 +2074,7 @@ def cocktail_detail(cocktail_id):
                     found_in_shelf = any(
                         key_term in (
                             clean(b.get('Name', '')) + ' ' + clean(b.get('Style', '')) + ' ' +
-                            clean(b.get('Category', '')) + ' ' + clean(b.get('Origin', ''))
+                            clean(b.get('Category', '')) + ' ' + clean(b.get('Country', ''))
                         )
                         for b in inventory
                     )
@@ -1973,7 +2490,84 @@ def cocktail_order(cocktail_id):
 def settings_page():
     topic    = _db.get_setting('ntfy_topic', '')
     base_url = _db.get_setting('ntfy_base_url', '')
-    return render_template('settings.html', ntfy_topic=topic, ntfy_base_url=base_url)
+    all_distilleries = load_distilleries()
+
+    all_notes = _db.get_all_bottle_notes()
+    custom_opts_db = json.loads(_db.get_setting('custom_spirit_options', '{}'))
+    custom_tags_db = json.loads(_db.get_setting('custom_flavor_tags', '{}'))
+
+    # Build label overrides from custom_spirit_options DB
+    spirit_label_override = {}
+    for grp, opts in custom_opts_db.items():
+        spirit_label_override.setdefault(grp, {})
+        for o in opts:
+            spirit_label_override[grp][o['value']] = o['label']
+
+    # Scan all bottle_notes for spirit option values actually in use
+    spirit_usage = {g: {} for g in _DEFAULT_SPIRIT_OPTIONS}
+    flavor_usage = {}
+    for note in all_notes.values():
+        sd = note.get('spirit_details') or {}
+        for grp in _DEFAULT_SPIRIT_OPTIONS:
+            for val in (sd.get(grp) or []):
+                if val:
+                    spirit_usage[grp][val] = spirit_usage[grp].get(val, 0) + 1
+        for tag in (note.get('flavor_tags') or []):
+            if tag:
+                flavor_usage[tag] = flavor_usage.get(tag, 0) + 1
+
+    # Build spirit_options_all: {group_key: [{value, label, count}]}
+    # Always include all built-in defaults (count=0 if unused) so the full
+    # canonical list is visible even when no bottles use a value yet.
+    spirit_options_all = {}
+    for grp in _DEFAULT_SPIRIT_OPTIONS:
+        default_labels = _DEFAULT_SPIRIT_OPTION_LABELS.get(grp, {})
+        seen = set()
+        items = []
+        for val, count in spirit_usage[grp].items():
+            label = spirit_label_override.get(grp, {}).get(
+                val, default_labels.get(val, val.replace('-', ' ').title()))
+            items.append({'value': val, 'label': label, 'count': count})
+            seen.add(val)
+        for val in _DEFAULT_SPIRIT_OPTIONS[grp]:
+            if val not in seen:
+                label = spirit_label_override.get(grp, {}).get(
+                    val, default_labels.get(val, val.replace('-', ' ').title()))
+                items.append({'value': val, 'label': label, 'count': 0})
+        items.sort(key=lambda x: x['label'].lower())
+        spirit_options_all[grp] = items
+
+    # Build flavor label overrides from custom_flavor_tags DB
+    ft_group_override = {}  # value -> group
+    ft_label_override = {}  # value -> label
+    for grp_label, tags in custom_tags_db.items():
+        for t in tags:
+            ft_group_override[t['value']] = grp_label
+            ft_label_override[t['value']] = t['label']
+
+    # Build flavor_tags_all: [{group, tags: [{value, label, count}]}]
+    known_group_order = [g for g, _ in _FLAVOR_GROUPS]
+    grouped = {}
+    for val, count in flavor_usage.items():
+        grp = ft_group_override.get(val) or _FLAVOR_VALUE_TO_GROUP.get(val, 'Other')
+        lbl = ft_label_override.get(val) or _FLAVOR_VALUE_TO_LABEL.get(val, val.replace('-', ' ').title())
+        grouped.setdefault(grp, []).append({'value': val, 'label': lbl, 'count': count})
+
+    def _group_sort(g):
+        try:    return (0, known_group_order.index(g))
+        except: return (1, g)
+
+    flavor_tags_all = [
+        {'group': g, 'tags': sorted(tags, key=lambda x: x['label'].lower())}
+        for g, tags in sorted(grouped.items(), key=lambda kv: _group_sort(kv[0]))
+    ]
+
+    return render_template('settings.html',
+                           ntfy_topic=topic,
+                           ntfy_base_url=base_url,
+                           all_distilleries=all_distilleries,
+                           spirit_options_all=spirit_options_all,
+                           flavor_tags_all=flavor_tags_all)
 
 
 @app.route('/settings/save', methods=['POST'])
@@ -2173,4 +2767,6 @@ def ask_save():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001, threaded=True)
+    import os
+    app.run(debug=True, use_reloader=False, host='0.0.0.0',
+            port=int(os.environ.get('PORT', 5001)), threaded=True)

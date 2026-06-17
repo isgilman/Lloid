@@ -4,6 +4,7 @@
     "acid phosphate",
     "agave nectar",
     "agave syrup",
+    "almond extract",
     "angostura bitters",
     "aromatic bitters",
     "barrel-aged bitters",
@@ -42,6 +43,7 @@
     "jalapeño",
     "lemon juice",
     "lemons",
+    "lime acid",
     "lime juice",
     "limes",
     "lychee juice",
@@ -49,6 +51,7 @@
     "matcha syrup",
     "mint",
     "mole bitters",
+    "orange",
     "orange bitters",
     "orange juice",
     "orgeat",
@@ -58,6 +61,7 @@
     "pilsner",
     "pineapple juice",
     "raspberry syrup",
+    "rice wine vinegar",
     "rich demerara syrup",
     "rich simple syrup",
     "rosemary",
@@ -70,7 +74,8 @@
     "sugar cube",
     "thyme",
     "tonic water",
-    "water"
+    "water",
+    "watermelon juice"
   ],
   "specialty": [
     {
@@ -85,7 +90,7 @@
       "id": "avocado-syrup",
       "name": "Avocado Syrup",
       "description": "",
-      "recipe": "- 525 mL filtered water\r\n- 945 g sugar\r\n- 945 mL lime juice\r\n- 945 g soft avocado flesh\r\n\r\nIn a medium bowl, combine the water and sugar and stir until dissolved. Add the lime juice and avocados, blend with an immersion blender until smooth, and then strain through a chinois. Store in an airtight container, refrigerated, for up to 2 days. \r\n\r\nMAKES 3.8 L. \r\nSource: NoMad.",
+      "recipe": "- 30 mL filtered water\n- 50 g sugar\n- 50 mL lime juice\n- 50 g soft avocado flesh\n\nIn a small bowl, combine the water and sugar and stir until dissolved. Add the lime juice and avocado, blend with an immersion blender until smooth, and then strain through a chinois. Store in an airtight container, refrigerated, for up to 2 days.\n\nMAKES ~200 mL (scaled from 3.8 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -101,7 +106,7 @@
       "id": "banana-oloroso",
       "name": "Banana Oloroso",
       "description": "house-made infused spirit",
-      "recipe": "- 1 L Lustau Oloroso Sherry\r\n- 4 overripe/black bananas, peeled\r\n- 4 mg Pectin X\r\n\r\nBlend together the sherry, bananas, and pectin. Add to a Spinzall, 375 mL at a time, and put on continuous until the liquid becomes clear, then strain through a chinois. Store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 1 L\r\nSource: NoMad",
+      "recipe": "- 375 mL Lustau Oloroso Sherry\n- 1–2 overripe/black bananas, peeled\n- 1.5 mg Pectin X\n\nBlend together the sherry, bananas, and pectin. Add to a Spinzall and put on continuous until the liquid becomes clear, then strain through a chinois. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~375 mL (scaled from 1 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -109,7 +114,7 @@
       "id": "basil-fennel-syrup",
       "name": "Basil Fennel Syrup",
       "description": "house-made syrup",
-      "recipe": "- 100 g basil leaves\r\n- 100 g fennel, roughly chopped\r\n- 800 g Simple Syrup (this page)\r\nBrix: 48\r\n\r\nCombine the basil, fennel, and simple syrup in an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by pushing the nozzle out quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 800 g\r\nSource: NoMad",
+      "recipe": "- 30 g basil leaves\n- 30 g fennel, roughly chopped\n- 250 g Simple Syrup\nBrix: 48\n\nCombine the basil, fennel, and simple syrup in an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by pushing the nozzle out quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 800 g batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -117,7 +122,7 @@
       "id": "brown-butter-falernum",
       "name": "Brown Butter Falernum",
       "description": "house-made infused liqueur",
-      "recipe": "300 g unsalted butter, cubed\r\n1 L  Falernum\r\n\r\nIn a large pot over medium heat, melt the butter, whisking constantly, while the milk solids brown evenly. Continue to let brown, whisking, until the color is as dark as an almond skin. Remove from the heat and add the velvet falernum. Transfer the butter to a storage container and place in the freezer until the fat has risen to the top and solidified. Remove and discard the solidified fat cap. Store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES ~1 L\r\nSource: NoMad",
+      "recipe": "- 60 g unsalted butter, cubed\n- 200 mL Falernum\n\nIn a small pot over medium heat, melt the butter, whisking constantly, while the milk solids brown evenly. Continue to let brown, whisking, until the color is as dark as an almond skin. Remove from the heat and add the falernum. Transfer to a storage container and place in the freezer until the fat has risen to the top and solidified. Remove and discard the solidified fat cap. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~200 mL (scaled from 1 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -133,7 +138,7 @@
       "id": "cacao-nib-infused-brandy",
       "name": "Cacao Nib-Infused Brandy",
       "description": "",
-      "recipe": "- 150 g cacao nibs\r\n- 750 mL Pierre Ferrand 1840 Cognac\r\n\r\nCombine the cacao nibs and Cognac in an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by pushing the nozzle out quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 750 ML\r\nSource: NoMad",
+      "recipe": "- 75 g cacao nibs\n- 375 mL Pierre Ferrand 1840 Cognac\n\nCombine the cacao nibs and Cognac in an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by pushing the nozzle out quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~375 mL (scaled from 750 mL batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -141,7 +146,7 @@
       "id": "cacao-nib-infused-blanco-tequila",
       "name": "Cacao Nib-Infused Tequila",
       "description": "Cold-infused blanco tequila with cacao nibs",
-      "recipe": "- 150 g cacao nibs\r\n- 750 mL Blanco Tequila\r\n\r\nCombine the cacao nibs and tequila in an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by pushing the nozzle out quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 750 ML\r\nSource: NoMad",
+      "recipe": "- 75 g cacao nibs\n- 375 mL Blanco Tequila\n\nCombine the cacao nibs and tequila in an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by pushing the nozzle out quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~375 mL (scaled from 750 mL batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -149,7 +154,7 @@
       "id": "celery-rootinfused-blanc-vermouth",
       "name": "Celery Root–Infused Blanc Vermouth",
       "description": "",
-      "recipe": "- 500 g celery root, peeled and diced\r\n- 750 mL Dolin de Chambery Blanc vermouth\r\n\r\nPreheat the oven to 200°C/400°F and line a sheet pan with parchment paper. Place the celery root on the prepared sheet pan and roast until dark golden brown, 25 to 30 minutes. In a large bowl, combine the celery root and vermouth, let steep for 1 hour, and then strain through a chinois. Store in an airtight container, refrigerated, for up to 8 weeks.\r\n\r\nMAKES 750 ML\r\nSource: NoMad",
+      "recipe": "- 250 g celery root, peeled and diced\n- 375 mL Dolin de Chambery Blanc vermouth\n\nPreheat the oven to 200°C/400°F and line a sheet pan with parchment paper. Place the celery root on the prepared sheet pan and roast until dark golden brown, 25 to 30 minutes. In a bowl, combine the celery root and vermouth, let steep for 1 hour, and then strain through a chinois. Store in an airtight container, refrigerated, for up to 8 weeks.\n\nMAKES ~375 mL (scaled from 750 mL batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -157,7 +162,7 @@
       "id": "chai-infused-cocchi-vermouth-di-torino",
       "name": "Chai Infused Sweet Vermouth",
       "description": "house-made infusion",
-      "recipe": "- 30 g chai tea\r\n- 750 mL Cocchi Vermouth di Torino\r\n\r\nIn a large bowl, combine the tea and vermouth, let steep for 3 to 5 minutes\r\n(taste as you go because it becomes tannic very quickly), and then strain\r\nthrough a chinois. Store in an airtight container, refrigerated, for up to 6\r\nweeks.\r\n\r\nMAKES 750 ML\r\nSource: NoMad",
+      "recipe": "- 15 g chai tea\n- 375 mL Cocchi Vermouth di Torino\n\nIn a bowl, combine the tea and vermouth, let steep for 3 to 5 minutes (taste as you go because it becomes tannic very quickly), and then strain through a chinois. Store in an airtight container, refrigerated, for up to 6 weeks.\n\nMAKES ~375 mL (scaled from 750 mL batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -165,7 +170,7 @@
       "id": "chai-turmeric-syrup",
       "name": "Chai-Turmeric Syrup",
       "description": "",
-      "recipe": "- 90 g chai tea\r\n- 2.7 kg hot filtered water\r\n- 2.7 kg sugar\r\n- 3 g xanthan gum\r\n- 30 g Arabic gum\r\n- 15 g turmeric\r\n\r\nIn a large container, steep the tea in the hot water for 12 minutes. Pass the\r\nliquid through a chinois, but do not to press the loose tea, as the liquid will be\r\nbitter. Add the sugar and stir until fully dissolved, then transfer the mixture to\r\na high-speed blender. While blending, sift in the xanthan gum, then the\r\nArabic gum, and then the turmeric. Store in an airtight container, refrigerated,\r\nfor up to 1 month.\r\n\r\nMAKES 4 L\r\nSource: NoMad",
+      "recipe": "- 5 g chai tea\n- 140 g hot filtered water\n- 140 g sugar\n- 0.15 g xanthan gum\n- 1.5 g Arabic gum\n- 0.75 g turmeric\n\n(A 0.01 g precision scale helps for the gums and turmeric.)\n\nSteep the tea in the hot water for 12 minutes. Pass the liquid through a chinois, but do not press the loose tea, as the liquid will be bitter. Add the sugar and stir until fully dissolved, then transfer the mixture to a blender. While blending, sift in the xanthan gum, then the Arabic gum, and then the turmeric. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~200 mL (scaled from 4 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -173,7 +178,7 @@
       "id": "chai-turmeric-yogurt-syrup",
       "name": "Chai-Turmeric Yogurt Syrup",
       "description": "",
-      "recipe": "- 500 mL Chai-Turmeric Syrup (preceding recipe)\r\n- 500 mL unsweetened sheep’s milk yogurt\r\n\r\nIn a medium bowl, combine the syrup and yogurt and stir until fully\r\nincorporated. Store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 1 L\r\nSource: NoMad",
+      "recipe": "- 100 mL Chai-Turmeric Syrup (preceding recipe)\n- 100 mL unsweetened sheep's milk yogurt\n\nIn a small bowl, combine the syrup and yogurt and stir until fully incorporated. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~200 mL (scaled from 1 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -181,7 +186,7 @@
       "id": "chamomile-honey-syrup",
       "name": "Chamomile Honey Syrup",
       "description": "",
-      "recipe": "- 25 g chamomile tea\r\n- 225 g hot filtered water\r\n- 350 g clover honey\r\nBrix: 60\r\n\r\nIn a large container, steep the tea in the hot water for 3 minutes. Pass the\r\nliquid through a chinois, but do not to press the loose tea, as the liquid will be\r\nbitter. Add the honey and stir until fully dissolved. Let the syrup cool to room\r\ntemperature. Store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 575 G\r\nSource: NoMad",
+      "recipe": "- 10 g chamomile tea\n- 100 g hot filtered water\n- 150 g clover honey\nBrix: 60\n\nSteep the tea in the hot water for 3 minutes. Pass the liquid through a chinois, but do not press the loose tea, as the liquid will be bitter. Add the honey and stir until fully dissolved. Let the syrup cool to room temperature. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 575 g batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -197,7 +202,7 @@
       "id": "chicken-jus",
       "name": "Chicken Jus",
       "description": "house-made preparation",
-      "recipe": "- 100 g canola oil\r\n- 560 g diced onions (2 cm)\r\n- 260 g peeled and diced carrots (2 cm)\r\n- 260 g diced celery (2 cm)\r\n- 100 g tomato paste\r\n- 750 mL red wine\r\n- 4.5 kg chicken wings\r\n- 2.5 kg chicken feet\r\n- 13.5 kg water\r\n- 2 bay leaves\r\n- 10 thyme sprigs\r\n- 25 black peppercorns\r\n\r\nPreheat a convection oven to 200°C/400°F, with the fan on high. In a large\r\nroasting pan over high heat, warm the canola oil. Add the onions, carrots, and\r\ncelery and sauté until they caramelize, about 12 minutes. Add the tomato\r\npaste and sauté until caramelized, 3 minutes more. Add the red wine and\r\nreduce by half, about 10 minutes, then set aside. Spread the chicken wings in a\r\nsingle layer on two large rimmed baking sheets and roast in the oven until\r\ncaramelized, about 50 minutes, rotating the pan once. Drain and discard any\r\nrendered fat. Scrape the roasted wings into a large stockpot and add the\r\nchicken feet and water. Bring to a simmer over medium heat, skimming the\r\nstock of all impurities and fats that rise to the top. Add the vegetable mixture\r\nto the stock, along with the bay leaves, thyme, and peppercorns. Turn the\r\nheat to low and simmer, uncovered, for 6 hours, skimming every 30 minutes.\r\nStrain the stock through a chinois, transfer to a large clean saucepan, and\r\ncontinue to reduce over low heat until it is 1 kg. Strain the reduced jus\r\nthrough a chinois and chill over an ice bath. Store in an airtight container,\r\nrefrigerated, for up to 3 days or freeze for up to 1 month.\r\n\r\nMAKES 1 KG\r\nSource: NoMad",
+      "recipe": "- 20 g canola oil\n- 110 g diced onions (2 cm)\n- 50 g peeled and diced carrots (2 cm)\n- 50 g diced celery (2 cm)\n- 20 g tomato paste\n- 150 mL red wine\n- 900 g chicken wings\n- 500 g chicken feet\n- 2.7 kg water\n- 1 bay leaf\n- 2 thyme sprigs\n- 5 black peppercorns\n\nPreheat the oven to 200°C/400°F (convection if available). In a roasting pan over high heat, warm the canola oil. Add the onions, carrots, and celery and sauté until they caramelize, about 12 minutes. Add the tomato paste and sauté until caramelized, 3 minutes more. Add the red wine and reduce by half, about 10 minutes, then set aside. Spread the chicken wings in a single layer on a rimmed baking sheet and roast until caramelized, about 50 minutes, rotating the pan once. Drain and discard any rendered fat. Scrape the roasted wings into a stockpot and add the chicken feet and water. Bring to a simmer over medium heat, skimming the stock of all impurities and fats that rise to the top. Add the vegetable mixture to the stock, along with the bay leaf, thyme, and peppercorns. Turn the heat to low and simmer, uncovered, for 6 hours, skimming every 30 minutes. Strain the stock through a chinois, transfer to a clean saucepan, and continue to reduce over low heat until it is ~200 g. Strain the reduced jus through a chinois and chill over an ice bath. Store in an airtight container, refrigerated, for up to 3 days or freeze for up to 1 month.\n\nMAKES ~200 g (scaled from 1 kg batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -205,7 +210,7 @@
       "id": "cinnamon-orange-tea-infused-sweet-vermouth",
       "name": "Cinnamon Orange Tea-Infused Sweet Vermouth",
       "description": "",
-      "recipe": "- 3 heaping tbps cinnamon-orange tea\r\n- 750 mL sweeth vermouth\r\n\r\nCombine in a glass container for 1.5 hours, stirring occasionally, before straining through a coffee filter.",
+      "recipe": "- 1½ heaping tbsp cinnamon-orange tea\n- 375 mL sweet vermouth\n\nCombine in a glass container for 1.5 hours, stirring occasionally, before straining through a coffee filter.\n\nMAKES ~375 mL (scaled from 750 mL batch)",
       "in_stock": false,
       "created_at": "2026-05-27"
     },
@@ -213,7 +218,7 @@
       "id": "coconut-oil-washed-bourbon",
       "name": "Coconut oil-washed bourbon",
       "description": "",
-      "recipe": "- 6 oz unrefined coconut oil\r\n- 750 mL bourbon\r\n\r\nCombined coconut oil and bourbon in a glass container, shake to mix, and let infuse at room temperature for 6 hours. Transfer to freezer to solidify oil over night. Discard solids and strain bourbon through a coffee filter. \r\n\r\nMakes ~750 mL\r\nSource: Tiki: Modern Tropical Cocktails",
+      "recipe": "- 3 oz unrefined coconut oil\n- 375 mL bourbon\n\nCombine coconut oil and bourbon in a glass container, shake to mix, and let infuse at room temperature for 6 hours. Transfer to freezer to solidify oil overnight. Discard solids and strain bourbon through a coffee filter.\n\nMakes ~375 mL (scaled from 750 mL batch)\nSource: Tiki: Modern Tropical Cocktails",
       "in_stock": false,
       "created_at": "2026-05-26"
     },
@@ -229,7 +234,7 @@
       "id": "coffee-infused-angostura-bitters",
       "name": "Coffee Infused Angostura Bitters",
       "description": "house-made bitters",
-      "recipe": "- 250 mL Cold Brew Coffee Concentrate\r\n- 250 mL Angostura bitters\r\n\r\nIn a medium bowl, combine the coffee concentrate and Angostura bitters and\r\nstir until fully incorporated. Store in an airtight container, refrigerated, for up\r\nto 1 month.\r\n\r\nMAKES 500 ML\r\nSource: NoMad",
+      "recipe": "- 50 mL Cold Brew Coffee Concentrate\n- 50 mL Angostura bitters\n\nIn a small bowl, combine the coffee concentrate and Angostura bitters and stir until fully incorporated. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~100 mL (scaled from 500 mL batch)\nSource: NoMad",
       "in_stock": true,
       "created_at": "2026-05-25"
     },
@@ -237,7 +242,7 @@
       "id": "coffee-infused-dry-vermouth",
       "name": "Coffee Infused Dry Vermouth",
       "description": "house-made infused spirit",
-      "recipe": "- 50 g whole coffee beans\r\n- 500 mL Dry vermouth\r\n\r\nCrush the coffee beans in a spice mill or coffee grinder until very coarsely\r\nground. Put them into an iSi canister. Add the vermouth and seal the canister.\r\nCharge it twice using N2O (cream) chargers, shaking the canister between\r\neach charge. Allow the canister to sit for 5 minutes and then vent by\r\nsqueezing the nozzle quickly; place a container underneath the tip to catch\r\nany liquid that may be released. Unscrew the top of the canister. Once the\r\nliquid stops bubbling, strain the mixture through cheesecloth or a coffee filter.\r\nLet the liquid cool to room temperature and store in an airtight container,\r\nrefrigerated, for up to 1 month.\r\n\r\nMAKES 500 mL\r\nSource: NoMad",
+      "recipe": "- 38 g whole coffee beans\n- 375 mL Dry vermouth\n\nCrush the coffee beans in a spice mill or coffee grinder until very coarsely ground. Put them into an iSi canister. Add the vermouth and seal the canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by squeezing the nozzle quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Let the liquid cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~375 mL (scaled from 500 mL batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -245,15 +250,15 @@
       "id": "corn-syrup",
       "name": "Corn Syrup",
       "description": "house-made syrup",
-      "recipe": "- 143 g freeze-dried corn\r\n- 148 g sugar\r\n- 200 mL hot water\r\n- 1 g kosher salt\r\n\r\nBlitz the corn into a fine powder. Stir in the sugar, add the hot water, and mix to combine. Steep 15 minutes, then strain through a chinois, pressing the solids firmly. Season with salt. Refrigerate in an airtight container for up to 2 weeks.\r\n\r\nMAKES 200–250 mL\r\nSource: NoMad (scaled down by Claude)",
-      "in_stock": false,
+      "recipe": "The NoMad recipe (see end of recipe) does not work. It resulted in an unusable corn-sludge. This recipe need to be redone, but in the mean time, here a passable product made follow Dave Arnold's any nut orgeat:\r\n\r\n- 100 g freeze-dried corn\r\n- 300 g hot water\r\n- 100–200 g turbinado sugar\r\n\r\nSteep corn in hot water for 15 minutes, then pass through a fine nut milk bag to create corn milk. Blend equal mass corn milk and sugar to create \"corn-geat\".\r\n\r\nOriginal NoMad recipe (scaled down)\r\n- 143 g freeze-dried corn\r\n- 148 g sugar\r\n- 200 mL hot water\r\n- 1 g kosher salt\r\n\r\nBlitz the corn into a fine powder. Stir in the sugar, add the hot water, and mix to combine. Steep 15 minutes, then strain through a chinois, pressing the solids firmly. Season with salt. Refrigerate in an airtight container for up to 2 weeks.\r\n\r\nMAKES 200–250 mL\r\nSource: NoMad (scaled down by Claude)",
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
       "id": "cranberry-syrup",
       "name": "Cranberry Syrup",
       "description": "house-made syrup",
-      "recipe": "- 2 kg frozen cranberries\r\n- 2 kg cranberry juice\r\n- 500 g demerara sugar\r\nBrix: 50\r\n\r\nIn a large saucepan, combine the cranberries and cranberry juice and bring to\r\na boil over high heat. Lower the heat and simmer until all of the cranberries\r\nhave popped. Remove the saucepan from the heat and let it sit for 10\r\nminutes. Strain the mixture through a chinois and cheesecloth or through a\r\nsuperbag. Add the sugar and stir until fully dissolved. Let the syrup cool to\r\nroom temperature and store in an airtight container, refrigerated, for up to 1\r\nmonth.\r\n\r\nMAKES 1 KG\r\nSource: NoMad",
+      "recipe": "- 500 g frozen cranberries\n- 500 g cranberry juice\n- 125 g demerara sugar\nBrix: 50\n\nIn a saucepan, combine the cranberries and cranberry juice and bring to a boil over high heat. Lower the heat and simmer until all of the cranberries have popped. Remove the saucepan from the heat and let it sit for 10 minutes. Strain the mixture through a chinois and cheesecloth or through a superbag. Add the sugar and stir until fully dissolved. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 1 kg batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -261,7 +266,7 @@
       "id": "dill-syrup",
       "name": "Dill Syrup",
       "description": "",
-      "recipe": "- 150 g fresh dill\r\n- 800 g Simple Syrup\r\nBrix: 48\r\n\r\nAdd the dill and simple syrup to an iSi canister. Charge it twice using N2O\r\n(cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by squeezing the nozzle quickly; place a container underneath the tip to catch any liquid that may be released.\r\nUnscrew the top of the canister. Once the liquid stops bubbling, strain the\r\nmixture through cheesecloth or a coffee filter. Let the syrup cool to room\r\ntemperature and store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 800 g\r\nSource: NoMad",
+      "recipe": "- 45 g fresh dill\n- 250 g Simple Syrup\nBrix: 48\n\nAdd the dill and simple syrup to an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by squeezing the nozzle quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 800 g batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -285,7 +290,7 @@
       "id": "earl-grey-syrup",
       "name": "Earl Grey Syrup",
       "description": "",
-      "recipe": "- 25 g Earl Grey tea\r\n- 900 g hot water\r\n- 800 g sugar\r\nBrix: 48\r\n\r\nSteep the tea in the hot water for 3 minutes. Strain the tea and add the sugar,\r\nstirring until it’s fully dissolved. Let the syrup cool to room temperature and\r\nstore in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 1.7 KG\r\nSource: NoMad",
+      "recipe": "- 4 g Earl Grey tea\n- 130 g hot water\n- 120 g sugar\nBrix: 48\n\nSteep the tea in the hot water for 3 minutes. Strain the tea and add the sugar, stirring until it's fully dissolved. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 1.7 kg batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -293,7 +298,7 @@
       "id": "earl-grey-milk-washed-blanco-tequila",
       "name": "Earl Grey-Milk Washed Blanco Tequila",
       "description": "",
-      "recipe": "- 25 g Earl Grey tea\r\n- 750 mL Excellia Blanco tequila\r\n- 15 mL lemon juice\r\n- 100 mL whole milk\r\n\r\nIn an airtight jar, combine the tea and tequila, let steep for 20 minutes, and\r\nthen strain. In a medium saucepan over medium heat, combine the lemon\r\njuice and milk and let simmer (do not boil) so the milk starts to curdle. Pour\r\nthe curdled mixture into the infused tequila, whisk well, and then let sit for 30\r\nminutes. Strain the mixture through a superbag or a coffee filter. Store in\r\nairtight container, refrigerated, for up to 2 months.\r\n\r\nMAKES 750 ML\r\nSource: NoMad",
+      "recipe": "- 12 g Earl Grey tea\n- 375 mL Excellia Blanco tequila\n- 8 mL lemon juice\n- 50 mL whole milk\n\nIn an airtight jar, combine the tea and tequila, let steep for 20 minutes, and then strain. In a small saucepan over medium heat, combine the lemon juice and milk and let simmer (do not boil) so the milk starts to curdle. Pour the curdled mixture into the infused tequila, whisk well, and then let sit for 30 minutes. Strain the mixture through a superbag or a coffee filter. Store in an airtight container, refrigerated, for up to 2 months.\n\nMAKES ~375 mL (scaled from 750 mL batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -301,7 +306,7 @@
       "id": "eucalyptus-bay-leaf-syrup",
       "name": "Eucalyptus Bay Leaf Syrup",
       "description": "",
-      "recipe": "- 5 fresh bay leaves\r\n- 1 L hot filtered water\r\n- 1 kg sugar\r\n-1 g eucalyptus oil\r\n\r\nIn a large container, steep the bay leaves in the hot water for 5 minutes. Add\r\nthe sugar and stir until fully dissolved. Stir in the eucalyptus oil (it is very\r\npotent, be sure to weigh it precisely). Pass through a chinois and let cool to\r\nroom temperature. Store in an airtight container, refrigerated, for up to 1\r\nmonth.\r\n\r\nMAKES 1.5 \r\nSource: NoMad",
+      "recipe": "- 1 fresh bay leaf\n- 135 mL hot filtered water\n- 135 g sugar\n- 0.15 g eucalyptus oil\n\n(Use a 0.01 g precision scale for the eucalyptus oil — it is very potent.)\n\nSteep the bay leaf in the hot water for 5 minutes. Add the sugar and stir until fully dissolved. Stir in the eucalyptus oil. Pass through a chinois and let cool to room temperature. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~200 mL (scaled from 1.5 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -309,7 +314,7 @@
       "id": "falernum",
       "name": "Falernum",
       "description": "Tropical Standard/Sunken Harbor Club house falernum",
-      "recipe": "- 0.75 g star anise\r\n- 0.75 g mace\r\n- 1 g nutmeg, grated\r\n- 1.5 g cloves\r\n- 13 g lime peel\r\n- 28 g ginger, thinly sliced\r\n- 30 mL aged overproof rum (Hamilton 151)\r\n- 125 mL unaged overproof Jamaican rum (Wray & Nephew)\r\n- 0.6 mL almond extract\r\n- 15 mL strained or clarified lemon juice\r\n- 50 mL strained or clarified lime juice\r\n- 265 mL 2:1 cane syrup\r\n- 830 mL (estimated) 1:1 gum syrup\r\n\r\nGrind dry spices with a mortal and pestle or spice grinder. Combine lime peel, ginger, and rums in a blender on high until ginger is liquefied and lime peel is thoroughly minced. \r\n\r\nCombine rum mixture and ground spices in a vacuum bag and seal. Place in a water bath at 125ºF for 12 hours or in the refrigerator for 24 hours. \r\n\r\nFinely strain mixture through a nutmilk bag, squeezing to maximize yield, and then pass through a coffee filter. Yield should be ~75%. \r\n\r\nAdd almond extract, juices, and syrup. This should yield ~830 mL liquid. Combine with an equal volume of gum syrup.\r\n\r\nMAKES 55 oz\r\nSource: Tropical Standard (p. 232)",
+      "recipe": "- 0.25 g star anise\n- 0.25 g mace\n- 0.3 g nutmeg, grated\n- 0.5 g cloves\n- 4 g lime peel\n- 8 g ginger, thinly sliced\n- 10 mL aged overproof rum (Hamilton 151)\n- 40 mL unaged overproof Jamaican rum (Wray & Nephew)\n- 0.2 mL almond extract\n- 5 mL strained or clarified lemon juice\n- 15 mL strained or clarified lime juice\n- 80 mL 2:1 cane syrup\n- 250 mL (estimated) 1:1 gum syrup\n\n(A 0.01 g precision scale helps for the spices.)\n\nGrind dry spices with a mortar and pestle or spice grinder. Combine lime peel, ginger, and rums in a blender on high until ginger is liquefied and lime peel is thoroughly minced.\n\nCombine rum mixture and ground spices in a vacuum bag and seal. Place in a water bath at 125ºF for 12 hours or in the refrigerator for 24 hours.\n\nFinely strain mixture through a nutmilk bag, squeezing to maximize yield, and then pass through a coffee filter. Yield should be ~75%.\n\nAdd almond extract, juices, and syrup. This should yield ~250 mL liquid. Combine with an equal volume of gum syrup.\n\nMAKES ~500 mL (scaled from 55 oz batch)\nSource: Tropical Standard (p. 232)",
       "in_stock": true,
       "created_at": "2026-05-27"
     },
@@ -322,10 +327,18 @@
       "created_at": "2026-05-27"
     },
     {
+      "id": "fermented-aroma",
+      "name": "Fermented Tomato Water",
+      "description": "",
+      "recipe": "- 400 g ripe tomatoes (the best you can get)\n- 8–10 g sea salt\n\nCut tomatoes into quarters or eighths and mix with salt in a bowl. Transfer to a zip lock or vacuum seal bag. If using a vacuum bag, vac and you're good to go. If not, submerge bag in water to remove the air and close. Let ferment until desired funkiness.\n\nStrain through a nut milk bag, squeezing to get all liquid out. Save solids for projects like fermented pizza sauce.\n\nLiquid will mostly clarify if allowed to rack for a few days. A centrifuge and coffee filter will help.\n\nMAKES ~200 mL (scaled from 1 kg batch)",
+      "in_stock": false,
+      "created_at": "2026-05-30"
+    },
+    {
       "id": "fig-leaf-syrup",
       "name": "Fig Leaf Syrup",
       "description": "house-made syrup",
-      "recipe": "- 75 g fresh fig leaves\r\n- 900 mL hot water\r\n- 800 g sugar\r\nBrix: 50\r\n\r\nRinse the fig leaves thoroughly under cool running water until the water runs\r\nclear, then remove the stems and tear up the leaves. Steep the leaves and hot\r\nwater in a container for 10 to 15 minutes (taste as you go because it becomes\r\nbitter very quickly). Strain through a chinois and stir in the sugar until it\r\ndissolves. Store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 1.4 L\r\nSource: NoMad",
+      "recipe": "- 10 g fresh fig leaves\n- 130 mL hot water\n- 115 g sugar\nBrix: 50\n\nRinse the fig leaves thoroughly under cool running water until the water runs clear, then remove the stems and tear up the leaves. Steep the leaves and hot water in a container for 10 to 15 minutes (taste as you go because it becomes bitter very quickly). Strain through a chinois and stir in the sugar until it dissolves. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~200 mL (scaled from 1.4 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -333,7 +346,7 @@
       "id": "gardenia-syrup",
       "name": "Gardenia Syrup",
       "description": "",
-      "recipe": "- 1.8 kg clover honey\r\n- 1.8 kg unsalted butter, cubed\r\n- 140 g allspice dram\r\n- 140 g Vanilla Syrup\r\n- 310 g Cinnamon Syrup\r\n\r\nIn a medium saucepan over medium heat, warm the honey until it starts to\r\nbecome liquid. (Be sure it does not get too hot or it will thicken.) Add the\r\nbutter and whisk until it is melted and the mixture is smooth. Let sit for 5\r\nminutes, then whisk in the dram, vanilla syrup, and cinnamon syrup and let\r\ncool. Store in an airtight container, refrigerated, for up to 4 weeks.\r\n\r\nMAKES 2 L\r\nSource: NoMad",
+      "recipe": "- 180 g clover honey\n- 180 g unsalted butter, cubed\n- 14 g allspice dram\n- 14 g Vanilla Syrup\n- 30 g Cinnamon Syrup\n\nIn a small saucepan over medium heat, warm the honey until it starts to become liquid. (Be sure it does not get too hot or it will thicken.) Add the butter and whisk until it is melted and the mixture is smooth. Let sit for 5 minutes, then whisk in the dram, vanilla syrup, and cinnamon syrup and let cool. Store in an airtight container, refrigerated, for up to 4 weeks.\n\nMAKES ~200 mL (scaled from 2 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -341,7 +354,7 @@
       "id": "ginger-lime-syrup",
       "name": "Ginger Lime Syrup",
       "description": "house-made syrup",
-      "recipe": "- 600 g water\r\n- 800 g light brown sugar\r\n- 300 g ginger, chopped\r\n- 20 g lime zest\r\n-95 g lime juice\r\nBrix: 50\r\n\r\nIn a medium saucepan over medium heat, combine the water, brown sugar,\r\nand ginger and simmer for 45 minutes, stirring occasionally. Remove from the\r\nheat and add the lime zest. Allow to steep for 30 minutes. Strain out the\r\nginger and lime zest and add the lime juice. Let the syrup cool to room\r\ntemperature and store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 1.5 KG\r\nSource: NoMad",
+      "recipe": "- 100 g water\n- 135 g light brown sugar\n- 50 g ginger, chopped\n- 3 g lime zest\n- 15 g lime juice\nBrix: 50\n\nIn a small saucepan over medium heat, combine the water, brown sugar, and ginger and simmer for 45 minutes, stirring occasionally. Remove from the heat and add the lime zest. Allow to steep for 30 minutes. Strain out the ginger and lime zest and add the lime juice. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 1.5 kg batch)\nSource: NoMad",
       "in_stock": true,
       "created_at": "2026-05-25"
     },
@@ -365,7 +378,7 @@
       "id": "green-tea-syrup",
       "name": "Green Tea Syrup",
       "description": "",
-      "recipe": "- 90 g green tea\r\n- 2.7 kg hot water\r\n- 800 g sugar\r\n- 3 g xanthan gum\r\n- 30 g Arabic gum\r\n\r\nIn a large container, steep the tea in the hot water for 12 minutes. Pass the\r\nliquid through a chinois, but do not to press the loose tea, as the liquid will be\r\nbitter. Add the sugar and stir until fully dissolved, then transfer the mixture to\r\na high-speed blender. While blending at medium speed, sift in the xanthan\r\ngum and then the Arabic gum. Store in an airtight container, refrigerated, for\r\nup to 1 month.\r\n\r\nMAKES 3.8 L\r\nSource: NoMad",
+      "recipe": "- 5 g green tea\n- 140 g hot water\n- 40 g sugar\n- 0.15 g xanthan gum\n- 1.5 g Arabic gum\n\n(A 0.01 g precision scale helps for the gums.)\n\nSteep the tea in the hot water for 12 minutes. Pass the liquid through a chinois, but do not press the loose tea, as the liquid will be bitter. Add the sugar and stir until fully dissolved, then transfer the mixture to a blender. While blending at medium speed, sift in the xanthan gum and then the Arabic gum. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~200 mL (scaled from 3.8 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -381,7 +394,7 @@
       "id": "green-tea-yogurt-syrup-1",
       "name": "Green Tea Yogurt Syrup",
       "description": "",
-      "recipe": "- 500 mL Green Tea Syrup (preceding recipe)\r\n- 500 mL unsweetened sheep’s milk yogurt\r\n\r\nIn a medium bowl, combine the tea syrup and yogurt and stir until fully\r\nincorporated. Store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 1 L\r\nSource: NoMad",
+      "recipe": "- 100 mL Green Tea Syrup (preceding recipe)\n- 100 mL unsweetened sheep's milk yogurt\n\nIn a small bowl, combine the tea syrup and yogurt and stir until fully incorporated. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~200 mL (scaled from 1 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -389,15 +402,15 @@
       "id": "grenadine",
       "name": "Grenadine",
       "description": "",
-      "recipe": "- 500 g  Pomegranate juice\r\n- 450 g turbinado sugar\r\n- 225 g pomegranate molasses\r\n- 10 orange twists\r\nBrix: 55\r\n\r\nWarm the pomegranate juice and sugar in a saucepan over medium heat. Stir until the sugar completely dissolves, making sure to never bring the juice to a boil. Remove from the heat and add the pomegranate molasses. Express the oils of the orange twists into the mixture and stir. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 2 weeks.\r\n\r\nMAKES 1.1 KG\r\nSource: NoMad",
-      "in_stock": false,
+      "recipe": "- 91 g pomegranate juice\r\n- 82 g turbinado sugar\r\n- 41 g pomegranate molasses\r\n- 4 orange twists\r\nBrix: 55\r\n\r\nWarm the juice, sugar, and molasses over the stove—careful not to simmer or scorch. Once fully dissolved, express orange peels, drop into the syrup, and cover. Heat on low without coming to a simmer for 10 minutes, then remove from heat and allow to cool continuously. Strain and bottle. \r\n\r\nMAKES 200 mL",
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
       "id": "guava-syrup",
       "name": "Guava Syrup",
       "description": "",
-      "recipe": "- 1 L filtered water\r\n- 2 kg guava puree\r\n- Sugar as needed\r\nBrix: 50\r\n\r\nIn a medium container, whisk together the water and guava puree. Stir in the\r\nsugar to taste. Store in an airtight container, refrigerated, for up to 2 weeks.\r\n\r\nMAKES 4.7 L\r\nSource: NoMad",
+      "recipe": "- 45 mL filtered water\n- 85 g guava puree\n- Sugar as needed\nBrix: 50\n\nIn a small container, whisk together the water and guava puree. Stir in the sugar to taste. Store in an airtight container, refrigerated, for up to 2 weeks.\n\nMAKES ~200 mL (scaled from 4.7 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -405,7 +418,7 @@
       "id": "horseradish-tincture",
       "name": "Horseradish Tincture",
       "description": "",
-      "recipe": "- 150 g horseradish, washed, peeled, and diced\r\n- 750 mL vodka\r\n\r\nIn a large bowl, combine the horseradish and vodka and let steep for 10\r\nminutes, then strain through a chinois. Store in an airtight container at room\r\ntemperature indefinitely.\r\n\r\nMAKES 750 ML\r\nSource: NoMad",
+      "recipe": "- 20 g horseradish, washed, peeled, and diced\n- 100 mL vodka\n\nIn a small bowl, combine the horseradish and vodka and let steep for 10 minutes, then strain through a chinois. Store in an airtight container at room temperature indefinitely.\n\nMAKES ~100 mL (scaled from 750 mL batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -413,7 +426,7 @@
       "id": "horseradish-infused-gin",
       "name": "Horseradish-Infused Gin",
       "description": "",
-      "recipe": "- 150 g horseradish, washed, peeled, and sliced lengthwise\r\n- 750 mL Plymouth gin\r\n\r\nCombine the horseradish and gin in a bag and vacuum seal. Steam in the\r\ncombi oven for 30 minutes at 60°C/140°F and 100 percent humidity, then\r\nstrain through a chinois. Store in an airtight container, refrigerated, for up to 6\r\nweeks.\r\n\r\nMAKES 750 ML\r\nSource: NoMad",
+      "recipe": "- 75 g horseradish, washed, peeled, and sliced lengthwise\n- 375 mL Plymouth gin\n\nCombine the horseradish and gin in a bag and vacuum seal. Cook sous vide (or steam) for 30 minutes at 60°C/140°F, then strain through a chinois. Store in an airtight container, refrigerated, for up to 6 weeks.\n\nMAKES ~375 mL (scaled from 750 mL batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -421,7 +434,7 @@
       "id": "jalape-o-infused-agave-syrup",
       "name": "Jalapeño Infused Agave Syrup",
       "description": "house-made syrup",
-      "recipe": "- 3 medium jalapeños\r\n- 250 g hot water\r\n- 810 g organic light blue agave nectar\r\n\r\nDice the jalapeños, retaining all the seeds, and steep in the hot water for 3\r\nminutes. Taste the mixture to ensure that the spice level is to your taste.\r\nAllow them to steep longer for a spicier end product. Strain out the jalapeños\r\nwhen the desired spice level has been reached and stir the agave nectar into the jalapeño-infused water until it’s fully integrated. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1\r\nmonth.\r\n\r\nMAKES 1.1 kg\r\nSource: NoMad",
+      "recipe": "- 1 medium jalapeño\n- 60 g hot water\n- 185 g organic light blue agave nectar\n\nDice the jalapeño, retaining all the seeds, and steep in the hot water for 3 minutes. Taste the mixture to ensure that the spice level is to your taste. Allow it to steep longer for a spicier end product. Strain out the jalapeño when the desired spice level has been reached and stir the agave nectar into the jalapeño-infused water until it's fully integrated. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 1.1 kg batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -429,7 +442,7 @@
       "id": "jalape-o-infused-tequila",
       "name": "Jalapeño Infused Tequila",
       "description": "house-made infused spirit",
-      "recipe": "- 5 medium jalapeños, diced\r\n- 750 ml Blanco tequila\r\n\r\nSteep the jalapeños and tequila in a container for 5 minutes. Taste the mixture\r\nto ensure that the spice level is to your taste. Allow to steep longer for a\r\nspicier end product. Strain out the jalapeños when the desired spice level has\r\nbeen reached. Store in an airtight container, refrigerated, indefinitely.\r\n\r\nMAKES 750 ML\r\nSource: NoMad",
+      "recipe": "- 2–3 medium jalapeños, diced\n- 375 mL Blanco tequila\n\nSteep the jalapeños and tequila in a container for 5 minutes. Taste the mixture to ensure that the spice level is to your taste. Allow to steep longer for a spicier end product. Strain out the jalapeños when the desired spice level has been reached. Store in an airtight container, refrigerated, indefinitely.\n\nMAKES ~375 mL (scaled from 750 mL batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -437,7 +450,7 @@
       "id": "kabocha-squash-syrup-1",
       "name": "Kabocha Squash Syrup",
       "description": "",
-      "recipe": "- 800 g Kabocha Squash Water (following recipe)\r\n- 800 g demerara sugar\r\nBrix: 50\r\n\r\nIn a saucepan over medium heat, heat the squash water until it’\r\ns simmering. Remove from the heat and stir the sugar into the water until fully dissolved. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 1.6 KG\r\nSource: NoMad",
+      "recipe": "- 125 g Kabocha Squash Water (following recipe)\n- 125 g demerara sugar\nBrix: 50\n\nIn a small saucepan over medium heat, heat the squash water until it's simmering. Remove from the heat and stir the sugar into the water until fully dissolved. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 1.6 kg batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -445,7 +458,7 @@
       "id": "kabocha-squash-syrup",
       "name": "Kabocha Squash Water",
       "description": "house-made syrup",
-      "recipe": "- 1 kabocha squash, quartered and seeded\r\n- 1.6 kg water\r\n- 6 g salt\r\n- 15 g whole allspice\r\n- 100 g Ceylon cinnamon sticks, crushed\r\n\r\nPreheat the oven to 200°C/400°F. Place the squash on a sheet pan and roast\r\nfor 1½ hours. When cool enough to handle, scoop out the flesh of the squash,\r\ndiscarding the rest. Measure out 900 g of the roasted squash and add to a\r\nsaucepan along with the water, salt, allspice, and cinnamon. Boil over high\r\nheat for 10 minutes. Strain the mixture though a chinois. Let the water cool\r\nto room temperature and store in an airtight container, refrigerated, for up to\r\n1 week.\r\n\r\nMAKES 1 KG\r\nSource: NoMad",
+      "recipe": "- ¼ kabocha squash, seeded\n- 320 g water\n- 1.2 g salt\n- 3 g whole allspice\n- 20 g Ceylon cinnamon sticks, crushed\n\nPreheat the oven to 200°C/400°F. Place the squash on a sheet pan and roast for 1½ hours. When cool enough to handle, scoop out the flesh of the squash, discarding the rest. Measure out 180 g of the roasted squash and add to a saucepan along with the water, salt, allspice, and cinnamon. Boil over high heat for 10 minutes. Strain the mixture through a chinois. Let the water cool to room temperature and store in an airtight container, refrigerated, for up to 1 week.\n\nMAKES ~200 g (scaled from 1 kg batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -458,10 +471,18 @@
       "created_at": "2026-05-27"
     },
     {
+      "id": "lacto-strawberry-juice",
+      "name": "Lacto-Strawberry Juice",
+      "description": "",
+      "recipe": "- 400 g ripe strawberries (halved)\r\n- 8 g sea salt\r\n\r\nCombine salt and strawberries in a gallon or vacuum bag. Gently macerate to mix salt in. Let ferment for 5–7 days, or to desired funkiness. Strain through a nut milk bag and then clarify.",
+      "in_stock": true,
+      "created_at": "2026-06-05"
+    },
+    {
       "id": "lapsang-souchong-infused-crème-de-cacao",
       "name": "Lapsang Souchong-Infused Crème de Cacao",
       "description": "",
-      "recipe": "- 30 g Lapsang Souchong black tea\r\n- 1 L  Crème de cacao\r\n\r\nCombine the tea and crème de cacao in a container and let steep for 45\r\nminutes, then strain the mixture through a chinois. Store in an airtight\r\ncontainer, refrigerated, indefinitely.\r\n\r\nMAKES 1 L\r\nSource: NoMad",
+      "recipe": "- 10 g Lapsang Souchong black tea\n- 375 mL Crème de cacao\n\nCombine the tea and crème de cacao in a container and let steep for 45 minutes, then strain the mixture through a chinois. Store in an airtight container, refrigerated, indefinitely.\n\nMAKES ~375 mL (scaled from 1 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -469,7 +490,7 @@
       "id": "lavender-infused-honey-syrup",
       "name": "Lavender Honey Syrup",
       "description": "",
-      "recipe": "- 10 g dried lavender flowers\r\n- 350 g clover honey\r\n- 225 g hot water\r\nBrix: 60\r\n\r\nStir the lavender flowers and honey into the hot water until the honey is fully\r\ndissolved. Let the syrup cool to room temperature and store in an airtight\r\ncontainer, refrigerated, for up to 1 month.\r\n\r\nMAKES 575 g\r\nSource: NoMad",
+      "recipe": "- 4 g dried lavender flowers\n- 150 g clover honey\n- 100 g hot water\nBrix: 60\n\nStir the lavender flowers and honey into the hot water until the honey is fully dissolved. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 575 g batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -477,7 +498,7 @@
       "id": "lemon-verbena-syrup",
       "name": "Lemon Verbena Syrup",
       "description": "",
-      "recipe": "- 32 g dried lemon verbena\r\n- 900 g hot water\r\n- 800 g sugar\r\nBrix: 48\r\n\r\nSteep the lemon verbena in the hot water for 5 minutes. Strain the mixture and stir in the sugar until it’ s fully dissolved. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 1.7 kg\r\nSource: NoMad",
+      "recipe": "- 5 g dried lemon verbena\n- 130 g hot water\n- 120 g sugar\nBrix: 48\n\nSteep the lemon verbena in the hot water for 5 minutes. Strain the mixture and stir in the sugar until it's fully dissolved. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 1.7 kg batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -485,7 +506,7 @@
       "id": "lemon-verbenainfused-buttermilk",
       "name": "Lemon Verbena–Infused Buttermilk",
       "description": "",
-      "recipe": "- 500 mL Lemon Verbena Syrup (following recipe)\r\n- 500 mL buttermilk\r\n\r\nIn a medium bowl, combine the syrup and buttermilk and stir until fully\r\nincorporated. Store in an airtight container, refrigerated, for up to 1 month.\r\n\r\nMAKES 1 L\r\nSource: NoMad",
+      "recipe": "- 100 mL Lemon Verbena Syrup (preceding recipe)\n- 100 mL buttermilk\n\nIn a small bowl, combine the syrup and buttermilk and stir until fully incorporated. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~200 mL (scaled from 1 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -518,8 +539,16 @@
       "name": "Lime Punch Syrup",
       "description": "",
       "recipe": "",
-      "in_stock": false,
+      "in_stock": true,
       "created_at": "2026-05-28"
+    },
+    {
+      "id": "mango-puree",
+      "name": "Mango puree",
+      "description": "",
+      "recipe": "- 300 g mango, peeled and diced\r\n- 150 g water\r\n- 90 g cane or granulatd sugar\r\n- 1.5 g citric acid\r\n\r\nCombine mango and water in a blender. Blend on low, slowly adding the sugar. Once sugar is dissolved, add the acid.\r\n\r\nMakes: 1 pint\r\nSource: Tropical Standard (p. 40)",
+      "in_stock": false,
+      "created_at": "2026-05-30"
     },
     {
       "id": "maple-shrub",
@@ -533,7 +562,7 @@
       "id": "mint-infused-bourbon",
       "name": "Mint-Infused Bourbon",
       "description": "",
-      "recipe": "- 35 g mint leaves\r\n- 750 mL Old Forester 86 bourbon\r\n\r\nCombine the mint and bourbon in an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by pushing the nozzle out quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Store in an airtight container, refrigerated, indefinitely.\r\n\r\nMAKES 750 mL\r\nSource: NoMad",
+      "recipe": "- 18 g mint leaves\n- 375 mL Old Forester 86 bourbon\n\nCombine the mint and bourbon in an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by pushing the nozzle out quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Store in an airtight container, refrigerated, indefinitely.\n\nMAKES ~375 mL (scaled from 750 mL batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -541,7 +570,7 @@
       "id": "mushroom-broth",
       "name": "Mushroom Broth",
       "description": "",
-      "recipe": "- 100 g dried shiitake mushrooms\r\n- 1 L hot water\r\n\r\nIn a large bowl, combine the mushrooms and hot water and let steep for 30 minutes. Strain the mixture through a coffee filter and let come to room temperature. Store in an airtight container, refrigerated, for up to 1 week.\r\n\r\nMAKES 1 L\r\nSource: NoMad",
+      "recipe": "- 20 g dried shiitake mushrooms\n- 200 mL hot water\n\nIn a bowl, combine the mushrooms and hot water and let steep for 30 minutes. Strain the mixture through a coffee filter and let come to room temperature. Store in an airtight container, refrigerated, for up to 1 week.\n\nMAKES ~200 mL (scaled from 1 L batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -566,14 +595,14 @@
       "name": "Pineapple Gum (Gomme) Syrup",
       "description": "house-made syrup",
       "recipe": "- 125 g finely strained or clarified pineapple juice\r\n- 12.5 g acacia gum (gum arabic)\r\n- 87.5 g sugar of choice\r\n- 0.5 g citric acid\r\n\r\nBlend pineapple juice on low and slowly incorporate acacia gum; speed can be increased but try to limit foam production. Return to low speed and incorporate sugar and acid. Makes 6 oz.\r\n\r\nSee Tropical Standard p 197 for Gum Syrups.",
-      "in_stock": false,
+      "in_stock": true,
       "created_at": "2026-05-25"
     },
     {
       "id": "rhubarb-shrub",
       "name": "Rhubarb Shrub",
       "description": "house-made shrub",
-      "recipe": "- 40 g salt\r\n- 200 g sugar\r\n- 1 kg white balsamic vinegar\r\n- 1.02 kg water\r\n- 950 g rhubarb, washed and cut into 1-inch pieces\r\n- 5 drops red food coloring\r\n\r\nIn a large bowl, combine the salt, sugar, vinegar, and water and stir to make a\r\nbrine. Combine the brine and rhubarb in a bag and vacuum seal. Place the bag\r\nin a sheet pan and steam in the combi oven for 15 minutes at 63°C/145°F and\r\n100 percent humidity. Transfer the bag to the refrigerator and let chill, then\r\nstrain the liquid through a chinois and stir in the food coloring. Store in an\r\nairtight container, refrigerated, indefinitely.\r\n\r\nMAKES 2.5 L\r\nSource: NoMad",
+      "recipe": "- 3 g salt\n- 15 g sugar\n- 80 g white balsamic vinegar\n- 80 g water\n- 75 g rhubarb, washed and cut into 1-inch pieces\n- 1 drop red food coloring (optional)\n\nIn a bowl, combine the salt, sugar, vinegar, and water and stir to make a brine. Combine the brine and rhubarb in a bag and vacuum seal. Cook sous vide (or steam) for 15 minutes at 63°C/145°F. Transfer the bag to the refrigerator and let chill, then strain the liquid through a chinois and stir in the food coloring. Store in an airtight container, refrigerated, indefinitely.\n\nMAKES ~200 mL (scaled from 2.5 L batch)\nSource: NoMad",
       "in_stock": true,
       "created_at": "2026-05-25"
     },
@@ -602,6 +631,22 @@
       "created_at": "2026-05-27"
     },
     {
+      "id": "sesame-gochujang-rum",
+      "name": "Sesame-Gochujang Rum",
+      "description": "",
+      "recipe": "- 14g Gochujang\r\n- 10g Sesame Oil\r\n- 20g Neutral Oil (e.g. Avocado Oil)\r\n- 250ml Rum (Batavia Arrack van Oosten)\r\n\r\nAdd together gochujang and oils into Bain Marie and heat for 10 minutes, stirring occasionally. Remove from heat and let sit together until cool. Combine infused oil with the rum and seal.\r\nSous vide at 150F for 2 hours or let infuse at room temp for 3–4 hours, or until desired infusion strength. Place in freezer overnight to solidify oil. The next day, strain through a coffee filter in the freezer to remove oil.",
+      "in_stock": true,
+      "created_at": "2026-06-05"
+    },
+    {
+      "id": "sour-cherry-infused-rum",
+      "name": "Sour Cherry-Infused Rum",
+      "description": "",
+      "recipe": "- 50 g dried Montmorency cherries\r\n- 200 mL Rum (Rum Fire or other unaged Jamaican overproof)\r\n\r\nCombine in a mason jar, shaking each day, until desired infusion strength is reached. Cherries can be left in rum indefinitely to create a delicious garnish.",
+      "in_stock": true,
+      "created_at": "2026-05-30"
+    },
+    {
       "id": "spiced-molasses-syrup",
       "name": "Spiced molasses syrup",
       "description": "",
@@ -621,7 +666,7 @@
       "id": "spicy-ginger-syrup",
       "name": "Spicy Ginger Syrup",
       "description": "house-made syrup",
-      "recipe": "- 250 g ginger juice\r\n- 250 g turbinado sugar\r\nBrix: 50\r\n\r\nTo make the juice, run whole stalks of ginger through an auger or masticating\r\njuicer. Strain the juice through a chinois and cheesecloth or through a\r\nsuperbag, straining out the lighter colored starches that remain on the bottom\r\nof the container. Warm the juice in a medium saucepan over medium heat\r\nuntil it’s just under a simmer. Add the sugar and stir to dissolve. Let the syrup\r\ncool to room temperature and store in an airtight container, refrigerated, for\r\nup to 2 weeks.\r\n\r\nMAKES 500 g\r\nSource: NoMad",
+      "recipe": "- 125 g ginger juice\n- 125 g turbinado sugar\nBrix: 50\n\nTo make the juice, run whole stalks of ginger through an auger or masticating juicer. Strain the juice through a chinois and cheesecloth or through a superbag, straining out the lighter colored starches that remain on the bottom of the container. Warm the juice in a small saucepan over medium heat until it's just under a simmer. Add the sugar and stir to dissolve. Let the syrup cool to room temperature and store in an airtight container, refrigerated, for up to 2 weeks.\n\nMAKES ~250 g (scaled from 500 g batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -629,7 +674,7 @@
       "id": "tellicherry-black-pepper-syrup",
       "name": "Tellicherry Black Pepper Syrup",
       "description": "house-made syrup",
-      "recipe": "- 150 g Tellicherry black pepper, coarsely ground\r\n- 800 g Demerara Syrup\r\n\r\nCombine the pepper and simple syrup in an iSi canister. Charge it twice using\r\nN2O (cream) chargers, shaking the canister between each charge. Allow the\r\ncanister to sit for 5 minutes and then vent by pushing the nozzle out quickly;\r\nplace a container underneath the tip to catch any liquid that may be released.\r\nUnscrew the top of the canister. Once the liquid stops bubbling, strain the\r\nmixture through cheesecloth or a coffee filter. Store in an airtight container,\r\nrefrigerated, for up to 1 month.\r\n\r\nMAKES 800 g\r\nSource: NoMad",
+      "recipe": "- 45 g Tellicherry black pepper, coarsely ground\n- 250 g Demerara Syrup\n\nCombine the pepper and syrup in an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by pushing the nozzle out quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 800 g batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
     },
@@ -637,7 +682,7 @@
       "id": "thai-bird-chile-infused-aperol",
       "name": "Thai Bird Chile–Infused Aperol",
       "description": "house-made infused spirit",
-      "recipe": "- 10 Thai bird chiles, diced\r\n- 750 mL Aperol\r\n\r\nSteep the chiles and Aperol in a container for 5 minutes. Taste the mixture to\r\nensure that the spice level is to your liking. Allow to steep longer for a spicier\r\nend product. Strain out the chiles when the desired spice level has been\r\nreached. Store in an airtight container, refrigerated, indefinitely.\r\n\r\nMAKES 750 ML\r\nSource: NoMad",
+      "recipe": "- 5 Thai bird chiles, diced\n- 375 mL Aperol\n\nSteep the chiles and Aperol in a container for 5 minutes. Taste the mixture to ensure that the spice level is to your liking. Allow to steep longer for a spicier end product. Strain out the chiles when the desired spice level has been reached. Store in an airtight container, refrigerated, indefinitely.\n\nMAKES ~375 mL (scaled from 750 mL batch)\nSource: NoMad",
       "in_stock": true,
       "created_at": "2026-05-25"
     },
@@ -645,37 +690,39 @@
       "id": "vanilla-syrup",
       "name": "Vanilla Syrup",
       "description": "house-made syrup",
-      "recipe": "- 800 g Simple Syrup (this page)\r\n- 3 vanilla beans, split\r\n\r\nCombine the simple syrup and vanilla in an iSi canister. Charge it twice using\r\nN2O (cream) chargers, shaking the canister between each charge. Allow the\r\ncanister to sit for 5 minutes and then vent by pushing the nozzle out quickly;\r\nplace a container underneath the tip to catch any liquid that may be released.\r\nUnscrew the top of the canister. Once the liquid stops bubbling, strain the\r\nmixture through cheesecloth or a coffee filter. Store in an airtight container,\r\nrefrigerated, for up to 1 month.\r\n\r\nMAKES 800 g\r\nSource: NoMad",
+      "recipe": "- 250 g Simple Syrup\n- 1 vanilla bean, split\n\nCombine the simple syrup and vanilla in an iSi canister. Charge it twice using N2O (cream) chargers, shaking the canister between each charge. Allow the canister to sit for 5 minutes and then vent by pushing the nozzle out quickly; place a container underneath the tip to catch any liquid that may be released. Unscrew the top of the canister. Once the liquid stops bubbling, strain the mixture through cheesecloth or a coffee filter. Store in an airtight container, refrigerated, for up to 1 month.\n\nMAKES ~250 g (scaled from 800 g batch)\nSource: NoMad",
       "in_stock": false,
       "created_at": "2026-05-25"
+    },
+    {
+      "id": "watermelon-syrup-50-brix",
+      "name": "Watermelon syrup (50 brix)",
+      "description": "",
+      "recipe": "- 134 g watermelon juice\r\n- 66 g cane or granulated sugar\r\n- 2 g citric acid\r\n\r\nStir to dissolve sugar and acid—do not heat. \r\n\r\nMAKES 200 g",
+      "in_stock": false,
+      "created_at": "2026-05-29"
     }
   ],
   "standard_out_of_stock": [
-    "agave nectar",
     "basil",
     "buttermilk",
     "cold brew concentrate",
     "cream",
-    "cucumber",
     "fees bitters",
     "ginger ale",
     "heavy cream",
     "honey-ginger syrup",
-    "orange juice",
     "orgeat",
     "pastis",
     "raspberry syrup",
     "rosemary",
     "thyme",
-    "grenadine",
     "clarified grapefruit juice",
     "clarified lemon juice",
-    "clarified lime juice",
     "blood orange juice",
     "granny smith apple juice",
     "acid phosphate",
     "lychee juice",
-    "pale ale",
     "pilsner"
   ]
 }

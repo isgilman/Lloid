@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lloid",
+      "runtimeExecutable": "/Users/iangilman/miniconda3/bin/python",
+      "runtimeArgs": ["app.py"],
+      "port": 5001,
+      "autoPort": true
+    }
+  ]
+}

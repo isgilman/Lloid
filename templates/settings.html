@@ -2,11 +2,14 @@
 {% block title %}Settings — Lloid{% endblock %}
 
 {% block content %}
+{% set all_distilleries   = all_distilleries   | default([]) %}
+{% set spirit_options_all = spirit_options_all  | default({}) %}
+{% set flavor_tags_all    = flavor_tags_all     | default([]) %}
 <div class="page-container page-container-narrow">
   <div class="page-header">
     <div>
       <h1 class="page-title">Settings</h1>
-      <p class="page-subtitle">Configure push notifications so guests can order drinks.</p>
+      <p class="page-subtitle">App configuration and master reference lists.</p>
     </div>
   </div>
 
@@ -66,11 +69,153 @@
       </div>
     </form>
   </div>
+
+  <!-- Distilleries -->
+  <div class="settings-section">
+    <h2 class="settings-section-title">Distilleries</h2>
+    <p class="page-subtitle" style="margin-bottom:16px">
+      Edit or remove distillery records. Bottles referencing a distillery by ID are not affected by name changes.
+    </p>
+    {% if all_distilleries %}
+    <table class="settings-list-table" id="distillery-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Region</th>
+          <th>Country</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for d in all_distilleries %}
+        <tr class="dist-row" data-id="{{ d.id }}">
+          <td class="dist-name">{{ d.name }}</td>
+          <td class="dist-region">{{ d.region or '—' }}</td>
+          <td class="dist-country">{{ d.country or '—' }}</td>
+          <td class="actions">
+            <button class="btn btn-ghost btn-xs" onclick="editDist('{{ d.id }}')">Edit</button>
+            <button class="btn btn-ghost btn-xs btn-danger" onclick="deleteDist('{{ d.id }}', '{{ d.name | e }}')">Delete</button>
+          </td>
+        </tr>
+        <tr class="settings-list-row-edit" id="dist-edit-{{ d.id }}">
+          <td colspan="4">
+            <div class="edit-fields">
+              <div class="edit-field">
+                <label>Name</label>
+                <input class="form-input" id="dist-name-{{ d.id }}" value="{{ d.name | e }}">
+              </div>
+              <div class="edit-field">
+                <label>Region</label>
+                <input class="form-input" id="dist-region-{{ d.id }}" value="{{ d.region | e }}">
+              </div>
+              <div class="edit-field">
+                <label>Country</label>
+                <input class="form-input" id="dist-country-{{ d.id }}" value="{{ d.country | e }}">
+              </div>
+              <div class="edit-field" style="justify-content:flex-end">
+                <div style="display:flex; gap:6px">
+                  <button class="btn btn-primary btn-sm" onclick="saveDist('{{ d.id }}')">Save</button>
+                  <button class="btn btn-ghost btn-sm" onclick="cancelDistEdit('{{ d.id }}')">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="settings-empty-hint">No distilleries recorded yet.</p>
+    {% endif %}
+  </div>
+
+  <!-- Spirit Options -->
+  {% set so_group_labels = {
+    'still_type': 'Still Type',
+    'fermentation_materials': 'Fermentation Materials',
+    'agave_species': 'Agave Species'
+  } %}
+  <div class="settings-section">
+    <h2 class="settings-section-title">Spirit Options</h2>
+    <p class="page-subtitle" style="margin-bottom:16px">
+      All spirit detail values currently in use across your bottles. Click a label to rename it.
+      Deleting removes the value from all bottles.
+    </p>
+    {% set has_so = namespace(val=false) %}
+    {% for group_key, group_label in so_group_labels.items() %}
+      {% set opts = spirit_options_all.get(group_key, []) %}
+      {% if opts %}{% set has_so.val = true %}{% endif %}
+      {% if opts %}
+      <div class="settings-custom-group">
+        <div class="settings-custom-group-label">{{ group_label }}</div>
+        <div class="settings-custom-chips">
+          {% for opt in opts %}
+          <div class="settings-custom-chip" data-so-group="{{ group_key }}" data-so-value="{{ opt.value | e }}">
+            <span class="chip-label" onclick="editSpiritOption('{{ group_key }}', '{{ opt.value | e }}', this)">{{ opt.label }}</span>
+            <span class="chip-count text-dim" style="font-size:11px; margin-left:2px">({{ opt.count }})</span>
+            <div class="settings-custom-chip-actions">
+              <button class="settings-chip-btn del" title="Remove from all bottles"
+                      onclick="deleteSpiritOption('{{ group_key }}', '{{ opt.value | e }}', '{{ opt.label | e }}', this)">&#10005;</button>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="settings-inline-edit" id="so-inline-{{ group_key }}">
+          <input class="form-input" id="so-label-{{ group_key }}" placeholder="Display label">
+          <input class="form-input" id="so-value-{{ group_key }}" placeholder="Value (slug)">
+          <button class="btn btn-primary btn-sm" onclick="saveSpiritOption('{{ group_key }}')">Save</button>
+          <button class="btn btn-ghost btn-sm" onclick="cancelSpiritOption('{{ group_key }}')">Cancel</button>
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+    {% if not has_so.val %}
+    <p class="settings-empty-hint">No bottles have spirit details recorded yet.</p>
+    {% endif %}
+  </div>
+
+  <!-- Flavor Tags -->
+  <div class="settings-section">
+    <h2 class="settings-section-title">Flavor Tags</h2>
+    <p class="page-subtitle" style="margin-bottom:16px">
+      All tasting note tags currently in use across your bottles. Click a label to rename it.
+      Deleting removes the tag from all bottles.
+    </p>
+    {% if flavor_tags_all %}
+      {% for group_entry in flavor_tags_all %}
+      <div class="settings-custom-group">
+        <div class="settings-custom-group-label">{{ group_entry.group }}</div>
+        <div class="settings-custom-chips">
+          {% for tag in group_entry.tags %}
+          <div class="settings-custom-chip" data-ft-value="{{ tag.value | e }}">
+            <span class="chip-label" onclick="editFlavorTag('{{ tag.value | e }}', this)">{{ tag.label }}</span>
+            <span class="chip-count text-dim" style="font-size:11px; margin-left:2px">({{ tag.count }})</span>
+            <div class="settings-custom-chip-actions">
+              <button class="settings-chip-btn del" title="Remove from all bottles"
+                      onclick="deleteFlavorTag('{{ tag.value | e }}', '{{ tag.label | e }}', this)">&#10005;</button>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+      <div class="settings-inline-edit" id="ft-inline-edit" style="margin-top:8px">
+        <input class="form-input" id="ft-inline-label" placeholder="Display label">
+        <input class="form-input" id="ft-inline-value" placeholder="Value (slug)">
+        <button class="btn btn-primary btn-sm" onclick="saveFlavorTag()">Save</button>
+        <button class="btn btn-ghost btn-sm" onclick="cancelFlavorTag()">Cancel</button>
+      </div>
+    {% else %}
+    <p class="settings-empty-hint">No tasting note tags recorded yet.</p>
+    {% endif %}
+  </div>
+
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
+/* ── ntfy helpers ── */
 function generateTopic() {
   const words = ['bar','lounge','cellar','oak','copper','gold','silver','rye','malt','bitters'];
   const w1 = words[Math.floor(Math.random() * words.length)];
@@ -78,30 +223,167 @@ function generateTopic() {
   const n  = Math.floor(Math.random() * 9000) + 1000;
   document.querySelector('input[name="ntfy_topic"]').value = `lloid-${w1}-${w2}-${n}`;
 }
-
 function detectUrl() {
   document.getElementById('ntfy-base-url').value =
     window.location.protocol + '//' + window.location.host;
 }
-
 async function testNotification() {
   const btn = document.getElementById('test-btn');
-  btn.disabled = true;
-  btn.textContent = 'Sending…';
+  btn.disabled = true; btn.textContent = 'Sending…';
   try {
     const res  = await fetch('/settings/test-notification', { method: 'POST' });
     const data = await res.json();
-    if (data.success) {
-      showToast('Test notification sent — check your phone!', 'success');
-    } else {
-      showToast(data.error || 'Failed to send', 'error');
-    }
-  } catch(e) {
-    showToast('Network error', 'error');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Send Test Notification';
-  }
+    showToast(data.success ? 'Test notification sent — check your phone!' : (data.error || 'Failed to send'),
+              data.success ? 'success' : 'error');
+  } catch(e) { showToast('Network error', 'error'); }
+  finally { btn.disabled = false; btn.textContent = 'Send Test Notification'; }
+}
+
+/* ── Distillery editing ── */
+function editDist(id) {
+  document.querySelectorAll('.settings-list-row-edit').forEach(function(r) { r.style.display = 'none'; });
+  document.getElementById('dist-edit-' + id).style.display = '';
+  document.getElementById('dist-name-' + id).focus();
+}
+function cancelDistEdit(id) {
+  document.getElementById('dist-edit-' + id).style.display = 'none';
+}
+async function saveDist(id) {
+  const name    = document.getElementById('dist-name-' + id).value.trim();
+  const region  = document.getElementById('dist-region-' + id).value.trim();
+  const country = document.getElementById('dist-country-' + id).value.trim();
+  if (!name) { showToast('Name is required', 'error'); return; }
+  try {
+    const res  = await fetch('/api/distilleries/' + encodeURIComponent(id), {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({name, region, country})
+    });
+    const data = await res.json();
+    if (!res.ok) { showToast(data.error || 'Error saving', 'error'); return; }
+    const row = document.querySelector('.dist-row[data-id="' + id + '"]');
+    row.querySelector('.dist-name').textContent    = data.name;
+    row.querySelector('.dist-region').textContent  = data.region || '—';
+    row.querySelector('.dist-country').textContent = data.country || '—';
+    cancelDistEdit(id);
+    showToast('Saved', 'success');
+  } catch(e) { showToast('Network error', 'error'); }
+}
+async function deleteDist(id, name) {
+  if (!confirm('Delete distillery "' + name + '"?\nBottles linked to it will lose their distillery association.')) return;
+  try {
+    const res  = await fetch('/api/distilleries/' + encodeURIComponent(id), { method: 'DELETE' });
+    const data = await res.json();
+    if (!res.ok) { showToast(data.error || 'Cannot delete', 'error'); return; }
+    const row     = document.querySelector('.dist-row[data-id="' + id + '"]');
+    const editRow = document.getElementById('dist-edit-' + id);
+    if (row) row.remove();
+    if (editRow) editRow.remove();
+    showToast('Deleted', 'success');
+  } catch(e) { showToast('Network error', 'error'); }
+}
+
+/* ── Spirit Options ── */
+var _editingSO = null; // {group, value, chipEl}
+
+function cancelAllInlineEdits() {
+  document.querySelectorAll('.settings-inline-edit').forEach(function(el) { el.style.display = 'none'; });
+  _editingSO = null;
+  _editingFT = null;
+}
+function editSpiritOption(group, value, labelEl) {
+  cancelAllInlineEdits();
+  _editingSO = {group, value, chipEl: labelEl.closest('.settings-custom-chip')};
+  const wrap = document.getElementById('so-inline-' + group);
+  document.getElementById('so-label-' + group).value = labelEl.textContent.trim();
+  document.getElementById('so-value-' + group).value = value;
+  wrap.style.display = 'flex';
+  document.getElementById('so-label-' + group).focus();
+}
+function cancelSpiritOption(group) {
+  document.getElementById('so-inline-' + group).style.display = 'none';
+  _editingSO = null;
+}
+async function saveSpiritOption(group) {
+  if (!_editingSO || _editingSO.group !== group) return;
+  const newLabel = document.getElementById('so-label-' + group).value.trim();
+  const newValue = document.getElementById('so-value-' + group).value.trim();
+  const oldValue = _editingSO.value;
+  if (!newLabel || !newValue) { showToast('Label and value required', 'error'); return; }
+  try {
+    const res  = await fetch('/api/settings/spirit-options/' + encodeURIComponent(group) + '/' + encodeURIComponent(oldValue), {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({label: newLabel, value: newValue})
+    });
+    const data = await res.json();
+    if (!res.ok) { showToast(data.error || 'Error saving', 'error'); return; }
+    const chip = _editingSO.chipEl;
+    chip.querySelector('.chip-label').textContent = data.label;
+    chip.dataset.soValue = data.value;
+    cancelSpiritOption(group);
+    showToast('Saved', 'success');
+  } catch(e) { showToast('Network error', 'error'); }
+}
+async function deleteSpiritOption(group, value, label, btn) {
+  if (!confirm('Remove "' + label + '" from all bottles?')) return;
+  try {
+    const res  = await fetch('/api/settings/spirit-options/' + encodeURIComponent(group) + '/' + encodeURIComponent(value), { method: 'DELETE' });
+    const data = await res.json();
+    if (!res.ok) { showToast(data.error || 'Error', 'error'); return; }
+    btn.closest('.settings-custom-chip').remove();
+    showToast('Removed', 'success');
+  } catch(e) { showToast('Network error', 'error'); }
+}
+
+/* ── Flavor Tags ── */
+var _editingFT = null; // {value, chipEl}
+
+function editFlavorTag(value, labelEl) {
+  cancelAllInlineEdits();
+  _editingFT = {value, chipEl: labelEl.closest('.settings-custom-chip')};
+  document.getElementById('ft-inline-label').value = labelEl.textContent.trim();
+  document.getElementById('ft-inline-value').value = value;
+  // Move inline edit after this chip's group
+  const group = labelEl.closest('.settings-custom-group');
+  group.appendChild(document.getElementById('ft-inline-edit'));
+  document.getElementById('ft-inline-edit').style.display = 'flex';
+  document.getElementById('ft-inline-label').focus();
+}
+function cancelFlavorTag() {
+  document.getElementById('ft-inline-edit').style.display = 'none';
+  _editingFT = null;
+}
+async function saveFlavorTag() {
+  if (!_editingFT) return;
+  const newLabel = document.getElementById('ft-inline-label').value.trim();
+  const newValue = document.getElementById('ft-inline-value').value.trim();
+  const oldValue = _editingFT.value;
+  if (!newLabel || !newValue) { showToast('Label and value required', 'error'); return; }
+  try {
+    const res  = await fetch('/api/settings/flavor-tags/' + encodeURIComponent(oldValue), {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({label: newLabel, value: newValue})
+    });
+    const data = await res.json();
+    if (!res.ok) { showToast(data.error || 'Error saving', 'error'); return; }
+    const chip = _editingFT.chipEl;
+    chip.querySelector('.chip-label').textContent = data.label;
+    chip.dataset.ftValue = data.value;
+    cancelFlavorTag();
+    showToast('Saved', 'success');
+  } catch(e) { showToast('Network error', 'error'); }
+}
+async function deleteFlavorTag(value, label, btn) {
+  if (!confirm('Remove tag "' + label + '" from all bottles?')) return;
+  try {
+    const res  = await fetch('/api/settings/flavor-tags/' + encodeURIComponent(value), { method: 'DELETE' });
+    const data = await res.json();
+    if (!res.ok) { showToast(data.error || 'Error', 'error'); return; }
+    btn.closest('.settings-custom-chip').remove();
+    showToast('Removed', 'success');
+  } catch(e) { showToast('Network error', 'error'); }
 }
 </script>
 {% endblock %}

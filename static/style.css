@@ -1103,7 +1103,7 @@ select.edit-input { padding: 5px 8px; }
   inset: 0;
   background: rgba(0,0,0,.7);
   backdrop-filter: blur(4px);
-  z-index: 200;
+  z-index: 300;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1946,8 +1946,14 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   .detail-body { grid-template-columns: 1fr; }
   .form-grid-2 { grid-template-columns: 1fr; }
   .form-col-span-2 { grid-column: span 1; }
+  /* Mobile: main fields on row 1, notes wraps to its own full-width row 2 */
   .ingredient-row { grid-template-columns: 20px 60px 56px 1fr 28px; }
-  .ing-notes { display: none; }
+  .ingredient-row .drag-handle { grid-row: 1; grid-column: 1; }
+  .ingredient-row .ing-amount  { grid-row: 1; grid-column: 2; }
+  .ingredient-row .ing-unit    { grid-row: 1; grid-column: 3; }
+  .ingredient-row .ing-name    { grid-row: 1; grid-column: 4; }
+  .ingredient-row .btn-icon    { grid-row: 1; grid-column: 5; }
+  .ing-notes { grid-row: 2; grid-column: 2 / -1; }
   .ingredient-type-row { padding-left: 28px; }
   .mode-selector { grid-template-columns: 1fr; }
   .specialty-grid { grid-template-columns: 1fr; }
@@ -2103,6 +2109,12 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   color: var(--text-dim);
   white-space: nowrap;
 }
+/* Tint each tag by its tasting-note category color (set inline via --chip-accent). */
+.bottle-flavor-tag[style*="--chip-accent"] {
+  background: rgba(var(--chip-accent), .14);
+  border-color: rgba(var(--chip-accent), .45);
+  color: rgb(var(--chip-accent));
+}
 .bottle-flavor-more {
   color: var(--accent-light);
   border-color: transparent;
@@ -2237,7 +2249,7 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   color: var(--text-dim);
   font-weight: 600;
   flex-shrink: 0;
-  width: 64px;
+  width: 90px;
 }
 
 .drawer-view-field-value {
@@ -2282,6 +2294,15 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   color: var(--text-dim);
   margin-bottom: 7px;
   font-weight: 600;
+}
+/* Per-category accent: distinct color for each tasting-note group (set via --group-accent). */
+.flavor-tag-group[style*="--group-accent"] .flavor-tag-group-label {
+  color: rgb(var(--group-accent));
+}
+.flavor-tag-group[style*="--group-accent"] .form-chip.active {
+  border-color: rgba(var(--group-accent), .6);
+  background: rgba(var(--group-accent), .15);
+  color: rgb(var(--group-accent));
 }
 
 .flavor-chip-row {
@@ -2725,6 +2746,14 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   font-size: 14px;
   color: var(--text);
 }
+.league-rank-name-link {
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.league-rank-name-link:hover {
+  color: var(--accent-light);
+  text-decoration: underline;
+}
 .league-rank-matches {
   font-size: 11.5px;
   color: var(--text-dim);
@@ -3071,4 +3100,353 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   align-items: center;
   justify-content: center;
   margin-top: 1px;
+}
+
+/* ── Spirit Details ──────────────────────────────────────────────────────────── */
+
+/* Barrel section header spacing */
+.sd-barrel-section {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+/* Climate radio toggle */
+.sd-climate-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 2px;
+}
+.sd-climate-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: var(--text-sec);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  border-right: 1px solid var(--border);
+  user-select: none;
+}
+.sd-climate-btn:last-child { border-right: none; }
+.sd-climate-btn input[type="radio"] { display: none; }
+.sd-climate-btn:has(input:checked) {
+  background: var(--accent-bg);
+  color: var(--accent-light);
+  font-weight: 600;
+}
+.sd-climate-btn:hover:not(:has(input:checked)) {
+  background: var(--card-hover);
+  color: var(--text);
+}
+
+/* Mash bill rows */
+.sd-mashbill-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sd-mashbill-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.sd-mashbill-grain {
+  flex: 1;
+}
+.sd-mashbill-pct {
+  width: 72px;
+  flex-shrink: 0;
+  text-align: right;
+}
+.sd-mashbill-remove {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-sec);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition), color var(--transition);
+}
+.sd-mashbill-remove:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* small form label used inside barrel grid */
+.form-label-sm {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+/* Spirit details notes paragraph in view panel */
+.sd-view-notes {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.sd-add-chip-btn {
+  padding: 3px 9px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px dashed var(--border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text-sec);
+  cursor: pointer;
+  line-height: 1.4;
+  transition: border-color .15s, color .15s;
+}
+.sd-add-chip-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.sd-add-chip-input {
+  width: 90px;
+  padding: 3px 8px;
+  font-size: 13px;
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  background: var(--bg-card);
+  color: var(--text);
+  outline: none;
+}
+
+/* ── Distillery picker ────────────────────────────────────────────────────── */
+.distillery-edit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+  min-height: 0;
+}
+.distillery-edit-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px 3px 10px;
+  background: var(--accent-dim, rgba(212,175,55,.15));
+  border: 1px solid var(--accent, #d4af37);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.4;
+}
+.distillery-chip-remove {
+  background: none;
+  border: none;
+  color: var(--text-sec);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 1px;
+}
+.distillery-chip-remove:hover { color: var(--danger, #e55); }
+
+.distillery-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.4);
+  z-index: 500;
+  overflow: hidden;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.distillery-dd-item {
+  padding: 9px 12px;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+}
+.distillery-dd-item:hover { background: var(--bg-hover, rgba(255,255,255,.06)); }
+.distillery-dd-create {
+  color: var(--accent);
+  border-top: 1px solid var(--border);
+  font-weight: 500;
+}
+.distillery-create-form {
+  padding: 10px 12px;
+}
+.distillery-create-form .form-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.distillery-view-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px 0 2px;
+}
+.distillery-view-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--accent-dim, rgba(212,175,55,.12));
+  border: 1px solid var(--accent, #d4af37);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--text);
+}
+
+/* Bottle scan */
+.scan-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255,255,255,.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: scan-spin .8s linear infinite;
+}
+@keyframes scan-spin { to { transform: rotate(360deg); } }
+.scan-distillery-hint {
+  padding: 8px 12px;
+  margin: 0 0 4px;
+  background: var(--accent-dim, rgba(212,175,55,.1));
+  border-left: 3px solid var(--accent, #d4af37);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--text-muted, #aaa);
+}
+
+/* ── Settings: master lists ─────────────────────────────────────────────────── */
+.settings-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.settings-list-table th {
+  text-align: left;
+  padding: 6px 10px;
+  color: var(--text-dim);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+.settings-list-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-subtle, rgba(255,255,255,.06));
+  vertical-align: top;
+}
+.settings-list-table tr:last-child td { border-bottom: none; }
+.settings-list-table td.actions {
+  white-space: nowrap;
+  width: 1px;
+}
+.settings-list-row-edit {
+  display: none;
+}
+.settings-list-row-edit td {
+  padding-top: 6px;
+  padding-bottom: 10px;
+  background: var(--surface-raised, rgba(255,255,255,.03));
+}
+.settings-list-row-edit .edit-fields {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.settings-list-row-edit .edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.settings-list-row-edit .edit-field label {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.settings-list-row-edit .edit-field input {
+  font-size: 13px;
+  padding: 5px 8px;
+  min-width: 140px;
+}
+.settings-custom-group {
+  margin-bottom: 18px;
+}
+.settings-custom-group-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 8px;
+}
+.settings-custom-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.settings-custom-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--chip-bg, rgba(255,255,255,.07));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3px 8px 3px 10px;
+  font-size: 13px;
+}
+.settings-custom-chip .chip-label {
+  cursor: pointer;
+  border-bottom: 1px dashed var(--text-dim);
+}
+.settings-custom-chip .chip-label:hover { color: var(--accent); }
+.settings-custom-chip-actions {
+  display: flex;
+  gap: 2px;
+  margin-left: 2px;
+}
+.settings-chip-btn {
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--text-dim);
+  padding: 0;
+}
+.settings-chip-btn:hover { background: var(--accent-bg); color: var(--accent); }
+.settings-chip-btn.del:hover { background: rgba(220,60,60,.15); color: #e05252; }
+.settings-inline-edit {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+.settings-inline-edit input {
+  font-size: 13px;
+  padding: 4px 8px;
+  min-width: 120px;
+}
+.settings-empty-hint {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-style: italic;
 }

@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-{% block title %}Spirit Rankings — Lloid{% endblock %}
+{% block title %}Bottle Rankings — Lloid{% endblock %}
 
 {% block content %}
 <div class="page-container">
   <div class="page-header">
     <div>
-      <h1 class="page-title">Spirit Rankings</h1>
+      <h1 class="page-title">Bottle Rankings</h1>
       <p class="page-subtitle">Head-to-head ELO rankings for your bottles.</p>
     </div>
-    <button class="btn btn-primary" onclick="openCreateModal()">+ New League</button>
+    <button class="btn btn-primary" onclick="openCreateModal()">+ New List</button>
   </div>
 
   {% if leagues %}
@@ -19,9 +19,9 @@
         <div>
           <div class="league-card-name">{{ lg.name }}</div>
           {% if lg.is_default %}
-            <div class="league-card-type">Default league</div>
+            <div class="league-card-type">Default list</div>
           {% else %}
-            <div class="league-card-type">Custom league</div>
+            <div class="league-card-type">Custom list</div>
           {% endif %}
         </div>
         <div class="league-card-count">{{ lg.member_count }} bottle{% if lg.member_count != 1 %}s{% endif %}</div>
@@ -53,18 +53,18 @@
 <div class="modal-overlay" id="create-modal" style="display:none" onclick="closeCreateModalIfBg(event)">
   <div class="modal">
     <div class="modal-header">
-      <h2 class="modal-title">New League</h2>
+      <h2 class="modal-title">New List</h2>
       <button class="modal-close" onclick="closeCreateModal()">&#10005;</button>
     </div>
     <form onsubmit="submitCreate(event)" class="modal-form">
       <div class="form-group" style="margin-bottom:14px">
-        <label class="form-label">League name *</label>
+        <label class="form-label">List name *</label>
         <input type="text" id="create-league-name" class="form-input" required
                placeholder="e.g. Rye Whiskey, Jamaican Rum…" maxlength="60" autocomplete="off">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-ghost" onclick="closeCreateModal()">Cancel</button>
-        <button type="submit" class="btn btn-primary">Create League</button>
+        <button type="submit" class="btn btn-primary">Create List</button>
       </div>
     </form>
   </div>

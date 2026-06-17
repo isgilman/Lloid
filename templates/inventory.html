@@ -8,8 +8,22 @@
       <h1 class="page-title">Bottle Shelf</h1>
       <p class="page-subtitle" id="bottle-count-label">{{ bottles | length }} bottles</p>
     </div>
-    <button class="btn btn-primary" onclick="openAddModal()">+ Add Bottle</button>
+    <div style="display:flex;gap:8px;align-items:center">
+      <input type="file" id="scan-file-input" accept="image/*" capture="environment"
+             style="display:none" onchange="handleScanFile(this)">
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('scan-file-input').click()" title="Scan or photograph a bottle to add it">Scan</button>
+      <input type="file" id="techsheet-file-input" accept="image/*,application/pdf"
+             style="display:none" onchange="handleTechSheetFile(this)">
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('techsheet-file-input').click()" title="Upload a tech sheet (image or PDF) to add a bottle with full production details">Tech Sheet</button>
+      <button class="btn btn-primary" onclick="openAddModal()">+ Add Bottle</button>
+    </div>
   </div>
+
+<!-- Scan loading overlay -->
+<div id="scan-loading" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;align-items:center;justify-content:center;flex-direction:column;gap:14px">
+  <div class="scan-spinner"></div>
+  <p id="scan-loading-text" style="color:#fff;font-size:15px;margin:0">Reading bottle label…</p>
+</div>
 
   <!-- Filter bar -->
   <div class="filter-bar">
@@ -20,6 +34,12 @@
       {% for cat in categories %}
         <option value="{{ cat }}">{{ cat }}</option>
       {% endfor %}
+    </select>
+    <select id="inv-country" class="filter-select" onchange="filterBottles()" style="display:none">
+      <option value="">All countries</option>
+    </select>
+    <select id="inv-distillery" class="filter-select" onchange="filterBottles()" style="display:none">
+      <option value="">All distilleries</option>
     </select>
     <button id="inv-instock-btn" class="filter-toggle" onclick="toggleInStockFilter()"
             title="Show only in-stock bottles">In Stock</button>
@@ -33,7 +53,9 @@
          data-name="{{ b.Name | lower }}"
          data-style="{{ b.Style | lower }}"
          data-category="{{ b.Category }}"
-         data-origin="{{ b.Origin | lower }}"
+         data-country="{{ b.Country | lower }}"
+         data-region="{{ b.Region | lower }}"
+         data-distilleries="{{ (b.get('spirit_details', {}).get('distilleries') or []) | join('|') }}"
          data-instock="{{ 'true' if b.in_stock else 'false' }}"
          onclick="openDrawer({{ loop.index0 }})">
 
@@ -52,7 +74,7 @@
 
       <p class="bottle-card-meta">
         {% if b.Style %}<span>{{ b.Style }}</span>{% endif %}
-        {% if b.Origin %}<span class="text-dim">{{ b.Origin }}</span>{% endif %}
+        {% if b.Country %}<span class="text-dim">{{ b.Country }}{% if b.Region %}, {{ b.Region }}{% endif %}</span>{% endif %}
         {% if b.Age %}<span class="text-dim">{{ b.Age }}</span>{% endif %}
       </p>
 
@@ -73,7 +95,7 @@
       {% if b.flavor_tags %}
       <div class="bottle-card-tags">
         {% for tag in b.flavor_tags[:4] %}
-          <span class="bottle-flavor-tag">{{ tag | replace('-', ' ') | title }}</span>
+          <span class="bottle-flavor-tag" data-value="{{ tag }}">{{ tag | replace('-', ' ') | title }}</span>
         {% endfor %}
         {% if b.flavor_tags | length > 4 %}
           <span class="bottle-flavor-tag bottle-flavor-more">+{{ b.flavor_tags | length - 4 }}</span>
@@ -128,6 +150,15 @@
     <div class="bottle-drawer-section">
       <p class="drawer-view-meta" id="view-meta"></p>
       <div class="drawer-view-fields" id="view-fields"></div>
+      <div id="view-distillery-section" style="display:none">
+        <div id="view-distillery-chips" class="distillery-view-chips"></div>
+      </div>
+    </div>
+
+    <!-- Spirit details (hidden if empty) -->
+    <div class="bottle-drawer-section" id="view-spirit-section" style="display:none">
+      <h3 class="bottle-drawer-section-title">Spirit Details</h3>
+      <div class="drawer-view-fields" id="view-spirit-fields"></div>
     </div>
 
     <!-- Static tasting notes (hidden if empty) -->
@@ -184,8 +215,12 @@
           <input type="text" id="dr-style" class="form-input">
         </div>
         <div class="form-group" style="margin-bottom:0">
-          <label class="form-label">Origin</label>
-          <input type="text" id="dr-origin" class="form-input">
+          <label class="form-label">Country</label>
+          <input type="text" id="dr-country" class="form-input" placeholder="e.g. Jamaica">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Region / State</label>
+          <input type="text" id="dr-region" class="form-input" placeholder="e.g. Trelawny">
         </div>
         <div class="form-group" style="margin-bottom:0">
           <label class="form-label">Age</label>
@@ -201,12 +236,126 @@
           <input type="text" id="dr-producer" class="form-input">
         </div>
         <div class="form-group form-col-span-2" style="margin-bottom:0">
+          <label class="form-label">Distilleries</label>
+          <div id="dr-distillery-chips" class="distillery-edit-chips"></div>
+          <div style="position:relative">
+            <input type="text" id="dr-distillery-input" class="form-input"
+                   placeholder="Search distilleries…" autocomplete="off"
+                   oninput="distilleryTypeahead(this.value)"
+                   onfocus="if(this.value) distilleryTypeahead(this.value)">
+            <div id="dr-distillery-dropdown" class="distillery-dropdown" style="display:none"></div>
+          </div>
+        </div>
+        <div class="form-group form-col-span-2" style="margin-bottom:0">
           <label class="form-label">Use</label>
           <select id="dr-use" class="form-input" onchange="updateUseBadge()">
             <option>Cocktail</option>
             <option>Premium Cocktail</option>
             <option>Neat Only</option>
           </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spirit Details (editable) -->
+    <div class="bottle-drawer-section">
+      <h3 class="bottle-drawer-section-title">Spirit Details</h3>
+
+      <!-- Still Type (all spirits) -->
+      <div style="margin-bottom:14px">
+        <label class="form-label">Still Type</label>
+        <div class="flavor-chip-row" style="flex-wrap:wrap;gap:6px;margin-top:6px" id="sd-st-chips">
+          <label class="form-chip"><input type="checkbox" value="pot"> Pot</label>
+          <label class="form-chip"><input type="checkbox" value="column"> Column</label>
+          <button type="button" class="sd-add-chip-btn" onclick="sdAddChip('sd-st-chips', this)">+</button>
+        </div>
+      </div>
+
+      <!-- Rum: Fermentation Materials -->
+      <div id="sd-rum-section" style="display:none;margin-bottom:14px">
+        <label class="form-label">Fermentation Materials</label>
+        <div class="flavor-chip-row" style="flex-wrap:wrap;gap:6px;margin-top:6px" id="sd-fm-chips">
+          <label class="form-chip"><input type="checkbox" value="molasses"> Molasses</label>
+          <label class="form-chip"><input type="checkbox" value="cane-juice"> Cane Juice</label>
+          <label class="form-chip"><input type="checkbox" value="cane-syrup"> Cane Syrup</label>
+          <label class="form-chip"><input type="checkbox" value="turbinado"> Turbinado</label>
+          <label class="form-chip"><input type="checkbox" value="piloncillo"> Piloncillo</label>
+          <label class="form-chip"><input type="checkbox" value="dunder"> Dunder</label>
+          <label class="form-chip"><input type="checkbox" value="muck"> Muck</label>
+          <button type="button" class="sd-add-chip-btn" onclick="sdAddChip('sd-fm-chips', this)">+</button>
+        </div>
+      </div>
+
+      <!-- Agave: Species -->
+      <div id="sd-agave-section" style="display:none;margin-bottom:14px">
+        <label class="form-label">Agave Species</label>
+        <div class="flavor-chip-row" style="flex-wrap:wrap;gap:6px;margin-top:6px" id="sd-agave-chips">
+          <label class="form-chip"><input type="checkbox" value="espadin"> Espadín</label>
+          <label class="form-chip"><input type="checkbox" value="blue-weber"> Blue Weber</label>
+          <label class="form-chip"><input type="checkbox" value="tobala"> Tobalá</label>
+          <label class="form-chip"><input type="checkbox" value="tepeztate"> Tepeztate</label>
+          <label class="form-chip"><input type="checkbox" value="arroqueno"> Arroqueño</label>
+          <label class="form-chip"><input type="checkbox" value="madrecuixe"> Madrecuixe</label>
+          <label class="form-chip"><input type="checkbox" value="cuishe"> Cuishe</label>
+          <label class="form-chip"><input type="checkbox" value="tobaziche"> Tobaziche</label>
+          <label class="form-chip"><input type="checkbox" value="jabali"> Jabalí</label>
+          <label class="form-chip"><input type="checkbox" value="mexicano"> Mexicano</label>
+          <label class="form-chip"><input type="checkbox" value="cenizo"> Cenizo</label>
+          <label class="form-chip"><input type="checkbox" value="salmiana"> Salmiana</label>
+          <button type="button" class="sd-add-chip-btn" onclick="sdAddChip('sd-agave-chips', this)">+</button>
+        </div>
+      </div>
+
+      <!-- Whiskey: Mash Bill -->
+      <div id="sd-whiskey-section" style="display:none;margin-bottom:14px">
+        <label class="form-label">Mash Bill</label>
+        <div id="sd-mashbill-rows" class="sd-mashbill-rows" style="margin-top:6px"></div>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="addMashBillRow()" style="margin-top:6px">+ Add Grain</button>
+      </div>
+
+      <!-- Notes -->
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label">Notes</label>
+        <textarea id="sd-notes" class="form-input form-textarea" rows="3"
+                  placeholder="Production notes, distillery info, personal observations…"></textarea>
+      </div>
+
+      <!-- Barrel Info -->
+      <div class="sd-barrel-section">
+        <label class="form-label" style="margin-bottom:8px">Barrel</label>
+        <div class="form-grid-2" style="gap:10px">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label form-label-sm">Type</label>
+            <input type="text" id="sd-barrel-type" class="form-input"
+                   placeholder="e.g. Ex-Bourbon, French Oak">
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label form-label-sm">Fill</label>
+            <select id="sd-barrel-fill" class="form-input">
+              <option value="">—</option>
+              <option>First Fill</option>
+              <option>Second Fill</option>
+              <option>Third Fill</option>
+              <option>Refill</option>
+              <option>New Oak</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label form-label-sm">Duration</label>
+            <input type="text" id="sd-barrel-duration" class="form-input"
+                   placeholder="e.g. 18 months, 5 years">
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label form-label-sm">Climate</label>
+            <div class="sd-climate-toggle" id="sd-climate-toggle">
+              <label class="sd-climate-btn">
+                <input type="radio" name="sd-barrel-climate" value="temperate"> Temperate
+              </label>
+              <label class="sd-climate-btn">
+                <input type="radio" name="sd-barrel-climate" value="tropical"> Tropical
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -256,11 +405,11 @@
 
     <!-- Step 0: League selection -->
     <div id="rating-step-0" class="rating-step">
-      <p class="rating-step-sub" id="rating-league-sub">Which league would you like to rate in?</p>
+      <p class="rating-step-sub" id="rating-league-sub">Which list would you like to rate in?</p>
       <div id="rating-league-list" class="rating-league-list"></div>
       <div class="rating-new-league-row">
         <input type="text" id="rating-new-league-input" class="form-input"
-               placeholder="Or create a new league…" maxlength="60" autocomplete="off"
+               placeholder="Or create a new list…" maxlength="60" autocomplete="off"
                onkeydown="if(event.key==='Enter') createLeagueAndSelect()">
         <button class="btn btn-ghost btn-sm" onclick="createLeagueAndSelect()">Create</button>
       </div>
@@ -305,7 +454,7 @@
       </div>
       <div id="rating-result-all-leagues" class="rating-result-all-leagues"></div>
       <div class="modal-footer" style="margin-top:16px">
-        <button class="btn btn-ghost" onclick="rateAnotherLeague()">Rate in another league</button>
+        <button class="btn btn-ghost" onclick="rateAnotherLeague()">Rate in another list</button>
         <button class="btn btn-primary" onclick="closeRatingModal()">Done</button>
       </div>
     </div>
@@ -339,8 +488,12 @@
           <input type="text" name="Style" class="form-input" placeholder="e.g. Gin">
         </div>
         <div class="form-group">
-          <label class="form-label">Origin</label>
-          <input type="text" name="Origin" class="form-input" placeholder="e.g. Scotland">
+          <label class="form-label">Country</label>
+          <input type="text" name="Country" class="form-input" placeholder="e.g. Scotland">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Region / State</label>
+          <input type="text" name="Region" class="form-input" placeholder="e.g. Islay">
         </div>
         <div class="form-group">
           <label class="form-label">Age</label>
@@ -365,6 +518,20 @@
           </select>
         </div>
       </div>
+      <div class="form-group" style="margin-top:8px">
+        <label class="form-label">Distilleries</label>
+        <div id="add-distillery-chips" class="distillery-edit-chips"></div>
+        <div style="position:relative">
+          <input type="text" id="add-distillery-input" class="form-input"
+                 placeholder="Search distilleries…" autocomplete="off"
+                 oninput="addModalDistilleryTypeahead(this.value)"
+                 onfocus="if(this.value) addModalDistilleryTypeahead(this.value)">
+          <div id="add-distillery-dropdown" class="distillery-dropdown" style="display:none"></div>
+        </div>
+      </div>
+      <input type="hidden" name="distillery_ids" id="add-distillery-ids-hidden" value="[]">
+      <input type="hidden" name="extra_data" id="add-extra-data-hidden" value="">
+      <p id="add-distillery-hint" class="form-hint scan-distillery-hint" style="display:none"></p>
       <div class="modal-footer">
         <button type="button" class="btn btn-ghost" onclick="closeAddModal()">Cancel</button>
         <button type="submit" class="btn btn-primary">Add to Inventory</button>
@@ -379,18 +546,23 @@
 // ── Data ──────────────────────────────────────────────────────────────────────
 const BOTTLES = {{ bottles | tojson }};
 let ALL_LEAGUES = {{ all_leagues | tojson }};
+const ALL_DISTILLERIES = {{ all_distilleries | tojson }};
 // Custom flavor tags saved globally: { "Group Label": [{value, label}, ...] }
-const CUSTOM_FLAVOR_TAGS = {{ custom_flavor_tags | tojson }};
+const CUSTOM_FLAVOR_TAGS = {{ custom_flavor_tags | default({}) | tojson }};
+// Globally-registered custom spirit options: { still_type:[{value,label}], fermentation_materials:[...], agave_species:[...] }
+const CUSTOM_SPIRIT_OPTIONS = {{ custom_spirit_options | default({}) | tojson }};
 
 const FLAVOR_GROUPS = [
   { label: 'Tropical Fruit', tags: [
-    {value:'banana',       label:'Banana'},
-    {value:'pineapple',    label:'Pineapple'},
-    {value:'mango',        label:'Mango'},
-    {value:'coconut',      label:'Coconut'},
-    {value:'passion-fruit',label:'Passion Fruit'},
-    {value:'papaya',       label:'Papaya'},
-    {value:'guava',        label:'Guava'},
+    {value:'banana',        label:'Banana'},
+    {value:'pineapple',     label:'Pineapple'},
+    {value:'mango',         label:'Mango'},
+    {value:'coconut',       label:'Coconut'},
+    {value:'passion-fruit', label:'Passion Fruit'},
+    {value:'papaya',        label:'Papaya'},
+    {value:'guava',         label:'Guava'},
+    {value:'lychee',        label:'Lychee'},
+    {value:'tropical-fruit',label:'Tropical Fruit (generic)'},
   ]},
   { label: 'Citrus', tags: [
     {value:'lemon',        label:'Lemon'},
@@ -408,7 +580,11 @@ const FLAVOR_GROUPS = [
     {value:'apple',        label:'Apple'},
     {value:'pear',         label:'Pear'},
     {value:'berry',        label:'Berry'},
+    {value:'strawberry',   label:'Strawberry'},
+    {value:'raspberry',    label:'Raspberry'},
+    {value:'grape',        label:'Grape'},
     {value:'melon',        label:'Melon'},
+    {value:'green-fruit',  label:'Green Fruit (generic)'},
   ]},
   { label: 'Dried Fruit', tags: [
     {value:'raisin',       label:'Raisin'},
@@ -433,6 +609,9 @@ const FLAVOR_GROUPS = [
     {value:'anise',        label:'Anise'},
     {value:'eucalyptus',   label:'Eucalyptus'},
     {value:'tobacco-leaf', label:'Tobacco Leaf'},
+    {value:'vegetal',      label:'Vegetal'},
+    {value:'sugarcane',    label:'Sugarcane'},
+    {value:'agricole',     label:'Agricole'},
   ]},
   { label: 'Baking Spice', tags: [
     {value:'vanilla',      label:'Vanilla'},
@@ -491,6 +670,10 @@ const FLAVOR_GROUPS = [
     {value:'acetone',      label:'Acetone'},
     {value:'wax',          label:'Wax'},
     {value:'solvent',      label:'Solvent'},
+    {value:'ester',        label:'Ester'},
+    {value:'rubber',       label:'Rubber'},
+    {value:'petroleum',    label:'Petroleum'},
+    {value:'bubblegum',    label:'Bubblegum'},
   ]},
   { label: 'Texture & Other', tags: [
     {value:'creamy',       label:'Creamy'},
@@ -502,8 +685,46 @@ const FLAVOR_GROUPS = [
     {value:'sour',         label:'Sour'},
     {value:'medicinal',    label:'Medicinal'},
     {value:'brioche',      label:'Brioche'},
+    {value:'umami',        label:'Umami'},
+    {value:'olive',        label:'Olive'},
   ]},
 ];
+
+// Distinct accent color (R,G,B) per FLAVOR_GROUPS category, in the same order,
+// so tasting-note categories stand out. Tuned for the dark theme.
+const FLAVOR_GROUP_COLORS = [
+  '235,190,70',   // Tropical Fruit  — gold
+  '180,205,75',   // Citrus          — lime
+  '235,120,120',  // Stone & Other Fruit — coral
+  '200,120,70',   // Dried Fruit     — burnt orange
+  '230,135,200',  // Floral          — pink
+  '110,200,120',  // Herbal & Vegetal — green
+  '225,175,90',   // Baking Spice    — amber
+  '230,85,80',    // Heat & Pepper   — red
+  '210,170,110',  // Sweet & Caramel — tan
+  '160,110,85',   // Chocolate & Coffee — brown
+  '150,170,120',  // Wood & Oak      — khaki
+  '145,165,185',  // Earth & Smoke   — slate
+  '180,140,230',  // Funk & Ferment  — purple
+  '95,195,200',   // Texture & Other — teal
+];
+const FLAVOR_NEUTRAL_COLOR = '150,150,150';
+
+// Map each known tag value → its category accent color (R,G,B string).
+const FLAVOR_VALUE_COLOR = {};
+FLAVOR_GROUPS.forEach(function(grp, i) {
+  const c = FLAVOR_GROUP_COLORS[i] || FLAVOR_NEUTRAL_COLOR;
+  grp.tags.forEach(function(t) { FLAVOR_VALUE_COLOR[t.value] = c; });
+});
+
+/** Tint flavor-tag chips (with a data-value) by their category color. */
+function colorizeTagEls(root) {
+  (root || document).querySelectorAll('.bottle-flavor-tag[data-value]').forEach(function(el) {
+    const accent = FLAVOR_VALUE_COLOR[el.dataset.value];
+    if (accent) el.style.setProperty('--chip-accent', accent);
+  });
+}
+document.addEventListener('DOMContentLoaded', function() { colorizeTagEls(document); });
 
 // ── Filters ───────────────────────────────────────────────────────────────────
 let inStockOnly = false;
@@ -521,27 +742,116 @@ function toggleInStockFilter() {
   filterBottles();
 }
 
+/** Re-build the Country filter dropdown (call after saving a bottle). */
+function refreshSpiritFilters() {
+  const countryEl = document.getElementById('inv-country');
+  const savedCountry = countryEl.value;
+  while (countryEl.options.length > 1) countryEl.remove(1);
+  countryEl.style.display = 'none';
+  initSpiritFilters();
+  // Restore previous selection if still valid
+  for (let i = 0; i < countryEl.options.length; i++) {
+    if (countryEl.options[i].value === savedCountry) {
+      countryEl.value = savedCountry;
+      break;
+    }
+  }
+  // Refresh distillery filter
+  const savedDist = document.getElementById('inv-distillery').value;
+  initDistilleryFilter();
+  const distEl = document.getElementById('inv-distillery');
+  for (let i = 0; i < distEl.options.length; i++) {
+    if (distEl.options[i].value === savedDist) {
+      distEl.value = savedDist;
+      break;
+    }
+  }
+}
+
+function initDistilleryFilter() {
+  const usedIds = new Set();
+  BOTTLES.forEach(function(b) {
+    ((b.spirit_details || {}).distilleries || []).forEach(function(id) { usedIds.add(id); });
+  });
+  const el = document.getElementById('inv-distillery');
+  while (el.options.length > 1) el.remove(1);
+  el.style.display = 'none';
+  if (usedIds.size === 0) return;
+  ALL_DISTILLERIES.filter(function(d) { return usedIds.has(d.id); })
+    .sort(function(a, b) { return a.name.localeCompare(b.name); })
+    .forEach(function(d) {
+      const opt = document.createElement('option');
+      opt.value = d.id;
+      opt.textContent = d.name;
+      el.appendChild(opt);
+    });
+  el.style.display = '';
+}
+
+/** Populate the Country filter dropdown from bottle CSV data. */
+function initSpiritFilters() {
+  const countries = new Set();
+  BOTTLES.forEach(function(b) {
+    if (b.Country) countries.add(b.Country);
+  });
+  const countryEl = document.getElementById('inv-country');
+  if (countries.size > 0) {
+    Array.from(countries).sort().forEach(function(c) {
+      const opt = document.createElement('option');
+      opt.value = c.toLowerCase();
+      opt.textContent = c;
+      countryEl.appendChild(opt);
+    });
+    countryEl.style.display = '';
+  }
+}
+initSpiritFilters();
+initDistilleryFilter();
+
 function filterBottles() {
-  const q    = stripDiacritics(document.getElementById('inv-search').value.toLowerCase().trim());
-  const cat  = document.getElementById('inv-category').value;
-  const cards = document.querySelectorAll('.bottle-card');
+  const q          = stripDiacritics(document.getElementById('inv-search').value.toLowerCase().trim());
+  const cat        = document.getElementById('inv-category').value;
+  const country    = document.getElementById('inv-country').value;
+  const distillery = document.getElementById('inv-distillery').value;
+  const cards      = document.querySelectorAll('.bottle-card');
   let visible = 0;
   cards.forEach(function(card) {
-    const name     = card.dataset.name || '';
-    const style    = card.dataset.style || '';
-    const cardCat  = card.dataset.category || '';
-    const origin   = card.dataset.origin || '';
-    const inStock  = card.dataset.instock === 'true';
-    // Search across name + style + category + origin so e.g. "bourbon" finds
-    // "Old Forester 100" (style "Straight Bourbon"), and "rum jamaica" finds
-    // Jamaican rums by their origin field.
+    const name    = card.dataset.name    || '';
+    const style   = card.dataset.style   || '';
+    const cardCat = card.dataset.category || '';
+    const cardCountry = card.dataset.country || '';
+    const cardRegion  = card.dataset.region  || '';
+    const inStock = card.dataset.instock === 'true';
+    const cardDistilleries = card.dataset.distilleries || '';
+    // Spirit details (barrel, fermentation, mash bill, notes, etc.)
+    const idx = parseInt(card.dataset.index);
+    const sd  = (!isNaN(idx) && BOTTLES[idx] && BOTTLES[idx].spirit_details)
+                  ? BOTTLES[idx].spirit_details : {};
+    const sdText = [
+      (sd.fermentation_materials || []).join(' '),
+      (sd.agave_species || []).join(' '),
+      (sd.mash_bill || []).map(function(r) { return r.grain; }).join(' '),
+      sd.barrel_type,
+      sd.barrel_fill,
+      sd.barrel_climate,
+      sd.barrel_duration,
+      sd.notes,
+    ].filter(Boolean).join(' ').toLowerCase();
+    // Search across name + style + category + country + region + spirit details so e.g.
+    // "bourbon" finds "Old Forester 100" (style "Straight Bourbon"),
+    // "tropical" finds tropically aged spirits, "molasses" finds rum made from it.
     // stripDiacritics ensures accented bottle names like "Bénédictine D.O.M." match
     // unaccented search terms like "benedictine" (and vice-versa).
-    const searchIn = stripDiacritics(name + ' ' + style + ' ' + cardCat.toLowerCase() + ' ' + origin);
-    const matchQ   = !q   || searchIn.includes(q);
-    const matchCat = !cat || cardCat === cat;
-    const matchStock = !inStockOnly || inStock;
-    const show = matchQ && matchCat && matchStock;
+    const searchIn = stripDiacritics(
+      name + ' ' + style + ' ' + cardCat.toLowerCase() + ' ' +
+      cardCountry + ' ' + cardRegion + ' ' + sdText
+    );
+    const matchQ       = !q          || searchIn.includes(q);
+    const matchCat     = !cat        || cardCat === cat;
+    const matchCountry = !country    || cardCountry === country.toLowerCase();
+    const matchDist    = !distillery || cardDistilleries.split('|').includes(distillery);
+    const matchStock   = !inStockOnly || inStock;
+    const show = matchQ && matchCat && matchCountry && matchDist && matchStock;
     card.style.display = show ? '' : 'none';
     if (show) visible++;
   });
@@ -587,10 +897,12 @@ function populateViewPanel(b) {
   const metaParts = [b.Category, b.Style, b.Origin].filter(Boolean);
   document.getElementById('view-meta').textContent = metaParts.join(' · ');
 
-  // Labeled fields: ABV, Age, Producer
+  // Labeled fields: Country/Region, ABV, Age, Producer
   const fieldsEl = document.getElementById('view-fields');
   fieldsEl.innerHTML = '';
-  [['ABV', b.ABV], ['Age', b.Age], ['Producer', b.Producer]].forEach(function(pair) {
+  const locationStr = [b.Country, b.Region].filter(Boolean).join(', ');
+  const viewFieldPairs = [['Location', locationStr], ['ABV', b.ABV], ['Age', b.Age], ['Producer', b.Producer]];
+  viewFieldPairs.forEach(function(pair) {
     if (pair[1]) {
       const row = document.createElement('div');
       row.className = 'drawer-view-field';
@@ -606,6 +918,19 @@ function populateViewPanel(b) {
     }
   });
 
+  // Distillery view chips
+  const viewDistSec = document.getElementById('view-distillery-section');
+  const viewDistChips = document.getElementById('view-distillery-chips');
+  viewDistChips.innerHTML = '';
+  const dList = b.distillery_list || [];
+  dList.forEach(function(d) {
+    const chip = document.createElement('span');
+    chip.className = 'distillery-view-chip';
+    chip.textContent = [d.name, d.region, d.country].filter(Boolean).join(', ');
+    viewDistChips.appendChild(chip);
+  });
+  viewDistSec.style.display = dList.length ? '' : 'none';
+
   // Availability
   const inStock = b.in_stock !== false;
   document.getElementById('drawer-stock-toggle').classList.toggle('stock-toggle-on', inStock);
@@ -613,6 +938,9 @@ function populateViewPanel(b) {
 
   // Use badge
   _setUseBadge(b.Use || 'Cocktail');
+
+  // Spirit Details
+  _populateSpiritViewFields(b.spirit_details || {});
 
   // Tasting notes
   const nose    = b.nose   || '';
@@ -638,6 +966,8 @@ function populateViewPanel(b) {
     flavors.forEach(function(v) {
       const span = document.createElement('span');
       span.className = 'bottle-flavor-tag';
+      const accent = FLAVOR_VALUE_COLOR[v];
+      if (accent) span.style.setProperty('--chip-accent', accent);
       span.textContent = v.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
       chipsEl.appendChild(span);
     });
@@ -650,7 +980,8 @@ function populateEditPanel(b) {
   document.getElementById('dr-name').value     = b.Name     || '';
   document.getElementById('dr-category').value = b.Category || '';
   document.getElementById('dr-style').value    = b.Style    || '';
-  document.getElementById('dr-origin').value   = b.Origin   || '';
+  document.getElementById('dr-country').value  = b.Country  || '';
+  document.getElementById('dr-region').value   = b.Region   || '';
   document.getElementById('dr-age').value      = b.Age      || '';
   document.getElementById('dr-abv').value      = b.ABV      || '';
   document.getElementById('dr-producer').value = b.Producer || '';
@@ -659,6 +990,7 @@ function populateEditPanel(b) {
   document.getElementById('dr-palate').value   = b.palate   || '';
   document.getElementById('dr-finish').value   = b.finish   || '';
   buildFlavorChips(b.flavor_tags || []);
+  populateSpiritDetails(b.Category || '', b.spirit_details || {});
 }
 
 function setDrawerMode(mode) {
@@ -857,10 +1189,11 @@ function _showAddInput(chipRow, groupLabel, addBtn) {
  *  customTags = [{value, label}] from CUSTOM_FLAVOR_TAGS[groupLabel] (may be undefined)
  *  selSet     = Set of currently-selected tag values
  */
-function _makeTagGroup(groupLabel, predefined, selSet, customTags) {
+function _makeTagGroup(groupLabel, predefined, selSet, customTags, accent) {
   const groupEl = document.createElement('div');
   groupEl.className = 'flavor-tag-group';
   groupEl.dataset.groupLabel = groupLabel;
+  if (accent) groupEl.style.setProperty('--group-accent', accent);
 
   const labelEl = document.createElement('div');
   labelEl.className = 'flavor-tag-group-label';
@@ -931,9 +1264,10 @@ function buildFlavorChips(selected) {
   }
 
   // Predefined groups, each with their saved custom tags and a "+" button
-  FLAVOR_GROUPS.forEach(function(grp) {
+  FLAVOR_GROUPS.forEach(function(grp, i) {
     container.appendChild(
-      _makeTagGroup(grp.label, grp.tags, selSet, CUSTOM_FLAVOR_TAGS[grp.label])
+      _makeTagGroup(grp.label, grp.tags, selSet, CUSTOM_FLAVOR_TAGS[grp.label],
+                    FLAVOR_GROUP_COLORS[i] || FLAVOR_NEUTRAL_COLOR)
     );
   });
 }
@@ -942,6 +1276,528 @@ function getSelectedFlavors() {
   return Array.from(document.querySelectorAll('#flavor-tag-groups input[type=checkbox]:checked'))
     .map(function(cb) { return cb.value; });
 }
+
+// ── Spirit Details ────────────────────────────────────────────────────────────
+
+const RUM_CATEGORIES     = new Set(['Rum']);
+const WHISKEY_CATEGORIES = new Set(['Whiskey']);
+const AGAVE_CATEGORIES   = new Set(['Agave Spirit']);
+
+// Built-in chip values per group (mirror the static chips in the markup)
+const DEFAULT_STILL_TYPES   = ['pot', 'column'];
+const DEFAULT_FERMENTATION  = ['molasses', 'cane-juice', 'cane-syrup', 'turbinado', 'piloncillo', 'dunder', 'muck'];
+const DEFAULT_AGAVE_SPECIES = ['espadin', 'blue-weber', 'tobala', 'tepeztate', 'arroqueno', 'madrecuixe', 'cuishe', 'tobaziche', 'jabali', 'mexicano', 'cenizo', 'salmiana'];
+
+// Map chip container → custom-options group key
+const CHIP_GROUP_BY_CONTAINER = {
+  'sd-st-chips':    'still_type',
+  'sd-fm-chips':    'fermentation_materials',
+  'sd-agave-chips': 'agave_species',
+};
+
+/** Custom options registered globally for a group, as [{value,label}]. */
+function _customOptionsFor(group) {
+  return (CUSTOM_SPIRIT_OPTIONS && CUSTOM_SPIRIT_OPTIONS[group]) || [];
+}
+
+/** Show/hide and populate the spirit-details edit section. */
+function populateSpiritDetails(category, sd) {
+  sd = sd || {};
+
+  // Distilleries
+  setDistilleries(sd.distilleries || []);
+
+  // Notes
+  document.getElementById('sd-notes').value = sd.notes || '';
+
+  // Category-specific visibility
+  const isRum     = RUM_CATEGORIES.has(category);
+  const isWhiskey = WHISKEY_CATEGORIES.has(category);
+  const isAgave   = AGAVE_CATEGORIES.has(category);
+  document.getElementById('sd-rum-section').style.display     = isRum     ? '' : 'none';
+  document.getElementById('sd-whiskey-section').style.display = isWhiskey ? '' : 'none';
+  document.getElementById('sd-agave-section').style.display   = isAgave   ? '' : 'none';
+
+  // Still type (all spirits)
+  _setChipGroup('sd-st-chips', DEFAULT_STILL_TYPES, sd.still_type,
+                _customOptionsFor('still_type'));
+
+  // Rum: fermentation materials
+  if (isRum) {
+    _setChipGroup('sd-fm-chips', DEFAULT_FERMENTATION, sd.fermentation_materials,
+                  _customOptionsFor('fermentation_materials'));
+  }
+
+  // Agave: species
+  if (isAgave) {
+    _setChipGroup('sd-agave-chips', DEFAULT_AGAVE_SPECIES, sd.agave_species,
+                  _customOptionsFor('agave_species'));
+  }
+
+  // Whiskey: mash bill
+  if (isWhiskey) {
+    buildMashBillRows(sd.mash_bill || []);
+  }
+
+  // Barrel
+  document.getElementById('sd-barrel-type').value     = sd.barrel_type     || '';
+  document.getElementById('sd-barrel-fill').value     = sd.barrel_fill     || '';
+  document.getElementById('sd-barrel-duration').value = sd.barrel_duration || '';
+  document.querySelectorAll('input[name="sd-barrel-climate"]').forEach(function(r) {
+    r.checked = (r.value === (sd.barrel_climate || ''));
+  });
+}
+
+/** Wire up chip checkbox active-class toggling for static chips (idempotent — call once). */
+(function() {
+  ['#sd-fm-chips', '#sd-st-chips', '#sd-agave-chips'].forEach(function(sel) {
+    document.querySelectorAll(sel + ' input[type=checkbox]').forEach(function(cb) {
+      cb.onchange = function() { cb.closest('label').classList.toggle('active', cb.checked); };
+    });
+  });
+}());
+
+/**
+ * Set checked state + custom chips for a chip group.
+ * knownValues: string[] of built-in chip values (never removed)
+ * selectedValues: string[] of values to check (may include custom ones)
+ */
+function _setChipGroup(containerId, knownValues, selectedValues, customOptions) {
+  const container = document.getElementById(containerId);
+  const selected  = new Set(selectedValues || []);
+  const known     = new Set(knownValues);
+  const addBtn    = container.querySelector('.sd-add-chip-btn');
+
+  // Remove previously injected custom chips
+  container.querySelectorAll('label.form-chip').forEach(function(lbl) {
+    const v = lbl.querySelector('input[type=checkbox]') && lbl.querySelector('input[type=checkbox]').value;
+    if (v != null && !known.has(v)) lbl.remove();
+  });
+
+  // Set standard chips
+  container.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
+    cb.checked = selected.has(cb.value);
+    cb.closest('label').classList.toggle('active', cb.checked);
+  });
+
+  function titleize(v) {
+    return v.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+  }
+  function injectChip(value, labelText) {
+    const checked = selected.has(value);
+    const label = document.createElement('label');
+    label.className = 'form-chip' + (checked ? ' active' : '');
+    const cb = document.createElement('input');
+    cb.type    = 'checkbox';
+    cb.value   = value;
+    cb.checked = checked;
+    cb.onchange = function() { label.classList.toggle('active', cb.checked); };
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(' ' + labelText));
+    if (addBtn) container.insertBefore(label, addBtn);
+    else container.appendChild(label);
+  }
+
+  // Inject globally-registered custom options (always visible for this category)
+  const injected = new Set();
+  (customOptions || []).forEach(function(opt) {
+    if (opt && opt.value && !known.has(opt.value) && !injected.has(opt.value)) {
+      injectChip(opt.value, opt.label || titleize(opt.value));
+      injected.add(opt.value);
+    }
+  });
+
+  // Inject any per-bottle selected customs not already covered
+  selected.forEach(function(v) {
+    if (v && !known.has(v) && !injected.has(v)) {
+      injectChip(v, titleize(v));
+      injected.add(v);
+    }
+  });
+}
+
+
+/** Inline "+" chip: expand to text input, commit as a new checked chip on Enter/blur. */
+function sdAddChip(containerId, btn) {
+  const container = document.getElementById(containerId);
+  const input = document.createElement('input');
+  input.type        = 'text';
+  input.className   = 'sd-add-chip-input';
+  input.placeholder = 'custom…';
+  btn.style.display = 'none';
+  container.insertBefore(input, btn);
+  input.focus();
+
+  function commit() {
+    const raw = input.value.trim();
+    if (raw) {
+      const slug = raw.toLowerCase().replace(/\s+/g, '-');
+      const existing = container.querySelector('input[value="' + slug + '"]');
+      if (existing) {
+        existing.checked = true;
+        existing.closest('label').classList.add('active');
+      } else {
+        const label = document.createElement('label');
+        label.className = 'form-chip active';
+        const cb = document.createElement('input');
+        cb.type    = 'checkbox';
+        cb.value   = slug;
+        cb.checked = true;
+        cb.onchange = function() { label.classList.toggle('active', cb.checked); };
+        label.appendChild(cb);
+        label.appendChild(document.createTextNode(' ' + raw));
+        container.insertBefore(label, input);
+      }
+      // Remember this custom option in-session so it stays available across bottles.
+      // It is persisted server-side on save (see _register_custom_spirit_options).
+      const group = CHIP_GROUP_BY_CONTAINER[containerId];
+      if (group) {
+        if (!CUSTOM_SPIRIT_OPTIONS[group]) CUSTOM_SPIRIT_OPTIONS[group] = [];
+        if (!CUSTOM_SPIRIT_OPTIONS[group].some(function(o) { return o.value === slug; })) {
+          CUSTOM_SPIRIT_OPTIONS[group].push({value: slug, label: raw});
+        }
+      }
+    }
+    input.remove();
+    btn.style.display = '';
+  }
+
+  input.addEventListener('blur', commit);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter')  { e.preventDefault(); commit(); }
+    if (e.key === 'Escape') { e.stopPropagation(); input.remove(); btn.style.display = ''; }
+  });
+}
+
+// ── Distillery picker ─────────────────────────────────────────────────────────
+let _selectedDistilleryIds = [];
+
+function setDistilleries(ids) {
+  _selectedDistilleryIds = [];
+  document.getElementById('dr-distillery-chips').innerHTML = '';
+  (ids || []).forEach(function(id) {
+    const d = ALL_DISTILLERIES.find(function(x) { return x.id === id; });
+    if (d) _addDistilleryEditChip(d);
+  });
+}
+
+function getSelectedDistilleryIds() {
+  return _selectedDistilleryIds.slice();
+}
+
+function _addDistilleryEditChip(d) {
+  if (_selectedDistilleryIds.includes(d.id)) return;
+  _selectedDistilleryIds.push(d.id);
+  const container = document.getElementById('dr-distillery-chips');
+  const chip = document.createElement('div');
+  chip.className = 'distillery-edit-chip';
+  chip.dataset.id = d.id;
+  const label = [d.name, d.region, d.country].filter(Boolean).join(', ');
+  const span = document.createElement('span');
+  span.textContent = label;
+  const rm = document.createElement('button');
+  rm.type = 'button';
+  rm.className = 'distillery-chip-remove';
+  rm.textContent = '×';
+  rm.onclick = function() { _removeDistilleryEditChip(d.id); };
+  chip.appendChild(span);
+  chip.appendChild(rm);
+  container.appendChild(chip);
+}
+
+function _removeDistilleryEditChip(id) {
+  _selectedDistilleryIds = _selectedDistilleryIds.filter(function(x) { return x !== id; });
+  const chip = document.querySelector('#dr-distillery-chips [data-id="' + CSS.escape(id) + '"]');
+  if (chip) chip.remove();
+}
+
+let _dtDebounce = null;
+function distilleryTypeahead(q) {
+  clearTimeout(_dtDebounce);
+  const dd = document.getElementById('dr-distillery-dropdown');
+  if (!q.trim()) { dd.style.display = 'none'; return; }
+  _dtDebounce = setTimeout(async function() {
+    try {
+      const res     = await fetch('/api/distilleries?q=' + encodeURIComponent(q));
+      const results = await res.json();
+      dd.innerHTML  = '';
+      const filtered = results.filter(function(d) { return !_selectedDistilleryIds.includes(d.id); });
+      filtered.slice(0, 8).forEach(function(d) {
+        const item = document.createElement('div');
+        item.className   = 'distillery-dd-item';
+        item.textContent = [d.name, d.region, d.country].filter(Boolean).join(', ');
+        item.onmousedown = function(e) {
+          e.preventDefault();
+          _addDistilleryEditChip(d);
+          document.getElementById('dr-distillery-input').value = '';
+          dd.style.display = 'none';
+        };
+        dd.appendChild(item);
+      });
+      // Always offer create option
+      const createItem = document.createElement('div');
+      createItem.className   = 'distillery-dd-item distillery-dd-create';
+      createItem.textContent = '+ Create "' + q + '"';
+      createItem.onmousedown = function(e) { e.preventDefault(); _openCreateDistilleryForm(q); };
+      dd.appendChild(createItem);
+      dd.style.display = '';
+    } catch(err) { dd.style.display = 'none'; }
+  }, 180);
+}
+
+function _openCreateDistilleryForm(initialName) {
+  const dd = document.getElementById('dr-distillery-dropdown');
+  dd.innerHTML = '';
+  dd.style.display = '';
+  dd.innerHTML = '<div class="distillery-create-form">'
+    + '<input id="dc-name"    class="form-input" placeholder="Name*" style="margin-bottom:6px">'
+    + '<input id="dc-region"  class="form-input" placeholder="Region" style="margin-bottom:6px">'
+    + '<input id="dc-country" class="form-input" placeholder="Country" style="margin-bottom:8px">'
+    + '<div style="display:flex;gap:6px;justify-content:flex-end">'
+    +   '<button type="button" class="btn btn-ghost btn-sm" id="dc-cancel">Cancel</button>'
+    +   '<button type="button" class="btn btn-primary btn-sm" id="dc-submit">Add</button>'
+    + '</div></div>';
+  document.getElementById('dc-name').value = initialName || '';
+  document.getElementById('dc-cancel').onclick = function() { dd.style.display = 'none'; };
+  document.getElementById('dc-submit').onclick  = _submitCreateDistillery;
+  document.getElementById('dc-name').focus();
+}
+
+async function _submitCreateDistillery() {
+  const name    = (document.getElementById('dc-name')?.value    || '').trim();
+  const region  = (document.getElementById('dc-region')?.value  || '').trim();
+  const country = (document.getElementById('dc-country')?.value || '').trim();
+  if (!name) return;
+  try {
+    const res = await fetch('/api/distilleries', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({name, region, country})
+    });
+    if (res.ok) {
+      const d = await res.json();
+      // Insert into local list and keep sorted
+      ALL_DISTILLERIES.push(d);
+      ALL_DISTILLERIES.sort(function(a, b) { return a.name.localeCompare(b.name); });
+      _addDistilleryEditChip(d);
+      document.getElementById('dr-distillery-input').value = '';
+      document.getElementById('dr-distillery-dropdown').style.display = 'none';
+      initDistilleryFilter();
+    }
+  } catch(e) { console.error('Create distillery failed', e); }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  const dd    = document.getElementById('dr-distillery-dropdown');
+  const input = document.getElementById('dr-distillery-input');
+  if (dd && input && !dd.contains(e.target) && e.target !== input) {
+    dd.style.display = 'none';
+  }
+});
+
+/** Build mash-bill row elements. rows = [{grain, pct}] */
+function buildMashBillRows(rows) {
+  const container = document.getElementById('sd-mashbill-rows');
+  container.innerHTML = '';
+  (rows || []).forEach(function(r) {
+    container.appendChild(_makeMashRow(r.grain || '', r.pct != null ? r.pct : ''));
+  });
+}
+
+function _makeMashRow(grain, pct) {
+  const row = document.createElement('div');
+  row.className = 'sd-mashbill-row';
+  const grainInput = document.createElement('input');
+  grainInput.type = 'text';
+  grainInput.className = 'form-input sd-mashbill-grain';
+  grainInput.placeholder = 'Grain (e.g. Corn)';
+  grainInput.value = grain;
+  const pctInput = document.createElement('input');
+  pctInput.type = 'number';
+  pctInput.className = 'form-input sd-mashbill-pct';
+  pctInput.placeholder = '%';
+  pctInput.min = 0;
+  pctInput.max = 100;
+  pctInput.value = pct;
+  const removeBtn = document.createElement('button');
+  removeBtn.type = 'button';
+  removeBtn.className = 'sd-mashbill-remove';
+  removeBtn.textContent = '×';
+  removeBtn.onclick = function() { row.remove(); };
+  row.appendChild(grainInput);
+  row.appendChild(pctInput);
+  row.appendChild(removeBtn);
+  return row;
+}
+
+function addMashBillRow() {
+  document.getElementById('sd-mashbill-rows').appendChild(_makeMashRow('', ''));
+}
+
+/** Collect all spirit detail fields into a plain object. */
+function getSpiritDetails() {
+  const sd = {};
+
+  // Notes
+  const notes = document.getElementById('sd-notes').value.trim();
+  if (notes) sd.notes = notes;
+
+  // Still type (all spirits)
+  const stillTypes = Array.from(
+    document.querySelectorAll('#sd-st-chips input[type=checkbox]:checked')
+  ).map(function(cb) { return cb.value; });
+  if (stillTypes.length) sd.still_type = stillTypes;
+
+  // Rum: fermentation materials
+  if (document.getElementById('sd-rum-section').style.display !== 'none') {
+    const mats = Array.from(
+      document.querySelectorAll('#sd-fm-chips input[type=checkbox]:checked')
+    ).map(function(cb) { return cb.value; });
+    if (mats.length) sd.fermentation_materials = mats;
+  }
+
+  // Agave: species
+  if (document.getElementById('sd-agave-section').style.display !== 'none') {
+    const species = Array.from(
+      document.querySelectorAll('#sd-agave-chips input[type=checkbox]:checked')
+    ).map(function(cb) { return cb.value; });
+    if (species.length) sd.agave_species = species;
+  }
+
+  // Whiskey: mash bill
+  if (document.getElementById('sd-whiskey-section').style.display !== 'none') {
+    const rows = [];
+    document.querySelectorAll('#sd-mashbill-rows .sd-mashbill-row').forEach(function(row) {
+      const grain = row.querySelector('.sd-mashbill-grain').value.trim();
+      const pctStr = row.querySelector('.sd-mashbill-pct').value.trim();
+      if (grain) {
+        const pct = pctStr !== '' ? parseFloat(pctStr) : null;
+        rows.push({grain: grain, pct: pct});
+      }
+    });
+    if (rows.length) sd.mash_bill = rows;
+  }
+
+  // Barrel
+  const barrelType     = document.getElementById('sd-barrel-type').value.trim();
+  const barrelFill     = document.getElementById('sd-barrel-fill').value;
+  const barrelDuration = document.getElementById('sd-barrel-duration').value.trim();
+  const barrelClimate  = (document.querySelector('input[name="sd-barrel-climate"]:checked') || {}).value || '';
+  if (barrelType)     sd.barrel_type     = barrelType;
+  if (barrelFill)     sd.barrel_fill     = barrelFill;
+  if (barrelDuration) sd.barrel_duration = barrelDuration;
+  if (barrelClimate)  sd.barrel_climate  = barrelClimate;
+
+  const distIds = getSelectedDistilleryIds();
+  if (distIds.length) sd.distilleries = distIds;
+
+  return sd;
+}
+
+/** Populate the view panel spirit-details section. */
+function _populateSpiritViewFields(sd) {
+  const sec = document.getElementById('view-spirit-section');
+  const fields = document.getElementById('view-spirit-fields');
+  fields.innerHTML = '';
+
+  function addField(label, value) {
+    if (!value) return;
+    const row = document.createElement('div');
+    row.className = 'drawer-view-field';
+    const lbl = document.createElement('span');
+    lbl.className = 'drawer-view-field-label';
+    lbl.textContent = label;
+    const val = document.createElement('span');
+    val.className = 'drawer-view-field-value';
+    val.textContent = value;
+    row.appendChild(lbl);
+    row.appendChild(val);
+    fields.appendChild(row);
+  }
+
+  if (sd.still_type && sd.still_type.length) {
+    addField('Still Type',
+      sd.still_type.map(function(s) {
+        return s.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+      }).join(', ')
+    );
+  }
+
+  if (sd.fermentation_materials && sd.fermentation_materials.length) {
+    addField('Fermentation',
+      sd.fermentation_materials.map(function(m) {
+        return m.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+      }).join(', ')
+    );
+  }
+
+  if (sd.agave_species && sd.agave_species.length) {
+    addField('Agave',
+      sd.agave_species.map(function(m) {
+        return m.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+      }).join(', ')
+    );
+  }
+
+  if (sd.mash_bill && sd.mash_bill.length) {
+    const mb = sd.mash_bill.map(function(r) {
+      return r.grain + (r.pct != null ? ' ' + r.pct + '%' : '');
+    }).join(' / ');
+    addField('Mash Bill', mb);
+  }
+
+  if (sd.barrel_type)     addField('Barrel Type',    sd.barrel_type);
+  if (sd.barrel_fill)     addField('Fill',            sd.barrel_fill);
+  if (sd.barrel_climate)  addField('Climate', sd.barrel_climate.charAt(0).toUpperCase() + sd.barrel_climate.slice(1));
+  if (sd.barrel_duration) addField('Barrel Age',      sd.barrel_duration);
+
+  // Notes — rendered as a paragraph rather than a key-value field
+  if (sd.notes) {
+    const notesEl = document.createElement('p');
+    notesEl.className = 'sd-view-notes';
+    notesEl.textContent = sd.notes;
+    fields.appendChild(notesEl);
+  }
+
+  sec.style.display = fields.children.length ? '' : 'none';
+}
+
+/** When category changes in the edit panel, update visible spirit-details sub-sections. */
+document.addEventListener('DOMContentLoaded', function() {
+  const catInput = document.getElementById('dr-category');
+  if (catInput) {
+    catInput.addEventListener('input', function() {
+      const cat       = catInput.value.trim();
+      const isRum     = RUM_CATEGORIES.has(cat);
+      const isWhiskey = WHISKEY_CATEGORIES.has(cat);
+      const isAgave   = AGAVE_CATEGORIES.has(cat);
+      document.getElementById('sd-rum-section').style.display     = isRum     ? '' : 'none';
+      document.getElementById('sd-whiskey-section').style.display = isWhiskey ? '' : 'none';
+      document.getElementById('sd-agave-section').style.display   = isAgave   ? '' : 'none';
+      // Populate the now-visible group's chips (defaults + registered customs)
+      if (isRum) {
+        _setChipGroup('sd-fm-chips', DEFAULT_FERMENTATION, [], _customOptionsFor('fermentation_materials'));
+      }
+      if (isAgave) {
+        _setChipGroup('sd-agave-chips', DEFAULT_AGAVE_SPECIES, [], _customOptionsFor('agave_species'));
+      }
+    });
+  }
+
+  // Deep link: /inventory?open=<bottle name> opens that bottle's drawer (e.g. from Bottle Rankings)
+  const openName = new URLSearchParams(window.location.search).get('open');
+  if (openName) {
+    const idx = BOTTLES.findIndex(function(b) { return b.Name === openName; });
+    if (idx >= 0) {
+      openDrawer(idx);
+      const card = document.querySelector('.bottle-card[data-index="' + BOTTLES[idx]._index + '"]');
+      if (card) card.scrollIntoView({block: 'center'});
+    }
+    // Clean the URL so a refresh doesn't re-open the drawer
+    history.replaceState(null, '', window.location.pathname);
+  }
+});
 
 // ── Save ─────────────────────────────────────────────────────────────────────
 async function saveDrawer() {
@@ -956,47 +1812,61 @@ async function saveDrawer() {
   detailFd.append('Name',     newName);
   detailFd.append('Category', document.getElementById('dr-category').value.trim());
   detailFd.append('Style',    document.getElementById('dr-style').value.trim());
-  detailFd.append('Origin',   document.getElementById('dr-origin').value.trim());
+  detailFd.append('Country',  document.getElementById('dr-country').value.trim());
+  detailFd.append('Region',   document.getElementById('dr-region').value.trim());
   detailFd.append('Age',      document.getElementById('dr-age').value.trim());
   detailFd.append('ABV',      document.getElementById('dr-abv').value.trim());
   detailFd.append('Producer', document.getElementById('dr-producer').value.trim());
   detailFd.append('Use',      document.getElementById('dr-use').value);
 
-  // Save tasting notes
+  // Save tasting notes + spirit details
   const noteFd = new FormData();
-  noteFd.append('name',   newName);
-  noteFd.append('nose',   document.getElementById('dr-nose').value.trim());
-  noteFd.append('palate', document.getElementById('dr-palate').value.trim());
-  noteFd.append('finish', document.getElementById('dr-finish').value.trim());
+  noteFd.append('name',           newName);
+  noteFd.append('nose',           document.getElementById('dr-nose').value.trim());
+  noteFd.append('palate',         document.getElementById('dr-palate').value.trim());
+  noteFd.append('finish',         document.getElementById('dr-finish').value.trim());
   getSelectedFlavors().forEach(function(v) { noteFd.append('flavor_tags', v); });
+  noteFd.append('spirit_details', JSON.stringify(getSpiritDetails()));
 
   try {
-    const [r1, r2] = await Promise.all([
-      fetch('/inventory/update', { method: 'POST', body: detailFd }),
-      fetch('/inventory/note',   { method: 'POST', body: noteFd }),
-    ]);
+    // Sequential, not parallel: the note is keyed by the (possibly renamed) bottle
+    // name, so the rename inside /inventory/update must commit before the note write.
+    // Running them in parallel races the rename against the note's upsert and trips
+    // the bottle_name unique constraint, which is why the first save used to error.
+    const r1 = await fetch('/inventory/update', { method: 'POST', body: detailFd });
     const d1 = await r1.json();
     if (d1.success) {
+      const r2 = await fetch('/inventory/note', { method: 'POST', body: noteFd });
+      const d2 = await r2.json().catch(function() { return { success: false }; });
+      if (!d2.success) { showToast('Error saving notes', 'error'); return; }
       // Update local BOTTLES entry
       const updated = d1.bottle;
       BOTTLES[_drawerIdx].Name     = updated.Name;
       BOTTLES[_drawerIdx].Category = updated.Category;
       BOTTLES[_drawerIdx].Style    = updated.Style;
-      BOTTLES[_drawerIdx].Origin   = updated.Origin;
+      BOTTLES[_drawerIdx].Country  = updated.Country;
+      BOTTLES[_drawerIdx].Region   = updated.Region;
       BOTTLES[_drawerIdx].Age      = updated.Age;
       BOTTLES[_drawerIdx].ABV      = updated.ABV;
       BOTTLES[_drawerIdx].Producer = updated.Producer;
       BOTTLES[_drawerIdx].Use      = updated.Use;
-      BOTTLES[_drawerIdx].nose     = document.getElementById('dr-nose').value.trim();
-      BOTTLES[_drawerIdx].palate   = document.getElementById('dr-palate').value.trim();
-      BOTTLES[_drawerIdx].finish   = document.getElementById('dr-finish').value.trim();
-      BOTTLES[_drawerIdx].flavor_tags = getSelectedFlavors();
+      BOTTLES[_drawerIdx].nose           = document.getElementById('dr-nose').value.trim();
+      BOTTLES[_drawerIdx].palate         = document.getElementById('dr-palate').value.trim();
+      BOTTLES[_drawerIdx].finish         = document.getElementById('dr-finish').value.trim();
+      BOTTLES[_drawerIdx].flavor_tags    = getSelectedFlavors();
+      BOTTLES[_drawerIdx].spirit_details = getSpiritDetails();
+      BOTTLES[_drawerIdx].distillery_list = getSelectedDistilleryIds().map(function(id) {
+        return ALL_DISTILLERIES.find(function(d) { return d.id === id; });
+      }).filter(Boolean);
 
       // Update the card in DOM
       const card = document.querySelector('.bottle-card[data-index="' + b._index + '"]');
       if (card) {
         card.dataset.name     = updated.Name.toLowerCase();
         card.dataset.category = updated.Category;
+        card.dataset.country  = (updated.Country || '').toLowerCase();
+        card.dataset.region   = (updated.Region  || '').toLowerCase();
+        card.dataset.distilleries = getSelectedDistilleryIds().join('|');
         card.querySelector('.bottle-card-name').textContent = updated.Name;
         card.querySelector('.bottle-card-category').textContent = updated.Category;
         // Refresh flavor tags display
@@ -1009,8 +1879,9 @@ async function saveDrawer() {
             card.appendChild(tagsEl);
           }
           tagsEl.innerHTML = flavors.slice(0,4).map(function(t) {
-            return '<span class="bottle-flavor-tag">' + t.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();}) + '</span>';
+            return '<span class="bottle-flavor-tag" data-value="' + t + '">' + t.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();}) + '</span>';
           }).join('') + (flavors.length > 4 ? '<span class="bottle-flavor-tag bottle-flavor-more">+' + (flavors.length-4) + '</span>' : '');
+          colorizeTagEls(tagsEl);
         } else if (tagsEl) {
           tagsEl.remove();
         }
@@ -1019,6 +1890,7 @@ async function saveDrawer() {
       _drawerName = updated.Name;
       populateViewPanel(BOTTLES[_drawerIdx]);
       setDrawerMode('view');
+      refreshSpiritFilters();
       showToast('Saved', 'success');
     } else {
       showToast('Error saving details', 'error');
@@ -1113,7 +1985,10 @@ function _buildLeagueList() {
   const inLeagues = new Set((_rateBottle.elo_leagues || []).map(function(l) { return l.league_id; }));
   const cat = _rateBottle.Category || '';
 
-  ALL_LEAGUES.forEach(function(lg) {
+  const sortedLeagues = ALL_LEAGUES.slice().sort(function(a, b) {
+    return a.name.localeCompare(b.name);
+  });
+  sortedLeagues.forEach(function(lg) {
     const isInLeague = inLeagues.has(lg.id);
     const isCatDefault = lg.is_default && lg.category === cat;
     const row = document.createElement('label');
@@ -1316,12 +2191,255 @@ function rateAnotherLeague() {
 // ── Add modal ────────────────────────────────────────────────────────────────
 function openAddModal() {
   document.getElementById('add-modal').style.display = 'flex';
+  _addModalDistIds = [];
+  _addModalExtra = null;
+  document.getElementById('add-distillery-chips').innerHTML = '';
+  document.getElementById('add-distillery-input').value = '';
+  document.getElementById('add-distillery-dropdown').style.display = 'none';
+  document.getElementById('add-distillery-ids-hidden').value = '[]';
+  document.getElementById('add-extra-data-hidden').value = '';
 }
 function closeAddModal() {
   document.getElementById('add-modal').style.display = 'none';
+  document.getElementById('add-distillery-hint').style.display = 'none';
+  document.getElementById('add-distillery-dropdown').style.display = 'none';
 }
 function closeModalIfBg(e) {
   if (e.target === e.currentTarget) closeAddModal();
+}
+
+// ── Add modal distillery picker ───────────────────────────────────────────────
+let _addModalDistIds = [];
+// Rich data from a tech-sheet parse, saved on submit: {spirit_details, nose, palate, finish, flavor_tags}
+let _addModalExtra = null;
+
+function _addAddModalDistChip(d) {
+  if (_addModalDistIds.includes(d.id)) return;
+  _addModalDistIds.push(d.id);
+  const container = document.getElementById('add-distillery-chips');
+  const chip = document.createElement('div');
+  chip.className = 'distillery-edit-chip';
+  chip.dataset.id = d.id;
+  const label = [d.name, d.region, d.country].filter(Boolean).join(', ');
+  const span = document.createElement('span');
+  span.textContent = label;
+  const rm = document.createElement('button');
+  rm.type = 'button';
+  rm.className = 'distillery-chip-remove';
+  rm.textContent = '×';
+  rm.onclick = function() { _removeAddModalDistChip(d.id); };
+  chip.appendChild(span);
+  chip.appendChild(rm);
+  container.appendChild(chip);
+}
+
+function _removeAddModalDistChip(id) {
+  _addModalDistIds = _addModalDistIds.filter(function(x) { return x !== id; });
+  const chip = document.querySelector('#add-distillery-chips [data-id="' + CSS.escape(id) + '"]');
+  if (chip) chip.remove();
+}
+
+let _addDtDebounce = null;
+function addModalDistilleryTypeahead(q) {
+  clearTimeout(_addDtDebounce);
+  const dd = document.getElementById('add-distillery-dropdown');
+  if (!q.trim()) { dd.style.display = 'none'; return; }
+  _addDtDebounce = setTimeout(async function() {
+    try {
+      const res     = await fetch('/api/distilleries?q=' + encodeURIComponent(q));
+      const results = await res.json();
+      dd.innerHTML  = '';
+      const filtered = results.filter(function(d) { return !_addModalDistIds.includes(d.id); });
+      filtered.slice(0, 8).forEach(function(d) {
+        const item = document.createElement('div');
+        item.className   = 'distillery-dd-item';
+        item.textContent = [d.name, d.region, d.country].filter(Boolean).join(', ');
+        item.onmousedown = function(e) {
+          e.preventDefault();
+          _addAddModalDistChip(d);
+          document.getElementById('add-distillery-input').value = '';
+          dd.style.display = 'none';
+        };
+        dd.appendChild(item);
+      });
+      const createItem = document.createElement('div');
+      createItem.className   = 'distillery-dd-item distillery-dd-create';
+      createItem.textContent = '+ Create "' + q + '"';
+      createItem.onmousedown = function(e) { e.preventDefault(); _openAddModalCreateDistilleryForm(q); };
+      dd.appendChild(createItem);
+      dd.style.display = '';
+    } catch(err) { dd.style.display = 'none'; }
+  }, 180);
+}
+
+function _openAddModalCreateDistilleryForm(initialName) {
+  const dd = document.getElementById('add-distillery-dropdown');
+  dd.innerHTML = '';
+  dd.style.display = '';
+  dd.innerHTML = '<div class="distillery-create-form">'
+    + '<input id="adc-name"    class="form-input" placeholder="Name*" style="margin-bottom:6px">'
+    + '<input id="adc-region"  class="form-input" placeholder="Region" style="margin-bottom:6px">'
+    + '<input id="adc-country" class="form-input" placeholder="Country" style="margin-bottom:8px">'
+    + '<div style="display:flex;gap:6px;justify-content:flex-end">'
+    +   '<button type="button" class="btn btn-ghost btn-sm" id="adc-cancel">Cancel</button>'
+    +   '<button type="button" class="btn btn-primary btn-sm" id="adc-submit">Add</button>'
+    + '</div></div>';
+  document.getElementById('adc-name').value = initialName || '';
+  document.getElementById('adc-cancel').onclick = function() { dd.style.display = 'none'; };
+  document.getElementById('adc-submit').onclick  = _submitAddModalCreateDistillery;
+  document.getElementById('adc-name').focus();
+}
+
+async function _submitAddModalCreateDistillery() {
+  const name    = (document.getElementById('adc-name')?.value    || '').trim();
+  const region  = (document.getElementById('adc-region')?.value  || '').trim();
+  const country = (document.getElementById('adc-country')?.value || '').trim();
+  if (!name) return;
+  try {
+    const res = await fetch('/api/distilleries', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({name, region, country})
+    });
+    if (res.ok) {
+      const d = await res.json();
+      ALL_DISTILLERIES.push(d);
+      ALL_DISTILLERIES.sort(function(a, b) { return a.name.localeCompare(b.name); });
+      _addAddModalDistChip(d);
+      document.getElementById('add-distillery-input').value = '';
+      document.getElementById('add-distillery-dropdown').style.display = 'none';
+      initDistilleryFilter();
+    }
+  } catch(e) { console.error('Create distillery failed', e); }
+}
+
+// Close add-modal distillery dropdown on outside click
+document.addEventListener('click', function(e) {
+  const dd    = document.getElementById('add-distillery-dropdown');
+  const input = document.getElementById('add-distillery-input');
+  if (dd && input && !dd.contains(e.target) && e.target !== input) {
+    dd.style.display = 'none';
+  }
+});
+
+// Populate hidden fields before form submit
+document.getElementById('add-modal').querySelector('form').addEventListener('submit', function() {
+  document.getElementById('add-distillery-ids-hidden').value = JSON.stringify(_addModalDistIds);
+  document.getElementById('add-extra-data-hidden').value = _addModalExtra ? JSON.stringify(_addModalExtra) : '';
+});
+
+// ── Bottle scan ───────────────────────────────────────────────────────────────
+async function handleScanFile(input) {
+  if (!input.files || !input.files[0]) return;
+  const loadingEl = document.getElementById('scan-loading');
+  document.getElementById('scan-loading-text').textContent = 'Reading bottle label…';
+  loadingEl.style.display = 'flex';
+  const fd = new FormData();
+  fd.append('image', input.files[0]);
+  input.value = '';
+  try {
+    const res = await fetch('/inventory/scan', {method: 'POST', body: fd});
+    const result = await res.json();
+    loadingEl.style.display = 'none';
+    if (result.success && result.data) {
+      openAddModalWithData(result.data);
+    } else {
+      showToast(result.error || 'Could not read label — fill in manually', 'error');
+      openAddModal();
+    }
+  } catch(e) {
+    loadingEl.style.display = 'none';
+    showToast('Scan failed — check your connection', 'error');
+    openAddModal();
+  }
+}
+
+// ── Tech sheet upload ──────────────────────────────────────────────────────────
+async function handleTechSheetFile(input) {
+  if (!input.files || !input.files[0]) return;
+  const loadingEl = document.getElementById('scan-loading');
+  document.getElementById('scan-loading-text').textContent = 'Reading tech sheet…';
+  loadingEl.style.display = 'flex';
+  const fd = new FormData();
+  fd.append('file', input.files[0]);
+  input.value = '';
+  try {
+    const res = await fetch('/inventory/tech-sheet', {method: 'POST', body: fd});
+    const result = await res.json();
+    loadingEl.style.display = 'none';
+    if (result.success && result.data) {
+      openAddModalWithData(result.data);
+    } else {
+      showToast(result.error || 'Could not read tech sheet — fill in manually', 'error');
+      openAddModal();
+    }
+  } catch(e) {
+    loadingEl.style.display = 'none';
+    showToast('Tech sheet read failed — check your connection', 'error');
+    openAddModal();
+  }
+}
+
+function openAddModalWithData(d) {
+  openAddModal();
+  const m = document.getElementById('add-modal');
+  m.querySelector('[name="Name"]').value     = d.Name     || '';
+  m.querySelector('[name="Category"]').value = d.Category || '';
+  m.querySelector('[name="Style"]').value    = d.Style    || '';
+  m.querySelector('[name="Country"]').value  = d.Country  || '';
+  m.querySelector('[name="Region"]').value   = d.Region   || '';
+  m.querySelector('[name="Age"]').value      = d.Age      || '';
+  m.querySelector('[name="ABV"]').value      = d.ABV      || '';
+  m.querySelector('[name="Producer"]').value = d.Producer || '';
+  const useSelect = m.querySelector('[name="Use"]');
+  if (d.Use) {
+    for (let i = 0; i < useSelect.options.length; i++) {
+      if (useSelect.options[i].value === d.Use) { useSelect.selectedIndex = i; break; }
+    }
+  }
+  // Stash rich production data (from tech sheets) to save on submit
+  const sd = d.spirit_details || {};
+  const hasSd = sd && Object.keys(sd).length > 0;
+  const hasNotes = d.nose || d.palate || d.finish || (d.flavor_tags && d.flavor_tags.length);
+  if (hasSd || hasNotes) {
+    _addModalExtra = {
+      spirit_details: sd,
+      nose:   d.nose   || '',
+      palate: d.palate || '',
+      finish: d.finish || '',
+      flavor_tags: d.flavor_tags || [],
+    };
+  } else {
+    _addModalExtra = null;
+  }
+
+  const hint = document.getElementById('add-distillery-hint');
+  const hintParts = [];
+  if (d.distillery_name) {
+    const lower = d.distillery_name.toLowerCase();
+    const match = ALL_DISTILLERIES.find(x =>
+      x.name.toLowerCase().includes(lower) || lower.includes(x.name.toLowerCase())
+    );
+    if (match) {
+      hintParts.push(`Distillery detected: ${match.name}, ${match.region}, ${match.country} — link it in the edit drawer after adding.`);
+    } else {
+      hintParts.push(`Distillery detected: "${d.distillery_name}" — you can add and link it in the edit drawer after adding.`);
+    }
+  }
+  const detailBits = [];
+  if (sd.still_type && sd.still_type.length)             detailBits.push('still type');
+  if (sd.fermentation_materials && sd.fermentation_materials.length) detailBits.push('fermentation');
+  if (sd.agave_species && sd.agave_species.length)       detailBits.push('agave species');
+  if (sd.mash_bill && sd.mash_bill.length)               detailBits.push('mash bill');
+  if (sd.barrel_type || sd.barrel_fill || sd.barrel_duration || sd.barrel_climate) detailBits.push('barrel info');
+  if (detailBits.length || hasNotes) {
+    const noteBit = hasNotes ? (detailBits.length ? ' and tasting notes' : 'tasting notes') : '';
+    hintParts.push(`Captured ${detailBits.join(', ')}${noteBit} — saved with the bottle.`);
+  }
+  if (hintParts.length) {
+    hint.textContent = hintParts.join(' ');
+    hint.style.display = '';
+  }
 }
 </script>
 {% endblock %}

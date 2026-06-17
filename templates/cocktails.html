@@ -112,7 +112,7 @@
        data-tried="{{ 'true' if c.feedback.tried else 'false' }}"
        data-favorited="{{ 'true' if c.feedback.favorited else 'false' }}"
        data-tags="{{ c.get('tags', []) | join('|') | lower }}"
-       data-creator="{{ c.get('creator', '') }}"
+       data-creator="{{ c.get('creator_tokens', []) | join('|') }}"
        data-ingredients="{{ (c.get('ingredients', []) | map(attribute='name') | list + c.get('ingredients', []) | map(attribute='notes') | list) | join(' ') | lower }}">
       <div class="cocktail-card-top">
         <span class="cocktail-card-category">

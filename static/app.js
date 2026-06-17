@@ -289,8 +289,12 @@ function filterCocktails() {
     const matchSource = selectedSources.length === 0 || selectedSources.includes(cardSource);
 
     // Creator filter: OR — show cocktails by any of the selected creators.
+    // data-creator holds |-separated per-person tokens; normSearch both sides
+    // so punctuation differences (e.g. "No. 2") can't break the equality.
+    const cardCreatorTokens = (card.dataset.creator || '').split('|')
+      .map(normSearch).filter(Boolean);
     const matchCreator = selectedCreators.length === 0
-      || selectedCreators.some(cr => cr.toLowerCase() === cardCreator);
+      || selectedCreators.some(cr => cardCreatorTokens.includes(normSearch(cr)));
 
     // Can Make toggle
     const matchMake = !makeableOnly || makeable;
