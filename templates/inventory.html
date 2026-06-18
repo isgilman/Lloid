@@ -828,9 +828,9 @@ function filterBottles() {
     const sd  = (!isNaN(idx) && BOTTLES[idx] && BOTTLES[idx].spirit_details)
                   ? BOTTLES[idx].spirit_details : {};
     const sdText = [
-      (sd.fermentation_materials || []).join(' '),
-      (sd.agave_species || []).join(' '),
-      (sd.mash_bill || []).map(function(r) { return r.grain; }).join(' '),
+      (Array.isArray(sd.fermentation_materials) ? sd.fermentation_materials : []).join(' '),
+      (Array.isArray(sd.agave_species) ? sd.agave_species : []).join(' '),
+      (Array.isArray(sd.mash_bill) ? sd.mash_bill : []).map(function(r) { return r.grain; }).join(' '),
       sd.barrel_type,
       sd.barrel_fill,
       sd.barrel_climate,
@@ -1374,10 +1374,17 @@ function _setChipGroup(containerId, knownValues, selectedValues, customOptions) 
     if (v != null && !known.has(v)) lbl.remove();
   });
 
-  // Set standard chips
+  // Set standard chips — also apply any custom label overrides for built-in values
+  const customByValue = {};
+  (customOptions || []).forEach(function(o) { if (o.value) customByValue[o.value] = o.label; });
   container.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
     cb.checked = selected.has(cb.value);
     cb.closest('label').classList.toggle('active', cb.checked);
+    if (customByValue[cb.value]) {
+      const lbl = cb.closest('label');
+      const tn = lbl.lastChild;
+      if (tn && tn.nodeType === Node.TEXT_NODE) tn.textContent = ' ' + customByValue[cb.value];
+    }
   });
 
   function titleize(v) {
@@ -1716,27 +1723,27 @@ function _populateSpiritViewFields(sd) {
     fields.appendChild(row);
   }
 
+  const _asArr = function(v) { return Array.isArray(v) ? v : (v ? [v] : []); };
+  const _soLabel = function(group, value) {
+    const custom = (CUSTOM_SPIRIT_OPTIONS[group] || []).find(function(o) { return o.value === value; });
+    return custom ? custom.label : value.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+  };
+
   if (sd.still_type && sd.still_type.length) {
     addField('Still Type',
-      sd.still_type.map(function(s) {
-        return s.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
-      }).join(', ')
+      _asArr(sd.still_type).map(function(s) { return _soLabel('still_type', s); }).join(', ')
     );
   }
 
   if (sd.fermentation_materials && sd.fermentation_materials.length) {
     addField('Fermentation',
-      sd.fermentation_materials.map(function(m) {
-        return m.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
-      }).join(', ')
+      _asArr(sd.fermentation_materials).map(function(m) { return _soLabel('fermentation_materials', m); }).join(', ')
     );
   }
 
   if (sd.agave_species && sd.agave_species.length) {
     addField('Agave',
-      sd.agave_species.map(function(m) {
-        return m.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
-      }).join(', ')
+      _asArr(sd.agave_species).map(function(m) { return _soLabel('agave_species', m); }).join(', ')
     );
   }
 

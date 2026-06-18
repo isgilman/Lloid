@@ -1,6 +1,6 @@
 Name,Category,Style,Country,Region,Age,ABV,Producer,Use
 00 Cyril Zangs Cider Eau De Vie,Eau de Vie,Calvados,France,Normandy,,50%,,Premium Cocktail
-S.B.S Origin: Ecuador Malacatos 2022,Rum,Aged Rum,Ecuador,,NAS,57%,1423 World Class Spirits,Premium Cocktail
+S.B.S Origin: Ecuador Malacatos 2022,Rum,Aged Rum,Ecuador,,NAS,57%,1423 World Class Spirits,Cocktail
 Aficianados Group XXX/Six MLMMW7 2010,Rum,Aged Rum,Mauritius,,NAS,67.2%,Aficianados Group,Cocktail
 Aficionados Grand Arôme,Rum,Grand Arôme,Martinique,,Unaged,58.32%,Aficionados X Fine Drams,Premium Cocktail
 Allegheny Distilling Hidden Harbor White Rum,Rum,Aged Rum,USA,,,50%,Allegheny Distilling,Cocktail
@@ -25,8 +25,8 @@ Novo Fogo Bar Strength Cachaça,Rum,Cachaça,Brazil,,Unaged,46%,Novo Fogo,Cockta
 Bacardi Carta Blanca,Rum,Aged Rum,Puerto Rico,,,40%,Bacardi,Cocktail
 Barbancourt Rhum vieux Réserve du Domaine,Rum,Aged Rum,Haiti,,,43%,Barbancourt,Cocktail
 Bardstown Bourbon Collaborative Series: Foursquare,Whiskey,Straight Bourbon,USA,Kentucky,Blend of 7 year rye (90%) and 17 year bourbon (10%),53.5%,Bardstown Bourbon Company,Cocktail
-Bardstown Bourbon Origin Series Bottled-In-Bond,Whiskey,Straight Bourbon,USA,Kentucky,6,50%,Bardstown Bourbon Company,Cocktail
-Bardstown Collaboration Series: Bourbon Pusuit,Whiskey,Straight Bourbon,USA,Kentucky,,,Bardstown,Cocktail
+Bardstown Bourbon Origin Series Bottled-In-Bond,Whiskey,Straight Bourbon,USA,Kentucky,6,50%,Bardstown Bourbon Company,Premium Cocktail
+Bardstown Collaboration Series: Bourbon Pursuit,Whiskey,Straight Bourbon,USA,Kentucky,,,Bardstown,Cocktail
 Bardstown Collaboration Series: West Virginia Great Barrel Co.,Whiskey,Straight Bourbon,USA,Kentucky,,,Bardstown,Cocktail
 Bardstown Discovery #10,Whiskey,Straight Bourbon,USA,Kentucky,,,Bardstown,Cocktail
 Bardstown Discovery #11,Whiskey,Straight Bourbon,USA,Kentucky,,,Bardstown,Cocktail
@@ -87,7 +87,7 @@ Eastern Kille Genepy L’epicca,Herbal / Spice Liqueur,Genepy,USA,Michigan,,50%,
 Elijah Craig Barrel Proof Y324,Whiskey,Straight Bourbon,USA,Kentucky,,66.0%,Elijah,Cocktail
 Elijah Craig Straight Rye,Whiskey,Straight Rye,USA,Kentucky,NAS,47%,Heaven Hill,Cocktail
 Epris Rolling Fork Spirits Rolling Fork Single Cask 2011,Rum,Cachaça,Brazil,,NAS,52.56%,Epris,Cocktail
-Ezra Brooks Cask Strength Strength Single Barrel Bouron,Whiskey,Straight Bourbon,USA,Kentucky,4-5,60%,Ezra Brooks,Cocktail
+Ezra Brooks Cask Strength Single Barrel Bourbon,Whiskey,Straight Bourbon,USA,Kentucky,4-5,60%,Ezra Brooks,Cocktail
 Fernet Branca,Amaro / Aperitif,Fernet,Italy,Milan,NAS,39%,Fratelli Branca,Cocktail
 Fine Spirits Rum of the World 2018,Rum,Aged Rum,Jamaica,,NAS,57.18%,Fine Spirits,Cocktail
 Five & 20 Spirits Hamilton 86 Demerara River,Rum,Aged Rum,Guyana,,,43%,Five & 20 Spirits,Cocktail
@@ -103,17 +103,16 @@ Giffard Crème de Cacao,Herbal / Spice Liqueur,Cacao Liqueur,France,Loire Valley
 Goslings Black Seal Rum,Rum,Aged Rum,Bermuda,,,40%,Goslings,Cocktail
 Grand Marnier,Fruit Liqueur,Orange Liqueur,France,,NAS,40%,Campari Group,Cocktail
 Hamilton 151 Demerara Overproof,Rum,Aged Overproof,Guyana,,NAS,75.5%,Ed Hamilton,Cocktail
-Hampden 8 Marks Collection <>H 2022,Rum,Unaged Rum,Jamaica,,Unaged,60%,Hampden Estate,Premium Cocktail
-Hampden 8 Marks Collection C<>H 2022,Rum,Unaged Rum,Jamaica,,Unaged,60%,Hampden Estate,Premium Cocktail
-Hampden 8 Marks Collection DOK 2022,Rum,Aged Rum,Jamaica,,Unaged,60%,Hampden Estate,Premium Cocktail
-Hampden 8 Marks Collection HGML 2022,Rum,Unaged Rum,Jamaica,,Unaged,60%,Hampden,Premium Cocktail
-Hampden 8 Marks Collection HLCF 2022,Rum,Unaged Rum,Jamaica,,Unaged,60%,Hampden Estate,Premium Cocktail
-Hampden 8 Marks Collection LFCH 2022,Rum,Unaged Rum,Jamaica,,Unaged,60%,Hampden Estate,Premium Cocktail
-Hampden 8 Marks Collection LROK 2022,Rum,Unaged Rum,Jamaica,,Unaged,60%,Hampden Estate,Premium Cocktail
-Hampden 8 Marks Collection OWH 2022,Rum,Unaged Rum,Jamaica,,Unaged,60%,Hampden Estate,Premium Cocktail
+Hampden 8 Marks Collection <>H 2022,Rum,Aged Rum,Jamaica,,NAS,60%,Hampden Estate,Cocktail
+Hampden 8 Marks Collection C<>H 2022,Rum,Aged Rum,Jamaica,,NAS,60%,Hampden Estate,Cocktail
+Hampden 8 Marks Collection DOK 2022,Rum,Aged Rum,Jamaica,,NAS,60%,Hampden Estate,Cocktail
+Hampden 8 Marks Collection HGML 2022,Rum,Aged Rum,Jamaica,,NAS,60%,Hampden,Cocktail
+Hampden 8 Marks Collection HLCF 2022,Rum,Aged Rum,Jamaica,,NAS,60%,Hampden Estate,Cocktail
+Hampden 8 Marks Collection LFCH 2022,Rum,Aged Rum,Jamaica,,NAS,60%,Hampden Estate,Cocktail
+Hampden 8 Marks Collection LROK 2022,Rum,Aged Rum,Jamaica,,NAS,60%,Hampden Estate,Cocktail
+Hampden 8 Marks Collection OWH 2022,Rum,Aged Rum,Jamaica,,NAS,60%,Hampden Estate,Cocktail
 Hampden Great House (Distillery Edition 2021),Rum,Aged Rum,Jamaica,,4–7 years,55%,Hampden Estate,Neat Only
 Hampden Great House (Distillery Edition 2022),Rum,Aged Rum,Jamaica,,3–11 years,55%,Hampden Estate,Neat Only
-Habitation Vellier Hampden LROK 2020,Rum,Unaged rum,Jamaica,,Unaged,57.8%,Habitation Velier,Neat Only
 Hampden Holmes Cay Jamaica C<>H 2007,Rum,Aged Rum,Jamaica,,NAS,65.9%,Hampden,Cocktail
 Hampden Pure Single Jamaican Rum Overproof,Rum,Aged Rum,Jamaica,Trelawny,8 years,60%,Hampden Estate,Cocktail
 Hampden Velier Trelawny Endemic Birds (Euphonia) LROK 2010,Rum,Aged Rum,Jamaica,,NAS,62.2%,Hampden,Cocktail
@@ -202,7 +201,7 @@ Rhum J.M Terroir Volcanique 2021,Rum,Rhum Agricole,Martinique,,NAS,43%,Rhum J.M,
 Rhum J.M VSOP,Rum,Rhum Agricole,Martinique,,,43%,Rhum J.M,Cocktail
 Rittenhouse Bottled-In-Bond Straight Rye Whisky,Whiskey,Straight Rye Whiskey,USA,Kentucky,4,50%,Rittenhouse Bottled,Cocktail
 Rittenhouse Bottled-In-Bond Straight Rye Whisky 25 Years,Whiskey,Straight Rye Whiskey,USA,Kentucky,25,,Rittenhouse,Cocktail
-River Antoine Royal Grenadian Rum,Rum,Unaged Rum,Grenada,,Unaged,69%,River Antoine,Premium Cocktail
+River Antoine Royal Grenadian Rum,Rum,Unaged Rum,Grenada,,Unaged,69%,River Antoine,Cocktail
 Rothman & Winter Orchard Apricot,Fruit Liqueur,Apricot Liqueur,Austria,,NAS,22%,Rothman & Winter,Cocktail
 Rum Fire,Rum,Unaged Overproof Rum,Jamaica,,Unaged,63%,Hampden Estate,Cocktail
 Russell's Reserve 10 Year Bourbon,Whiskey,Straight Bourbon,USA,Kentucky,10,45%,Wild Turkey,Cocktail
@@ -217,7 +216,7 @@ Savanna Old Brothers 74.8 - Excellence Rhum 2019,Rum,Rhum,Réunion,,NAS,74.8%,Sa
 Savanna Raising Glasses Union Folklore Series #13 2017,Rum,Rhum,Réunion,,NAS,61.7%,Savanna,Cocktail
 Seoul Night,Other Spirit,Cane Spirit,South Korea,,Unaged,25%,Seoul Night,Cocktail
 Smith & Cross,Rum,Aged,Jamaica,,NAS,57%,Smith & Cross,Cocktail
-Clairin Sonson 2018,Rum,Clairin,Haiti,,NAS,53.2%,Sonson Pierre Gilles,Premium Cocktail
+Clairin Sonson 2018,Rum,Clairin,Haiti,,NAS,53.2%,Sonson Pierre Gilles,Cocktail
 Holmes Cay Single Origin Edition Fiji Rum,Rum,Aged Rum,Fiji,,,46%,Holmes Cay,Cocktail
 South Pacific La Maison Du Whisky Rhum Fiji Flag Series (Collection Antipodes) 2001,Rum,Aged Rum,Fiji,,NAS,62.1%,South Pacific,Cocktail
 South Pacific S.B.S. Fiji 2009,Rum,Aged rum,Fiji,,11 years,57%,1423 S.B.S.,Neat Only
@@ -232,7 +231,7 @@ Tempus Fugit Crème de Moka,Herbal / Spice Liqueur,Coffee Liqueur,Switzerland,,N
 Tempus Fugit Crème de Noyaux,Fruit Liqueur,Crème de Noyaux,Switzerland,,,30%,,Cocktail
 Tequila Ocho Plata,Agave Spirit,Blanco tequila,Mexico,Jalisco,Unaged,40%,Tequila Ocho,Cocktail
 The Real McCoy 3,Rum,Lightly Aged,Barbados,,3,40%,Foursquare,Cocktail
-Tosba artisanal mezcal distillery Dakabend Blanco,Agave Spirit,Mezcal,Mexico,,Unaged,49%,Tosba artisanal mezcal distillery,Cocktail
+Tosba artisanal mezcal distillery Dakabend Blanco,Rum,Aguardiente de caña,Mexico,Oaxaca,Unaged,49%,Dakabend rum,Cocktail
 Travellers Compagnie des Indes Belize 2005,Rum,Aged Rum,Belize,,NAS,66.2%,Travellers,Cocktail
 TSO'OK Oaxacan Mountain Rum,Rum,Aguardiente de Caña,Mexico,Oaxaca,Unaged,49%,Alambique Serrano,Cocktail
 Turquoise Bay Amber Rum,Rum,Lightly Aged,Mauritius,,NAS,40%,Odevie,Cocktail
@@ -246,7 +245,7 @@ Versailles Raising Glasses Moongazer (Folklore Series #3) 2012,Rum,Aged Rum,Guya
 "Very Old St. Nick Ancient Cask Rye Whiskey ""Faith + Conviction""",Whiskey,Straight Rye Whiskey,USA,Kentucky,,,Very,Cocktail
 Very Old St. Nick Cask Strength Summer Rye Whiskey,Whiskey,Straight Rye Whiskey,USA,Kentucky,,,Very,Cocktail
 West Indies Maison Ferrand Plantation Barbados 5 Years,Rum,Aged Rum,Barbados,,5,40%,West Indies,Cocktail
-Whistlepig Piggy Back 6 Year,Whiskey,Straight Rye Whiskey,USA,,6,48.3%,M,Cocktail
+Whistlepig Piggy Back 6 Year Rye,Whiskey,Straight Rye Whiskey,USA,,6,48.3%,M,Cocktail
 Wild Turkey Rare Breed Barrel Proof Bourbon,Whiskey,Straight Bourbon,USA,Kentucky,"6,8,12",58.4%,Wild Turkey,Cocktail
 Wilderness Trail Small Batch Bottled-In-Bond (North of Bourbon Store Pick),Whiskey,Straight Bourbon,USA,Kentucky,,,Wilderness,Cocktail
 Willet Straight Rye Whiskey,Whiskey,Straight Rye Whiskey,USA,Kentucky,4,,Willet,Cocktail
@@ -254,7 +253,7 @@ Willet Straight Rye Whiskey,Whiskey,Straight Rye Whiskey,USA,Kentucky,4,,Willet,
 Worthy Park 109,Rum,Aged,Jamaica,Saint Elizabeth,NAS,54.5%,Worthy Park Estate,Cocktail
 Worthy Park Aficianados Group XXX/Five Saint Catherine Jamaica 2018,Rum,Aged Rum,Jamaica,,NAS,65%,Worthy Park,Cocktail
 Worthy Park Doctor Bird Jamaica Rum,Rum,Aged Rum,Jamaica,,,50%,Worthy Park,Cocktail
-Worthy Park Five & 20 Spirits Hamilton Jamaican Pot Still Black Rum,Rum,Aged Rum,Jamaica,,,46.5%,Worthy Park,Cocktail
+Hamilton Jamaican Pot Still Black Rum,Rum,Aged Rum,Jamaica,,,46.5%,Hamilton Rum,Cocktail
 Worthy Park Overproof,Rum,Unaged Overproof,Jamaica,,Unaged,63%,Worthy Park Estate,Cocktail
 Worthy Park Rum-Bar Silver,Rum,Aged Rum,Jamaica,,,40%,Worthy Park,Cocktail
 Wray & Nephew White Overproof,Rum,Unaged Overproof,Jamaica,,Unaged,63%,J. Wray & Nephew,Cocktail
@@ -276,3 +275,5 @@ Worthy Park Single Barrel Series: Skurnik 9th Floor Selection,Rum,High ester rum
 Long Pond STC❤️E (2018),Rum,High ester rum,Jamaica,Trelawny,Unaged,62.5%,Habitation Velier,Premium Cocktail
 Cambridge Jamaica Pure Single Rum 2010 STC❤️E,Rum,Aged Rum,Jamaica,Trelawny,12 Year,57%,National Rums of Jamaica LTD,Neat Only
 Warehouse #1 Overproof Rum NYE/WK,Rum,High ester rum,Jamaica,Jamaica,Unaged,63%,Warehouse #1,Premium Cocktail
+Hampden LROK Jamaica Single Rum,Rum,Unaged Pot Still Rum,Jamaica,Trelawny,Unaged,57.8%,Habitation Velier,Neat Only
+Hampden Habitation Velier White LROK 2018,Rum,Aged Rum,Jamaica,,NAS,62.5%,Hampden,Cocktail

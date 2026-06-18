@@ -67,16 +67,29 @@ Stored in `bottle_notes.spirit_details`. Structure:
 ```json
 {
   "fermentation_materials": ["molasses", "cane-juice"],  // rum only
-  "mash_bill": [{"grain": "corn", "pct": 75}, {"grain": "rye", "pct": 21}],  // whiskey
+  "mash_bill": [{"grain": "corn", "pct": 75}, {"grain": "rye", "pct": 21}],  // whiskey (omit when blend_components present)
   "barrel_type": "ex-bourbon",
   "barrel_fill": "first-fill",
   "barrel_climate": "tropical",   // or "temperate"
   "barrel_duration": "5 years",
+  "still_type": ["pot"],          // array: "pot", "column", "hybrid", or custom values
+  "distilleries": ["distillery-slug"],  // internal reference slugs
+  "blend_components": [           // use instead of top-level mash_bill for sourced blends
+    {
+      "pct": 90,
+      "age": "7 years",
+      "origin": "Indiana",
+      "style": "Straight Rye Whiskey",
+      "mash_bill": [{"grain": "rye", "pct": 51}, {"grain": "corn", "pct": 45}, {"grain": "malted barley", "pct": 4}]
+    }
+  ],
   "notes": "free text"
 }
 ```
 
 Valid fermentation materials for rum: `molasses`, `cane-juice`, `cane-syrup`, `turbinado`, `piloncillo`, `dunder`, `muck`
+
+When `blend_components` is present (sourced blends, collaborative series), omit the top-level `mash_bill` — the per-component mash bills in `blend_components` are the source of truth. Each component should have `pct`, `age`, `origin`, `style`, and `mash_bill`.
 
 ## Ingredient matching and "Can Make"
 
@@ -122,9 +135,21 @@ Within tiers 1–5: volume ascending. All `tsp` units are canonical barspoon.
 
 - **Rum X** (rum-x.com) — authoritative source for rum production info (fermentation materials, distillery details)
 
+## SQLite write safety
+
+The production server keeps a long-lived connection to `lloid.db`. Any bulk write script that runs outside the server **must** checkpoint the WAL before closing, or the server's existing connection will see a malformed image:
+
+```python
+conn.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+conn.commit()
+conn.close()
+```
+
+Always end bulk DB scripts with those three lines. `conn.commit()` + `conn.close()` alone is not sufficient — it leaves a 1.5MB+ WAL file that the server's open connection can't reconcile.
+
 ## Key patterns to maintain
 
 - Bottles always sorted alphabetically (`key=lambda b: b.get('Name', '').lower()`)
-- `Use` field values: `Cocktail`, `Premium`, `Neat Only`
-- Curly apostrophes appear in some bottle names in the CSV (e.g. `Uncle John’s Apple Brandy`) — match with the exact Unicode character when writing `set_bottle_note()` calls
+- `Use` field values: `Cocktail`, `Premium Cocktail`, `Neat Only`
+- Curly apostrophes and quotes appear in some bottle names in the CSV (e.g. `Uncle John’s Apple Brandy`, `Eastern Kille Genepy L’epicca`, `The Rums of México – "Caldo"`) — match with the exact Unicode character when writing `set_bottle_note()` calls or any DB update keyed by bottle name
 - `.drawer-view-field-label { width: 90px }` — keep this wide enough for "Fermentation" to not overflow

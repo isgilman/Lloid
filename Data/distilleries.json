@@ -421,6 +421,12 @@
       "country": "USA"
     },
     {
+      "id": "mezcal-tosba",
+      "name": "Mezcal Tosba",
+      "region": "Oaxaca",
+      "country": "Mexico"
+    },
+    {
       "id": "mgp",
       "name": "MGP Ingredients",
       "region": "Lawrenceburg, Indiana",
