@@ -218,9 +218,20 @@ function toggleFilterPanel() {
   document.getElementById('cq-filter-btn')?.classList.toggle('panel-open', open);
 }
 
+function _filterTagChips(query) {
+  const q = (query || '').toLowerCase().trim();
+  document.querySelectorAll('#cq-recipe-tag-chips .filter-chip').forEach(chip => {
+    const label = (chip.dataset.tagLabel || '').toLowerCase();
+    const selected = chip.querySelector('input')?.checked;
+    chip.style.display = (!q || selected || label.includes(q)) ? '' : 'none';
+  });
+}
+
 function clearFilters() {
-  document.querySelectorAll('[name="cq-tag"],[name="cq-source"],[name="cq-creator"]')
+  document.querySelectorAll('[name="cq-tag"],[name="cq-source"],[name="cq-creator"],[name="cq-method"],[name="cq-recipe-tag"]')
     .forEach(el => { el.checked = false; });
+  const tagSearch = document.getElementById('cq-tag-search');
+  if (tagSearch) { tagSearch.value = ''; _filterTagChips(''); }
   _spiritFilter = null;
   const container = document.getElementById('active-filters');
   if (container) container.innerHTML = '';
@@ -236,24 +247,27 @@ function _clearSpiritFilter() {
 }
 
 function _removeFilter(type, value) {
-  const nameMap = { tag: 'cq-tag', source: 'cq-source', creator: 'cq-creator' };
+  const nameMap = { tag: 'cq-tag', source: 'cq-source', creator: 'cq-creator', method: 'cq-method', 'recipe-tag': 'cq-recipe-tag' };
   const cb = document.querySelector(`[name="${nameMap[type]}"][value="${CSS.escape(value)}"]`);
-  if (cb) { cb.checked = false; filterCocktails(); }
+  if (cb) { cb.checked = false; _filterTagChips(document.getElementById('cq-tag-search')?.value || ''); filterCocktails(); }
 }
 
 /** Normalize a search string: lowercase, trim whitespace, collapse
  *  punctuation/apostrophes to spaces so that e.g. "ti punch" matches
  *  "Ti' Punch" and a trailing space in the query is ignored. */
 function normSearch(s) {
-  return (s || '').toLowerCase().trim().replace(/['''`\-\.]/g, ' ').replace(/\s+/g, ' ').trim();
+  return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .trim().replace(/['''`\-\.]/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 function filterCocktails() {
   const query = normSearch(document.getElementById('cq-search')?.value || '');
 
-  const selectedTags     = [...document.querySelectorAll('[name="cq-tag"]:checked')].map(el => el.value);
-  const selectedSources  = [...document.querySelectorAll('[name="cq-source"]:checked')].map(el => el.value);
-  const selectedCreators = [...document.querySelectorAll('[name="cq-creator"]:checked')].map(el => el.value);
+  const selectedTags        = [...document.querySelectorAll('[name="cq-tag"]:checked')].map(el => el.value);
+  const selectedMethods     = [...document.querySelectorAll('[name="cq-method"]:checked')].map(el => el.value);
+  const selectedRecipeTags  = [...document.querySelectorAll('[name="cq-recipe-tag"]:checked')].map(el => el.value);
+  const selectedSources     = [...document.querySelectorAll('[name="cq-source"]:checked')].map(el => el.value);
+  const selectedCreators    = [...document.querySelectorAll('[name="cq-creator"]:checked')].map(el => el.value);
 
   const cards = document.querySelectorAll('.cocktail-card');
   let visible = 0;
@@ -276,7 +290,7 @@ function filterCocktails() {
       || ings.includes(query)
       || cardCreator.includes(query);
 
-    // Tag filter: card must have ALL selected tags (AND within dimension).
+    // Category filter: card must have ALL selected style tags (AND).
     // 'tiki' also matches the legacy 'tropical' tag.
     const matchTags = selectedTags.length === 0 || selectedTags.every(st =>
       st === 'tiki'
@@ -284,8 +298,15 @@ function filterCocktails() {
         : cardTagsArr.includes(st)
     );
 
-    // Source filter: card must match ≥1 selected source (OR — a cocktail only
-    // belongs to one source, so AND would always empty across sources).
+    // Method filter: OR — a cocktail has one method.
+    const cardMethod = (card.dataset.method || '').toLowerCase();
+    const matchMethod = selectedMethods.length === 0 || selectedMethods.includes(cardMethod);
+
+    // Recipe tag filter: OR — broaden results by adding more tags.
+    const matchRecipeTag = selectedRecipeTags.length === 0
+      || selectedRecipeTags.some(rt => cardTagsArr.includes(rt));
+
+    // Source filter: OR — a cocktail only belongs to one source.
     const matchSource = selectedSources.length === 0 || selectedSources.includes(cardSource);
 
     // Creator filter: OR — show cocktails by any of the selected creators.
@@ -305,7 +326,7 @@ function filterCocktails() {
     const matchSpirit = !_spiritFilter ||
       _spiritFilter.some(kw => ings.includes(kw) || name.includes(kw));
 
-    const show = matchQuery && matchTags && matchSource && matchCreator && matchMake && matchTried && matchFavorited && matchSpirit;
+    const show = matchQuery && matchTags && matchMethod && matchRecipeTag && matchSource && matchCreator && matchMake && matchTried && matchFavorited && matchSpirit;
     card.style.display = show ? '' : 'none';
     if (show) visible++;
   });
@@ -329,7 +350,7 @@ function filterCocktails() {
   });
 
   // Filter count badge
-  const totalActive = selectedTags.length + selectedSources.length + selectedCreators.length;
+  const totalActive = selectedTags.length + selectedMethods.length + selectedRecipeTags.length + selectedSources.length + selectedCreators.length;
   const badge = document.getElementById('cq-filter-count');
   if (badge) {
     badge.textContent = totalActive;
@@ -338,18 +359,20 @@ function filterCocktails() {
   document.getElementById('cq-filter-btn')?.classList.toggle('active', totalActive > 0);
 
   // Active filter chips below the panel
-  _renderActiveFilterChips(selectedTags, selectedSources, selectedCreators);
+  _renderActiveFilterChips(selectedTags, selectedMethods, selectedRecipeTags, selectedSources, selectedCreators);
 }
 
-function _renderActiveFilterChips(tags, sources, creators) {
+function _renderActiveFilterChips(tags, methods, recipeTags, sources, creators) {
   const container = document.getElementById('active-filters');
   if (!container) return;
   container.innerHTML = '';
 
   const all = [
-    ...tags.map(v     => ({ type: 'tag',     value: v, label: v })),
-    ...sources.map(v  => ({ type: 'source',  value: v, label: v })),
-    ...creators.map(v => ({ type: 'creator', value: v, label: v })),
+    ...tags.map(v        => ({ type: 'tag',        value: v, label: v })),
+    ...methods.map(v     => ({ type: 'method',     value: v, label: v })),
+    ...recipeTags.map(v  => ({ type: 'recipe-tag', value: v, label: v })),
+    ...sources.map(v     => ({ type: 'source',     value: v, label: v })),
+    ...creators.map(v    => ({ type: 'creator',    value: v, label: v })),
   ];
 
   all.forEach(({ type, value, label }) => {

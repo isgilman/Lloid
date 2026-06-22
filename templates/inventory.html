@@ -9,12 +9,6 @@
       <p class="page-subtitle" id="bottle-count-label">{{ bottles | length }} bottles</p>
     </div>
     <div style="display:flex;gap:8px;align-items:center">
-      <input type="file" id="scan-file-input" accept="image/*" capture="environment"
-             style="display:none" onchange="handleScanFile(this)">
-      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('scan-file-input').click()" title="Scan or photograph a bottle to add it">Scan</button>
-      <input type="file" id="techsheet-file-input" accept="image/*,application/pdf"
-             style="display:none" onchange="handleTechSheetFile(this)">
-      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('techsheet-file-input').click()" title="Upload a tech sheet (image or PDF) to add a bottle with full production details">Tech Sheet</button>
       <button class="btn btn-primary" onclick="openAddModal()">+ Add Bottle</button>
     </div>
   </div>
@@ -468,11 +462,41 @@
       <h2 class="modal-title">Add Bottle</h2>
       <button class="modal-close" onclick="closeAddModal()">&#10005;</button>
     </div>
+
+    <!-- Hidden file inputs -->
+    <input type="file" id="scan-file-input" accept="image/*" capture="environment"
+           style="display:none" onchange="handleScanFile(this)">
+    <input type="file" id="techsheet-file-input" accept="image/*,application/pdf"
+           style="display:none" onchange="handleTechSheetFile(this)">
+
+    <!-- Method picker -->
+    <div id="add-method-picker" class="add-method-picker">
+      <button type="button" class="add-method-btn" onclick="document.getElementById('scan-file-input').click()">
+        <div class="add-method-label">Scan label</div>
+        <div class="add-method-desc">Photograph the bottle with your camera</div>
+      </button>
+      <button type="button" class="add-method-btn" onclick="document.getElementById('techsheet-file-input').click()">
+        <div class="add-method-label">Upload photo or document</div>
+        <div class="add-method-desc">Tech sheet, image, or PDF</div>
+      </button>
+      <button type="button" class="add-method-btn" onclick="_openAddForm()">
+        <div class="add-method-label">Manual entry</div>
+        <div class="add-method-desc">Fill in the details yourself</div>
+      </button>
+    </div>
+
+    <!-- Form (shown after method is chosen or data pre-filled) -->
+    <div id="add-form-section" style="display:none">
     <form method="post" action="{{ url_for('inventory_add') }}" class="modal-form">
       <div class="form-grid-2">
         <div class="form-group">
           <label class="form-label">Name *</label>
-          <input type="text" name="Name" class="form-input" required placeholder="e.g. Hendrick's Gin">
+          <input type="text" name="Name" class="form-input" required placeholder="e.g. Hendrick's Gin"
+                 oninput="_checkDuplicateName(this.value)">
+          <div id="add-dup-warning" style="display:none" class="form-dup-warning">
+            Already on shelf: <strong id="add-dup-name"></strong>.
+            <a id="add-dup-link" href="#" onclick="closeAddModal();return false;">View it</a>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Category</label>
@@ -537,6 +561,7 @@
         <button type="submit" class="btn btn-primary">Add to Inventory</button>
       </div>
     </form>
+    </div><!-- /add-form-section -->
   </div>
 </div>
 {% endblock %}
@@ -2198,6 +2223,8 @@ function rateAnotherLeague() {
 // ── Add modal ────────────────────────────────────────────────────────────────
 function openAddModal() {
   document.getElementById('add-modal').style.display = 'flex';
+  document.getElementById('add-method-picker').style.display = 'flex';
+  document.getElementById('add-form-section').style.display = 'none';
   _addModalDistIds = [];
   _addModalExtra = null;
   document.getElementById('add-distillery-chips').innerHTML = '';
@@ -2205,11 +2232,36 @@ function openAddModal() {
   document.getElementById('add-distillery-dropdown').style.display = 'none';
   document.getElementById('add-distillery-ids-hidden').value = '[]';
   document.getElementById('add-extra-data-hidden').value = '';
+  document.getElementById('add-modal').querySelector('form').reset();
+}
+function _openAddForm() {
+  document.getElementById('add-method-picker').style.display = 'none';
+  document.getElementById('add-form-section').style.display = 'block';
 }
 function closeAddModal() {
   document.getElementById('add-modal').style.display = 'none';
   document.getElementById('add-distillery-hint').style.display = 'none';
   document.getElementById('add-distillery-dropdown').style.display = 'none';
+  document.getElementById('add-dup-warning').style.display = 'none';
+}
+
+function _checkDuplicateName(val) {
+  const warn = document.getElementById('add-dup-warning');
+  const q = val.trim().toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ');
+  if (!q) { warn.style.display = 'none'; return; }
+  const match = BOTTLES.find(b => {
+    const bn = (b.Name || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ');
+    return bn === q || bn.includes(q) || q.includes(bn);
+  });
+  if (match) {
+    document.getElementById('add-dup-name').textContent = match.Name;
+    const link = document.getElementById('add-dup-link');
+    const matchIdx = BOTTLES.findIndex(b => b.Name === match.Name);
+    link.onclick = () => { closeAddModal(); if (matchIdx >= 0) openDrawer(matchIdx); return false; };
+    warn.style.display = 'block';
+  } else {
+    warn.style.display = 'none';
+  }
 }
 function closeModalIfBg(e) {
   if (e.target === e.currentTarget) closeAddModal();
@@ -2389,6 +2441,7 @@ async function handleTechSheetFile(input) {
 
 function openAddModalWithData(d) {
   openAddModal();
+  _openAddForm();
   const m = document.getElementById('add-modal');
   m.querySelector('[name="Name"]').value     = d.Name     || '';
   m.querySelector('[name="Category"]').value = d.Category || '';

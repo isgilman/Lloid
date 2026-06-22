@@ -857,6 +857,8 @@ def get_makeable_status(cocktail, inventory, pantry=None, _checker=None):
             bn = normalize(ing.get('bottle_name') or ing['name'])
             b  = bottle_by_name.get(bn)
             ok = bool(b and b.get('in_stock', True) and normalize(b.get('Use', '')) != 'neat only')
+            if not ok:
+                ok, _ = check(ing['name'], is_premium)
         else:
             explicit = specialty_by_id.get(ing.get('pantry_id', ''))
             if explicit:
@@ -1919,6 +1921,18 @@ def cocktails():
         present_tags.add('tiki')
     style_tags = [{'value': v, 'label': l} for v, l in STYLE_TAG_DEFS if v in present_tags]
 
+    # Normalize method variants so "Build"/"Built", "Stir"/"Stirred" etc. collapse
+    _method_norm = {'Build': 'Built', 'Shake': 'Shaken', 'Stir': 'Stirred'}
+    for c in all_cocktails:
+        raw = (c.get('method') or '').strip()
+        c['method_norm'] = _method_norm.get(raw, raw)
+    methods = sorted(set(c['method_norm'] for c in all_cocktails if c['method_norm']))
+
+    # All tags across all recipes for the searchable tag filter
+    recipe_tags = sorted(set(
+        t.strip().lower() for c in all_cocktails for t in c.get('tags', []) if t.strip()
+    ))
+
     # Unique creator tokens sorted by last name. Multi-creator strings like
     # "A and B (NoMad, NYC)" are split into one token per person, each
     # carrying the shared bar suffix — so filtering by either person works.
@@ -1933,6 +1947,8 @@ def cocktails():
                            cocktails=all_cocktails,
                            sources=sources,
                            style_tags=style_tags,
+                           methods=methods,
+                           recipe_tags=recipe_tags,
                            creators=creators)
 
 
@@ -1998,17 +2014,19 @@ def cocktail_detail(cocktail_id):
     for ing in cocktail.get('ingredients', []):
         ing_type = ing.get('type', '')
         if ing_type == 'bottle':
-            # Explicit bottle link
+            # Explicit bottle link — try specific bottle first, then fall back to
+            # fuzzy matching on the ingredient name so substitutes count.
             bn = normalize(ing.get('bottle_name') or ing['name'])
             b  = bottle_by_name.get(bn)
             ing['pantry_item'] = None
-            if b:
-                ok = b.get('in_stock', True) and normalize(b.get('Use', '')) != 'neat only'
-                ing['available'] = ok
-                ing['source']    = b['Name'] if ok else None
+            specific_ok = bool(b and b.get('in_stock', True) and normalize(b.get('Use', '')) != 'neat only')
+            if specific_ok:
+                ing['available'] = True
+                ing['source']    = b['Name']
             else:
-                ing['available'] = False
-                ing['source']    = None
+                ok, source = check_ingredient_available(ing['name'], inventory, pantry, is_premium)
+                ing['available'] = ok
+                ing['source']    = source
         elif ing_type == 'pantry':
             # Explicitly tagged as a pantry staple in the editor.
             # Still respect the out-of-stock toggle — consistent with get_makeable_status.
@@ -2051,41 +2069,41 @@ def cocktail_detail(cocktail_id):
         #      name/style/category/origin (e.g. "bourbon" → finds "Straight Bourbon" bottles)
         #   3. Primary style from CATEGORY_MAP — fallback when the key name isn't in any
         #      bottle's fields (e.g. "white crème de cacao" → "cacao liqueur")
-        #   4. Matched bottle's Style — when no CATEGORY_MAP key exists at all.
-        #   5. Ingredient name — for pantry / specialty / missing ingredients.
+        #   4. Matched bottle's Style — when no CATEGORY_MAP key exists at all (specific names).
+        #   5. Ingredient name — last resort.
+        # Computed for ALL ingredients (available and missing) so the shelf link is always useful.
         src = ing.get('source')
-        if ing.get('available') and src and src != 'pantry':
-            ing_c = clean(ing['name'])
-            best_k = None
-            for key in CATEGORY_MAP:
-                kc = clean(key)
-                if (kc == ing_c or word_in(kc, ing_c)) and (
-                        best_k is None or len(kc) > len(clean(best_k))):
-                    best_k = key
-            if best_k:
-                override = CATEGORY_SEARCH_TERMS.get(best_k)
-                if override:
-                    ing['search_term'] = override
-                else:
-                    key_term = clean(best_k)
-                    # Use the key name as search if it actually appears in the bottle shelf
-                    # (e.g. "bourbon" appears in "Straight Bourbon").  Otherwise fall back
-                    # to the primary CATEGORY_MAP style so the search still finds results.
-                    found_in_shelf = any(
-                        key_term in (
-                            clean(b.get('Name', '')) + ' ' + clean(b.get('Style', '')) + ' ' +
-                            clean(b.get('Category', '')) + ' ' + clean(b.get('Country', ''))
-                        )
-                        for b in inventory
-                    )
-                    if found_in_shelf:
-                        ing['search_term'] = key_term
-                    else:
-                        styles = CATEGORY_MAP.get(best_k, [])
-                        ing['search_term'] = clean(styles[0]) if styles else key_term
+        ing_c = clean(ing['name'])
+        best_k = None
+        for key in CATEGORY_MAP:
+            kc = clean(key)
+            if (kc == ing_c or word_in(kc, ing_c)) and (
+                    best_k is None or len(kc) > len(clean(best_k))):
+                best_k = key
+        if best_k:
+            override = CATEGORY_SEARCH_TERMS.get(best_k)
+            if override:
+                ing['search_term'] = override
             else:
-                matched = bottle_by_name.get(normalize(src))
-                ing['search_term'] = matched.get('Style', ing['name']) if matched else ing['name']
+                key_term = clean(best_k)
+                # Use the key name as search if it actually appears in the bottle shelf
+                # (e.g. "bourbon" appears in "Straight Bourbon").  Otherwise fall back
+                # to the primary CATEGORY_MAP style so the search still finds results.
+                found_in_shelf = any(
+                    key_term in (
+                        clean(b.get('Name', '')) + ' ' + clean(b.get('Style', '')) + ' ' +
+                        clean(b.get('Category', '')) + ' ' + clean(b.get('Country', ''))
+                    )
+                    for b in inventory
+                )
+                if found_in_shelf:
+                    ing['search_term'] = key_term
+                else:
+                    styles = CATEGORY_MAP.get(best_k, [])
+                    ing['search_term'] = clean(styles[0]) if styles else key_term
+        elif src and src != 'pantry':
+            matched = bottle_by_name.get(normalize(src))
+            ing['search_term'] = clean(matched.get('Style', '')) if matched else ing['name']
         else:
             ing['search_term'] = ing['name']
 
@@ -2562,12 +2580,98 @@ def settings_page():
         for g, tags in sorted(grouped.items(), key=lambda kv: _group_sort(kv[0]))
     ]
 
+    all_bottle_names = sorted((b['Name'] for b in load_inventory()), key=str.lower)
+
     return render_template('settings.html',
                            ntfy_topic=topic,
                            ntfy_base_url=base_url,
                            all_distilleries=all_distilleries,
                            spirit_options_all=spirit_options_all,
-                           flavor_tags_all=flavor_tags_all)
+                           flavor_tags_all=flavor_tags_all,
+                           all_bottle_names=all_bottle_names)
+
+
+@app.route('/api/bottles/detail')
+def api_bottle_detail():
+    name = request.args.get('name', '').strip()
+    inventory = load_inventory_with_notes()
+    bottle = next((b for b in inventory if b.get('Name') == name), None)
+    if not bottle:
+        return jsonify({'error': 'Not found'}), 404
+    return jsonify({f: bottle.get(f, '') for f in INVENTORY_FIELDS} | {
+        'nose':           bottle.get('nose', ''),
+        'palate':         bottle.get('palate', ''),
+        'finish':         bottle.get('finish', ''),
+        'flavor_tags':    bottle.get('flavor_tags', []),
+        'spirit_details': bottle.get('spirit_details', {}),
+        'in_stock':       bottle.get('in_stock', True),
+    })
+
+
+@app.route('/api/bottles/merge', methods=['POST'])
+def api_bottles_merge():
+    data        = request.json or {}
+    keep_name   = data.get('keep', '').strip()
+    remove_name = data.get('remove', '').strip()
+    if not keep_name or not remove_name:
+        return jsonify({'error': 'Missing bottle names'}), 400
+    if keep_name == remove_name:
+        return jsonify({'error': 'Cannot merge a bottle with itself'}), 400
+
+    # Load CSV rows
+    bottles = load_inventory()
+    keep_row   = next((r for r in bottles if r['Name'] == keep_name), None)
+    remove_row = next((r for r in bottles if r['Name'] == remove_name), None)
+    if not keep_row:
+        return jsonify({'error': f'Not found in inventory: {keep_name}'}), 404
+    if not remove_row:
+        return jsonify({'error': f'Not found in inventory: {remove_name}'}), 404
+
+    # Build final CSV identity (pick keep's or remove's fields)
+    id_src = remove_row if data.get('identity_from') == 'remove' else keep_row
+    final_row  = {f: id_src.get(f, '') for f in INVENTORY_FIELDS}
+    final_name = final_row['Name']
+
+    # Load notes
+    keep_notes   = _db.get_bottle_note(keep_name)
+    remove_notes = _db.get_bottle_note(remove_name)
+
+    def _pick(field, group_key):
+        src = remove_notes if data.get(f'{group_key}_from') == 'remove' else keep_notes
+        return src.get(field)
+
+    final_nose    = _pick('nose',           'notes')
+    final_palate  = _pick('palate',         'notes')
+    final_finish  = _pick('finish',         'notes')
+    final_tags    = _pick('flavor_tags',    'tags')
+    final_details = _pick('spirit_details', 'details')
+    # in_stock: keep whichever is True; if both differ, prefer the one being kept
+    final_stock   = keep_notes.get('in_stock', True)
+
+    # Rewrite CSV: drop both, insert merged row in sorted position
+    other_rows = [r for r in bottles if r['Name'] not in (keep_name, remove_name)]
+    insert_idx = next(
+        (i for i, r in enumerate(other_rows) if r['Name'].lower() > final_name.lower()),
+        len(other_rows)
+    )
+    other_rows.insert(insert_idx, final_row)
+    import shutil as _shutil
+    _shutil.copy(INVENTORY_FILE, str(INVENTORY_FILE) + '.backup-pre-merge')
+    save_inventory(other_rows)
+
+    # Write merged bottle_notes
+    _db.delete_bottle_note(keep_name)
+    _db.delete_bottle_note(remove_name)
+    _db.set_bottle_note(final_name,
+        in_stock=final_stock,
+        nose=final_nose,
+        palate=final_palate,
+        finish=final_finish,
+        flavor_tags=final_tags,
+        spirit_details=final_details,
+    )
+
+    return jsonify({'success': True, 'final_name': final_name})
 
 
 @app.route('/settings/save', methods=['POST'])

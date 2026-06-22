@@ -446,6 +446,16 @@ h1, h2, h3 {
 .form-group { display: flex; flex-direction: column; gap: 6px; }
 .form-label { font-size: 12.5px; font-weight: 500; color: var(--text-sec); letter-spacing: 0.03em; }
 .form-hint  { font-weight: 400; color: var(--text-dim); }
+.form-dup-warning {
+  margin-top: 6px;
+  padding: 7px 12px;
+  border-radius: var(--radius);
+  background: rgba(212,110,29,.12);
+  border: 1px solid rgba(212,110,29,.35);
+  font-size: 13px;
+  color: var(--accent-light);
+}
+.form-dup-warning a { color: var(--accent-light); text-decoration: underline; }
 
 .form-input {
   background: var(--card);
@@ -1143,6 +1153,28 @@ select.edit-input { padding: 5px 8px; }
 }
 .modal-close:hover { background: rgba(255,255,255,.06); color: var(--text); }
 .modal-form { padding: 20px 24px; }
+.add-method-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 24px;
+}
+.add-method-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 16px;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: background 0.15s, border-color 0.15s;
+}
+.add-method-btn:hover { background: rgba(255,255,255,.05); border-color: var(--accent); }
+.add-method-label { font-size: 15px; font-weight: 600; color: var(--text); }
+.add-method-desc  { font-size: 13px; color: var(--text-sec); }
 .modal-footer {
   display: flex;
   justify-content: flex-end;
@@ -3450,3 +3482,64 @@ details[open] .history-toggle::before { transform: rotate(90deg); }
   color: var(--text-dim);
   font-style: italic;
 }
+
+/* Merge Bottles UI */
+.merge-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.merge-col {
+  flex: 1;
+  position: relative;
+}
+.merge-vs {
+  padding-top: 28px;
+  font-size: 13px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+.merge-selected-name {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-sec);
+  font-style: italic;
+}
+.merge-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.merge-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-dim);
+  padding: 6px 10px 8px;
+  border-bottom: 1px solid var(--border);
+}
+.merge-table td {
+  padding: 10px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.merge-table th:nth-child(2),
+.merge-table th:nth-child(3),
+.merge-table td:nth-child(2),
+.merge-table td:nth-child(3) {
+  text-align: center;
+  width: 60px;
+}
+.merge-field-label { color: var(--text); }
+.merge-field-hint  { font-size: 11px; color: var(--text-dim); }
+.merge-preview-col {
+  color: var(--text-sec);
+  font-size: 12px;
+  max-width: 280px;
+  word-break: break-word;
+}
+.merge-status { font-size: 13px; color: var(--text-sec); }
+.merge-status.success { color: var(--green); }
+.merge-status.error   { color: #e05c5c; }

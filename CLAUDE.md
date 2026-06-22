@@ -13,7 +13,7 @@ make start / make stop # or via Makefile
 ```
 
 The server is also scheduled via crontab:
-- Friday 5–11 PM, Saturday 3–11 PM, Sunday 3–8 PM
+- Friday 3–11 PM, Saturday 3–11 PM, Sunday 3–8 PM
 
 Preview server config is in `.claude/launch.json` (port 5001).
 

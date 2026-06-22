@@ -210,6 +210,75 @@
     {% endif %}
   </div>
 
+  <!-- Merge Duplicate Bottles -->
+  <div class="settings-section">
+    <h2 class="settings-section-title">Merge Duplicate Bottles</h2>
+    <p class="page-subtitle" style="margin-bottom:18px">
+      Choose two bottles, pick which fields to keep from each, then merge into one entry.
+    </p>
+
+    <div class="merge-row">
+      <div class="merge-col">
+        <label class="form-label">Bottle A</label>
+        <input type="text" id="merge-a-input" class="form-input" placeholder="Search bottles…"
+               oninput="_mergeSearch('a', this.value)" autocomplete="off">
+        <div id="merge-a-dropdown" class="distillery-dropdown" style="display:none"></div>
+        <div id="merge-a-name" class="merge-selected-name" style="display:none"></div>
+      </div>
+      <div class="merge-vs">vs</div>
+      <div class="merge-col">
+        <label class="form-label">Bottle B</label>
+        <input type="text" id="merge-b-input" class="form-input" placeholder="Search bottles…"
+               oninput="_mergeSearch('b', this.value)" autocomplete="off">
+        <div id="merge-b-dropdown" class="distillery-dropdown" style="display:none"></div>
+        <div id="merge-b-name" class="merge-selected-name" style="display:none"></div>
+      </div>
+    </div>
+
+    <div id="merge-comparison" style="display:none;margin-top:20px">
+      <table class="merge-table">
+        <thead>
+          <tr>
+            <th>Field group</th>
+            <th>Use A</th>
+            <th>Use B</th>
+            <th>Preview</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="merge-field-label">Name &amp; identity<br><span class="merge-field-hint">Name, Style, Country, Age, ABV…</span></td>
+            <td><input type="radio" name="mr-identity" value="keep" checked onchange="_updateMergePreviews()"></td>
+            <td><input type="radio" name="mr-identity" value="remove" onchange="_updateMergePreviews()"></td>
+            <td class="merge-preview-col" id="merge-preview-identity"></td>
+          </tr>
+          <tr>
+            <td class="merge-field-label">Tasting notes<br><span class="merge-field-hint">Nose, palate, finish</span></td>
+            <td><input type="radio" name="mr-notes" value="keep" checked onchange="_updateMergePreviews()"></td>
+            <td><input type="radio" name="mr-notes" value="remove" onchange="_updateMergePreviews()"></td>
+            <td class="merge-preview-col" id="merge-preview-notes"></td>
+          </tr>
+          <tr>
+            <td class="merge-field-label">Flavor tags</td>
+            <td><input type="radio" name="mr-tags" value="keep" checked onchange="_updateMergePreviews()"></td>
+            <td><input type="radio" name="mr-tags" value="remove" onchange="_updateMergePreviews()"></td>
+            <td class="merge-preview-col" id="merge-preview-tags"></td>
+          </tr>
+          <tr>
+            <td class="merge-field-label">Spirit details<br><span class="merge-field-hint">Still type, barrel, distilleries…</span></td>
+            <td><input type="radio" name="mr-details" value="keep" checked onchange="_updateMergePreviews()"></td>
+            <td><input type="radio" name="mr-details" value="remove" onchange="_updateMergePreviews()"></td>
+            <td class="merge-preview-col" id="merge-preview-details"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:16px;display:flex;align-items:center;gap:12px">
+        <button class="btn btn-primary" onclick="_doMerge()">Merge bottles</button>
+        <span id="merge-status" class="merge-status"></span>
+      </div>
+    </div>
+  </div>
+
 </div>
 {% endblock %}
 
@@ -384,6 +453,119 @@ async function deleteFlavorTag(value, label, btn) {
     btn.closest('.settings-custom-chip').remove();
     showToast('Removed', 'success');
   } catch(e) { showToast('Network error', 'error'); }
+}
+
+// ── Merge Bottles ─────────────────────────────────────────────────────────────
+const _BOTTLE_NAMES = {{ all_bottle_names | default([]) | tojson }};
+let _mergeData = { keep: null, remove: null };  // a=keep, b=remove
+
+function _mergeSearch(side, query) {
+  const q = query.trim().toLowerCase();
+  const dropId = `merge-${side}-dropdown`;
+  const drop = document.getElementById(dropId);
+  if (!q) { drop.style.display = 'none'; return; }
+  const matches = _BOTTLE_NAMES.filter(n => n.toLowerCase().includes(q)).slice(0, 10);
+  if (!matches.length) { drop.style.display = 'none'; return; }
+  drop.innerHTML = matches.map(n =>
+    `<div class="distillery-option" onclick="_mergeSelect('${side}', ${JSON.stringify(n)})">${n}</div>`
+  ).join('');
+  drop.style.display = 'block';
+}
+
+async function _mergeSelect(side, name) {
+  const key = side === 'a' ? 'keep' : 'remove';
+  document.getElementById(`merge-${side}-input`).value = name;
+  document.getElementById(`merge-${side}-dropdown`).style.display = 'none';
+  const nameEl = document.getElementById(`merge-${side}-name`);
+  nameEl.textContent = name;
+  nameEl.style.display = 'block';
+
+  try {
+    const res = await fetch('/api/bottles/detail?name=' + encodeURIComponent(name));
+    _mergeData[key] = await res.json();
+  } catch(e) {
+    showToast('Could not load bottle data', 'error');
+    return;
+  }
+  if (_mergeData.keep && _mergeData.remove) {
+    document.getElementById('merge-comparison').style.display = 'block';
+    // Reset all radios to "keep" (A)
+    document.querySelectorAll('[name^="mr-"]').forEach(r => { if (r.value === 'keep') r.checked = true; });
+    _updateMergePreviews();
+  }
+}
+
+function _updateMergePreviews() {
+  const { keep, remove } = _mergeData;
+  if (!keep || !remove) return;
+
+  function pick(group) {
+    const val = document.querySelector(`[name="mr-${group}"]:checked`)?.value;
+    return val === 'remove' ? remove : keep;
+  }
+
+  const id = pick('identity');
+  document.getElementById('merge-preview-identity').textContent =
+    `${id.Name} · ${id.Style || ''} · ${id.Country || ''} · ${id.Age || '—'} · ${id.ABV || '—'}`;
+
+  const notes = pick('notes');
+  const noteText = [notes.nose, notes.palate, notes.finish].filter(Boolean).join(' / ');
+  document.getElementById('merge-preview-notes').textContent = noteText || '(none)';
+
+  const tags = pick('tags');
+  document.getElementById('merge-preview-tags').textContent =
+    (tags.flavor_tags || []).join(', ') || '(none)';
+
+  const det = pick('details');
+  const sd = det.spirit_details || {};
+  const detParts = [
+    sd.still_type ? sd.still_type.join(', ') : '',
+    sd.barrel_duration || '',
+    sd.barrel_climate || '',
+  ].filter(Boolean);
+  document.getElementById('merge-preview-details').textContent = detParts.join(' · ') || '(none)';
+}
+
+async function _doMerge() {
+  const { keep, remove } = _mergeData;
+  if (!keep || !remove) { showToast('Select both bottles first', 'error'); return; }
+
+  const status = document.getElementById('merge-status');
+  status.textContent = 'Merging…';
+  status.className = 'merge-status';
+
+  try {
+    const res = await fetch('/api/bottles/merge', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        keep:          keep.Name,
+        remove:        remove.Name,
+        identity_from: document.querySelector('[name="mr-identity"]:checked').value,
+        notes_from:    document.querySelector('[name="mr-notes"]:checked').value,
+        tags_from:     document.querySelector('[name="mr-tags"]:checked').value,
+        details_from:  document.querySelector('[name="mr-details"]:checked').value,
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      status.textContent = data.error || 'Merge failed';
+      status.className = 'merge-status error';
+      return;
+    }
+    status.textContent = `Merged → "${data.final_name}"`;
+    status.className = 'merge-status success';
+    // Reset UI
+    _mergeData = { keep: null, remove: null };
+    ['a','b'].forEach(s => {
+      document.getElementById(`merge-${s}-input`).value = '';
+      document.getElementById(`merge-${s}-name`).style.display = 'none';
+    });
+    document.getElementById('merge-comparison').style.display = 'none';
+  } catch(e) {
+    status.textContent = 'Network error';
+    status.className = 'merge-status error';
+  }
 }
 </script>
 {% endblock %}

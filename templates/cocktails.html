@@ -63,6 +63,35 @@
 
     <div class="filter-group">
       <div class="filter-group-label">
+        Method
+        <span class="filter-group-hint">select multiple to broaden</span>
+      </div>
+      <div class="filter-chips">
+        {% for method in methods %}
+        <label class="filter-chip">
+          <input type="checkbox" name="cq-method" value="{{ method | lower }}" onchange="filterCocktails()">
+          {{ method }}
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-label">Tags</div>
+      <input type="text" id="cq-tag-search" class="filter-input" style="flex:none;width:100%;box-sizing:border-box"
+             placeholder="Type to find tags…" oninput="_filterTagChips(this.value)">
+      <div id="cq-recipe-tag-chips" class="filter-chips" style="max-height:160px;overflow-y:auto">
+        {% for tag in recipe_tags %}
+        <label class="filter-chip" data-tag-label="{{ tag }}">
+          <input type="checkbox" name="cq-recipe-tag" value="{{ tag }}" onchange="filterCocktails()">
+          {{ tag }}
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-label">
         Source
         <span class="filter-group-hint">select multiple to broaden</span>
       </div>
@@ -111,6 +140,7 @@
        data-makeable="{{ 'true' if c.can_make else 'false' }}"
        data-tried="{{ 'true' if c.feedback.tried else 'false' }}"
        data-favorited="{{ 'true' if c.feedback.favorited else 'false' }}"
+       data-method="{{ c.get('method_norm', '') | lower }}"
        data-tags="{{ c.get('tags', []) | join('|') | lower }}"
        data-creator="{{ c.get('creator_tokens', []) | join('|') }}"
        data-ingredients="{{ (c.get('ingredients', []) | map(attribute='name') | list + c.get('ingredients', []) | map(attribute='notes') | list) | join(' ') | lower }}">
